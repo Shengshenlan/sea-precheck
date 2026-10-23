@@ -1,10 +1,11 @@
 # 部署说明（GitHub Pages + Cloudflare Workers + D1）
 
 架构：
-- **前端**：Next.js 静态导出（`output: "export"`），托管在 GitHub Pages。知识库（kb/rules.json）和确定性规则匹配全部在浏览器里运行，后端不可用时也能出完整的纯规则报告。
-- **LLM 后端**：`worker/` 目录，Cloudflare Worker，提供 `POST /api/check` 和 `GET /api/health`。只返回 LLM 的部分（品类/特征识别、补充规则 ID、引用摘录与解释）。前端会把它和本地规则报告合并，并**再校验一遍**引用。
-- **账号与历史**：Cloudflare D1（binding `DB`），表 users / checks / usage / reg_ip，见 `worker/migrations/`。
-- **密钥**：`ZHIPUAI_API_KEY`、`JWT_SECRET` 只作为 Worker secret 存在。不进 git、不进日志、不进前端 bundle。
+- **前端**：Next.js 静态导出（`output: "export"`），托管在 GitHub Pages。首页是登录卡片，登录后是检查工作区；知识库（kb/rules.json）与确定性匹配打包在前端，用于按国家合并并再校验 AI 结果。
+- **后端**：`worker/` 目录，Cloudflare Worker：邮箱验证码注册/登录/重置密码、`POST /api/check`（多国家）、历史记录、`GET /api/health`。
+- **账号与历史**：Cloudflare D1（binding `DB`），表 users / checks / usage / reg_ip / email_codes / mail_counters，见 `worker/migrations/`（0001、0002 两个迁移）。
+- **邮件**：Brevo 事务邮件 API 发送验证码。
+- **密钥**：`ZHIPUAI_API_KEY`、`JWT_SECRET`、`BREVO_API_KEY` 只作为 Worker secret 存在。不进 git、不进日志、不进前端 bundle。
 
 > 本仓库作者尚未执行下面任何一步，也没有创建账号或推送。
 
@@ -13,11 +14,12 @@
 ```bash
 cd worker
 npm ci                                   # wrangler 4.x 需要 Node >= 22
-npx wrangler login                       # 浏览器登录 Cloudflare 账号（免费）
+npx wrangler login                       # 浏览器登录 Cloudflare 账号
 npx wrangler secret put ZHIPUAI_API_KEY  # 交互式粘贴，不会写入文件
-npx wrangler secret put JWT_SECRET       # 随机 ≥32 字节，例如 openssl rand -base64 48 的输出；轮换会使所有登录失效
+npx wrangler secret put JWT_SECRET       # 随机 ≥32 字节，例如 openssl rand -base64 48 的输出；轮换会使所有登录失效、未用的验证码作废
+npx wrangler secret put BREVO_API_KEY    # 见下方“邮件（Brevo）”；不设置则无法注册/重置密码
 npx wrangler d1 create sea-precheck      # 把输出的 database_id 填进 wrangler.toml 的 [[d1_databases]]（当前是占位 0000…）
-npx wrangler d1 migrations apply sea-precheck --remote
+npx wrangler d1 migrations apply sea-precheck --remote   # 应用 0001_init + 0002_email_codes；已部署过旧版本的只会补 0002
 # 编辑 wrangler.toml 的 [vars]：
 #   ALLOWED_ORIGINS = "https://<user>.github.io"        # 只写 origin，不带路径；多个用逗号分隔
 #   LLM_BASE_URL    = "https://open.bigmodel.cn/api/coding/paas/v4"  # Coding Plan；按量付费用 /api/paas/v4
@@ -29,9 +31,24 @@ npx wrangler d1 migrations apply sea-precheck --remote
 #   DAILY_AI_QUOTA  = "20"                              # 每用户每日 AI 次数
 #   REG_PER_IP_PER_DAY = "5"                            # 每 IP 每日注册数
 #   PBKDF2_ITERATIONS  = "100000"                       # workerd 上限 100000；Free 计划 CPU 紧张时可调低（旧哈希自带迭代数，仍可校验）
+#   MAIL_FROM       = "zhu05361@gmail.com"              # 必须是 Brevo 中已验证的发件人
+#   MAIL_FROM_NAME  = "出海合规雷达"
+#   MAIL_PER_EMAIL_PER_DAY = "8"  MAIL_PER_IP_PER_DAY = "20"   # 验证码发送上限
+#   不要在线上设置 DEV_MAIL_LOG（它只在本地无 BREVO_API_KEY 时把验证码打印到控制台）
 npx wrangler deploy
 curl https://sea-precheck-api.<sub>.workers.dev/api/health
 ```
+
+### 邮件（Brevo）
+
+1. 注册 Brevo 账号：https://www.brevo.com/ （免费套餐每天 300 封，足够验证码使用）。
+2. 验证发件人：Brevo 后台 → **Senders, Domains & Dedicated IPs → Senders → Add a sender**，填写 `zhu05361@gmail.com` 和发件人名称“出海合规雷达”，到该 Gmail 邮箱点击确认链接。
+3. 创建 API key：右上角账号 → **SMTP & API → API Keys → Generate a new API key**（是 `xkeysib-` 开头的 API key，不是 SMTP 密码）。新账号可能需要先完成账号资料审核才能发送事务邮件。
+4. `cd worker && npx wrangler secret put BREVO_API_KEY`，粘贴 key（不会写入文件）。
+5. 确认 `wrangler.toml` 的 `MAIL_FROM` 与已验证发件人一致；`npx wrangler d1 migrations apply sea-precheck --remote` 应用 `0002_email_codes.sql`；`npx wrangler deploy`。
+6. 自测：在线上页面注册一个自己的邮箱。收不到时看 `npx wrangler tail`：`mail_error` 带 Brevo 的 HTTP 状态（401 = key 错误，400 = 发件人未验证）；`mail_not_configured` = 没有设置 `BREVO_API_KEY`。
+
+**送达率提醒**：用 `@gmail.com` 作为发件人、却经由 Brevo 的服务器发出，不符合 gmail.com 的 DMARC 对齐要求，Gmail / Outlook 等收件方可能把验证码放进垃圾邮件，个别收件服务器可能直接拒收（Brevo 也会为此提示改写发件地址）。正式上线建议换成自有域名发件（如 `no-reply@yourdomain.com`），在 Brevo 中验证域名并按提示添加 SPF / DKIM / DMARC 记录，然后只改 `MAIL_FROM` 即可。页面已提示“收不到请检查垃圾邮件”。
 
 `ratelimits` 里的 `namespace_id`（1001/1002/1003，`RL_AUTH` 为登录/注册每 IP 每分钟 6 次）是账号内自选的整数，部署时保证不与其他 Worker 冲突即可。
 
@@ -42,8 +59,9 @@ curl https://sea-precheck-api.<sub>.workers.dev/api/health
 | 全局每分钟 30 次 | `RL_GLOBAL` binding（固定 key） | 保护上游智谱免费额度/并发 |
 | 每 IP 每小时约 10 次 | isolate 内存滑动窗口（`RATE_LIMIT_PER_HOUR`） | **尽力而为**：isolate 回收或请求落到不同节点都会重置。需要严格小时额度时改用 Durable Object（免费层已支持 SQLite DO）或 KV（免费写额度较少） |
 | 输入 | body ≤ 8KB，标题 ≤ 200 字，描述 ≤ 2000 字 | 超限返回 413 |
-| 超时 | `REQUEST_TIMEOUT_MS`（默认 55s），前端 60s | 超时返回 504，前端退回纯规则结果 |
-| 额度耗尽 | 智谱 1113/1308/1310/余额类错误 → 503 `{code:"quota"}` | 前端提示“AI 服务暂时不可用（额度已达上限），以下为规则引擎结果” |
+| 超时 | `REQUEST_TIMEOUT_MS`（默认 55s），前端 70s（带图片 90s） | 所有国家都失败时返回错误并回到表单；部分国家失败时该国显示规则结果并注明 |
+| 额度耗尽 | 智谱 1113/1308/1310/余额类错误 → 503 `{code:"quota"}` | 前端提示 AI 服务暂时不可用，请稍后再试 |
+| 验证码 | 60s 冷却；每邮箱/每 IP 每日上限；错 5 次作废 | D1 `email_codes`、`mail_counters` |
 
 CORS 只放行 `ALLOWED_ORIGINS` 里的 origin；带其他 Origin 的浏览器请求返回 403。不带 Origin 的请求（curl/脚本）可以通过，但照样受限流约束。CORS 不是鉴权手段。
 
@@ -75,12 +93,12 @@ NEXT_PUBLIC_BASE_PATH=/sea-precheck NEXT_PUBLIC_API_URL=http://localhost:8787 np
 
 ## 3. 中国大陆访问性（重要）
 
-- **`*.workers.dev` 在大陆基本不可用**。GreatFire 的长期监测显示整个后缀被 DNS 污染或丢包（https://en.greatfire.org/domain/workers.dev）。前端会退回纯规则结果，但 AI 部分对大陆用户等于不可用。
+- **`*.workers.dev` 在大陆基本不可用**。GreatFire 的长期监测显示整个后缀被 DNS 污染或丢包（https://en.greatfire.org/domain/workers.dev）。由于登录与检查都依赖 Worker，大陆用户在这种情况下无法使用。
 - **`*.github.io` 时好时坏**：DNS 污染和限速都常见，可能要多刷几次或者很慢。
 - **自定义域名能明显改善，但不能保证**：
   - 把自有域名托管到 Cloudflare，再给 Worker 绑 Custom Domain（`wrangler.toml` 里写 `routes = [{ pattern = "api.example.com", custom_domain = true }]`），就能绕开 workers.dev 的整体封锁。社区实测多数地区可达，但走的是海外节点，延迟较高，个别 IP 段也可能被干扰。
   - Pages 前端同样可以绑定自定义域（CNAME 指向 `<user>.github.io`）。也可以考虑改用 Cloudflare Pages，静态站和 Worker 放在同一个自定义域下，避免跨域。
-  - **没有 ICP 备案就用不了大陆 CDN 节点**。Cloudflare China Network 需要 Enterprise 合同加 ICP 备案。真想在大陆稳定访问，只能把服务放到备案过的国内主机或 CDN 上（阿里云、腾讯云等），这超出了“免费”的范围。
+  - **没有 ICP 备案就用不了大陆 CDN 节点**。Cloudflare China Network 需要 Enterprise 合同加 ICP 备案。真想在大陆稳定访问，只能把服务放到备案过的国内主机或 CDN 上（阿里云、腾讯云等），这需要额外的备案与费用。
 - 智谱 API（open.bigmodel.cn）在国内，Worker 从海外节点调用它目前是通的，本地 wrangler dev 实测可用。
 
 ## 4. 更新知识库
