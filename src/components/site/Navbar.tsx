@@ -40,7 +40,7 @@ export function Navbar() {
           ) : (
             <Button asChild size="sm" variant="outline" className="hidden md:inline-flex"><Link href="/login/"><LogIn />登录 / 注册</Link></Button>
           ))}
-          <Button asChild size="sm" variant="gradient" className="hidden sm:inline-flex"><Link href="/check/">免费预检</Link></Button>
+          <Button asChild size="sm" variant="gradient" className="hidden sm:inline-flex"><Link href="/check/">开始预检</Link></Button>
           <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setOpen(!open)} aria-label="菜单">{open ? <X /> : <Menu />}</Button>
         </div>
       </div>

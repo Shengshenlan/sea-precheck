@@ -39,7 +39,7 @@ export async function fetchLlm(input: CheckInput, images: string[], signal?: Abo
     const { status, body } = await call<LlmResponse>("/api/check", { method: "POST", body: JSON.stringify({ ...input, images }), signal: ctl.signal });
     if (status === 401) return { ok: false, reason: "login_required", message: "登录已失效，请重新登录后使用 AI 分析。" };
     if (status === 429) return { ok: false, reason: body.code === "user_quota" ? "quota" : "rate_limited", message: body.message || "AI 分析次数已达上限，稍后再试。" };
-    if (status === 503 && body.code === "quota") return { ok: false, reason: "quota", message: body.message || "AI 免费额度已用完，以下为纯规则结果。" };
+    if (status === 503 && body.code === "quota") return { ok: false, reason: "quota", message: body.message || "AI 服务暂时不可用（额度已达上限），以下为规则引擎结果。" };
     if (status !== 200 || !body.ok) return { ok: false, reason: "error", message: body.message || `AI 后端暂不可用（HTTP ${status}），以下为纯规则结果。` };
     return body as LlmResponse;
   } catch (e) {

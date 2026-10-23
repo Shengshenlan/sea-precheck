@@ -91,7 +91,7 @@ function Register() {
       const ok = await go(() => api.register({ email: email.trim(), password: pw, challenge_token: chal.token, challenge_answer: answer.trim(), website: hp }));
       if (!ok) loadChal();
     }}>
-      <div><h2 className="text-xl font-semibold">创建免费账号</h2><p className="mt-1 text-sm text-muted-foreground">无需邮箱验证，注册即用</p></div>
+      <div><h2 className="text-xl font-semibold">创建账号</h2><p className="mt-1 text-sm text-muted-foreground">无需邮箱验证，注册即用</p></div>
       <div><Label htmlFor="re">邮箱</Label><Input id="re" type="email" autoComplete="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" /></div>
       <div>
         <Label htmlFor="rp">密码</Label><PwInput id="rp" value={pw} onChange={setPw} auto="new-password" />

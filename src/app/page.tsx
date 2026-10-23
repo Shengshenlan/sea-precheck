@@ -23,15 +23,15 @@ export default function Home() {
       <section className="relative overflow-hidden">
         <div className="bg-grid pointer-events-none absolute inset-0" />
         <div className="pointer-events-none absolute -top-40 left-1/2 h-[480px] w-[900px] -translate-x-1/2 rounded-full bg-gradient-to-r from-indigo-500/20 via-violet-400/15 to-cyan-400/20 blur-3xl" />
-        <div className="relative mx-auto grid max-w-6xl gap-12 px-4 pb-16 pt-14 sm:px-6 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:pb-24 lg:pt-20">
+        <div className="relative mx-auto grid max-w-6xl gap-14 px-4 pb-14 pt-14 sm:px-6 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:pb-20 lg:pt-24">
           <div className="animate-fade-up">
             <Link href="/sources/" className="inline-flex items-center gap-2 rounded-full border bg-card/80 px-3 py-1 text-xs text-muted-foreground shadow-sm backdrop-blur transition-colors hover:text-foreground">
               <span className="size-1.5 rounded-full bg-emerald-500" />知识库 {kb.version} · {kb.rules.length} 条规则，{verified} 条附可核对原文<ArrowRight className="size-3" />
             </Link>
-            <h1 className="mt-5 text-4xl font-bold leading-[1.15] tracking-tight sm:text-5xl">上架东南亚之前，<br /><span className="text-gradient">先扫一遍合规雷达</span></h1>
+            <h1 className="mt-6 text-4xl font-bold leading-[1.12] tracking-tight sm:text-5xl lg:text-[3.5rem]">上架东南亚之前，<br /><span className="text-gradient">先扫一遍合规雷达</span></h1>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">输入商品标题或上传包装图，30 秒看清在泰国、菲律宾、马来西亚的 TikTok Shop / Shopee / Lazada 需要哪些认证、会踩哪些平台规则、listing 要写什么、有没有品牌词风险。</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild size="lg" variant="gradient"><Link href="/check/"><Radar />免费开始预检</Link></Button>
+              <Button asChild size="lg" variant="gradient"><Link href="/check/"><Radar />开始预检</Link></Button>
               <Button asChild size="lg" variant="outline"><a href="#sample"><FileSearch />看示例报告</a></Button>
             </div>
             <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted-foreground">
@@ -43,9 +43,28 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Authorities & facts */}
+      <section className="relative border-t bg-card/40">
+        <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+          <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+            <div>
+              <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">知识库引用的主管机构与平台政策</p>
+              <div className="mt-4 flex flex-wrap gap-x-7 gap-y-3 text-[15px] font-semibold tracking-tight text-foreground/55">
+                {["TISI", "NBTC", "Thai FDA", "BPS", "NTC", "FDA Philippines", "SIRIM", "Energy Commission", "MCMC", "NPRA", "TikTok Shop", "Shopee", "Lazada"].map((a) => <span key={a}>{a}</span>)}
+              </div>
+            </div>
+            <dl className="grid grid-cols-3 divide-x rounded-2xl border bg-card text-center shadow-sm">
+              {[[String(kb.rules.length), "条规则"], [String(kb.rules.reduce((n, r) => n + r.excerpts.length, 0)), "段原文摘录"], ["3", "个市场"]].map(([n, l]) => (
+                <div key={l} className="px-6 py-4"><dt className="sr-only">{l}</dt><dd className="text-2xl font-bold tabular-nums tracking-tight">{n}</dd><p className="mt-0.5 text-xs text-muted-foreground">{l}</p></div>
+              ))}
+            </dl>
+          </div>
+        </div>
+      </section>
+
       {/* How it works */}
-      <section className="border-y bg-card/50">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <section className="border-y bg-muted/30">
+        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
           <SectionHead eyebrow="三步完成" title="从商品信息到上架清单" />
           <ol className="mt-10 grid gap-5 md:grid-cols-3">
             {[
@@ -68,7 +87,7 @@ export default function Home() {
       </section>
 
       {/* Markets & categories */}
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
         <SectionHead eyebrow="覆盖范围" title="三个市场 · 四大品类" desc="印尼、越南仅做提示，不做完整检查。" />
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {[
@@ -93,7 +112,7 @@ export default function Home() {
 
       {/* Sample report */}
       <section id="sample" className="scroll-mt-20 border-y bg-card/50">
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_1.3fr] lg:items-start">
+        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1fr_1.3fr] lg:items-start">
           <div className="lg:sticky lg:top-24">
             <SectionHead align="left" eyebrow="示例报告" title="每条结论都能追溯到原文" desc="下面是“泰国 · TikTok Shop · 蓝牙空气炸锅”的真实规则匹配结果（纯规则，未用 AI）。展开即可看到官方原文摘录、来源链接和抓取日期。" />
             <ul className="mt-6 space-y-2.5 text-sm">
@@ -116,7 +135,7 @@ export default function Home() {
       </section>
 
       {/* Disclaimer + FAQ */}
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
         <Card className="border-amber-300/70 bg-amber-50/50 p-6 dark:border-amber-500/30 dark:bg-amber-500/5">
           <p className="flex items-center gap-2 font-semibold text-amber-900 dark:text-amber-300"><TriangleAlert className="size-5" />{DISCLAIMER_TITLE}</p>
           <ul className="mt-3 grid gap-2 text-sm leading-relaxed text-amber-950/80 dark:text-amber-100/80 md:grid-cols-2">{DISCLAIMER.map((d, i) => <li key={i} className="flex gap-2"><span className="mt-2 size-1 shrink-0 rounded-full bg-amber-500" />{d}</li>)}</ul>
@@ -144,7 +163,7 @@ export default function Home() {
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-600 via-indigo-600 to-cyan-600 px-6 py-12 text-center text-white shadow-xl shadow-indigo-500/20 sm:px-12">
           <div className="bg-grid pointer-events-none absolute inset-0 opacity-30" />
           <h2 className="relative text-2xl font-bold sm:text-3xl">下一款新品，上架前先扫一下</h2>
-          <p className="relative mx-auto mt-3 max-w-lg text-sm text-white/80">规则预检免登录、不上传；AI 分析与图片识别免费注册即可使用。</p>
+          <p className="relative mx-auto mt-3 max-w-lg text-sm text-white/80">规则预检无需登录，数据不离开浏览器；AI 分析与图片识别需登录账号。</p>
           <div className="relative mt-7 flex flex-wrap justify-center gap-3">
             <Button asChild size="lg" className="bg-white text-indigo-700 shadow-lg hover:bg-white/90"><Link href="/check/"><Radar />开始预检</Link></Button>
             <Button asChild size="lg" variant="ghost" className="text-white hover:bg-white/10"><Link href="/login/"><Lock />注册账号</Link></Button>

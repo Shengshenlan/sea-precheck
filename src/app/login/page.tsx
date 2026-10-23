@@ -15,7 +15,7 @@ export default function LoginPage() {
             return <li key={t as string} className="flex gap-3"><span className="grid size-9 shrink-0 place-items-center rounded-lg bg-accent text-primary"><Icon className="size-4" /></span><div><p className="font-medium">{t as string}</p><p className="text-muted-foreground">{d as string}</p></div></li>;
           })}
         </ul>
-        <p className="mt-8 text-xs text-muted-foreground">免费使用 · 每天 20 次 AI 分析 · 不需要邮箱验证</p>
+        <p className="mt-8 text-xs text-muted-foreground">每个账号每日 20 次 AI 分析 · 图片不保存 · 历史记录可随时删除</p>
       </div>
       <LoginForm />
     </main>
