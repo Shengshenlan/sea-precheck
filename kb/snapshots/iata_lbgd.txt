@@ -1,0 +1,1593 @@
+   Battery Guidance Document
+   Transport of Lithium Metal, Lithium Ion and
+   Sodium Ion Batteries
+   Revised for the 2026 Regulations
+   Introduction
+ This document is based on the provisions set out in the 2025-2026 Edition of the ICAO Technical
+  Instructions for the Safe Transport of Dangerous Goods by Air (Technical Instructions) and the 67th
+  Edition (2026) of the IATA Dangerous Goods Regulations (DGR).
+   The provisions of the DGR with respect to lithium and sodium ion batteries may also be found in the
+   IATA Battery Shipping Regulations (BSR) 13th Edition. In addition to the content from the DGR, the
+   BSR also has additional classification flowcharts and detailed packing and documentation examples
+   for these batteries.
+   Reference to “sodium ion battery” in this document, is to be taken as those that meet the testing
+   and classification criteria for UN 3551, Sodium Ion Battery with organic electrolyte set out in the
+   Manual of Tests and Criteria, part III, sub-section 38.3.
+   The information in this document is intended for guidance purposes only. It should not be relied upon
+   as a source of regulatory compliance.
+   Information on the DGR and BSR can be found at:
+   http://www.iata.org/dgr
+   https://www.iata.org/en/publications/manuals/battery-shipping-regulations/
+
+   Further specific guidance material can be identified under “additional information” towards the end of
+   this document.
+
+   Please note that there has been significant restructuring of the material in this document. When
+   compared to the 2025 edition of this document; certain text changes can be identified by:
+
+            Addition of an item
+            Change to an item
+            Deletion of an item
+
+
+   This document does not consider batteries other than lithium metal, lithium ion and sodium ion with
+   organic electrolyte.
+
+
+
+
+        OSS/Cargo                                   Page 1                                  01/01/2026
+                                                                            IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+
+Table of Contents
+Introduction .............................................................................................................................................................................. 1
+Table of Contents .................................................................................................................................................................. 2
+Definitions ................................................................................................................................................................................ 3
+Cargo-Tracking Devices, Data Loggers, Radio Frequency Identification (RFID), and Electronic Bag
+Tags ……………………………………………………………………………………………………………………………………7
+Classification ........................................................................................................................................................................... 8
+Classification Flowcharts .................................................................................................................................................... 9
+    Classification Flowchart – Lithium Ion Batteries ................................................................................................... 10
+    Classification Flowchart – Lithium Metal Batteries .............................................................................................. 11
+    Classification Flowchart – Sodium Ion Batteries .................................................................................................. 12
+Recent and Upcoming Changes.................................................................................................................................... 13
+    Safety of the Supply Chain.......................................................................................................................................... 13
+    Lithium-ion batteries packed with equipment (PI 966) Section I and Section II ......................................... 14
+    Lithium-ion batteries contained in equipment (PI 967) Section I and Section II ......................................... 14
+    Sodium-ion batteries packed with equipment (PI 977) and contained in equipment (PI 978) Section I
+    and Section II................................................................................................................................................................... 14
+    Vehicles powered by batteries (PI 952) .................................................................................................................. 15
+Hybrid Powered Vehicles ................................................................................................................................................. 15
+Prohibitions ........................................................................................................................................................................... 16
+Restrictions ........................................................................................................................................................................... 16
+Transport of lithium batteries under State Approvals .............................................................................................. 16
+Frequently Asked Questions ........................................................................................................................................... 18
+    Part A – Questions Related to Definitions .............................................................................................................. 18
+    Part B – Questions Related to Design Type Testing Provisions ..................................................................... 19
+    Part C – Questions Related to the Battery Test Summary ............................................................................... 20
+    Part D – Questions related to Classification .......................................................................................................... 21
+    Part E – Questions related to Packaging................................................................................................................ 23
+    Part F – Questions related to Marking and Labelling.......................................................................................... 26
+    Part G – Questions related to Documentation ...................................................................................................... 30
+    Part H – Questions related to Training .................................................................................................................... 32
+Additional Information ....................................................................................................................................................... 35
+Abbreviations, Acronyms, Symbols .............................................................................................................................. 36
+
+
+
+
+        OSS/Cargo                                                                         Page 2                                                                    01/01/2026
+                                          IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+
+Definitions
+Lithium Battery refers to a family of batteries with different chemistries, comprising many types of
+cathodes and electrolytes. For the purposes of the DGR they are separated into lithium metal
+batteries and lithium-ion batteries.
+Lithium metal batteries are generally primary (non-rechargeable) batteries that have lithium metal or
+lithium compounds as an anode. Also included within lithium metal are lithium alloy batteries. Lithium
+metal batteries are generally used to power devices such as watches, calculators, cameras,
+temperature data loggers, car key fobs and defibrillators.
+Note:
+Lithium metal batteries packed by themselves (not contained in or packed with equipment) (Packing
+Instruction 968) are forbidden for transport as cargo on passenger aircraft).
+▪   In accordance with Special Provision A201, lithium metal cells or batteries that meet the specified
+    quantity limits may be shipped on a passenger aircraft under an approval issued by the authority
+    of the State of Origin, State of Destination and State of the Operator.
+▪   Or in the case of urgent medical need, one consignment of lithium batteries may be transported
+    as Class 9 (UN 3090) on passenger aircraft with the prior approval of the authority of the State of
+    Origin and with the approval of the operator, see Special Provision A201.
+▪   All other lithium metal cells and batteries can only be shipped on a passenger aircraft under
+    exemption issued by all States concerned.
+
+
+
+
+                        Figure 1 - Example of Lithium Metal Cells and Batteries
+
+Lithium-ion batteries (also abbreviated as Li-ion batteries) are secondary (rechargeable) battery
+where the lithium is only present in an ionic form in the electrolyte. Also included within the category
+of lithium-ion batteries are lithium polymer batteries. Lithium-ion batteries are generally used to
+power devices such as mobile telephones, laptop computers, tablets, power tools, hybrid and
+electric vehicles and e-bikes. Other similar sources of power (power banks, power packs, etc,
+designed to primarily provide power to another device) are also classified as batteries and not
+batteries contained in equipment.
+
+
+
+
+                        Figure 2 - Example of Lithium Ion Cells and Batteries
+
+
+
+
+     OSS/Cargo                                    Page 3                                            01/01/2026
+                                              IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+   Note:
+   Lithium ion batteries packed by themselves (Packing Instruction 965 - not contained in or packed
+   with equipment):
+   a. must be shipped at a state of charge (SoC) not exceeding 30% of their rated capacity. Cells
+       and/or batteries at a SoC of greater than 30% may only be shipped with the approval of the State
+       of Origin and the State of the Operator in accordance with Special Provision A331; and
+   b. cannot be shipped on a passenger aircraft unless approved by the relevant authorities in
+       accordance with Special Provision A201.
+ Sodium ion battery, with organic electrolyte is a rechargeable electrochemical system where the
+  positive and negative electrode are both intercalation or insertion compounds, constructed with no
+  metallic sodium (or sodium alloy) in either electrode and with an organic non-aqueous compound as
+  an electrolyte.
+   Sodium ion cells and batteries with organic electrolyte must be transported as UN 3551 or UN 3552
+   as appropriate.
+   Note:
+   Sodium-ion batteries with aqueous alkali electrolyte must be transported as UN 2795 Batteries,
+   wet, filled with alkali.
+
+
+
+
+                           Figure 3 - Example of Sodium Ion Cells and Batteries
+
+   Aggregate lithium content means the sum of the grams of lithium content contained by the cells
+   comprising a battery.
+   The technical definition of a battery, button cell and cell, as indicated in the UN Manual of Tests and
+   Criteria, is as follows:
+   Battery means two or more cells or batteries which are electrically connected together and fitted
+   with devices necessary for use, for example, case, terminals, marking and protective devices. Units
+   which have two or more cells that are commonly referred to as "battery packs", "modules" or "battery
+   assemblies" having the primary function of providing a source of power to another piece of
+   equipment are for the purposes of the UN Model Regulations and this guidance document treated as
+   batteries. See definitions for “cell” and “single cell battery”. (See also “Power Banks”)
+   Button cell or battery means a round small cell or battery when the overall height is less than the
+   diameter.
+   Cell means a single encased electrochemical unit (one positive and one negative electrode) which
+   exhibits a voltage differential across its two terminals and may contain protective devices.
+   Note: Under the UN Model Regulations, UN Manual of Tests and Criteria and this guidance, to the
+   extent the encased electrochemical unit meets the definition of “cell” herein, it is a “cell”, not a
+   “battery”, regardless of whether the unit is termed a “battery” or a “single cell battery” outside of the
+   UN Model Regulations, the UN Manual of Tests and Criteria and this guidance.
+   Consignment: one or more packages of dangerous goods accepted by an operator (airline) from one
+   shipper at one time and at one address, receipted for in one lot and moving to one consignee at one
+   destination address.
+
+       OSS/Cargo                                      Page 4                                            01/01/2026
+                                              IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+   Indicated Battery Capacity is to be taken as the indicated remaining usable battery capacity that the
+   user sees via a display gauge or indicator lights.
+   Net quantity, is either:
+      a. the weight or volume of the dangerous goods contained in a package excluding the weight or
+         volume of any packaging material; or
+      b. the weight of an unpackaged article of dangerous goods (e.g. UN 3166).
+   For the purposes of this definition “dangerous goods” means the substance or article as described
+   by the proper shipping name shown in Table 4.2, e.g. for “Fire extinguishers”, the net quantity is the
+   weight of the fire extinguisher (the article). For articles packed with equipment or contained in
+   equipment, the net quantity is the net weight of the article, e.g. for “Lithium-ion batteries contained in
+   equipment”, the net quantity is the net weight of the lithium ion batteries (the article) in the package.
+   Overpack means an enclosure used by a single shipper to contain one or more packages and to
+   form one handling unit for convenience of handling and stowage. Dangerous goods packages
+   contained in the overpack must be properly packed, marked, labelled and in proper condition as
+   required by the IATA Dangerous Goods Regulations.
+   The overpack must not contain packages enclosing different substances which might react
+   dangerously with each other or packages of dangerous goods which require segregation according
+   to Table 9.3.A.
+   In addition, packages containing
+      •   UN 3090, lithium metal batteries prepared in accordance with Section IA or Section IB of
+          PI968,
+      •   UN 3480, lithium ion batteries prepared in accordance with Section IA or Section IB of PI 965,
+          or
+      •   UN 3551, sodium ion batteries prepared in accordance with PI 976.
+   are not permitted in an overpack with packages containing dangerous goods classified in Class 1
+   other than Division 1.4S, Division 2.1, Class 3, Division 4.1 or Division 5.1.
+ Power bank (power pack, mobile battery, etc.), these are portable devices designed to be able to
+  charge consumer devices such as mobile phones and tablets. For the purposes of this guidance
+  document and the IATA Dangerous Goods Regulations, power banks are to be classified as batteries
+  and must be assigned to UN 3480, lithium ion batteries, or UN 3090, lithium metal batteries, as
+  applicable.
+   Note: When carried by passengers, there are new restrictions on power banks. Further information
+   can be found in the “Passengers travelling with lithium batteries guidance document including small
+   vehicles “.
+   Rated capacity means the capacity, in ampere-hours or milliampere-hours, of a cell or battery as
+   measured by subjecting it to a load, temperature and voltage cut-off point specified by the
+   manufacturer.
+   Note:
+   The following IEC standards provide guidance and methodology for determining the rated capacity:
+   1. IEC 61960-3 (Edition 1.0 2017-02): Secondary cells and batteries containing alkaline or other
+      non-acid electrolytes -Secondary lithium cells and batteries for portable applications;
+   2. IEC 62133 -2 (Edition 1.1 Amd1 2021-07): Secondary cells and batteries containing alkaline or
+      other non-acid electrolytes - Safety requirements for portable sealed secondary cells, and for
+      batteries made from them, for use in portable applications;
+
+
+
+       OSS/Cargo                                      Page 5                                            01/01/2026
+                                          IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+3. IEC 62660-1 (Second Edition 2018-12): Secondary lithium-ion cells for the propulsion of electric
+   road vehicles- Part 1: Performance testing.
+State of Charge (SoC): The State of Charge (SoC) represents the percentage of capacity stored in a
+battery or energy storage system relative to its rated capacity.
+State of Origin: The country (State) in the territory of which the consignment is to first be loaded on
+an aircraft.
+State of the Operator: The country (State) in which the operator's principal place of business is
+located or, if there is no such place of business, the operator's permanent residence.
+State of Destination: The country (State) in the territory of which the consignment is finally to be
+unloaded from an aircraft.
+Watt-hour rating: expressed in Wh, the Watt-hour rating of a lithium cell or battery is calculated by
+multiplying the rated capacity in ampere-hours by the nominal voltage.
+
+
+
+
+    OSS/Cargo                                     Page 6                                            01/01/2026
+                                           IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+
+Cargo-Tracking Devices, Data Loggers, Radio Frequency
+Identification (RFID), and Electronic Bag Tags
+Many shipments of time and temperature sensitive products including food, pharmaceutical, medical
+devices, vaccines, and industrial chemicals such as chemical-mechanical planarization (CMP)
+slurries, adhesives, and sealants contain, or have attached to the package(s) and/or overpack(s) small
+battery-powered tracking devices and/or data loggers. Most of these devices use lithium metal or
+lithium-ion cells or batteries as a power source. To be permitted in transport all lithium cell and
+battery types must have passed the applicable tests set out in Subsection 38.3 of the UN Manual of
+Tests and Criteria.
+The below recommendations on shipping active devices are based on the provisions set out in the
+2025-2026 Edition of the ICAO Technical Instructions for the Safe Transport of Dangerous Goods by
+Air (Technical Instructions) and the 67th Edition of the IATA DGRs.
+When shipped as a cargo consignment, battery-powered tracking devices and data loggers that
+contain fully regulated lithium cells or batteries are subject to all of the provisions of the DGR,
+including training, packing, marking and labelling, and documentation requirements.
+
+Exceptions (IATA DGR 1.2.7.1(i)):
+Data loggers and cargo tracking devices with installed lithium batteries, attached to or placed in
+packages, overpacks or unit load devices are not subject to any provisions of these Regulations
+provided the following conditions are met:
+   a. the data loggers/cargo tracking devices must be in use or intended for use during transport;
+   b. each cell or battery must meet the provisions of 3.9.2.6(a), (e), (f) (if applicable) and (g);
+   c. for a lithium-ion cell or battery, a Watt-hour rating not exceeding 20 Wh;
+   d. for a lithium metal cell, a lithium content not exceeding 1 g;
+   e. for a lithium metal battery, an aggregate lithium content not exceeding 1 g;
+   f.   the number of data loggers/cargo tracking devices in or on any package or overpack must be
+        no more than the number required to track or to collect data for the specific consignment;
+   g. the data loggers/cargo tracking devices must be capable of withstanding the shocks and
+      loadings normally encountered during transport;
+   h. the devices must not be capable of generating a dangerous evolution of heat;
+   i.   the devices must meet defined standards for electromagnetic radiation to ensure that the
+        operation of the device does not interfere with aircraft systems.
+Note:
+This exception does not apply where:
+   ▪ the cells or batteries exceed the energy or lithium mass limits, or
+   ▪ the devices are powered by sodium ion batteries.
+In both of these cases, there is provision in the relevant packing instructions to permit these devices
+when active and accompanying cargo that is being tracked or monitored.
+Data loggers or cargo tracking devices which are not active, are to be offered for transport as a
+consignment in accordance with Packing Instruction 967, 970, or 978.
+
+
+
+
+    OSS/Cargo                                      Page 7                                            01/01/2026
+                                          IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+
+Classification
+Lithium, and sodium ion, batteries are classified in Class 9 – Miscellaneous dangerous goods as:
+   ▪   UN 3090, Lithium metal batteries; and
+   ▪   UN 3480, Lithium ion batteries; and
+   ▪   UN 3551, Sodium ion batteries with organic electrolyte
+or, if installed in a piece of equipment or packed separately with a piece of equipment for which it is
+designed to power as:
+   ▪   UN 3091, Lithium metal batteries contained in equipment; or
+   ▪   UN 3091, Lithium metal batteries packed with equipment; and
+   ▪   UN 3481, Lithium ion batteries contained in equipment; or
+   ▪   UN 3481, Lithium ion batteries packed with equipment; and
+   ▪   UN 3552, Sodium ion batteries contained in equipment; or
+   ▪   UN 3552, Sodium ion batteries packed with equipment
+Lithium battery test summary – except for button cells installed in equipment (including circuit
+boards), manufacturers and subsequent distributors of cells or batteries and equipment powered by
+cells and batteries manufactured after 30 June 2003 must make available the test summary as
+specified in the UN Manual of Tests and Criteria, Revision 8, Part III, sub-section 38.3, paragraph
+38.3.5.
+Note:
+The requirement is for the manufacturer and subsequent distributors to make this test summary
+available. Rather than providing a paper copy of the test summary with every consignment,
+compliance may be achieved by placing the test summary on a website and providing a QR code or
+URL with the battery, its packaging or on the transport documentation.
+
+
+
+
+    OSS/Cargo                                     Page 8                                            01/01/2026
+                                             IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+ The following table provides details of the information required in the test summary:
+
+
+                Lithium, or sodium ion, cell or battery test summary in accordance with
+                            sub-section 38.3 of Manual of Tests and Criteria
+
+
+ The following information shall be provided in this test summary:
+    a. Name of cell, battery, or product manufacturer, as applicable;
+    b. Cell, battery, or product manufacturer's contact information to include address, phone
+       number, email address and website for more information;
+    c. Name of the test laboratory to include address, phone number, email address and website
+       for more information;
+    d. A unique test report identification number;
+    e. Date of test report;
+    f.   Description of cell or battery to include at a minimum:
+         i.   Lithium ion, or lithium metal, or sodium ion, cell or battery;
+         ii. Mass;
+         iii. Watt-hour rating, or lithium content;
+         iv. Physical description of the cell/battery; and
+         v. Model numbers.
+    g. List of tests conducted and results (i.e., pass/fail);
+    h. Reference to assembled battery testing requirements, if applicable (i.e. 38.3.3 (f) and
+       38.3.3 (g));
+    i.   Reference to the revised edition of the Manual of Tests and Criteria used and to
+         amendments thereto, if any; and
+    j.   Name and title of responsible person as an indication of the validity of information
+         provided.
+
+
+
+Further information on the test summary is available in Part C of the FAQ’s of this guidance
+document.
+
+
+
+Classification Flowcharts
+The following (3) classification flowcharts are intended to provide guidance on the classification for
+lithium ion, lithium metal and sodium ion batteries.
+
+
+
+
+    OSS/Cargo                                         Page 9                                           01/01/2026
+                                                              IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+
+                                                              Classification Flowchart – Lithium Ion Batteries
+
+                                                              All cells and batteries must be tested in accordance with the UN Manual of Tests
+                                                                               and Criteria Part III Subsection 38.3 (DGR 3.9.2.6)
+
+
+
+
+                                                                                                  Passed                                                 May only be transported under
+                                                                                                    UN                               No                  State Approval as per Special
+                                                                                                   Test?                                                         Provision A88
+
+
+
+
+                                                                                                    Yes
+
+
+
+
+                      Lithium Ion Batteries                                          Lithium Ion Batteries Packed with                                 Lithium Ion Batteries Contained in
+              (limited to a maximum of 30% SoC)                                                 Equipment                                                          Equipment
+
+
+
+      Cells > 20 Wh                   Cells ≤ 20 Wh                          Cells > 20 Wh                      Cells ≤ 20 Wh                      Cells > 20 Wh                     Cells ≤ 20 Wh
+    Batteries > 100 Wh              Batteries ≤ 100 Wh                     Batteries > 100 Wh                 Batteries ≤ 100 Wh                 Batteries > 100 Wh                Batteries ≤ 100 Wh
+
+         UN 3480                         UN 3480                                UN 3481                            UN 3481                           UN 3481                            UN 3481
+          PI 965                          PI 965                                 PI 966                              PI 966                           PI 967                             PI 967
+        Section IA                      Section IB                              Section I                          Section II                        Section I                         Section II *
+         IMP: RBI                        IMP: RBI                               IMP: RLI                            IMP: ELI                         IMP: RLI                           IMP: ELI
+
+
+
+
+   Limit per package:              Limit per package:                     Limit per package:                  Limit per package:                 Limit per package:                Limit per package:
+   Pax A/C = Forbidden             Pax A/C = Forbidden                      Pax A/C = 5 kg                      Pax A/C = 5 kg                     Pax A/C = 5 kg                    Pax A/C = 5 kg
+       CAO = 35 kg                     CAO = 10 kg                           CAO = 35 kg                         CAO = 5 kg                         CAO = 35 kg                       CAO = 5 kg
+UN Specification packaging     1.2 m drop, 3 m stack tested            UN Specification packaging                    xxxx                               xxxx                  * exceptions to battery mark
+
+
+
+
+                                          OSS/Cargo                                             Page 10                                          01/01/2026
+                                                                    IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+
+                                                                    Classification Flowchart – Lithium Metal Batteries
+
+                                                                     All cells and batteries must be tested in accordance with the UN Manual of Tests
+                                                                                      and Criteria Part III Subsection 38.3 (DGR 3.9.2.6)
+
+
+
+
+                                                                                                         Passed                                                May only be transported under
+                                                                                                           UN                               No                 State Approval as per Special
+                                                                                                          Test?                                                        Provision A88
+
+
+
+
+                                                                                                           Yes
+
+
+
+
+                                                                                           Lithium Metal Batteries Packed with                               Lithium Metal Batteries Contained in
+                        Lithium Metal Batteries
+                                                                                                       Equipment                                                         Equipment
+
+
+
+        Cells > 1 g                          Cells ≤ 1 g                               Cells > 1 g                       Cells ≤ 1 g                        Cells > 1 g                       Cells ≤ 1 g
+      Batteries > 2 g                      Batteries ≤ 2 g                           Batteries > 2 g                   Batteries ≤ 2 g                    Batteries > 2 g                   Batteries ≤ 2 g
+
+         UN 3090                               UN 3090                                 UN 3091                            UN 3091                           UN 3091                             UN 3091
+          PI 968                                PI 968                                  PI 969                             PI 969                            PI 970                              PI 970
+        Section IA                            Section IB                               Section I                          Section II                        Section I                          Section II *
+        IMP: RBM                              IMP: RBM                                 IMP: RLM                           IMP: ELM                          IMP: RLM                            IMP: ELM
+
+
+
+
+   Limit per package:                    Limit per package:                      Limit per package:                  Limit per package:                 Limit per package:                Limit per package:
+   Pax A/C = Forbidden                   Pax A/C = Forbidden                       Pax A/C = 5 kg                      Pax A/C = 5 kg                     Pax A/C = 5 kg                    Pax A/C = 5 kg
+       CAO = 35 kg                          CAO = 2.5 kg                            CAO = 35 kg                         CAO = 5 kg                         CAO = 35 kg                       CAO = 5 kg
+UN Specification packaging           1.2 m drop, 3 m stack tested             UN Specification packaging                    xxxx                               xxxx                  * exceptions to battery mark
+
+
+
+
+                                                  OSS/Cargo                                            Page 11                                          01/01/2026
+                                                      IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+
+                                                       Classification Flowchart – Sodium Ion Batteries
+
+                                                All cells and batteries must be tested in accordance with the UN Manual of Tests
+                                                                 and Criteria Part III Subsection 38.3 (DGR 3.9.2.6)
+
+
+
+
+                                                                                    Passed                                                   May only be transported under
+                                                                                      UN                               No                    State Approval as per Special
+                                                                                     Test?                                                           Provision A88
+
+
+
+
+                                                                                      Yes
+
+
+
+
+        Sodium Ion Batteries                                           Sodium Ion Batteries Packed with                                    Sodium Ion Batteries Contained in
+(limited to a maximum of 30% SoC)                                                Equipment                                                           Equipment
+
+
+
+                                                               Cells > 20 Wh                      Cells ≤ 20 Wh                        Cells > 20 Wh                   Cells ≤ 20 Wh
+         Cells > 20 Wh                                                                          Batteries ≤ 100 Wh
+                                                             Batteries > 100 Wh                                                      Batteries > 100 Wh              Batteries ≤ 100 Wh
+       Batteries > 100 Wh
+
+                                                                  UN 3552                            UN 3552                             UN 3552                           UN 3552
+            UN 3551                                                                                    PI 977
+                                                                   PI 977                                                                 PI 978                            PI 978
+             PI 976                                                                                  Section II
+                                                                  Section I                                                              Section I                        Section II *
+            IMP: RBI                                                                                  IMP: ELI
+                                                                  IMP: RLI                                                               IMP: RLI                          IMP: ELI
+
+
+
+
+      Limit per package:                                                                        Limit per package:
+                                                            Limit per package:                                                       Limit per package:               Limit per package:
+      Pax A/C = Forbidden                                                                         Pax A/C = 5 kg
+                                                              Pax A/C = 5 kg                                                           Pax A/C = 5 kg                   Pax A/C = 5 kg
+          CAO = 35 kg                                                                              CAO = 5 kg
+                                                               CAO = 35 kg                                                              CAO = 35 kg                      CAO = 5 kg
+   UN Specification packaging                                                                          xxxx
+                                                         UN Specification packaging                                                         xxxx                 * exceptions to battery mark
+
+
+
+
+                                    OSS/Cargo                                            Page 12                                            01/01/2026
+                                               IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+
+    Recent and Upcoming Changes
+    Safety of the Supply Chain
+The supply chain can be considered as the interconnected network of processes and entities
+    involved in the production, handling, and distribution of goods from the manufacturer to the end user.
+    An efficient supply chain aims to ensure that products are transported quickly, safely and cost-
+    effectively.
+    When taking a holistic approach to the “Safety of the Supply Chain”, it has to be in the context of a
+    coordinated effort to ensure that all stakeholders perform their safety functions when handling and
+    transporting cargo and hazardous materials.
+       •    Manufacturers are responsible for manufacturing and classification of their products and
+            making the information available where it supports transport safety.
+       •    Shippers are responsible for properly packaging, marking, labelling and documenting
+            dangerous goods and for compliance with safety regulations.
+       •    Freight forwarders play a key role in coordinating logistics and ensuring proper routing, whilst
+            also monitoring for consignments that may contain undeclared dangerous goods.
+       •    Operators, and their agents, ensure that all employees involved in handling passengers or
+            cargo are trained to recognize the hazards presented by dangerous goods and to manage an
+            arising emergency.
+       •    Regulators set and enforce safety standards for all parties in the domestic supply chain and
+            collaborate with each other where international borders are involved.
+       •    Passengers and crew are presented with information, with the aim of ensuring that dangerous
+            goods are not inadvertently carried on board.
+       •    There is also a coordinating role for international bodies such as the International Civil
+            Aviation Organization (ICAO) and the International Air Transport Association (IATA).
+
+    In the future there will be an increasing focus on the parties involved in the cargo supply chain safety
+    and their respective efforts in working to mitigate risks and maintain the safety and integrity of the air
+    transport system.
+
+    From 1 January 2026, lithium-ion batteries that are packed with equipment and vehicles powered by
+    lithium ion or sodium ion batteries must be offered for air transport with the battery at a reduced
+    state of charge, unless otherwise approved by the relevant States (Special Provision A331).
+    These changes have been adopted by ICAO into the 2025-2026 edition of the Technical Instructions
+    for the Safe Transport of Dangerous Goods by Air. The objective of these changes is to reduce the
+    potential risk posed by lithium-ion and sodium ion batteries in air transport. It has been demonstrated
+    that reducing the state of charge in a lithium-ion cell or battery, reduces the potential for a lithium-ion
+    cell to go into thermal runaway.
+
+
+
+
+
+           OSS/Cargo                                 Page 13                                            01/01/2026
+                                               IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+    Lithium-ion batteries packed with equipment (PI 966) Section I and Section II
+
+    From 1 January 2026
+    Section I
+    Lithium-ion cells and batteries must be offered for transport at a state of charge not exceeding 30%
+    of their rated capacity. Cells and/or batteries at a state of charge greater than 30% of their rated
+    capacity may only be shipped with the approval of the State of Origin and the State of the Operator
+    under the written conditions established by those authorities.
+    Section II
+    Lithium-ion cells and batteries with a Watt-hour rating in excess of 2.7 Wh must be offered for
+    transport at a state of charge not exceeding 30% of their rated capacity. Cells and/or batteries at a
+    state of charge greater than 30% of their rated capacity must be offered for transport in accordance
+    with the provisions of Section I of PI 966 with the approval of the State of Origin and the State of the
+    Operator under the written conditions established by those authorities.
+    Note:
+    Guidance and methodology for determining the rated capacity can be found in sub-section 38.3.2.3
+    of the UN Manual of Tests and Criteria. Cells and batteries shipped at a reduced state of charge are
+    less prone to thermal runaway.
+    Lithium-ion batteries contained in equipment (PI 967) Section I and Section II
+    It is recommended that, for lithium-ion cells and batteries which are contained in equipment, those
+    cells and batteries are offered for transport:
+       ▪     at a state of charge not exceeding 30% of their rated capacity; or
+       ▪     with an indicated battery capacity not exceeding 25%.
+    While a reduced State of Charge is not mandatory for these items, the transport of products
+    containing lithium batteries at not more than 30% (or 25% IBC) is strongly recommended as a
+    transport safety measure.
+    Note: Guidance and methodology for determining the rated capacity can be found in sub-section
+    38.3.2.3 of the UN Manual of Tests and Criteria. Cells and batteries shipped at a reduced state of
+    charge are less prone to thermal runaway.
+
+    Sodium-ion batteries packed with equipment (PI 977) and contained in
+    equipment (PI 978) Section I and Section II
+    Currently, the ICAO Technical Instructions are silent regarding the state of charge in these two
+    packing instructions. Sodium ion batteries are an emerging technology and additional regulations will
+    be developed if there appears to be an unexpected risk that can be easily mitigated.
+    In the interest of maintaining a consistent and cautious approach towards aviation safety, it is
+    recommended that shippers consign equipment with the batteries at a state of charge not exceeding
+    30%.
+
+
+
+
+            OSS/Cargo                                Page 14                                            01/01/2026
+                                              IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+    Vehicles powered by batteries (PI 952)
+    The following UN numbers and proper shipping names apply to vehicles where the principal source
+    of power is from a battery:
+       ▪    UN 3171 - Battery-powered vehicle;
+       ▪    UN 3556 – Vehicle, lithium-ion battery powered;
+       ▪    UN 3557 – Vehicle, lithium metal battery powered; and
+       ▪    UN 3558 – Vehicle, sodium ion battery powered.
+
+    Vehicles powered by batteries with a watt-hour rating exceeding 100 Wh must be offered for
+    transport with:
+       ▪    the battery(ies) at a state of charge not exceeding 30% of their rated capacity; or
+       ▪    an indicated battery capacity not exceeding 25%.
+    Vehicles powered by batteries with a Watt-hour rating exceeding 100 Wh and at a state of charge
+    greater than 30% of their rated capacity may only be shipped with the approval of the State of Origin
+    and the State of the Operator under the written conditions established by those authorities.
+    Whilst not mandatory, it is strongly recommended that vehicles powered by batteries with a watt-
+    hour rating not exceeding 100 Wh are offered for transport with:
+       ▪    the battery(ies) at a state of charge not exceeding 30% of their rated capacity; or
+       ▪    an indicated battery capacity not exceeding 25%.
+    Note:
+    1. Guidance and methodology for determining the rated capacity can be found in sub-section
+       38.3.2.3 of the UN Manual of Tests and Criteria.
+    2. Indicated Battery Capacity is easier for shippers to identify and determine. 25% is not directly
+       equivalent to a 30% SoC but is a practical approach that delivers an equivalent safety mitigation.
+    3. Batteries shipped at a reduced state of charge are less prone to thermal runaway.
+
+    Hybrid Powered Vehicles
+   Vehicles which are powered by both flammable gas/liquid and a battery, are classified primarily under
+    the provisions for flammable gas or flammable liquid powered vehicles. Often these vehicles are
+    designed to maintain a high battery charge, whereby it is difficult to reduce the indicated battery
+    capacity to 25%. In order to communicate the inherent hazard regarding the batteries in these hybrid
+    vehicles, the addition of the descriptive text “hybrid” has been made to the proper shipping names
+    for UN 3166. These are:
+
+       ▪    UN 3166 – Vehicle, flammable gas powered, hybrid
+       ▪    UN 3166 - Vehicle, flammable liquid powered, hybrid
+    While the descriptive text does not form part of the proper shipping name and is not mandatory, it is
+    expected that Operators will be adjusting their booking systems to actively question whether a
+    consignment of UN 3166 is a hybrid powered vehicle.
+    The addition of the word “hybrid” as a descriptive item does not change the proper shipping name
+    and the vehicle is still properly classified for other modes of transport.
+
+
+
+
+           OSS/Cargo                                Page 15                                            01/01/2026
+                                                 IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+
+   Prohibitions
+   Lithium ion batteries
+   All lithium-ion cells and batteries shipped by themselves (UN 3480) are forbidden for transport as
+   cargo on passenger aircraft. All packages prepared in accordance with Packing Instruction 965,
+   Section IA and IB, must bear a Cargo Aircraft Only label, in addition to other required marks and/or
+   labels.
+   Lithium metal batteries
+   All lithium metal cells and batteries shipped by themselves (UN 3090) are forbidden for transport as
+   cargo on passenger aircraft. All packages prepared in accordance with Packing Instruction 968,
+   Section IA and IB, must bear a Cargo Aircraft Only label, in addition to other required marks and/or
+   labels.
+   Sodium ion batteries
+   All sodium ion cells and batteries shipped by themselves (UN 3551) are forbidden for transport as
+   cargo on passenger aircraft. All packages prepared in accordance with Packing Instruction 976, must
+   bear a Cargo Aircraft Only label, in addition to other required marks and/or labels.
+
+
+   Restrictions
+   Lithium ion and sodium ion batteries
+   All lithium ion cells and batteries (UN 3480) and sodium ion cells and batteries (UN 3551) must be
+   shipped at a state of charge (SoC) not exceeding 30% of their rated capacity. Cells and/or batteries
+   at a SoC of greater than 30% may only be shipped with the approval of the State of Origin and the
+   State of the Operator under the written conditions established by those authorities, see Special
+   Provision A331.
+   Packing with other dangerous goods:
+       ▪    UN 3090, lithium metal batteries prepared in accordance with PI 968,
+       ▪    UN 3480, lithium-ion batteries prepared in accordance with PI 965 and
+       ▪    UN 3551 sodium ion batteries prepared in accordance with PI 976,
+   must not be packed in the same outer packaging or overpack with dangerous goods classified as:
+       −    Class 1 (explosives) other than Division 1.4S,
+       −    Division 2.1 (flammable gases),
+       −    Class 3 (flammable liquids),
+       −    Division 4.1 (flammable solids) or
+       −    Division 5.1 (oxidizers).
+
+   Transport of lithium batteries under State Approvals
+ The IATA DGRs reference certain special provisions where the appropriate national authorities may
+  consider approving the transport of batteries, which do not meet the criteria set out in the DGRs.
+  These are:
+       •    Special Provision A88 – Pre-production prototype and low production runs.
+       •    Special Provision A99 – lithium or sodium ion battery mass exceeding 35 kg.
+       •    Special Provision A183 – Waste cells and batteries and those being shipped for recycling and
+            disposal.
+       •    Special Provision A201 – transport of lithium or sodium ion batteries on passenger aircraft.
+
+
+           OSS/Cargo                                   Page 16                                            01/01/2026
+                                          IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+   •    Special Provision A331 – transport of lithium ion or sodium ion batteries at greater than 30%
+        SoC.
+   •    Special Provision A334 – transport of lithium or sodium ion batteries on a passenger aircraft
+        where packaging mitigation exists.
+In most circumstances, the requirement is that approvals must be issued by the States of Origin and
+Operator. Certain States have set out that where their State is the State of Destination, then approval
+from that State is also required.
+Appendix D of the IATA DGR sets out contact details for dangerous goods regulators in various
+States.
+Even though a shipper may have a State of Origin Approval, an operator is not obligated to transport
+a consignment presented under that approval. Prior to seeking a State of Origin Approval, shippers
+are encouraged to first make enquiries and find an Operator that already has, or is willing to seek a
+State of Operator Approval. A specialist logistics provider may be needed to establish and
+coordinate the links in the supply chain.
+
+
+
+
+       OSS/Cargo                                Page 17                                            01/01/2026
+                                           IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+
+Frequently Asked Questions
+Part A – Questions Related to Definitions
+A.01 What are the various types of lithium batteries?
+Lithium batteries fall into two broad classifications: lithium metal batteries and lithium-ion batteries.
+Lithium metal batteries are generally non-rechargeable and contain metallic lithium. Lithium-ion
+batteries contain lithium which is only present in an ionic form in the electrolyte and are rechargeable.
+Within these two broad classifications there are many different chemistries. For example, within
+lithium-ion batteries there are lithium polymer, lithium iron phosphate (LiFePO4), lithium ion to name a
+few.
+A.02 What is the difference between a cell and a battery?
+A cell is a single encased electrochemical unit consisting of one positive and one negative electrode
+that exhibits a voltage differential across the two terminals. A battery is two or more cells electrically
+connected. A single cell battery is considered a cell and not a battery for the purposes of the
+limitations set out in the DGR.
+A.03 How are component cells connected to form a battery?
+Cells in batteries may be connected in parallel, in series, or in a combination of the two. When cells
+are connected in series, the voltage of the battery increases but the capacity in ampere-hours (Ah)
+does not change. By contrast, when cells are connected in parallel the capacity in ampere-hours of
+the battery (Ah) increases but the voltage stays the same.
+A.04 How do I determine the watt-hour rating for a particular lithium-ion battery?
+The Watt-hour (Wh) rating is a measure by which lithium-ion batteries are regulated. Section I lithium-
+ion batteries manufactured after 31 December 2011 and Section IB and Section II lithium ion
+batteries manufactured after 1 January 2009 are required to be marked with the Watt-hour rating on
+the outside case.
+The Watt-hours of the battery can be calculated by multiplying the nominal voltage (V) and capacity in
+ampere-hours (Ah):
+Wh = V x Ah
+Note:
+If only the milliampere-hours (mAh) are marked on the battery then divide that number by 1000 to get
+ampere-hours (Ah) (i.e. 4400 mAh / 1000 = 4.4. Ah).
+Most lithium-ion batteries marketed to consumers are below 100 Watt-hours. If you are unsure of the
+Watt-hour rating of your lithium-ion battery, contact the manufacturer.
+A.05 What is a button cell battery?
+A button cell battery is a small round cell where the overall height is less than the diameter. Button
+cells are often referred to as “coin” cells.
+A.06 What is a Power bank?
+These are portable units, commonly referred to as "battery packs" or "power packs," primarily
+designed to supply power to other devices or equipment. For the purposes of these regulations, they
+are classified as batteries. Although some power banks may include additional features like a small
+flashlight, the bulk of the unit consists of the battery, and its primary intent is to provide power to
+other devices.
+
+
+
+
+      OSS/Cargo                                  Page 18                                            01/01/2026
+                                           IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+A.07 What is an Uninterruptible Power Supply (UPS) and how should it be classified?
+In its simplest form, a UPS is a device whose purpose is to provide continuing power to a device or
+system, when the mains power supply ceases. These often take the form of a battery and as such the
+relevant battery classification (UN 3480, UN 3090 or UN 3551) is an appropriate starting point.
+Where the UPS is in the form of a piece of equipment, which houses other components to enable the
+monitoring and regulating of the power supply into the device, such that the battery component of
+the UPS does not form a significant part of the item’s mass or volume; then the shipper or
+manufacturer may consider classification under the relevant “contained in equipment” provision (UN
+3481, UN 3091 or UN 3552).
+
+Part B – Questions Related to Design Type Testing Provisions
+B.01     Where can I find requirements related to testing of battery design types?
+The UN Manual of Tests and Criteria sets out specific tests that must be conducted on each lithium
+or sodium ion cell or battery design type. Each test is intended to either simulate a common
+transportation occurrence such as vibration or changes in altitude or to test the integrity of a cell or
+battery. You may obtain a copy of these testing requirements via the following website:
+http://www.unece.org/trans/danger/publi/manual/manual_e.html
+B.02     What constitutes a design change requiring renewed design type testing?
+The following provisions are taken from the 8th revised edition, amendment 1 of the UN Manual of
+Tests and Criteria, paragraph 38.3.2.2.
+A cell or battery that differs from a tested design by:
+   a. For primary cells and batteries, a change of more than 0.1 g or 20% by mass, whichever is
+      greater, to the cathode, to the anode, or to the electrolyte;
+   b. For rechargeable cells and batteries, a change in Watt-hours of more than 20% or an increase
+      in voltage of more than 20%; or
+   c. A change that might materially affect the test results.
+shall be considered a new type and shall be subjected to the required tests.
+Note: the type of change that might be considered to differ from a tested type, such that it might lead
+to a failure of any of the test results, may include, but is not limited to:
+   a. A change in the material of the anode, the cathode, the separator or the electrolyte;
+   b. A change of protective devices, including the hardware and software;
+   c. A change of safety design in cells or batteries, such as a venting valve;
+   d. A change in the number of component cells;
+   e. A change in connection mode of component cells;
+   f.    For batteries which are to be tested according to T.4 with a peak acceleration less than
+         150 gn, a change in the mass which could adversely impact the result of the T.4 test and lead
+         to a failure; and
+   g. Repairing, refurbishing or remanufacturing including replacement of parts with non-original
+      spares, replacement of parts of a different specification, or in a manner that would result in a
+      deviation from the manufacturer’s tested type.
+In the event that a cell or battery type does not meet one or more of the test requirements, steps
+shall be taken to correct the deficiency or deficiencies that caused the failure before such a cell or
+battery type is retested.
+
+        OSS/Cargo                                Page 19                                            01/01/2026
+                                              IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+   B.03 Which edition of the UN Manual of Tests and Criteria must be used when testing new
+   lithium cell or battery designs
+   If a newly produced lithium cell or battery design is being tested for the first time, then the edition of
+   the UN Manual of Tests and Criteria in effect at the time that the cell or battery designs are first
+   tested must be used. For example, if a new lithium-ion battery design is produced for the first time in
+   March 2023, then this battery must be tested in accordance with the provisions of the 8th revised
+   edition, amendment 1 of the UN Manual of Tests and Criteria as this is the edition in effect as of 1
+   January 2023. See Note under DGR 1.1.1 (or section 1.1 of the BSR).
+   B.04 How do I transport prototype lithium cells and batteries that have not passed the UN 38.3
+   Tests?
+   Pre-production prototypes of lithium batteries or cells, when these prototypes are transported for
+   testing, or low-production runs (i.e. annual production runs consisting of no more than 100 lithium
+   cells and batteries) of lithium cells or batteries that have not been tested to the requirements in
+   subsection 38.3 of the UN Manual of Tests and Criteria may be transported aboard cargo aircraft, if
+   approved by the appropriate authorities of the State of Origin and the State of the Operator and the
+   requirements in Packing Instruction 910 of the Supplement to the Technical Instructions are met (see
+   Special Provision A88).
+
+   Part C – Questions Related to the Battery Test Summary
+   C.01    Does the test summary apply to equipment containing lithium cells or batteries?
+   Except where the equipment, including circuit boards, contains only lithium button cells, the test
+   summary applies to all lithium cells and batteries, irrespective of whether they are shipped alone or
+   contained in equipment.
+   C.02    Can multiple batteries/manufacturers/products be listed on one test summary?
+   Yes, it is acceptable to have a single document that addresses multiple batteries / manufacturers /
+   products, provided all required information is stated. For example, a tablet manufacturer may
+   purchase lithium-ion batteries from three different battery manufacturers. The test summary for the
+   product will therefore list batteries and all related information (e.g. Watt-hours, test labs) from the
+   three battery manufacturers without naming the manufacturer due to confidentiality issues.
+   C.03 Is it acceptable to list the various test houses, tests and range of revisions tested to for
+   the UN 38.3 revision and amendments?
+   Yes, it is acceptable to have multiple test houses and their addresses, email information, etc. listed
+   provided all required information is stated. The test house is not required to be aligned to a specific
+   battery or product on the test summary when the test summary covers multiple batteries/products. It
+   is required to have the test report number and date of test for each cell/battery/product listed on the
+   test summary.
+   C.04    What is meant by physical description of cell or battery?
+   A physical description is intended to provide a check for the person requesting the test summary to
+   know that it applies to the cell/battery/product covered by the test summary, i.e. if a cellular phone is
+   the product being shipped, the invoice description or marketing name of the product as the physical
+   description could be used on the test summary.
+ C.05 What does it mean when the Regulations require a manufacturer to “make available” a
+  test report?
+   The test summary must be made available upon request. Any individual or entity in the supply chain
+   may request the test summary, e.g. regulator, consumer, or transport provider. There are several
+   ways to meet this requirement including providing a paper copy of the test summary or even placing
+
+          OSS/Cargo                                 Page 20                                            01/01/2026
+                                         IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+the test summary on a website and providing a QR code or URL with the battery, its packaging or on
+the transport documentation.
+Note: IATA does not support requiring a shipper to provide a test summary with every shipment.
+C.06 Can the test summary provider require a requestor to obtain the document from a
+website?
+Yes, it is acceptable for the provider to require the requestor to obtain a document electronically
+from a provider's website. The provider must ensure that the cell/battery/product has appropriate
+identifiers to align to the test summary.
+C.07   If a manufacturer considers their suppliers, test house and battery data confidential
+and competitive information, how would test summary compliance be achieved?
+All 10 data elements and listed subsets of information are required to be on the test summary. As
+indicated above, the test house information may be listed to cover a range of products.
+C.08 If a test summary is requested by a dangerous goods enforcement agency, how quickly
+must the test summary be made available? For example, would a manufacturer be expected to
+immediately produce a test summary or provide it within a certain amount of time (e.g. 72 hours)
+Due to the large volume of lithium batteries and lithium battery powered products that are shipped
+daily, manufacturers and distributors should not be expected to immediately provide a test summary
+for every product they ship. Manufacturers and distributors should be provided a reasonable amount
+of time to provide the required test summary.
+C.09 Would manufacturers and distributors of battery powered vehicles (UN3171, UN 3556, UN
+3557 and UN 3558) and hybrid vehicles containing a lithium battery (UN3166) be expected to
+provide a test summary?
+Yes. The test summary requirement applies to manufacturers and distributors of lithium or sodium
+ion cells and batteries. Therefore, a test summary must be made available for lithium or sodium ion
+battery-powered vehicles and other vehicles containing lithium or sodium ion batteries.
+C.10    Is the test summary valid for a defined period?
+No. Provided that the lithium or sodium ion cell or battery type has not been changed in a way that
+would require re-testing (see FAQ B.02 in this document) then the test summary remains valid.
+C.11 Is there a mandated format for the test summary that manufacturers and distributors
+must follow?
+No. Manufacturers and distributors may compile the information required in the test summary using
+any format. Three examples of test summaries are provided at the end of this document.
+
+Part D – Questions related to Classification
+D.01 Are all lithium and sodium ion batteries classified as dangerous goods (when transported
+by air/ when transported as air cargo)?
+All lithium and sodium ion batteries are classified as dangerous goods due to the presence of the
+threat of thermal runaway and are subject to the requirements of the DGR.
+Although some lithium and sodium ion batteries are eligible for transportation as Section II and
+exempted from certain labelling, packing and documentation requirements, these batteries are still
+regulated as a dangerous goods commodity, and subject to all other requirements, including the
+reporting of dangerous goods occurrences.
+
+
+
+
+       OSS/Cargo                               Page 21                                            01/01/2026
+                                              IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+ D.02 What is the correct classification where I want to ship 2 mobile phones in the same
+  package with 2 power banks?
+    The power banks (assuming they meet UN 38.3) are classified as UN 3480, Lithium-ion batteries and
+    therefore must be shipped, at less than 30% SoC, in accordance with Section IB of PI 965, if the
+    power bank has a Watt-hour rating not exceeding 100 Wh, or in accordance with Section IA of PI 965
+    if the Watt-hour rating exceeds 100 Wh. Under the provisions of PI 965 Section IA and IB other lithium
+    battery-powered equipment may be packed in the same outer packaging provided that all applicable
+    parts of the relevant packing instructions are followed, which includes the net weight of lithium
+    batteries contained in the package. The power banks are not considered as “spare batteries” for the
+    purposes of PI 966, Lithium-ion batteries packed with equipment.
+ Therefore, the package must be marked and labeled to represent the dangerous goods inside. If the
+  power banks meet the conditions for shipping under Section IB, the package must display the UN
+  Number and Proper Shipping Name, the UN3480 battery mark, the Class 9 battery label, the Cargo
+  Aircraft Only label, and - if applicable – the net quantity of batteries in the package. For the mobile
+  phone, as per Section II of PI967, because there are no more than two batteries contained in
+  equipment in the package, the package does not need to display the UN3481 battery mark.
+    Note: If there were more than two phones in the package however, the UN3481 battery mark would
+    be required to appear on the package.
+    The Shipper’s Declaration for Dangerous Goods must be prepared and must reflect the UN3480
+    Lithium ion batteries (power bank) in the package but does not need to list the UN3481 Lithium ion
+    battery contained in equipment (mobile phone) shipped under the Section II exception provisions.
+ D. 03  I am shipping perishable and/or pharmaceutical cargo with lithium battery powered
+  temperature or data loggers, do the Dangerous Goods Regulations apply?
+    Subsection 1.2.7.1(i) provides an exception for data loggers and cargo trackers when active during
+    transport to monitor temperature of temperature sensitive cargo or track valuable cargo provided
+    certain conditions are met. The Dangerous Goods Regulations only apply where the data loggers and
+    cargo tracking devices are offered for transport as a consignment.
+ D.04  What is the correct classification for hearing aids, Bluetooth® “earbuds” or other
+  wearable devices that are shipped in a small charging case or with a charging case in the same
+  package?
+    These devices that are shipped in or with a charging case should be classified as “UN3481, Lithium
+    batteries packed with equipment” and packaged in accordance with PI 966. If the charging case is
+    shipped without the earbuds, the case becomes classified as “UN3480, Lithium-ion batteries” and
+    packaged in accordance with PI 965.
+ D.05 Can a package containing electrical cables, an AC adaptor and lithium-ion batteries be
+  classified as UN 3481, Lithium-ion batteries packed with equipment?
+    No, for the purpose of Packing Instruction 966, “equipment” means the device or apparatus for which
+    the lithium-ion batteries will provide electrical power for its operation. When a package contains only
+    an AC adaptor or charger, or ancillary cables etc, and lithium-ion batteries, the package must be
+    classified as “UN 3480, Lithium ion batteries” and packaged in accordance with PI 965.
+    D.06    Can I ship recalled, damaged or non-conforming cells or batteries?
+    Lithium or sodium ion batteries, identified by the manufacturer as being defective for safety reasons,
+    or that have been damaged, that have the potential of producing a dangerous evolution of heat, fire
+    or short circuit are forbidden for transport by air (e.g. those being returned to the manufacturer for
+    safety reasons). This applies also to lithium or sodium ion cells or batteries installed inside equipment
+    such as mobile phones, laptops or tablets where the devices are subject to recall due to the safety
+
+
+           OSS/Cargo                                Page 22                                            01/01/2026
+                                              IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+    concerns of the lithium or sodium ion cell or battery installed in the device, see Special Provision
+    A154 in the DGR.
+ Batteries which have some other defective feature (e.g. LEDs not showing charge, incorrect model
+  number on label, or batteries not holding enough charge) could still be shipped by air. Similarly,
+  laptops, phones and wearable devices being returned may not have a defective battery but may just
+  not meet the needs of the customer, or the device may be defective (i.e. dead zones on a touch
+  screen, non-functioning microphone/speaker etc). In these situations, air transport is not prohibited.
+  The battery or equipment manufacturer should be providing instructions for the appropriate return
+  shipping method.
+
+    Part E – Questions related to Packaging
+    E.01     For the purposes of the battery packing instructions, what is considered the "package"?
+    The package is the complete product of the packing operation that satisfies the requirements of the
+    packing instruction and in a manner ready to be presented for transport (shipper/consignee
+    information, hazard communication, etc.).
+    The package may contain multiple batteries or pieces of equipment provided the limitations set out in
+    the applicable packing instruction are not exceeded.
+    The package must be marked and labelled as required by the packing instruction.
+    A single package may be offered for transport, or one or more packages may then be placed into an
+    overpack for ease of handling or transport purposes.
+    Note:
+    When an overpack is used, the package marks and labels must be duplicated on the overpack unless
+    the marks and labels required on individual packages are visible or are not required by the packing
+    instruction (i.e. not more than 4 cells or 2 batteries when contained in equipment and no more than
+    two packages in the consignment).
+    E.02     How do I safely package batteries for transport?
+    One of the major risks associated with the transport of batteries and battery-powered equipment is
+    short-circuit of the battery as a result of the battery terminals coming into contact with other
+    batteries, metal objects, or conductive surfaces. Packaged batteries or cells must be separated in a
+    way to prevent short circuits and damage to terminals. They must be packed in a strong rigid outer
+    packaging unless when contained in equipment, the battery is afforded equivalent protection by the
+    equipment in which it is contained. Sample packaging meeting these requirements is shown below:
+
+
+
+
+            OSS/Cargo                               Page 23                                            01/01/2026
+                                          IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+E.03    How can batteries be effectively protected against short circuit?
+Methods to protect against short circuit include, but are not limited to, the following methods:
+   a. Packing each battery or each battery-powered device when practicable, in fully enclosed
+      inner packagings made of non-conductive material;
+   b. Separating or packing batteries in a manner to prevent contact with other batteries, devices
+      or conductive materials (e.g. metal) in the packagings; or
+   c. Ensuring exposed terminals or connectors are protected with non-conductive caps, non-
+      conductive tape, or by other appropriate means.
+If not impact resistant, the outer packaging must not be used as the sole means of protecting the
+battery terminals from damage or short-circuiting. Batteries should be securely cushioned and
+packed to prevent shifting which could loosen terminal caps or reorient the terminals to produce
+short circuits.
+Terminal protection methods include but are not limited to the following:
+   a. Securely attaching covers of sufficient strength to protect the terminals;
+   b. Packaging the battery in a rigid packaging that is electrically non-conductive; or
+   c. Constructing the battery with terminals that are recessed or otherwise protected so that the
+      terminals will not be subjected to damage/short circuit if the package is dropped or the inner
+      contents shift.
+E.04 May packages of lithium or sodium ion batteries be placed with other dangerous goods in
+an overpack in accordance with the IATA Dangerous Goods Regulations?
+Yes, but there are segregation requirements that need to be considered for certain other classes of
+dangerous goods.
+   •    UN 3090, lithium metal batteries prepared in accordance with PI 968 and
+   •    UN 3480, lithium-ion batteries prepared in accordance with PI 965, and
+   •    UN 3551, sodium ion batteries prepared in accordance with PI 976
+are not permitted in the same outer packaging with dangerous goods classified in Class 1 other than
+Division 1.4S, Division 2.1, Class 3, Division 4.1 or Division 5.1.
+The overpack may also contain goods not subject to the Regulations provided there are no packages
+enclosing different substances which might react dangerously with each other.
+An overpack must be marked with the word “overpack” and must be labelled with the battery mark
+(DGR Figure 7.1.C) unless the mark(s) on the package(s) inside the overpack are visible or not
+required by the Packing Instruction.
+E.05 Do the quantity limits shown in the packing instructions for lithium and sodium ion
+batteries apply to overpacks containing lithium batteries?
+No. The quantity limits shown in the packing instructions refer to the maximum net weight of the
+lithium cells or batteries that is permitted in each package. Provided each package remains within the
+limit specified in the packing instruction, there are no limits specified for an overpack.
+E.06 Packing Instructions 966, 969 and 977 Section II specify that packages must be capable
+of withstanding a 1.2 metre drop test. What portion or portions of the package are subject to this
+test?
+The completed package containing batteries as prepared for transport in accordance with the
+relevant packing instruction must be capable of withstanding the 1.2 m drop test. This could apply to
+a package solely containing batteries that is packaged in full compliance with the provisions of the
+packing instruction (to include the 1.2 m drop test capability requirement) and is then packed with
+
+       OSS/Cargo                                Page 24                                            01/01/2026
+                                           IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+equipment in a strong rigid outer packaging and offered for transport. Or it could apply to a package
+that includes batteries properly packed in inner packaging and equipment or other non-dangerous
+goods that are placed in a strong rigid outer packaging. The package that includes both the inner
+packaging containing batteries and the equipment must comply with the packing instruction to
+include meeting the capability to pass the 1.2 m drop test.
+E.07 Packing Instructions 965 and 968 Section IB specify that packages must be capable of
+withstanding a 3 metre stack test. Do I have to have my package tested?
+No, but the shipper must, if required, be able to demonstrate to the appropriate authority that they
+have determined the capability of the package to withstand a 3 m stack test for a period of 24 hours.
+One method could be that the shipper prepares a package containing batteries as tendered for
+transport in accordance with the relevant packing instruction and then places a weight equivalent to
+the weight of similar packages if stacked 3 m high and leaving that for 24 hours. This could be
+documented as evidence of demonstrating capability.
+For packaging designed for a specific product, the shipper could consult the original packaging
+designer or packaging manufacturer for their expert assessment on the capability of the package.
+For many equipment manufacturers and their current warehousing or transport operations, existing
+packages are routinely palletized (i.e. between 1.5 meters and 6 ft tall) and are stacked (i.e. in excess
+of 3 meters). This could be used as evidence of the package’s capability.
+The majority of wholesalers and OEMs (original equipment manufacturers) of electronic equipment,
+which is packed with or contains lithium batteries, already use purpose designed packaging. This
+packaging, and the completed package, has been constructed and designed to withstand the normal
+rigours encountered in the transport of their goods.
+Further information on the stack test can be found at :
+Packaging Requirement - Lithium Batteries (3m stack test)
+E.08    How do I protect against “inadvertent activation”?
+When batteries are contained in equipment, the equipment must be packaged in a manner that
+prevents unintentional activation or must have an independent means of preventing unintentional
+activation (e.g. packaging restricts access to activation switch, switch caps or locks, recessed
+switches, trigger locks, temperature sensitive circuit breakers, etc.). This requirement does not apply
+to devices which are intentionally active in transport (RFID transmitters, watches, sensors, etc.) and
+which are not capable of generating a quantity of heat sufficient to be dangerous to packaging or
+personal safety.
+E.09 What is the maximum weight of batteries per package for fully regulated batteries
+contained in equipment (Section I)?
+The maximum weight is 5 kg of lithium or sodium ion batteries per package for passenger and cargo
+aircraft and 35 kg per package for cargo aircraft only. The net quantity shown excludes the weight of
+the equipment and packaging:
+                                                    Net Quantity per Package          Net Quantity per Package
+                                                       Passenger Aircraft               Cargo Aircraft Only
+
+ Lithium Ion & Lithium Metal & Sodium Ion
+ cells and batteries which contained in                         5 kg                              35 kg
+ equipment
+
+
+
+
+       OSS/Cargo                                 Page 25                                            01/01/2026
+                                             IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+   E.10    Do I need to declare a gross weight or a net weight for lithium batteries (Section I)?
+   All lithium battery shipments, including when packed with or contained in equipment, must be
+   declared by the net weight of lithium cells or batteries contained in the package.
+   The net weight that must be declared is the weight of the lithium cell or batteries contained in the
+   package. This applies for both lithium-ion cells and batteries and lithium metal cell and batteries.
+   E.11 I have lithium-ion batteries packed with equipment (PI 966, Section I) where the lithium ion
+   batteries are packed in a UN specification fibreboard (4G) box and then that box is packed with
+   the equipment in a fibreboard outer packaging. Is this an overpack?
+   No, Section I of PI 966 (and also PI 969) allows two methods of having lithium batteries packed with
+   equipment. Either:
+       a. the lithium batteries are packed into a UN specification packaging meeting Packing Group II
+          performance standards and then packed with the equipment in a strong rigid outer packaging;
+          or
+       b. the lithium batteries are packed into an inner packaging and then packed with the equipment
+          into a UN specification packaging meeting Packing Group II performance standards.
+   In either case what is presented for transport is a “package” and not an overpack.
+   E.12 Can I use a nylon bag, to contain the individual packages prepared in accordance with
+   Section II of Packing Instruction 967, to form an overpack?
+   No, because the packages placed in an overpack must be secured within the overpack and that the
+   intended function of each package must not be impaired by the overpack.
+   E.13 Under Packing Instructions 966 and 969, it states that “The maximum number of batteries
+   in each package must not exceed the minimum number required to power the equipment, plus
+   two spare sets. A “set” of cells or batteries is the number of individual cells or batteries that are
+   required to power each piece of equipment”. If a package contains 4 power tools (each tool
+   contains 1 lithium-ion battery), can 2 extra lithium-ion batteries be placed in the package for
+   each piece of equipment for a total of 12 batteries?
+   Yes, provided you do not exceed the maximum net quantity for the relevant section of the packing
+   instruction and the chosen aircraft limitation. The 12 batteries reflect two spare sets (8) for each of
+   the 4 power tools in the outer package plus one each to power the device (4).
+ While the batteries must be at an SoC of not more than 30%, as a safety measure, It is strongly
+  recommended that the spare batteries are not placed adjacent to, or in close proximity to each other
+  within the packaging.
+
+
+
+   Part F – Questions related to Marking and Labelling
+   F.01    What does the battery mark look like and when is it required?
+   The battery mark is required as specified in the additional requirements of Section II of Packing
+   Instructions 966, 967, 969, 970, 977 and 978.
+   It is also required as specified in the additional requirements of Section IB of Packing Instructions
+   965, 968 in addition to the Class 9 lithium and sodium ion battery hazard label and Cargo Aircraft Only
+   label.
+   The mark (see below) is as shown in Figure 7.1.C of the IATA Dangerous Goods Regulations. The
+   border of the mark must have red diagonal hatchings with a minimum width of 5 mm. The symbol
+   (group of batteries, one damaged and emitting flame, above the UN number for lithium ion or lithium
+   metal batteries or cells) must be black on white or suitable contrasting background. The lithium
+
+          OSS/Cargo                                Page 26                                            01/01/2026
+                                          IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+battery mark may be printed directly on the outer packaging provided that there is sufficient contrast
+between the elements of the lithium battery mark and the colour of the packaging material.
+The mark must be in the form of a rectangle or a square with minimum dimensions of 100 mm x
+100 mm. If the size of the package so requires, the dimensions may be reduced to not less than 100
+mm wide x 70 mm high, and all features must be in approximate proportion to those shown on the
+full-size mark.
+
+
+
+
+* Place for UN number(s), i.e. UN 3090, UN 3091, UN 3480, UN 3481, UN 3551 and/or UN 3552 as
+  applicable. The UN number(s) indicated on the mark should be at least 12 mm high.
+
+F.02    If I have smaller packages, can I use a smaller battery mark?
+Where the packages are of dimensions such that they cannot bear the full-size battery mark, the
+mark dimensions may be reduced to 100 mm wide × 70 mm high. The design specifications remain
+otherwise the same.
+Where any face of a package is large enough to bear the full-size battery mark, the full-size mark
+must be used.
+F.03 I am placing a data logger inside an aircraft unit load device (ULD) to monitor the
+temperature during transit. Do I need to place a lithium battery mark on the ULD?
+A data logger that meets the exception provisions of DGR 1.2 7.1 (i), or the relevant part of the
+section II packing instructions does not require the battery mark or hazard labelling.
+F.04    When is a battery mark not required on the package?
+A battery mark is not required for packages prepared in accordance with section II of PI 967, PI 970,
+or PI978:
+•   containing only button cell batteries installed in equipment (including circuit boards)
+•   for consignments of two packages or less where each package contains no more than four cells,
+    or two batteries installed in equipment.
+
+
+
+
+       OSS/Cargo                                Page 27                                            01/01/2026
+                                           IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+F.05 Section II in Packing Instructions 967, 970 and 978 states that “the battery mark is not
+required on consignments of two packages or less where each package contains no more than
+four cells, or two batteries installed in equipment.” What is the intent of this provision?
+This provision is to require, where there are more than two packages in the consignment, that each
+package bears the battery mark, and therefore the air waybill has the compliance statement e.g.
+“[Sodium or Lithium] [ion or metal] batteries in compliance with Section II of PI 9xx [67 or 70 or 78]”.
+The provision continues to allow for small consignments of one or two packages, containing no more
+than four cells or two batteries installed in equipment per package, to move without the lithium
+battery mark and therefore without the compliance statement on the air waybill.
+Note:
+A consignment is one or more packages of dangerous goods accepted by an operator (airline) from
+one shipper at one time and at one address, receipted for in one lot and moving to one consignee at
+one destination address.
+F.06 I have a mobile (cell) phone that contains one single-cell lithium-ion battery. Do I have to
+mark the shipping box that contains each mobile phone? What if I place five mobile phones in a
+shipping box? Does this require the battery mark?
+For packages of a single mobile phone, no battery mark would be required since you can place up to
+4 of these single-cell batteries in a box without applying the battery mark on the outer box. In the
+case where 5 mobile phones are in a shipping package, a battery mark on the shipping package is
+required.
+F.07 If I pack two mobile phones each containing a single cell lithium-ion battery, can I also
+pack a laptop with a lithium ion battery in the same package and not apply the battery mark
+using the 4 cell, 2 battery exception?
+No, the exception is for 4 cells or 2 batteries in a package. There is no provision to mix and match
+with ½ the quota for cells and ½ the quota for batteries in a package. It would be acceptable to
+prepare the phones in one package, the laptop in a second package, and to put the packages
+together into one consignment, and not apply the battery mark.
+F.08 Can a single battery mark be used to identify that a combination of different batteries are
+contained inside the package with equipment?
+Yes. The mark may bear all applicable UN numbers, e.g. UN 3091, UN 3481 and UN 3552 to identify
+that the package contains different regulated battery types that are packed with, or contained in,
+equipment.
+F.09 Must the battery mark be placed on the same face of the package with the Class 9 hazard
+label and/or Cargo Aircraft Only label?
+No, the battery mark does not have to be on the same face of the package with these labels. It may
+be placed on a different face. However, if the package is of sufficient size all required marks and
+labels should be applied to one face of the package.
+F.10 What are the additional marking requirements for a package prepared under Section IB of
+Packing Instruction 965, 968 or 976?
+Because all of the requirements of the dangerous goods regulations apply other than the
+requirement to use UN specification packaging, each package must be marked with:
+   ▪     the UN Number preceded by “UN” and the Proper Shipping Name (DGR 7.1.4.1 (a));
+   ▪     the name and address of the shipper and consignee (DGR 7.1.4.1 (b));
+   ▪     in addition, the net weight as required by (DGR 7.1.4.1(c)) must be marked on the package; and
+
+
+        OSS/Cargo                                Page 28                                            01/01/2026
+                                           IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+   ▪    the lithium battery mark (see Part F.01) in addition to the Class 9 lithium battery hazard label
+        and Cargo Aircraft Only label.
+Note:
+When using an overpack, each package must be marked in accordance with the Regulations and
+then, when placed in an overpack, marked as required by DGR 7.1.7.
+F.11 I want to ship a package, containing more than 10 pieces of equipment, and each piece of
+equipment has two button cell installed in it; there are no other dangerous goods or battery
+types in the package. Am I required to apply the battery mark?
+No, you are not required to apply the battery mark in this case. Since your package contains multiple
+pieces of equipment, with each piece having only button cells installed, it falls under Section II of
+Packing Instructions for batteries contained in equipment. According to these regulations, button
+cells installed in equipment are generally exempt from the battery marking requirement, provided
+they meet the section II conditions. The compliance statement on the airway bill (required when a
+battery mark is applied), is also not applicable to shipments of equipment containing only button
+cells.
+Additional packing requirements apply to the shipment including:
+   •    the use of packages capable of withstanding a 3m stack test for a period of 24 hours,
+   •    use of strong rigid outer packaging,
+   •    adequate instruction for personnel preparing or offering the packages and
+   •    relevant packing requirements when an overpack is used.
+F.12    When must I not put a battery mark on the package?
+The battery mark must not be affixed to packages containing larger lithium-ion (cells >20Wh or
+batteries >100Wh), lithium-metal (>1g per cell, >2g per battery), or sodium-ion cells and batteries.
+The battery mark is not applied to packages which have been prepared in accordance with:
+
+   •    Packing Instruction 976,
+   •    Section IA of Packing Instructions 965 and 968, and
+   •    Section I of Packing Instructions 966, 967, 969, and 970.
+The battery mark is primarily used to alert handlers and transport personnel to the presence of
+lithium batteries in less regulated shipments, such as those in Section II or Section IB.
+F.13 I want to ship UN 3556, Vehicle, Lithium-ion battery powered and two spare batteries in
+the same package. Should I declare them individually or as batteries packed with equipment UN
+3481?
+Special provision A214 makes a clear distinction between vehicles and equipment, and it includes
+examples. As UN 3556 is classified as a vehicle, the package cannot be declared as UN 3481 which
+applies to equipment packed together with batteries.
+The package, assuming that it complies with packaging standards, can be prepared and shipped
+using one of two methods:
+1. All Packed in One: Declare as UN 3556, Vehicle, Lithium-ion battery-powered and UN 3480,
+   Lithium-ion batteries in a single package, as “all packed in one”. Since UN 3556 does not have a
+   specific quantity limit, no quantity calculation (Q-value) is required for this combination. The
+   package must include the appropriate marks and hazard labels for both UN 3556 and UN 3480.
+
+2. Overpack Option: Package and label the vehicle UN 3556 and the spare batteries UN 3480 in
+   separate inner packaging and then place them inside an overpack. The overpack must display the
+
+
+       OSS/Cargo                                 Page 29                                            01/01/2026
+                                             IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+       required marks and labels for all the contents inside, as well as the word “OVERPACK” if the marks
+       and labels on the inner packages are not visible.
+
+   F.14 If a battery installed in equipment is made of cells of more than 20 Wh (e.g. 2x 30 Wh)
+   does the exception of Section II in Packing Instructions 967, 970 and 978 stating that “the
+   battery mark is not required on consignments of two packages or less where each package
+   contains no more than four cells, or two batteries installed in equipment” still apply?
+
+   In this case, much as the cells in the battery exceed 20Wh, it is still considered a battery and as long
+   as the battery passes the UN 38.3 testing, it can still be transported under the exception.
+
+   Part G – Questions related to Documentation
+   G.01     Does the IATA DGR require an MSDS or SDS containing the UN 38.3 test data?
+ No. Neither the IATA DGR, nor the regulatory requirements applicable to other modes of transport,
+  requires a safety data sheet (SDS) when offering batteries for transport. When faced with demands
+  from personnel in the supply chain for an SDS relating to articles, their attention should be referred to
+  the DGR Appendix B.4
+
+   Notes:
+   1. An SDS is not a transport document. An SDS is only required for the supply and use of a
+      substance or mixture meeting the Globally Harmonized System of Classification and Labelling of
+      Chemicals (GHS) classification criteria. GHS does not include provisions for manufactured
+      articles, such as batteries.
+   2. Except for button cells installed in equipment (including circuit boards), manufacturers and
+      subsequent distributors of lithium or sodium ion cells and batteries and equipment with installed
+      lithium or sodium ion cells or batteries must make available a test summary that identifies that the
+      cell and battery types have passed the applicable UN 38.3 tests, see Part C of this document.
+   G.02 Does the definition of “consignment” apply to the house air waybill (HAWB) or to the
+   master air waybill (MAWB)?
+   The use of HAWB or MAWB has no direct relationship to what a “consignment” is. For example, a
+   MAWB may have multiple consignments where each of the consignments are from separate
+   shippers, or are from one shipper but to separate consignees, or the MAWB may just be a single
+   consignment from one shipper to one consignee.
+   The following limitation applies to consignments:
+       ▪    A shipper is not permitted to consign more than two packages of lithium or sodium ion
+            batteries contained in equipment under Section II of PI 967, PI 970 and PI 978 where there are
+            no more than 4 cells or 2 batteries in the package without the application of the battery mark
+            on the package.
+   The objective of this condition is to require appropriate hazard communication on packages and on
+   the air waybill where a shipper has more than two packages of lithium batteries contained in
+   equipment.
+   Notes:
+   1. This does not mean that every retail “package” must bear the battery mark. A shipper may place
+      multiple retail boxes, each containing a battery meeting Section II installed in equipment, into an
+      outer packaging to form the package for air transport. There is no limit on the number of
+      individual retail boxes that can be placed into the outer packaging, except that a “package” must
+      not contain more than 5 kg net weight of batteries. Each such package must bear the battery
+
+           OSS/Cargo                               Page 30                                            01/01/2026
+                                             IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+      mark and when an air waybill is used, the air waybill must show the applicable compliance
+      statement, e.g. “lithium-ion batteries in compliance with section II of PI 967”.
+   2. Shippers and freight forwarders should not split a consignment across multiple air waybills to try
+      to avoid the application of the battery mark where there are more than two packages with lithium
+      or sodium ion batteries contained in equipment under Section II, in a consignment.
+   G.03 Do I need to include an additional document or statement to certify that my lithium-ion
+   batteries are at no more than 30% SoC?
+   No. For lithium-ion batteries shipped in accordance with Section IA or Section IB of PI 965, which
+   must be on a Shipper’s Declaration, the Shipper’s Declaration includes a certification statement “I
+   declare that all of the applicable air transport requirements have been met.”
+   By signing the Shipper’s Declaration, the shipper is making a legal statement that all the applicable
+   provisions of the DGR have been complied with, which includes that the lithium ion batteries are at no
+   more than 30% SoC.
+   G.04 Do I have to provide a UN 38.3 Test summary with every shipment of lithium or sodium ion
+   batteries?
+   Unless a particular State or an Operator has specified this as a requirement; then the test summary
+   does not have to be provided. It is important for manufacturers and shippers to be able to have the
+   information at hand, and to be able to provide that information quickly and easily. There is no real
+   value in having to provide a paper copy of the test summary as a matter of routine with every
+   shipment. It would be more efficient to consider making it available through either a QR code or URL
+   (see the note under “Classification”).
+   G.05 I am shipping equipment that has a mixture of lithium-ion cells packed in the package, and
+   which the equipment contains a lithium metal cell. All batteries conform to Section II. How should
+   the documentation be referenced?
+   The statement needs to refer to all relevant batteries and packing instructions. The packing
+   instructions do not include the word “cells” in the statement: An example would be “Lithium ion and
+   lithium metal batteries in compliance with Section II of PI 966 and PI 969”.
+ G.06 The 67th edition of the IATA Dangerous Goods Regulations introduced Special Handling
+  codes for vehicles. What are the appropriate codes for these vehicles, are they mandatory and
+  is there an effective date?
+   Some operators might prefer using RLI or RLM to emphasize the battery hazard in UN 3556, UN 3557
+   and UN 3558, since batteries are the primary risk associated with these vehicles. New Special
+   Handling Codes were introduced for battery-powered vehicles. They are:
+   RVB – UN 3556, 3557, UN 3558
+   RVF – UN 3166 (not hybrid)
+   RVH – UN 3166 (hybrid)
+   RVO – UN 3171.
+   Special Handling Codes are used to convey information to other employees within the organization
+   and, while not mandatory, their usage is recommended for consistency.
+
+
+
+
+         OSS/Cargo                                 Page 31                                            01/01/2026
+                                          IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+Part H – Questions related to Training
+H.01 I am shipping Section IB lithium [ion or metal] or sodium ion batteries; do I need
+dangerous goods training?
+Yes. All the applicable provisions of the Dangerous Goods Regulations apply to shipments of Section
+IB lithium (ion or metal) and sodium ion batteries. Therefore, dangerous goods training as indicated in
+Subsection 1.5 of the Dangerous Goods Regulations is required.
+H.02 I’m shipping using Section II of the packing instructions, what constitutes “adequate
+instruction”?
+Shippers of lithium or sodium ion batteries prepared in accordance with Section II of the lithium
+battery packing instructions are not subject to the formal dangerous goods training requirements set
+out in DGR 1.5. However, persons preparing such shipments must be provided with “adequate
+instruction” as described in DGR 1.6.
+The following is offered as a starting point for an employer on what could be considered as being
+adequate instruction:
+1. The employer must identify the different configurations of batteries that they ship, i.e. batteries
+   by themselves - sodium ion batteries, lithium batteries and/or batteries packed with equipment
+   and/or batteries contained in equipment, or combinations of these batteries and equipment
+   provisions.
+2. The employer must document the procedures that apply to the configurations and battery types
+   that they ship as determined in 1, above.
+3. The procedures should be written up as a clear work instruction or other information that is
+   available to all employees responsible for the preparation of lithium battery shipments.
+4. All employees that are involved in the process of preparing lithium battery shipments must be
+   taken through the procedure to ensure that they understand and can demonstrate the correct
+   application of documented procedures for preparing the equipment, packing, labelling, marking
+   and documentations requirements, as applicable to their job function.
+5. A record must be maintained that identifies each applicable employee and the date(s) that this
+   instruction was provided.
+6. Employees should be given periodic refresher or at least demonstrate that they remain
+   “adequately” instructed on how to perform the task. This should be done at least every two years
+   or whenever the procedure is revised, or regulations are changed, whichever is sooner.
+7. Companies that are involved in reverse logistics, i.e. arranging for returns of lithium batteries,
+   lithium batteries packed with equipment or lithium batteries contained in equipment must develop
+   a clear instruction for consumers on the process to be followed for returning products. This
+   instruction must include packaging materials and lithium battery marks, as necessary. The
+   instruction must also include the transport method and mode of transport that must be followed;
+   this must include a clear statement on applicable prohibitions.
+
+
+
+
+      OSS/Cargo                                 Page 32                                            01/01/2026
+                         IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+            Example 1 - Lithium-Ion Battery Test Summary
+
+
+
+
+OSS/Cargo                      Page 33                                            01/01/2026
+                          IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+            Example 2 - Lithium Metal Battery Test Summary
+
+
+
+
+OSS/Cargo                       Page 34                                            01/01/2026
+                                           IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+
+Additional Information
+   ▪    Further information can be found in the links below:
+        http://www.iata.org/lithiumbatteries
+        Battery guidance document
+        Nickel-Metal Hydride Batteries
+        Packaging Requirement - Lithium Batteries (3m stack test)
+   ▪    Information for passengers can be found here:
+        https://www.iata.org/en/programs/cargo/dgr/dgr-guidance-passengers/
+        Passengers travelling with lithium batteries
+        Battery-Powered Wheelchair and Mobility Aid Guidance Document
+        lithium_checklist_IATA
+        www.faa.gov/go/safecargo
+The Center of Excellence for Independent Validators Lithium Batteries (CEIV Li-batt) is a certification
+program designed to enable the supply chain of lithium battery products - shippers, freight
+forwarders, cargo handling facilities and airlines - to meet their safety obligations by complying with
+the applicable transport regulations, and to demonstrate their capability and competency in handling
+and transporting lithium battery products. Further information can be found at
+https://www.iata.org/en/services/certification/operations-safety-security/ceiv-lithium-battery/
+If shipping lithium or sodium ion batteries, which do not fall into Section II, it is appropriate to seek
+further assistance from your preferred freight forwarder or a professional hazmat or dangerous goods
+shipping organisation.
+You should contact the airline (at least check their website) that you will be travelling with, or consigning
+your dangerous goods with, if you have any concerns about carrying or transporting lithium metal,
+lithium ion or sodium ion batteries.
+You can also contact the IATA Dangerous Goods Support team if you have questions or concerns
+which may not have been addressed in this document: dangood@iata.org.
+
+
+
+
+       OSS/Cargo                                 Page 35                                            01/01/2026
+                                        IATA Guidance Document for Lithium Batteries and Sodium ion Batteries – 2026
+
+
+
+
+Abbreviations, Acronyms, Symbols
+The following abbreviations, acronyms and symbols are used throughout the document.
+
+ Abbreviation         Meaning
+ A/C                  Aircraft
+ Li Ion (li-ion)      Lithium ion
+ Li batt.             Lithium battery
+ Pax                  Passenger
+ Acronym              Meaning
+ CAO                  Cargo Aircraft Only
+ DGD                  Shipper’s Declaration for Dangerous Goods
+ DGR                  IATA Dangerous Goods Regulations
+ GHS                  Globally Harmonized System for the Classification of Chemicals
+ BSR                  IATA Battery Shipping Regulations
+ SDS                  Safety Data Sheet
+ SoC                  State of Charge
+ Symbol               Meaning
+ ≥                    Equal to or greater than
+ ≤                    Equal to or less than
+ >                    Greater than
+ <                    Less than
+                    Addition of an item
+                    Change to an item
+                    Deletion of an item
+
+
+
+
+       OSS/Cargo                              Page 36                                            01/01/2026
+

@@ -34,6 +34,7 @@ U = {
  "tt_prohib": ("https://seller-id.tokopedia.com/university/essay?knowledge_id=10000846&lang=en", "TikTok Shop by Tokopedia – Prohibited Products Guidelines（印尼站版本，泰/菲/马站需在各自 Seller University 核对）", "platform", "tiktok_tokopedia_prohibited.txt"),
  "shopee_ph": ("https://seller.shopee.ph/edu/article/698", "Shopee PH Seller Education – Prohibited & restricted items（页面需 JS，未能抓取）", "platform", None),
  "shopee_my": ("https://seller.shopee.com.my/edu/article/614", "Shopee MY Seller Education – Prohibited & restricted items（页面需 JS，未能抓取）", "platform", None),
+ "iata_lb": ("https://www.iata.org/contentassets/05e6d8742b0047259bf3a700bc9d42b9/lithium-battery-guidance-document.pdf", "IATA – Battery Guidance Document: Transport of Lithium Metal, Lithium Ion and Sodium Ion Batteries (Revised for the 2026 Regulations)", "official", "iata_lbgd.txt"),
  "lazada": ("https://gsp.lazada.com/gsp/helpcenter/prohibited-and-controlled-products-policy-9600.html", "Lazada – Prohibited and Controlled Products Policy（页面需 JS，未能抓取）", "platform", None),
 }
 def ex(src, text, verification="verified", lang="en"):
@@ -172,7 +173,7 @@ rule(id="PH-NTC-WIRELESS", country="PH", categories=["*"], features=["wireless"]
      requirement="2.4/5 GHz 无线数据设备须经 NTC 型式认可/接受后方可销售，且须由 NTC 认可经销商销售。蓝牙短距设备的具体程序需复核。",
      excerpts=[ex("ph_ntc", "Indoor Wireless Data Network (WDN) equipment and devices can only be sold and used after these are duly registered type approved/type accepted by the Commission under this circular."),
                ex("ph_ntc", "Only radio dealers and suppliers accredited by the Commission can sell WDN equipment and devices.")],
-     needs_review=True, next_steps=["该通告为 2003 年发布，请向 NTC 确认现行程序（蓝牙 SRD）"])
+     needs_review=True, next_steps=["该通告为 2003 年发布，请向 NTC 确认现行型式认可程序"])
 
 # ---------------- MALAYSIA ----------------
 MY_REG97 = ex("my_st_ecom", "Reg 97 (1) - Certificate of Approval (CoA) is required to manufacture, import, display, sell or")
@@ -231,6 +232,37 @@ rule(id="MY-CPETTR", country="MY", categories=["*"], kind="display", mandatory=F
      excerpts=[ex("my_cpettr", "【转述，非原文】Shopee MY 卖家教育页面提示 CPETTR 2024 执法延后（页面需 JS，未能抓取原文）。", "paraphrase", "zh")],
      needs_review=True, next_steps=["核对 KPDN 最新公告"])
 
+
+# ---------------- LITHIUM BATTERY (safety + transport) ----------------
+# Triggered by feature "battery" (text keywords 锂电池/内置电池/充电宝/mAh/battery..., or image facts battery=true).
+LIB_CATS = ["appliance", "power", "toy"]
+rule(id="ALL-LIBAT-UN383", country="ALL", categories=LIB_CATS, features=["battery"], kind="cert", mandatory=True,
+     title="内置/配套锂电池：UN38.3 测试与测试摘要（运输必备）", cert="UN38.3 测试报告 + 测试摘要（Test Summary）", authority="UN《试验和标准手册》38.3 节（ICAO TI / IATA DGR 执行）",
+     requirement="含锂离子/锂金属电池的商品（含内置电池的整机、充电宝），电池型号须通过 UN38.3 测试；制造商及后续分销商须能提供测试摘要。碱性干电池不适用。无 UN38.3 资料通常无法走空运/跨境物流。",
+     excerpts=[ex("iata_lb", "To be permitted in transport all lithium cell and battery types must have passed the applicable tests set out in Subsection 38.3 of the UN Manual of Tests and Criteria."),
+               ex("iata_lb", "manufacturers and subsequent distributors of cells or batteries and equipment powered by cells and batteries manufactured after 30 June 2003 must make available the test summary as specified in the UN Manual of Tests and Criteria, Revision 8, Part III, sub-section 38.3"),
+               ex("iata_lb", "UN 3481, Lithium ion batteries contained in equipment")],
+     next_steps=["向电芯/电池供应商索取对应型号的 UN38.3 测试报告与测试摘要", "在标签/规格中标明电池容量（Wh = V × Ah）"])
+rule(id="ALL-LIBAT-POWERBANK-UN3480", country="ALL", categories=["power"], features=["powerbank"], kind="customs", mandatory=True,
+     title="充电宝按“锂电池”本身运输（UN 3480），空运须 ≤30% 电量", authority="IATA DGR / ICAO TI",
+     requirement="充电宝不算“含电池的设备”，而是按 UN 3480 锂离子电池分类；空运须以不超过 30% 额定容量的电量交运，并按 PI 965 包装。很多跨境物流渠道对纯电池货单独限制。",
+     excerpts=[ex("iata_lb", "power banks are to be classified as batteries and must be assigned to UN 3480, lithium ion batteries, or UN 3090, lithium metal batteries, as applicable."),
+               ex("iata_lb", "therefore must be shipped, at less than 30% SoC, in accordance with Section IB of PI 965, if the power bank has a Watt-hour rating not exceeding 100 Wh")],
+     next_steps=["发货前向物流商确认是否接收纯电池（UN 3480）货物及对应渠道", "出货电量控制在 30% 以下"])
+rule(id="ALL-LIBAT-CARRIER", country="ALL", categories=LIB_CATS, features=["battery"], kind="customs", mandatory=False,
+     title="带电商品：物流商/平台渠道限制与 MSDS", authority="物流商 / 平台（Shopee SLS、Lazada LGS、TikTok Shop 跨境物流）",
+     requirement="【转述】跨境物流渠道普遍区分“普货”和“带电货”，带电商品需走指定渠道并提交电池资料；是否可发、走哪条线以平台卖家中心和物流商最新规定为准。MSDS/SDS 并非危险品规章要求的运输文件，但物流链路中常被要求提供。",
+     excerpts=[ex("iata_lb", "Neither the IATA DGR, nor the regulatory requirements applicable to other modes of transport, requires a safety data sheet (SDS) when offering batteries for transport."),
+               ex("lazada", "【转述，非原文】平台禁限售/物流政策对电池及含电池商品有单独限制或渠道要求（页面需登录/JS，未能抓取原文）。", "paraphrase", "zh")],
+     needs_review=True, verify_with="平台卖家中心（物流/禁限售规则）及你的货代",
+     next_steps=["准备电池规格书、UN38.3 测试摘要，物流商要求时提供 MSDS", "在卖家中心确认该站点带电商品的发货渠道"])
+rule(id="TH-TISI-BATTERY", country="TH", categories=["appliance", "toy"], features=["battery"], kind="cert", mandatory=True,
+     title="泰国 TISI：便携式二次电池（มอก. 2217-2548 / IEC 62133）", cert="TISI 强制认证 มอก. 2217-2548（电池）", authority="TISI",
+     requirement="泰国强制性标准矩阵列有 TIS 2217-2548（IEC 62133）：便携式密封二次电池及其组成的电池组。单独销售或随附的可充电电池须获证；已装入整机的电池是否需单独许可，需向 TISI 核实。",
+     excerpts=[ex("th_regime", "Secondary cells and TIS 2217-2548"), TH_HDR],
+     needs_review=True, verify_with="TISI（สมอ.）或泰国认可检测机构",
+     next_steps=["确认电池/电芯是否已有 มอก. 2217 许可（或整机认证是否覆盖电池）"])
+
 # ---------------- INDONESIA / VIETNAM (warnings only) ----------------
 rule(id="ID-FOB100", country="ID", categories=["*"], kind="customs", mandatory=False,
      title="印尼：跨境直售商品最低 FOB US$100/件", authority="Kementerian Perdagangan (Permendag 19/2026)",
@@ -267,9 +299,14 @@ rule(id="PLAT-SHOPEE-MY-LIST", country="MY", categories=["*"], platforms=["shope
      excerpts=[ex("shopee_my", "【转述，非原文】Shopee MY：销售通信设备需提供 MCMC 注册号/SIRIM CoC 号。", "paraphrase", "zh")],
      needs_review=True, features=["wireless"], next_steps=["在 Shopee MY 卖家中心核对"])
 
+VERIFY = {"TH-TISI-AIR_FRYER": "TISI（สมอ.）或泰国认可检测机构", "PH-POWER-REVIEW": "DTI-BPS", "PH-NTC-WIRELESS": "NTC（菲律宾国家电信委员会）",
+          "MY-POWERBANK-REVIEW": "Suruhanjaya Tenaga 或 SIRIM QAS", "MY-CPETTR": "KPDN 及平台卖家中心", "PLAT-SHOPEE-IP": "Shopee 卖家中心",
+          "PLAT-LAZADA-IP": "Lazada 卖家中心", "PLAT-SHOPEE-MY-LIST": "Shopee MY 卖家中心"}
 for r in rules:
     r["retrieved_date"] = R
     r.setdefault("needs_review", False)
-out = {"version": "2026.10.23-1", "generated": R, "rules": rules}
+    if r["needs_review"] and "verify_with" not in r:
+        r["verify_with"] = VERIFY.get(r["id"]) or r["authority"]
+out = {"version": "2026.10.23-2", "generated": R, "rules": rules}
 json.dump(out, open(__file__.replace("build_rules.py", "rules.json"), "w"), ensure_ascii=False, indent=1)
 print(len(rules), "rules")

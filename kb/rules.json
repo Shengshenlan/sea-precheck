@@ -1,5 +1,5 @@
 {
- "version": "2026.10.23-1",
+ "version": "2026.10.23-2",
  "generated": "2026-10-23",
  "rules": [
   {
@@ -516,7 +516,8 @@
    "features": [],
    "platforms": [],
    "effective_date": null,
-   "retrieved_date": "2026-10-23"
+   "retrieved_date": "2026-10-23",
+   "verify_with": "TISI（สมอ.）或泰国认可检测机构"
   },
   {
    "id": "TH-TISI-ADAPTER",
@@ -1655,7 +1656,8 @@
    "items": [],
    "platforms": [],
    "effective_date": null,
-   "retrieved_date": "2026-10-23"
+   "retrieved_date": "2026-10-23",
+   "verify_with": "DTI-BPS"
   },
   {
    "id": "PH-FDA-COSM",
@@ -1818,13 +1820,14 @@
    ],
    "needs_review": true,
    "next_steps": [
-    "该通告为 2003 年发布，请向 NTC 确认现行程序（蓝牙 SRD）"
+    "该通告为 2003 年发布，请向 NTC 确认现行型式认可程序"
    ],
    "items": [],
    "platforms": [],
    "effective_date": null,
    "mandatory": true,
-   "retrieved_date": "2026-10-23"
+   "retrieved_date": "2026-10-23",
+   "verify_with": "NTC（菲律宾国家电信委员会）"
   },
   {
    "id": "MY-ST-RICE_COOKER",
@@ -2383,7 +2386,8 @@
    "items": [],
    "platforms": [],
    "effective_date": null,
-   "retrieved_date": "2026-10-23"
+   "retrieved_date": "2026-10-23",
+   "verify_with": "Suruhanjaya Tenaga 或 SIRIM QAS"
   },
   {
    "id": "MY-MCMC-COMM",
@@ -2615,6 +2619,209 @@
    "items": [],
    "platforms": [],
    "effective_date": null,
+   "retrieved_date": "2026-10-23",
+   "verify_with": "KPDN 及平台卖家中心"
+  },
+  {
+   "id": "ALL-LIBAT-UN383",
+   "country": "ALL",
+   "categories": [
+    "appliance",
+    "power",
+    "toy"
+   ],
+   "features": [
+    "battery"
+   ],
+   "kind": "cert",
+   "mandatory": true,
+   "title": "内置/配套锂电池：UN38.3 测试与测试摘要（运输必备）",
+   "cert": "UN38.3 测试报告 + 测试摘要（Test Summary）",
+   "authority": "UN《试验和标准手册》38.3 节（ICAO TI / IATA DGR 执行）",
+   "requirement": "含锂离子/锂金属电池的商品（含内置电池的整机、充电宝），电池型号须通过 UN38.3 测试；制造商及后续分销商须能提供测试摘要。碱性干电池不适用。无 UN38.3 资料通常无法走空运/跨境物流。",
+   "excerpts": [
+    {
+     "text": "To be permitted in transport all lithium cell and battery types must have passed the applicable tests set out in Subsection 38.3 of the UN Manual of Tests and Criteria.",
+     "lang": "en",
+     "source_url": "https://www.iata.org/contentassets/05e6d8742b0047259bf3a700bc9d42b9/lithium-battery-guidance-document.pdf",
+     "source_title": "IATA – Battery Guidance Document: Transport of Lithium Metal, Lithium Ion and Sodium Ion Batteries (Revised for the 2026 Regulations)",
+     "source_type": "official",
+     "verification": "verified",
+     "snapshot": "iata_lbgd.txt",
+     "retrieved_date": "2026-10-23"
+    },
+    {
+     "text": "manufacturers and subsequent distributors of cells or batteries and equipment powered by cells and batteries manufactured after 30 June 2003 must make available the test summary as specified in the UN Manual of Tests and Criteria, Revision 8, Part III, sub-section 38.3",
+     "lang": "en",
+     "source_url": "https://www.iata.org/contentassets/05e6d8742b0047259bf3a700bc9d42b9/lithium-battery-guidance-document.pdf",
+     "source_title": "IATA – Battery Guidance Document: Transport of Lithium Metal, Lithium Ion and Sodium Ion Batteries (Revised for the 2026 Regulations)",
+     "source_type": "official",
+     "verification": "verified",
+     "snapshot": "iata_lbgd.txt",
+     "retrieved_date": "2026-10-23"
+    },
+    {
+     "text": "UN 3481, Lithium ion batteries contained in equipment",
+     "lang": "en",
+     "source_url": "https://www.iata.org/contentassets/05e6d8742b0047259bf3a700bc9d42b9/lithium-battery-guidance-document.pdf",
+     "source_title": "IATA – Battery Guidance Document: Transport of Lithium Metal, Lithium Ion and Sodium Ion Batteries (Revised for the 2026 Regulations)",
+     "source_type": "official",
+     "verification": "verified",
+     "snapshot": "iata_lbgd.txt",
+     "retrieved_date": "2026-10-23"
+    }
+   ],
+   "next_steps": [
+    "向电芯/电池供应商索取对应型号的 UN38.3 测试报告与测试摘要",
+    "在标签/规格中标明电池容量（Wh = V × Ah）"
+   ],
+   "items": [],
+   "platforms": [],
+   "effective_date": null,
+   "retrieved_date": "2026-10-23",
+   "needs_review": false
+  },
+  {
+   "id": "ALL-LIBAT-POWERBANK-UN3480",
+   "country": "ALL",
+   "categories": [
+    "power"
+   ],
+   "features": [
+    "powerbank"
+   ],
+   "kind": "customs",
+   "mandatory": true,
+   "title": "充电宝按“锂电池”本身运输（UN 3480），空运须 ≤30% 电量",
+   "authority": "IATA DGR / ICAO TI",
+   "requirement": "充电宝不算“含电池的设备”，而是按 UN 3480 锂离子电池分类；空运须以不超过 30% 额定容量的电量交运，并按 PI 965 包装。很多跨境物流渠道对纯电池货单独限制。",
+   "excerpts": [
+    {
+     "text": "power banks are to be classified as batteries and must be assigned to UN 3480, lithium ion batteries, or UN 3090, lithium metal batteries, as applicable.",
+     "lang": "en",
+     "source_url": "https://www.iata.org/contentassets/05e6d8742b0047259bf3a700bc9d42b9/lithium-battery-guidance-document.pdf",
+     "source_title": "IATA – Battery Guidance Document: Transport of Lithium Metal, Lithium Ion and Sodium Ion Batteries (Revised for the 2026 Regulations)",
+     "source_type": "official",
+     "verification": "verified",
+     "snapshot": "iata_lbgd.txt",
+     "retrieved_date": "2026-10-23"
+    },
+    {
+     "text": "therefore must be shipped, at less than 30% SoC, in accordance with Section IB of PI 965, if the power bank has a Watt-hour rating not exceeding 100 Wh",
+     "lang": "en",
+     "source_url": "https://www.iata.org/contentassets/05e6d8742b0047259bf3a700bc9d42b9/lithium-battery-guidance-document.pdf",
+     "source_title": "IATA – Battery Guidance Document: Transport of Lithium Metal, Lithium Ion and Sodium Ion Batteries (Revised for the 2026 Regulations)",
+     "source_type": "official",
+     "verification": "verified",
+     "snapshot": "iata_lbgd.txt",
+     "retrieved_date": "2026-10-23"
+    }
+   ],
+   "next_steps": [
+    "发货前向物流商确认是否接收纯电池（UN 3480）货物及对应渠道",
+    "出货电量控制在 30% 以下"
+   ],
+   "items": [],
+   "platforms": [],
+   "effective_date": null,
+   "retrieved_date": "2026-10-23",
+   "needs_review": false
+  },
+  {
+   "id": "ALL-LIBAT-CARRIER",
+   "country": "ALL",
+   "categories": [
+    "appliance",
+    "power",
+    "toy"
+   ],
+   "features": [
+    "battery"
+   ],
+   "kind": "customs",
+   "mandatory": false,
+   "title": "带电商品：物流商/平台渠道限制与 MSDS",
+   "authority": "物流商 / 平台（Shopee SLS、Lazada LGS、TikTok Shop 跨境物流）",
+   "requirement": "【转述】跨境物流渠道普遍区分“普货”和“带电货”，带电商品需走指定渠道并提交电池资料；是否可发、走哪条线以平台卖家中心和物流商最新规定为准。MSDS/SDS 并非危险品规章要求的运输文件，但物流链路中常被要求提供。",
+   "excerpts": [
+    {
+     "text": "Neither the IATA DGR, nor the regulatory requirements applicable to other modes of transport, requires a safety data sheet (SDS) when offering batteries for transport.",
+     "lang": "en",
+     "source_url": "https://www.iata.org/contentassets/05e6d8742b0047259bf3a700bc9d42b9/lithium-battery-guidance-document.pdf",
+     "source_title": "IATA – Battery Guidance Document: Transport of Lithium Metal, Lithium Ion and Sodium Ion Batteries (Revised for the 2026 Regulations)",
+     "source_type": "official",
+     "verification": "verified",
+     "snapshot": "iata_lbgd.txt",
+     "retrieved_date": "2026-10-23"
+    },
+    {
+     "text": "【转述，非原文】平台禁限售/物流政策对电池及含电池商品有单独限制或渠道要求（页面需登录/JS，未能抓取原文）。",
+     "lang": "zh",
+     "source_url": "https://gsp.lazada.com/gsp/helpcenter/prohibited-and-controlled-products-policy-9600.html",
+     "source_title": "Lazada – Prohibited and Controlled Products Policy（页面需 JS，未能抓取）",
+     "source_type": "platform",
+     "verification": "paraphrase",
+     "snapshot": null,
+     "retrieved_date": "2026-10-23"
+    }
+   ],
+   "needs_review": true,
+   "verify_with": "平台卖家中心（物流/禁限售规则）及你的货代",
+   "next_steps": [
+    "准备电池规格书、UN38.3 测试摘要，物流商要求时提供 MSDS",
+    "在卖家中心确认该站点带电商品的发货渠道"
+   ],
+   "items": [],
+   "platforms": [],
+   "effective_date": null,
+   "retrieved_date": "2026-10-23"
+  },
+  {
+   "id": "TH-TISI-BATTERY",
+   "country": "TH",
+   "categories": [
+    "appliance",
+    "toy"
+   ],
+   "features": [
+    "battery"
+   ],
+   "kind": "cert",
+   "mandatory": true,
+   "title": "泰国 TISI：便携式二次电池（มอก. 2217-2548 / IEC 62133）",
+   "cert": "TISI 强制认证 มอก. 2217-2548（电池）",
+   "authority": "TISI",
+   "requirement": "泰国强制性标准矩阵列有 TIS 2217-2548（IEC 62133）：便携式密封二次电池及其组成的电池组。单独销售或随附的可充电电池须获证；已装入整机的电池是否需单独许可，需向 TISI 核实。",
+   "excerpts": [
+    {
+     "text": "Secondary cells and TIS 2217-2548",
+     "lang": "en",
+     "source_url": "https://asean.org/wp-content/uploads/2026/03/TH_Updated-Regulatory-Regime_September-2025.pdf",
+     "source_title": "ASEAN ACCSQ – Thailand Updated Regulatory Regime (Revised matrix on mandatory standards, as of April 2025)",
+     "source_type": "official",
+     "verification": "verified",
+     "snapshot": "th_asean_regime.txt",
+     "retrieved_date": "2026-10-23"
+    },
+    {
+     "text": "REVISED MATRIX ON MANDATORY STANDARDS FOR THAILAND (AS OF April, 2025)",
+     "lang": "en",
+     "source_url": "https://asean.org/wp-content/uploads/2026/03/TH_Updated-Regulatory-Regime_September-2025.pdf",
+     "source_title": "ASEAN ACCSQ – Thailand Updated Regulatory Regime (Revised matrix on mandatory standards, as of April 2025)",
+     "source_type": "official",
+     "verification": "verified",
+     "snapshot": "th_asean_regime.txt",
+     "retrieved_date": "2026-10-23"
+    }
+   ],
+   "needs_review": true,
+   "verify_with": "TISI（สมอ.）或泰国认可检测机构",
+   "next_steps": [
+    "确认电池/电芯是否已有 มอก. 2217 许可（或整机认证是否覆盖电池）"
+   ],
+   "items": [],
+   "platforms": [],
+   "effective_date": null,
    "retrieved_date": "2026-10-23"
   },
   {
@@ -2805,7 +3012,8 @@
    "features": [],
    "items": [],
    "effective_date": null,
-   "retrieved_date": "2026-10-23"
+   "retrieved_date": "2026-10-23",
+   "verify_with": "Shopee 卖家中心"
   },
   {
    "id": "PLAT-LAZADA-IP",
@@ -2840,7 +3048,8 @@
    "features": [],
    "items": [],
    "effective_date": null,
-   "retrieved_date": "2026-10-23"
+   "retrieved_date": "2026-10-23",
+   "verify_with": "Lazada 卖家中心"
   },
   {
    "id": "PLAT-SHOPEE-MY-LIST",
@@ -2877,7 +3086,8 @@
    ],
    "items": [],
    "effective_date": null,
-   "retrieved_date": "2026-10-23"
+   "retrieved_date": "2026-10-23",
+   "verify_with": "Shopee MY 卖家中心"
   }
  ]
 }

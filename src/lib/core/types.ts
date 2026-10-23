@@ -14,6 +14,8 @@ export interface Rule {
   items: string[]; features: Feature[]; platforms: Platform[];
   kind: "cert" | "display" | "platform" | "customs" | "review" | "ip";
   mandatory: boolean; needs_review: boolean; requires_cert_prefix?: string;
+  /** who to verify a needs_review rule with */
+  verify_with?: string;
   title: string; cert?: string; authority: string; requirement: string;
   effective_date: string | null; retrieved_date: string;
   excerpts: Excerpt[]; next_steps: string[];
@@ -26,7 +28,7 @@ export interface CheckInput {
 }
 export interface RuleHit { rule: Rule; reason: string }
 export interface BrandHit { term: string; brand: string; type: "brand" | "counterfeit" | "compat" | "dupe"; source?: "text" | "image" }
-export interface ReviewItem { text: string; reason: string }
+export interface ReviewItem { text: string; reason: string; verify_with?: string }
 export interface LlmNote {
   rule_id: string; quote: string; explanation: string;
   status: "verified" | "待人工复核"; problem?: string;
@@ -39,7 +41,9 @@ export interface Report {
   other_markets: RuleHit[];
   review: ReviewItem[];
   brand: { hits: BrandHit[]; links: { name: string; url: string }[] };
-  risk: { level: "高" | "中" | "低" | "待复核"; reasons: string[] };
+  risk: { level: "高" | "中" | "低" | "待复核"; reasons: string[]; basis: string };
+  /** deterministic 3-sentence plain-language conclusion: 能不能卖/先办什么 → 需要哪几个证 → 最紧急的一件事 */
+  conclusion: string[];
   next_steps: string[];
   image_facts?: ImageFacts;
   llm?: { model: string; summary: string; notes: LlmNote[]; extra_rule_ids: string[]; latency_ms: number; dropped: number };

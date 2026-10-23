@@ -2,14 +2,14 @@
  "metrics": {
   "label": "baseline-rules",
   "n": 39,
-  "when": "2026-10-23T08:07:58.592Z",
-  "cert_recall": 0.829,
+  "when": "2026-10-23T09:53:14.907Z",
+  "cert_recall": 0.736,
   "cert_precision": 1,
-  "exact_cert_match": 33,
+  "exact_cert_match": 29,
   "unguarded": {
-   "cert_recall": 0.829,
+   "cert_recall": 0.736,
    "cert_precision": 1,
-   "exact_cert_match": 33
+   "exact_cert_match": 29
   },
   "guard_removed_total": 0,
   "category_acc": 0.897,
@@ -36,7 +36,8 @@
    "cat_gt": "appliance",
    "cat_pred": "appliance",
    "gt": [
-    "MY-ST-VACUUM"
+    "MY-ST-VACUUM",
+    "ALL-LIBAT-UN383"
    ],
    "pred": [
     "MY-ST-VACUUM"
@@ -263,20 +264,26 @@
    "country": "MY",
    "cat_gt": "power",
    "cat_pred": "power",
-   "gt": [],
-   "pred": [],
-   "tp": 0,
-   "pred_unguarded": [],
-   "tp_unguarded": 0,
+   "gt": [
+    "ALL-LIBAT-UN383"
+   ],
+   "pred": [
+    "ALL-LIBAT-UN383"
+   ],
+   "tp": 1,
+   "pred_unguarded": [
+    "ALL-LIBAT-UN383"
+   ],
+   "tp_unguarded": 1,
    "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
-   "review": 3,
+   "review": 5,
    "needs_review_any": true,
    "brand_gt": false,
    "brand_pred": false,
-   "risk": "低",
+   "risk": "中",
    "latency_ms": 0,
    "busy_retries": 0,
    "failure": null
@@ -346,7 +353,8 @@
    "cat_pred": "toy",
    "gt": [
     "MY-MCMC-COMM",
-    "MY-KPDN-TOY"
+    "MY-KPDN-TOY",
+    "ALL-LIBAT-UN383"
    ],
    "pred": [
     "MY-MCMC-COMM",
@@ -366,7 +374,7 @@
    "needs_review_any": true,
    "brand_gt": false,
    "brand_pred": false,
-   "risk": "中",
+   "risk": "高",
    "latency_ms": 0,
    "busy_retries": 0,
    "failure": null
@@ -377,7 +385,8 @@
    "cat_gt": "toy",
    "cat_pred": null,
    "gt": [
-    "MY-KPDN-TOY"
+    "MY-KPDN-TOY",
+    "ALL-LIBAT-UN383"
    ],
    "pred": [],
    "tp": 0,
@@ -431,7 +440,8 @@
    "cat_gt": "appliance",
    "cat_pred": "appliance",
    "gt": [
-    "PH-BPS-BLENDER"
+    "PH-BPS-BLENDER",
+    "ALL-LIBAT-UN383"
    ],
    "pred": [
     "PH-BPS-BLENDER"
@@ -630,17 +640,22 @@
    "cat_gt": "power",
    "cat_pred": "power",
    "gt": [
-    "PH-NTC-WIRELESS"
+    "PH-NTC-WIRELESS",
+    "ALL-LIBAT-UN383"
    ],
-   "pred": [],
-   "tp": 0,
-   "pred_unguarded": [],
-   "tp_unguarded": 0,
+   "pred": [
+    "ALL-LIBAT-UN383"
+   ],
+   "tp": 1,
+   "pred_unguarded": [
+    "ALL-LIBAT-UN383"
+   ],
+   "tp_unguarded": 1,
    "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
-   "review": 2,
+   "review": 4,
    "needs_review_any": true,
    "brand_gt": true,
    "brand_pred": true,
@@ -708,7 +723,8 @@
    "cat_pred": "toy",
    "gt": [
     "PH-FDA-TOY",
-    "PH-NTC-WIRELESS"
+    "PH-NTC-WIRELESS",
+    "ALL-LIBAT-UN383"
    ],
    "pred": [
     "PH-FDA-TOY"
@@ -795,25 +811,31 @@
    "cat_gt": "appliance",
    "cat_pred": "appliance",
    "gt": [
-    "TH-TISI-FAN"
+    "TH-TISI-FAN",
+    "ALL-LIBAT-UN383",
+    "TH-TISI-BATTERY"
    ],
    "pred": [
-    "TH-TISI-FAN"
+    "TH-TISI-FAN",
+    "ALL-LIBAT-UN383",
+    "TH-TISI-BATTERY"
    ],
-   "tp": 1,
+   "tp": 3,
    "pred_unguarded": [
-    "TH-TISI-FAN"
+    "TH-TISI-FAN",
+    "ALL-LIBAT-UN383",
+    "TH-TISI-BATTERY"
    ],
-   "tp_unguarded": 1,
+   "tp_unguarded": 3,
    "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
-   "review": 1,
+   "review": 3,
    "needs_review_any": true,
    "brand_gt": false,
    "brand_pred": false,
-   "risk": "中",
+   "risk": "高",
    "latency_ms": 0,
    "busy_retries": 0,
    "failure": null
@@ -969,25 +991,28 @@
    "cat_gt": "power",
    "cat_pred": "power",
    "gt": [
-    "TH-TISI-POWERBANK"
+    "TH-TISI-POWERBANK",
+    "ALL-LIBAT-UN383"
    ],
    "pred": [
-    "TH-TISI-POWERBANK"
+    "TH-TISI-POWERBANK",
+    "ALL-LIBAT-UN383"
    ],
-   "tp": 1,
+   "tp": 2,
    "pred_unguarded": [
-    "TH-TISI-POWERBANK"
+    "TH-TISI-POWERBANK",
+    "ALL-LIBAT-UN383"
    ],
-   "tp_unguarded": 1,
+   "tp_unguarded": 2,
    "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
-   "review": 1,
+   "review": 2,
    "needs_review_any": true,
    "brand_gt": false,
    "brand_pred": false,
-   "risk": "中",
+   "risk": "高",
    "latency_ms": 0,
    "busy_retries": 0,
    "failure": null
@@ -1083,7 +1108,9 @@
    "cat_pred": "toy",
    "gt": [
     "TH-TISI-TOY",
-    "TH-NBTC-RADIO"
+    "TH-NBTC-RADIO",
+    "ALL-LIBAT-UN383",
+    "TH-TISI-BATTERY"
    ],
    "pred": [
     "TH-TISI-TOY",
@@ -1103,7 +1130,7 @@
    "needs_review_any": true,
    "brand_gt": false,
    "brand_pred": false,
-   "risk": "中",
+   "risk": "高",
    "latency_ms": 0,
    "busy_retries": 0,
    "failure": null
