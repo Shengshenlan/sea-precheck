@@ -1,14 +1,24 @@
 import { buildReport, candidateRules, imageEvidenceText } from "./core/match";
 import { validateNote } from "./core/validate";
-import type { CheckInput, Report } from "./core/types";
-import type { LlmResult } from "./api";
+import { summarize, type CountrySummary } from "./core/verdict";
+import type { Country, Report } from "./core/types";
+import type { CheckResponse } from "./api";
 
-/** Rule report + (optional) AI overrides, re-validated client-side (defense in depth). */
-export function composeReport(input: CheckInput, llm: LlmResult | null): Report {
-  if (!llm || !llm.ok) return buildReport(input);
-  const facts = llm.image_facts || undefined;
-  const base = buildReport(input, { category: llm.category ?? undefined, features: llm.features, items: llm.items, extraRuleIds: llm.extra_rule_ids, imageText: imageEvidenceText(facts) });
-  const allowed = new Set(candidateRules(input.country, base.category).map((r) => r.id));
-  const notes = llm.notes.map((n) => validateNote(n, allowed));
-  return { ...base, image_facts: facts, llm: { model: llm.model, summary: llm.summary, notes, extra_rule_ids: llm.extra_rule_ids, latency_ms: llm.latency_ms, dropped: llm.dropped } };
+export interface CountryView { country: Country; report: Report; summary: CountrySummary; aiOk: boolean; aiMessage?: string }
+
+/** Per-country rule report + AI overrides, re-validated client-side (defense in depth). A failed country falls back to rules only. */
+export function composeCountries(res: CheckResponse): CountryView[] {
+  const facts = res.image_facts || undefined;
+  const imageText = imageEvidenceText(facts);
+  return res.countries.map((country) => {
+    const input = { title: res.input.title, description: res.input.description, country, category: "auto" as const };
+    const o = res.results[country];
+    let report: Report;
+    if (o && o.ok) {
+      const base = buildReport(input, { category: o.category ?? undefined, features: o.features, items: o.items, extraRuleIds: o.extra_rule_ids, imageText });
+      const allowed = new Set(candidateRules(country, base.category).map((r) => r.id));
+      report = { ...base, image_facts: facts, llm: { model: res.model, summary: o.summary, notes: o.notes.map((n) => validateNote(n, allowed)), extra_rule_ids: o.extra_rule_ids, latency_ms: o.latency_ms, dropped: o.dropped } };
+    } else report = { ...buildReport(input, { imageText }), image_facts: facts };
+    return { country, report, summary: summarize(report), aiOk: !!o?.ok, aiMessage: o && !o.ok ? o.message : undefined };
+  });
 }

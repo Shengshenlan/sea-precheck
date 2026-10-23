@@ -1,4 +1,4 @@
-import type { CheckInput, Category, Feature, ImageFacts, LlmNote } from "./core/types";
+import type { Category, Country, Feature, ImageFacts, LlmNote, Platform } from "./core/types";
 
 export const API_URL = (process.env.NEXT_PUBLIC_API_URL || "").replace(/\/$/, "");
 const TOKEN_KEY = "radar_token";
@@ -10,14 +10,18 @@ export const tokenStore = {
   clear: () => window.localStorage.removeItem(TOKEN_KEY),
 };
 
-export interface LlmResponse {
-  ok: true; model: string; category: Category | null; features: Feature[]; items: string[];
-  extra_rule_ids: string[]; notes: LlmNote[]; next_steps: string[]; summary: string; latency_ms: number; dropped: number;
-  image_facts?: ImageFacts | null; image_error?: string | null; vision_ms?: number; check_id?: number | null;
-  quota?: { used: number; limit: number }; evidence?: { feature: string; source: "text" | "image"; term: string }[];
+/** One country's AI analysis (already validated + guarded by the worker; re-validated client-side). */
+export interface CountryResult {
+  ok: true; category: Category | null; features: Feature[]; items: string[]; extra_rule_ids: string[]; notes: LlmNote[];
+  next_steps: string[]; summary: string; latency_ms: number; dropped: number;
+  evidence?: { feature: string; source: "text" | "image"; term: string }[];
 }
-export type LlmFail = { ok: false; reason: "disabled" | "login_required" | "rate_limited" | "quota" | "timeout" | "error"; message: string };
-export type LlmResult = LlmResponse | LlmFail;
+export type CountryFail = { ok: false; code: string; message: string };
+export interface CheckResponse {
+  ok: true; model: string; latency_ms: number; vision_ms?: number; image_facts: ImageFacts | null; image_error: string | null;
+  input: { title: string; description: string }; countries: Country[]; results: Partial<Record<Country, CountryResult | CountryFail>>;
+  check_id?: number | null; quota?: Quota;
+}
 
 async function call<T = any>(path: string, init: RequestInit = {}, auth = true): Promise<{ status: number; body: T & { ok?: boolean; code?: string; message?: string } }> {
   const headers: Record<string, string> = { ...(init.body ? { "content-type": "application/json" } : {}), ...(init.headers as Record<string, string> || {}) };
@@ -25,44 +29,56 @@ async function call<T = any>(path: string, init: RequestInit = {}, auth = true):
   if (t) headers.authorization = `Bearer ${t}`;
   const res = await fetch(`${API_URL}${path}`, { ...init, headers });
   const body = await res.json().catch(() => ({}));
-  if (res.status === 401 && t && body.code === "unauthorized") tokenStore.clear();
+  if (res.status === 401 && t && (body.code === "unauthorized" || body.code === "login_required")) tokenStore.clear();
   return { status: res.status, body };
 }
 
-export async function fetchLlm(input: CheckInput, images: string[], signal?: AbortSignal): Promise<LlmResult> {
-  if (!API_URL) return { ok: false, reason: "disabled", message: "本站未配置 AI 后端，当前为纯规则结果（全部在浏览器内计算）。" };
-  if (!tokenStore.get()) return { ok: false, reason: "login_required", message: "登录后即可使用 AI 补充分析与图片识别。" };
+export type CheckOutcome = CheckResponse | { ok: false; status: number; code: string; message: string };
+export async function runCheck(info: string, countries: Country[], images: string[]): Promise<CheckOutcome> {
+  if (!API_URL) return { ok: false, status: 0, code: "disabled", message: "服务暂未配置，请稍后再试" };
   const ctl = new AbortController();
-  const t = setTimeout(() => ctl.abort(), images.length ? 85000 : 65000);
-  signal?.addEventListener("abort", () => ctl.abort());
+  const t = setTimeout(() => ctl.abort(), images.length ? 90000 : 70000);
   try {
-    const { status, body } = await call<LlmResponse>("/api/check", { method: "POST", body: JSON.stringify({ ...input, images }), signal: ctl.signal });
-    if (status === 401) return { ok: false, reason: "login_required", message: "登录已失效，请重新登录后使用 AI 分析。" };
-    if (status === 429) return { ok: false, reason: body.code === "user_quota" ? "quota" : "rate_limited", message: body.message || "AI 分析次数已达上限，稍后再试。" };
-    if (status === 503 && body.code === "quota") return { ok: false, reason: "quota", message: body.message || "AI 服务暂时不可用（额度已达上限），以下为规则引擎结果。" };
-    if (status !== 200 || !body.ok) return { ok: false, reason: "error", message: body.message || `AI 后端暂不可用（HTTP ${status}），以下为纯规则结果。` };
-    return body as LlmResponse;
+    const { status, body } = await call<CheckResponse>("/api/check", { method: "POST", body: JSON.stringify({ info, countries, images }), signal: ctl.signal });
+    if (status === 200 && body.ok) return body as CheckResponse;
+    return { ok: false, status, code: body.code || "error", message: body.message || `服务暂时不可用（HTTP ${status}），请稍后再试` };
   } catch (e) {
     const aborted = (e as Error).name === "AbortError";
-    return { ok: false, reason: aborted ? "timeout" : "error", message: aborted ? "AI 分析超时，以下为纯规则结果。" : "无法连接 AI 后端（网络问题），以下为纯规则结果。" };
+    return { ok: false, status: 0, code: aborted ? "timeout" : "network", message: aborted ? "检查超时，请稍后再试" : "无法连接服务，请检查网络后重试" };
   } finally { clearTimeout(t); }
 }
 
 export interface User { id: number; email: string }
 export interface Quota { used: number; limit: number }
+type Auth = { token: string; user: User };
+const post = <T,>(p: string, b: unknown, auth = false) => call<T>(p, { method: "POST", body: JSON.stringify(b) }, auth);
 export const api = {
   me: () => call<{ user: User; quota: Quota }>("/api/auth/me"),
-  challenge: () => call<{ token: string; question: string }>("/api/auth/challenge", {}, false),
-  login: (email: string, password: string) => call<{ token: string; user: User }>("/api/auth/login", { method: "POST", body: JSON.stringify({ email, password }) }, false),
-  register: (b: { email: string; password: string; challenge_token: string; challenge_answer: string; website: string }) =>
-    call<{ token: string; user: User }>("/api/auth/register", { method: "POST", body: JSON.stringify(b) }, false),
+  sendCode: (email: string, purpose: "register" | "reset", website = "") => post<{ cooldown: number; dev?: boolean; dev_code?: string; retry_after?: number }>("/api/auth/send-code", { email, purpose, website }),
+  register: (b: { email: string; code: string; password: string; website: string }) => post<Auth>("/api/auth/register", b),
+  reset: (b: { email: string; code: string; password: string }) => post<Auth>("/api/auth/reset", b),
+  login: (email: string, password: string) => post<Auth>("/api/auth/login", { email, password }),
   deleteAccount: () => call("/api/auth/account", { method: "DELETE" }),
   history: () => call<{ items: HistoryItem[] }>("/api/history"),
-  historyItem: (id: number) => call<{ item: HistoryItem & { result: LlmResponse } }>(`/api/history/${id}`),
+  historyItem: (id: number) => call<{ item: StoredItem }>(`/api/history/${id}`),
   deleteHistory: (id?: number) => call(id ? `/api/history/${id}` : "/api/history", { method: "DELETE" }),
 };
+
+/** History list row. Records saved before 2026-10-23 have `country`/`platform`/`risk` instead of `countries`/`verdicts`. */
 export interface HistoryItem {
-  id: number; created_at: number; title: string; description: string; country: CheckInput["country"]; platform: CheckInput["platform"];
-  category: CheckInput["category"]; image_count: number; risk: string | null; cat_pred: Category | null;
-  /** mandatory certificates/licences (absent on records saved before 2026-10-23) */ cert_count?: number;
+  id: number; created_at: number; title: string; description: string; image_count: number; cat_pred: Category | null;
+  countries?: Country[]; verdicts?: Partial<Record<Country, string>>;
+  country?: Country; platform?: Platform; risk?: string | null;
+}
+
+/** Normalise a stored result (new multi-country or old flat single-country) to the CheckResponse shape. */
+export type StoredItem = HistoryItem & { result: (Partial<CheckResponse> & Partial<CountryResult> & { image_facts?: ImageFacts | null }) | null };
+export function normalizeStored(item: StoredItem): CheckResponse {
+  const r = item.result || {};
+  if (r.results && Array.isArray(r.countries)) return r as CheckResponse;
+  const c = (item.country || "TH") as Country;
+  return {
+    ok: true, model: r.model || "", latency_ms: r.latency_ms || 0, image_facts: r.image_facts || null, image_error: r.image_error || null,
+    input: { title: item.title, description: item.description || "" }, countries: [c], results: { [c]: { ...(r as CountryResult), ok: true } },
+  };
 }
