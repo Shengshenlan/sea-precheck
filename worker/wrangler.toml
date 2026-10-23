@@ -16,6 +16,12 @@ ALLOWED_ORIGINS = "http://localhost:3000,http://127.0.0.1:3000"
 RATE_LIMIT_PER_HOUR = "10"
 AGENT_IMPL = "fetch"         # "pi" (pi-agent-core) or "fetch" (thin built-in loop)
 REQUEST_TIMEOUT_MS = "55000"
+# Vision (image facts). glm-4.6v works on the Coding Plan endpoint; glm-5v-turbo only on the pay-as-you-go endpoint.
+VISION_BASE_URL = "https://open.bigmodel.cn/api/coding/paas/v4"
+VISION_MODEL = "glm-4.6v"
+DAILY_AI_QUOTA = "20"        # AI checks per user per UTC day
+REG_PER_IP_PER_DAY = "5"     # registrations per IP per day
+PBKDF2_ITERATIONS = "100000" # workerd max is 100000
 
 # Free-tier Workers Rate Limiting API. period must be 10 or 60 seconds.
 [[ratelimits]]
@@ -28,5 +34,19 @@ name = "RL_GLOBAL"
 namespace_id = "1002"
 simple = { limit = 30, period = 60 }
 
+[[ratelimits]]
+name = "RL_AUTH"
+namespace_id = "1003"
+simple = { limit = 6, period = 60 }
+
+# Users + history. Create with: npx wrangler d1 create sea-precheck  -> paste the id below.
+# Migrate: npx wrangler d1 migrations apply sea-precheck --remote   (local: --local)
+[[d1_databases]]
+binding = "DB"
+database_name = "sea-precheck"
+database_id = "00000000-0000-0000-0000-000000000000"  # placeholder; local dev works without a real id
+migrations_dir = "migrations"
+
+# Secrets (never in this file):  wrangler secret put JWT_SECRET   (random 32+ bytes)
 # Secret (never in this file):  wrangler secret put ZHIPUAI_API_KEY
 # Local dev: put ZHIPUAI_API_KEY=... in worker/.dev.vars (gitignored)

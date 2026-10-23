@@ -13,8 +13,9 @@ export const SYSTEM_PROMPT = `你是东南亚跨境电商上架前合规预检�
 - quote 必须逐字复制自工具返回的 excerpts.text，不能翻译、改写、拼接；verification 为 paraphrase 的条目不要引用。
 - 不得编造规则编号、法规、证书名称或日期；知识库里没有的内容写进 next_steps 并注明“待人工复核”。
 - 绝不能说商品“不侵权”或“无风险”。
+- 如果提供了图片识别结果，图片中可见的蓝牙/2.4GHz/无线充电文字也算无线功能证据；Cordless/无线吸尘器不算。
 - notes 最多 6 条，挑最重要的强制认证和展示义务。`;
 
-export function userPrompt(i: CheckInput): string {
-  return `目标国家：${COUNTRY_ZH[i.country]}（${i.country}）\n平台：${PLATFORM_ZH[i.platform]}\n用户选择的品类：${i.category === "auto" || !i.category ? "自动识别" : i.category}\n商品标题：${i.title}\n商品描述：${i.description || "（无）"}`;
+export function userPrompt(i: CheckInput, imagePrompt?: string): string {
+  return `目标国家：${COUNTRY_ZH[i.country]}（${i.country}）\n平台：${PLATFORM_ZH[i.platform]}\n用户选择的品类：${i.category === "auto" || !i.category ? "自动识别" : i.category}\n商品标题：${i.title}\n商品描述：${i.description || "（无）"}${imagePrompt ? `\n\n【商品图片识别结果】（视觉模型从卖家上传的图片中提取，可能有误；可作为判断品类/功能的证据，但不能作为法规引用）\n${imagePrompt}` : ""}`;
 }

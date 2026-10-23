@@ -1,6 +1,5 @@
 import { jsonrepair } from "jsonrepair";
-import { guardLlmSuggestions, GATED_EVIDENCE } from "../../src/lib/core/guard";
-import { findTerms } from "../../src/lib/core/detect";
+import { guardLlmSuggestions, GATED_EVIDENCE, gatedEvidence } from "../../src/lib/core/guard";
 import { ITEM_KEYWORDS } from "../../src/lib/core/detect";
 import { validateNote } from "../../src/lib/core/validate";
 import { ruleById } from "../../src/lib/core/kb";
@@ -34,7 +33,7 @@ function hoistMisplaced(o: any) {
 
 const CATS = ["appliance", "power", "toy", "cosmetic"]; const FEATS = ["wireless", "battery", "charger", "powerbank", "kids"];
 
-export function postProcess(input: CheckInput, raw: any) {
+export function postProcess(input: CheckInput, raw: any, imageText = "") {
   let dropped = 0;
   let category: Category | null = CATS.includes(raw?.category) ? raw.category : null;
   if (input.category && input.category !== "auto") category = input.category;
@@ -45,17 +44,17 @@ export function postProcess(input: CheckInput, raw: any) {
   const extra: string[] = [];
   for (const id of Array.isArray(raw?.extra_rule_ids) ? raw.extra_rule_ids : []) { if (allowed.has(id)) extra.push(id); else dropped++; }
   const text = `${input.title}\n${input.description}`;
-  const g = guardLlmSuggestions(text, features, [...new Set(extra)]);
-  const noEvidence = (id: string) => (ruleById[id]?.features || []).find((f) => f in GATED_EVIDENCE && !findTerms(text, (GATED_EVIDENCE as any)[f]).length);
+  const g = guardLlmSuggestions(text, features, [...new Set(extra)], imageText);
+  const noEvidence = (id: string) => (ruleById[id]?.features || []).find((f) => f in GATED_EVIDENCE && !gatedEvidence(f as Feature, text, imageText));
   const notes: LlmNote[] = [];
   for (const n of (Array.isArray(raw?.notes) ? raw.notes : []).slice(0, 8)) {
     if (!n || !ruleById[n.rule_id]) { dropped++; continue; } // non-existent rule ids are hallucinations: drop
     const v = validateNote(n, allowed);
     const f = noEvidence(v.rule_id);
-    notes.push(f ? { ...v, status: "待人工复核", problem: `该规则针对 ${f === "wireless" ? "无线/射频" : f} 商品，标题/描述中没有明确证据` } : v);
+    notes.push(f ? { ...v, status: "待人工复核", problem: `该规则针对 ${f === "wireless" ? "无线/射频" : f} 商品，标题/描述/图片中没有明确证据` } : v);
   }
   const next_steps = (Array.isArray(raw?.next_steps) ? raw.next_steps : []).map((x: unknown) => String(x).slice(0, 200)).slice(0, 8);
   const summary = String(raw?.summary || "").slice(0, 300);
   return { category, features: g.features, items, extra_rule_ids: g.extraRuleIds, notes, next_steps, summary, dropped,
-    guard_removed: g.removed, features_suggested: features, extra_rule_ids_suggested: [...new Set(extra)] };
+    guard_removed: g.removed, evidence: g.evidence, features_suggested: features, extra_rule_ids_suggested: [...new Set(extra)] };
 }

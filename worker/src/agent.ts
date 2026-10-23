@@ -2,7 +2,7 @@ import type { CheckInput } from "../../src/lib/core/types";
 import { makeTools } from "./tools";
 import { SYSTEM_PROMPT, userPrompt } from "./prompt";
 
-export interface LlmConfig { baseUrl: string; model: string; apiKey: string; timeoutMs: number; signal: AbortSignal; thinking?: Thinking }
+export interface LlmConfig { imageText?: string; imagePrompt?: string; baseUrl: string; model: string; apiKey: string; timeoutMs: number; signal: AbortSignal; thinking?: Thinking }
 export type Thinking = "off" | "low" | "high";
 /** thinking on => reasoning tokens count against max_tokens, so give more room or content comes back empty. */
 const maxTok = (t: Thinking) => (t === "off" ? 1500 : 6000);
@@ -54,7 +54,7 @@ export async function runPi(input: CheckInput, cfg: LlmConfig): Promise<AgentRun
     compat: { supportsStore: false, supportsDeveloperRole: false, maxTokensField: "max_tokens", thinkingFormat: "deepseek", supportsStrictMode: false },
   };
   const toolCalls: string[] = [];
-  const tools = makeTools(input).map((t) => ({
+  const tools = makeTools(input, cfg.imageText).map((t) => ({
     name: t.name, label: t.name, description: t.description,
     parameters: Type.Unsafe(t.parameters as any),
     execute: async (_id: string, params: unknown) => ({ content: [{ type: "text" as const, text: JSON.stringify(t.run(params)) }], details: {} }),
@@ -70,7 +70,7 @@ export async function runPi(input: CheckInput, cfg: LlmConfig): Promise<AgentRun
   const dbg = (globalThis as any).__PI_DEBUG;
   agent.subscribe((e: any) => { if (dbg) console.log("pi_evt", e.type, e.assistantMessageEvent?.type || ""); if (e.type === "tool_execution_start") toolCalls.push(e.toolName); if (toolCalls.length > 6) agent.abort(); });
   cfg.signal.addEventListener("abort", () => agent.abort());
-  await agent.prompt(userPrompt(input));
+  await agent.prompt(userPrompt(input, cfg.imagePrompt));
   const last: any = agent.state.messages.at(-1);
   if (!last || last.stopReason === "error" || last.stopReason === "aborted") throw classifyUpstream(String(last?.errorMessage || last?.stopReason || "no response"));
   const text = (last.content || []).filter((c: any) => c.type === "text").map((c: any) => c.text).join("");
@@ -79,8 +79,8 @@ export async function runPi(input: CheckInput, cfg: LlmConfig): Promise<AgentRun
 
 // ---------------- thin fetch fallback (OpenAI-compatible tool loop) ----------------
 export async function runFetch(input: CheckInput, cfg: LlmConfig): Promise<AgentRun> {
-  const tools = makeTools(input);
-  const messages: any[] = [{ role: "system", content: SYSTEM_PROMPT }, { role: "user", content: userPrompt(input) }];
+  const tools = makeTools(input, cfg.imageText);
+  const messages: any[] = [{ role: "system", content: SYSTEM_PROMPT }, { role: "user", content: userPrompt(input, cfg.imagePrompt) }];
   const toolCalls: string[] = [];
   for (let turn = 0; turn < 5; turn++) {
     const body: any = { model: cfg.model, messages, max_tokens: maxTok(cfg.thinking || "off"), temperature: 0.2,

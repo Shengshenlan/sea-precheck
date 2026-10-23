@@ -15,7 +15,7 @@ function brief(r: Rule) {
 
 export interface ToolSpec { name: string; description: string; parameters: Record<string, unknown>; run: (args: any) => unknown }
 
-export function makeTools(input: CheckInput): ToolSpec[] {
+export function makeTools(input: CheckInput, imageText = ""): ToolSpec[] {
   return [
     {
       name: "lookup_rules",
@@ -27,7 +27,7 @@ export function makeTools(input: CheckInput): ToolSpec[] {
       }, required: ["category"] },
       run: (a) => {
         const category = CATS.includes(a?.category) ? (a.category as Category) : undefined;
-        const r = buildReport(input, { category, features: (a?.features || []).filter((f: string) => FEATS.includes(f)) as Feature[], items: a?.items || [] });
+        const r = buildReport(input, { category, features: (a?.features || []).filter((f: string) => FEATS.includes(f)) as Feature[], items: a?.items || [], imageText });
         return { category: r.category, items: r.items, features: r.features,
           matched: [...r.certs, ...r.display, ...r.platform, ...r.customs].map((h) => ({ ...brief(h.rule), reason: h.reason })),
           review: r.review, brand_hits: r.brand.hits };
@@ -43,7 +43,7 @@ export function makeTools(input: CheckInput): ToolSpec[] {
       name: "check_brand_words",
       description: "检查文本中的品牌词、仿冒暗示词（同款/高仿/1:1 等）、兼容性描述。",
       parameters: { type: "object", properties: { text: { type: "string" } }, required: ["text"] },
-      run: (a) => checkBrandWords(String(a?.text || "").slice(0, 2400)),
+      run: (a) => checkBrandWords(`${String(a?.text || "").slice(0, 2400)}\n${imageText}`),
     },
   ];
 }
