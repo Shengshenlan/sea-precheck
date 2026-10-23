@@ -1,1 +1,5 @@
 ZHIPUAI_API_KEY=your-zhipu-key-here
+JWT_SECRET=any-long-random-string
+# Either a real Brevo key, or DEV_MAIL_LOG=1 to print codes to the console (local only)
+# BREVO_API_KEY=xkeysib-...
+DEV_MAIL_LOG=1

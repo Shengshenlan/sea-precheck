@@ -22,6 +22,11 @@ VISION_MODEL = "glm-5.3-flash"
 DAILY_AI_QUOTA = "20"        # AI checks per user per UTC day
 REG_PER_IP_PER_DAY = "5"     # registrations per IP per day
 PBKDF2_ITERATIONS = "100000" # workerd max is 100000
+# Verification-code email (Brevo). The API key is a secret: wrangler secret put BREVO_API_KEY
+MAIL_FROM = "zhu05361@gmail.com"   # must be a verified sender in Brevo
+MAIL_FROM_NAME = "出海合规雷达"
+MAIL_PER_EMAIL_PER_DAY = "8"  # codes per address per UTC day
+MAIL_PER_IP_PER_DAY = "20"    # codes per IP per UTC day
 
 # Free-tier Workers Rate Limiting API. period must be 10 or 60 seconds.
 [[ratelimits]]
@@ -49,4 +54,6 @@ migrations_dir = "migrations"
 
 # Secrets (never in this file):  wrangler secret put JWT_SECRET   (random 32+ bytes)
 # Secret (never in this file):  wrangler secret put ZHIPUAI_API_KEY
-# Local dev: put ZHIPUAI_API_KEY=... in worker/.dev.vars (gitignored)
+# Secret (never in this file):  wrangler secret put BREVO_API_KEY
+# Local dev: put ZHIPUAI_API_KEY=... in worker/.dev.vars (gitignored). Without BREVO_API_KEY, set DEV_MAIL_LOG=1 there
+# to print verification codes to the wrangler console instead of sending mail (never set DEV_MAIL_LOG in production).

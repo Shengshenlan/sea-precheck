@@ -8,7 +8,7 @@ export type Thinking = "off" | "low" | "high";
 const maxTok = (t: Thinking) => (t === "off" ? 1500 : 6000);
 export const resolveThinking = (v: string | undefined): Thinking => (v === "low" || v === "high" ? v : "off");
 export interface AgentRun { text: string; toolCalls: string[]; impl: "pi" | "fetch" }
-export class UpstreamError extends Error { constructor(public code: "quota" | "busy" | "auth" | "model" | "timeout" | "error", msg: string, public detail = "") { super(msg); } }
+export class UpstreamError extends Error { constructor(public code: "quota" | "busy" | "auth" | "model" | "timeout" | "error" | "bad_output", msg: string, public detail = "") { super(msg); } }
 
 
 export function classifyUpstream(msg: string): UpstreamError {

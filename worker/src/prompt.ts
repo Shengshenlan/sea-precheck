@@ -17,5 +17,5 @@ export const SYSTEM_PROMPT = `你是东南亚跨境电商上架前合规预检�
 - notes 最多 6 条，挑最重要的强制认证和展示义务。`;
 
 export function userPrompt(i: CheckInput, imagePrompt?: string): string {
-  return `目标国家：${COUNTRY_ZH[i.country]}（${i.country}）\n平台：${PLATFORM_ZH[i.platform]}\n用户选择的品类：${i.category === "auto" || !i.category ? "自动识别" : i.category}\n商品标题：${i.title}\n商品描述：${i.description || "（无）"}${imagePrompt ? `\n\n【商品图片识别结果】（视觉模型从卖家上传的图片中提取，可能有误；可作为判断品类/功能的证据，但不能作为法规引用）\n${imagePrompt}` : ""}`;
+  return `目标国家：${COUNTRY_ZH[i.country]}（${i.country}）\n平台：${i.platform ? PLATFORM_ZH[i.platform] : "未指定（TikTok Shop / Shopee / Lazada 均可能）"}\n用户选择的品类：${i.category === "auto" || !i.category ? "自动识别" : i.category}\n商品标题：${i.title}\n商品描述：${i.description || "（无）"}${imagePrompt ? `\n\n【商品图片识别结果】（视觉模型从卖家上传的图片中提取，可能有误；可作为判断品类/功能的证据，但不能作为法规引用）\n${imagePrompt}` : ""}`;
 }

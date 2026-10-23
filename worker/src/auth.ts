@@ -35,7 +35,8 @@ async function hmac(secret: string, data: string): Promise<Uint8Array> {
 }
 export const hmacHex = async (secret: string, data: string) => [...(await hmac(secret, data))].map((x) => x.toString(16).padStart(2, "0")).join("");
 
-export interface JwtPayload { sub: number; email: string; iat: number; exp: number }
+/** v = users.token_ver at issue time; a password reset bumps it, which invalidates older tokens. */
+export interface JwtPayload { sub: number; email: string; v?: number; iat: number; exp: number }
 export async function signJwt(p: Omit<JwtPayload, "iat" | "exp">, secret: string, ttlSec = 7 * 86400): Promise<string> {
   const now = Math.floor(Date.now() / 1000);
   const h = b64url(te.encode(JSON.stringify({ alg: "HS256", typ: "JWT" })));
@@ -55,20 +56,14 @@ export async function verifyJwt(token: string, secret: string): Promise<JwtPaylo
   } catch { return null; }
 }
 
-/** Stateless math challenge: token = exp.HMAC(answer|exp). Valid 10 min. Replays within the window are limited by the IP rate limits. */
-export async function makeChallenge(secret: string): Promise<{ question: string; token: string }> {
-  const r = crypto.getRandomValues(new Uint8Array(2)); const a = 2 + (r[0] % 18), b = 2 + (r[1] % 9);
-  const exp = Math.floor(Date.now() / 1000) + 600;
-  return { question: `${a} + ${b} = ?`, token: `${exp}.${await hmacHex(secret, `chal|${a + b}|${exp}`)}` };
+/** Uniform 6-digit one-time code (rejection sampling, no modulo bias). */
+export function sixDigitCode(): string {
+  const buf = new Uint32Array(1);
+  for (;;) { crypto.getRandomValues(buf); if (buf[0] < 4_294_000_000) return String(buf[0] % 1_000_000).padStart(6, "0"); }
 }
-export async function checkChallenge(secret: string, token: unknown, answer: unknown): Promise<boolean> {
-  if (typeof token !== "string") return false;
-  const [exp, sig] = token.split(".");
-  if (!exp || !sig || parseInt(exp, 10) < Date.now() / 1000) return false;
-  const ans = parseInt(String(answer ?? "").trim(), 10);
-  if (!Number.isFinite(ans)) return false;
-  return safeEqual(te.encode(await hmacHex(secret, `chal|${ans}|${exp}`)), te.encode(sig));
-}
+/** Codes are stored only as HMAC(JWT_SECRET, purpose|email|code). */
+export const codeHash = (secret: string, purpose: string, email: string, code: string) => hmacHex(secret, `code|${purpose}|${email}|${code}`);
+export const hexEqual = (a: string, b: string) => safeEqual(te.encode(a), te.encode(b));
 
 export const EMAIL_RE = /^[^\s@]{1,64}@[^\s@]{1,190}\.[^\s@]{2,24}$/;
 /** Returns a Chinese error message, or null if acceptable. */
