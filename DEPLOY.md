@@ -1,9 +1,10 @@
-# 部署说明（GitHub Pages + Cloudflare Workers，均为免费层）
+# 部署说明（GitHub Pages + Cloudflare Workers + D1）
 
 架构：
 - **前端**：Next.js 静态导出（`output: "export"`），托管在 GitHub Pages。知识库（kb/rules.json）和确定性规则匹配全部在浏览器里运行，后端不可用时也能出完整的纯规则报告。
 - **LLM 后端**：`worker/` 目录，Cloudflare Worker，提供 `POST /api/check` 和 `GET /api/health`。只返回 LLM 的部分（品类/特征识别、补充规则 ID、引用摘录与解释）。前端会把它和本地规则报告合并，并**再校验一遍**引用。
-- **密钥**：`ZHIPUAI_API_KEY` 只作为 Worker secret 存在。不进 git、不进日志、不进前端 bundle。
+- **账号与历史**：Cloudflare D1（binding `DB`），表 users / checks / usage / reg_ip，见 `worker/migrations/`。
+- **密钥**：`ZHIPUAI_API_KEY`、`JWT_SECRET` 只作为 Worker secret 存在。不进 git、不进日志、不进前端 bundle。
 
 > 本仓库作者尚未执行下面任何一步，也没有创建账号或推送。
 
@@ -14,19 +15,27 @@ cd worker
 npm ci                                   # wrangler 4.x 需要 Node >= 22
 npx wrangler login                       # 浏览器登录 Cloudflare 账号（免费）
 npx wrangler secret put ZHIPUAI_API_KEY  # 交互式粘贴，不会写入文件
+npx wrangler secret put JWT_SECRET       # 随机 ≥32 字节，例如 openssl rand -base64 48 的输出；轮换会使所有登录失效
+npx wrangler d1 create sea-precheck      # 把输出的 database_id 填进 wrangler.toml 的 [[d1_databases]]（当前是占位 0000…）
+npx wrangler d1 migrations apply sea-precheck --remote
 # 编辑 wrangler.toml 的 [vars]：
 #   ALLOWED_ORIGINS = "https://<user>.github.io"        # 只写 origin，不带路径；多个用逗号分隔
 #   LLM_BASE_URL    = "https://open.bigmodel.cn/api/coding/paas/v4"  # Coding Plan；按量付费用 /api/paas/v4
 #   LLM_MODEL       = "glm-5.3-flash"                   # 已验证可用（备选 glm-4.5-flash，走 /api/paas/v4）
 #   LLM_THINKING    = "off"                             # off|low|high；开启后更慢，max_tokens 自动加到 6000
-#   AGENT_IMPL      = "fetch"（默认，免费层推荐）或 "pi"   # 见下文 CPU 说明
+#   AGENT_IMPL      = "fetch"（默认，Free 计划推荐）或 "pi"   # 见下文 CPU 说明
+#   VISION_BASE_URL = "https://open.bigmodel.cn/api/coding/paas/v4"  # 图片识别端点
+#   VISION_MODEL    = "glm-4.6v"                        # 两个端点探测结果见 eval/results/vision-probe.md
+#   DAILY_AI_QUOTA  = "20"                              # 每用户每日 AI 次数
+#   REG_PER_IP_PER_DAY = "5"                            # 每 IP 每日注册数
+#   PBKDF2_ITERATIONS  = "100000"                       # workerd 上限 100000；Free 计划 CPU 紧张时可调低（旧哈希自带迭代数，仍可校验）
 npx wrangler deploy
 curl https://sea-precheck-api.<sub>.workers.dev/api/health
 ```
 
-`ratelimits` 里的 `namespace_id`（1001/1002）是账号内自选的整数，部署时保证不与其他 Worker 冲突即可。
+`ratelimits` 里的 `namespace_id`（1001/1002/1003，`RL_AUTH` 为登录/注册每 IP 每分钟 6 次）是账号内自选的整数，部署时保证不与其他 Worker 冲突即可。
 
-### 限流方案（免费层）
+### 限流方案
 | 层 | 实现 | 说明 |
 |---|---|---|
 | 每 IP 每分钟 3 次 | `RL_IP` Rate Limiting binding（`cf-connecting-ip` 为 key） | 免费可用。period 只能是 10 或 60 秒；按 Cloudflare 节点计数、属于近似值。官方不推荐用 IP 当 key（NAT/IPv6），这里是务实折中 |
@@ -34,13 +43,15 @@ curl https://sea-precheck-api.<sub>.workers.dev/api/health
 | 每 IP 每小时约 10 次 | isolate 内存滑动窗口（`RATE_LIMIT_PER_HOUR`） | **尽力而为**：isolate 回收或请求落到不同节点都会重置。需要严格小时额度时改用 Durable Object（免费层已支持 SQLite DO）或 KV（免费写额度较少） |
 | 输入 | body ≤ 8KB，标题 ≤ 200 字，描述 ≤ 2000 字 | 超限返回 413 |
 | 超时 | `REQUEST_TIMEOUT_MS`（默认 55s），前端 60s | 超时返回 504，前端退回纯规则结果 |
-| 额度耗尽 | 智谱 1113/1308/1310/余额类错误 → 503 `{code:"quota"}` | 前端提示“AI 免费额度已用完，以下为纯规则结果” |
+| 额度耗尽 | 智谱 1113/1308/1310/余额类错误 → 503 `{code:"quota"}` | 前端提示“AI 服务暂时不可用（额度已达上限），以下为规则引擎结果” |
 
 CORS 只放行 `ALLOWED_ORIGINS` 里的 origin；带其他 Origin 的浏览器请求返回 403。不带 Origin 的请求（curl/脚本）可以通过，但照样受限流约束。CORS 不是鉴权手段。
 
 `RATE_LIMIT_DISABLED_LOCAL=1` 只在请求主机名是 localhost/127.0.0.1 时生效，用于本地 eval，线上不起作用。**不要在 wrangler.toml 里设置它。**
 
-### CPU 时间注意（免费层每请求 10ms CPU）
+### CPU 时间注意（Workers Free 计划每请求 10ms CPU）
+
+登录/注册的 PBKDF2（100k 次）是 Worker 里最耗 CPU 的操作，在 Free 计划上可能触发 1102；遇到时调低 `PBKDF2_ITERATIONS` 或使用 Paid 计划。
 等待上游 fetch 的时间不计入 CPU，但 JSON/SSE 解析会计入。在 Node 里粗测（含 TLS，偏高估）：
 - `AGENT_IMPL=pi`（pi-agent-core + pi-ai 流式）：热启动约 150–180ms CPU；
 - `AGENT_IMPL=fetch`（非流式的精简工具循环）：约 20–55ms。

@@ -10,7 +10,7 @@ export function Segmented<T extends string>({ value, onChange, options, classNam
       className={cn("grid auto-cols-fr grid-flow-col gap-1 rounded-xl bg-muted p-1", className)}>
       {options.map((o) => (
         <ToggleGroup.Item key={o.value} value={o.value}
-          className="flex h-9 items-center justify-center gap-1.5 rounded-lg px-2 text-[13px] font-medium text-muted-foreground transition-all hover:text-foreground data-[state=on]:bg-card data-[state=on]:text-foreground data-[state=on]:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+          className="flex h-9 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg px-1 text-xs sm:px-2 sm:text-[13px] font-medium text-muted-foreground transition-all hover:text-foreground data-[state=on]:bg-card data-[state=on]:text-foreground data-[state=on]:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
           {o.label}
         </ToggleGroup.Item>
       ))}
