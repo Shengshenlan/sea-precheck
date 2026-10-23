@@ -46,9 +46,9 @@ export function HistoryView() {
   useEffect(() => { const p = pending.current; return () => { p.forEach((t, id) => { clearTimeout(t); api.deleteHistory(id); }); p.clear(); }; }, []);
   const del = useCallback((it: HistoryItem) => {
     setItems((x) => x?.filter((i) => i.id !== it.id) || null);
-    const t = setTimeout(() => { pending.current.delete(it.id); api.deleteHistory(it.id).catch(() => {}); }, 5000);
+    const t = setTimeout(() => { pending.current.delete(it.id); api.deleteHistory(it.id).catch(() => {}); }, 10000);
     pending.current.set(it.id, t);
-    toast(`已删除「${(it.title || "仅图片").slice(0, 16)}」`, { duration: 5000, action: { label: "撤销", onClick: () => {
+    toast(`已删除「${(it.title || "仅图片").slice(0, 16)}」`, { duration: 10000, action: { label: "撤销", onClick: () => {
       clearTimeout(pending.current.get(it.id)); pending.current.delete(it.id);
       setItems((x) => (x ? [...x, it].sort((a, b) => b.created_at - a.created_at) : [it]));
       toast("已恢复", { tone: "info", duration: 2000 });
