@@ -17,6 +17,8 @@ export interface Rule {
   /** who to verify a needs_review rule with */
   verify_with?: string;
   title: string; cert?: string; authority: string; requirement: string;
+  /** typical processing time — only set when an official source states it (never estimated) */
+  lead_time?: { text: string; source_url: string; verification: Verification };
   effective_date: string | null; retrieved_date: string;
   excerpts: Excerpt[]; next_steps: string[];
 }
@@ -26,9 +28,26 @@ export interface CheckInput {
   title: string; description?: string; category?: Category | "auto";
   country: Country; platform: Platform;
 }
-export interface RuleHit { rule: Rule; reason: string }
+export interface RuleHit {
+  rule: Rule; reason: string;
+  /** must = 未取得即上架属违规; maybe = 可能需要 (KB 归类待核实 or only AI judged it applies) — not counted in risk */
+  tier?: "must" | "maybe"; tier_reason?: string;
+  /** display title adjusted to the evidenced wireless type etc. */
+  title?: string;
+}
 export interface BrandHit { term: string; brand: string; type: "brand" | "counterfeit" | "compat" | "dupe"; source?: "text" | "image" }
-export interface ReviewItem { text: string; reason: string; verify_with?: string }
+export interface ReviewItem { text: string; reason: string; verify_with?: string; /** shown inside this rule's card */ rule_id?: string }
+export interface CertBrief {
+  rule_id: string; plain: string; abbr: string; issuer: string; applicant: string;
+  lead_time?: Rule["lead_time"]; verify_with?: string; maybe_reason?: string;
+}
+export interface ConclusionStep { kind: "stop" | "fix" | "cert" | "verify" | "list"; text: string; cert?: CertBrief }
+export interface Conclusion {
+  verdict: "prohibited" | "blocked" | "certs_first" | "verify_first" | "ok" | "unknown";
+  headline: string; must: CertBrief[]; maybe: CertBrief[];
+  /** 先做 3 步 */
+  steps: ConclusionStep[]; more: number;
+}
 export interface LlmNote {
   rule_id: string; quote: string; explanation: string;
   status: "verified" | "待人工复核"; problem?: string;
@@ -42,8 +61,8 @@ export interface Report {
   review: ReviewItem[];
   brand: { hits: BrandHit[]; links: { name: string; url: string }[] };
   risk: { level: "高" | "中" | "低" | "待复核"; reasons: string[]; basis: string };
-  /** deterministic 3-sentence plain-language conclusion: 能不能卖/先办什么 → 需要哪几个证 → 最紧急的一件事 */
-  conclusion: string[];
+  /** deterministic plain-language conclusion (reports saved before 2026.10.23-3 stored string[]) */
+  conclusion: Conclusion;
   next_steps: string[];
   image_facts?: ImageFacts;
   llm?: { model: string; summary: string; notes: LlmNote[]; extra_rule_ids: string[]; latency_ms: number; dropped: number };
