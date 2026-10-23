@@ -1,6 +1,7 @@
 /**
  * Eval: npx tsx eval/run.ts --api http://127.0.0.1:8788 --label glm-4.5-flash [--concurrency 2]
  *       npx tsx eval/run.ts --baseline   (deterministic rules only, no LLM)
+ * AI checks need login: uses EVAL_EMAIL/EVAL_PASSWORD (default eval@example.com, local D1 only; registers if missing).
  * Ground truth is KB-derived: buildReport() with the hand-labelled category/items/features of each sample.
  */
 import fs from "node:fs";
@@ -8,6 +9,8 @@ import { buildReport } from "../src/lib/core/match";
 import { validateNote } from "../src/lib/core/validate";
 import { candidateRules } from "../src/lib/core/match";
 import samples from "./samples.json";
+import { getToken } from "./client";
+let TOKEN = "";
 
 const arg = (k: string) => { const i = process.argv.indexOf(k); return i > 0 ? process.argv[i + 1] : undefined; };
 const API = arg("--api"); const baseline = process.argv.includes("--baseline");
@@ -22,7 +25,7 @@ async function one(x: any) {
     for (let attempt = 0; attempt < 4; attempt++) {
     failure = null; t0 = Date.now();
     try {
-      const res = await fetch(`${API}/api/check`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(input), signal: AbortSignal.timeout(70000) });
+      const res = await fetch(`${API}/api/check`, { method: "POST", headers: { "content-type": "application/json", authorization: `Bearer ${TOKEN}` }, body: JSON.stringify(input), signal: AbortSignal.timeout(70000) });
       const b: any = await res.json().catch(() => ({}));
       if (res.ok && b.ok) llm = b; else failure = b.code || `http_${res.status}`;
     } catch (e: any) { failure = e.name === "TimeoutError" ? "client_timeout" : "network"; }
@@ -46,6 +49,7 @@ async function one(x: any) {
 }
 
 async function main() {
+if (!baseline) TOKEN = await getToken(API!, process.env.EVAL_EMAIL || "eval@example.com", process.env.EVAL_PASSWORD || "Eval2026pass");
 const out: any[] = []; let idx = 0;
 await Promise.all(Array.from({ length: baseline ? 1 : conc }, async () => { while (idx < samples.length) { const x = (samples as any[])[idx++]; const r = await one(x); out.push(r); process.stderr.write(`${r.id} ${r.failure || "ok"} ${r.latency_ms}ms\n`); } }));
 out.sort((a, b) => a.id.localeCompare(b.id));
