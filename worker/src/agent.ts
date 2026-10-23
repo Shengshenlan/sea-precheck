@@ -11,10 +11,12 @@ const needsThinking = (model: string) => /^glm-5/i.test(model);
 
 export function classifyUpstream(msg: string): UpstreamError {
   const m = msg.toLowerCase();
-  if (/1113|insufficient|欠费|余额|quota|1308|1310/.test(m)) return new UpstreamError("quota", "upstream quota exhausted");
-  if (/1302|1303|1305|429|rate|并发|too many/.test(m)) return new UpstreamError("busy", "upstream busy");
-  if (/401|1000|1001|1002|unauthor|api key|令牌/.test(m)) return new UpstreamError("auth", "upstream auth failed");
-  if (/1211|model.*not exist|模型不存在/.test(m)) return new UpstreamError("model", "model not found");
+  // explicit Zhipu codes first (https://docs.bigmodel.cn/cn/faq/api-code)
+  if (/\b(1302|1303|1305)\b/.test(m) || /速率限制|并发|too many requests/.test(m)) return new UpstreamError("busy", "upstream rate limited");
+  if (/\b(1113|1308|1310)\b/.test(m) || /insufficient|欠费|余额|资源包|使用上限|quota/.test(m)) return new UpstreamError("quota", "upstream quota exhausted");
+  if (/\b(1000|1001|1002|1003|1004)\b/.test(m) || /\b401\b|unauthor|api key|令牌/.test(m)) return new UpstreamError("auth", "upstream auth failed");
+  if (/\b1211\b|model.*not exist|模型不存在/.test(m)) return new UpstreamError("model", "model not found");
+  if (/\b429\b|rate/.test(m)) return new UpstreamError("busy", "upstream busy");
   if (/abort|timeout|timed out/.test(m)) return new UpstreamError("timeout", "upstream timeout");
   return new UpstreamError("error", "upstream error");
 }
@@ -23,7 +25,9 @@ export function classifyUpstream(msg: string): UpstreamError {
  * Zhipu text models (e.g. glm-4-flash-250414) ignore OpenAI-style content-part arrays
  * ([{type:"text",text}]) and answer as if the message were empty. Flatten text-only parts to strings.
  */
-export function flattenForZhipu(params: any) {
+export function flattenForZhipu(params: any, model?: string) {
+  // Zhipu thinking switch: glm-4.5/4.6 think by default (slow: 30-60 s); disable unless the model requires it.
+  if (params && model && !needsThinking(model)) params.thinking = { type: "disabled" };
   for (const m of params?.messages || []) {
     if (Array.isArray(m.content) && m.content.every((p: any) => p?.type === "text")) m.content = m.content.map((p: any) => p.text).join("\n");
   }
@@ -50,7 +54,7 @@ export async function runPi(input: CheckInput, cfg: LlmConfig): Promise<AgentRun
     streamFn: (m: any, c: any, o: any) => streamSimple(m, c, {
       ...o, apiKey: cfg.apiKey, maxTokens: 1500, timeoutMs: cfg.timeoutMs, maxRetries: 1, signal: cfg.signal,
       ...(needsThinking(cfg.model) ? { reasoning: "low" } : {}),
-      onPayload: flattenForZhipu,
+      onPayload: (p: any) => flattenForZhipu(p, cfg.model),
     }),
   } as any);
   const dbg = (globalThis as any).__PI_DEBUG;

@@ -2,7 +2,7 @@
  "metrics": {
   "label": "baseline-rules",
   "n": 39,
-  "when": "2026-10-23T06:13:45.537Z",
+  "when": "2026-10-23T06:18:24.366Z",
   "cert_recall": 0.829,
   "cert_precision": 1,
   "exact_cert_match": 33,
@@ -14,6 +14,7 @@
   "review_rate": 0.821,
   "brand_recall": "10/11",
   "brand_false_pos": 0,
+  "busy_retries": 0,
   "failures": 0,
   "failure_codes": [],
   "latency_ms": {
@@ -44,6 +45,7 @@
    "brand_pred": false,
    "risk": "中",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -67,6 +69,7 @@
    "brand_pred": false,
    "risk": "中",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -90,6 +93,7 @@
    "brand_pred": false,
    "risk": "中",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -113,6 +117,7 @@
    "brand_pred": true,
    "risk": "高",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -136,6 +141,7 @@
    "brand_pred": false,
    "risk": "中",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -157,6 +163,7 @@
    "brand_pred": false,
    "risk": "待复核",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -180,6 +187,7 @@
    "brand_pred": true,
    "risk": "高",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -203,6 +211,7 @@
    "brand_pred": true,
    "risk": "高",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -222,6 +231,7 @@
    "brand_pred": false,
    "risk": "低",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -245,6 +255,7 @@
    "brand_pred": false,
    "risk": "中",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -268,6 +279,7 @@
    "brand_pred": false,
    "risk": "中",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -293,6 +305,7 @@
    "brand_pred": false,
    "risk": "中",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -314,6 +327,7 @@
    "brand_pred": false,
    "risk": "待复核",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -337,6 +351,7 @@
    "brand_pred": false,
    "risk": "中",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -360,6 +375,7 @@
    "brand_pred": false,
    "risk": "中",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -383,6 +399,7 @@
    "brand_pred": true,
    "risk": "高",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -406,6 +423,7 @@
    "brand_pred": false,
    "risk": "中",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -429,6 +447,7 @@
    "brand_pred": true,
    "risk": "中",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -452,6 +471,7 @@
    "brand_pred": false,
    "risk": "中",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -475,6 +495,7 @@
    "brand_pred": false,
    "risk": "中",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -496,6 +517,7 @@
    "brand_pred": false,
    "risk": "待复核",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -517,6 +539,7 @@
    "brand_pred": true,
    "risk": "高",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -536,6 +559,7 @@
    "brand_pred": false,
    "risk": "低",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -559,6 +583,7 @@
    "brand_pred": false,
    "risk": "中",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -583,6 +608,7 @@
    "brand_pred": false,
    "risk": "中",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -606,6 +632,7 @@
    "brand_pred": true,
    "risk": "高",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -629,6 +656,7 @@
    "brand_pred": false,
    "risk": "中",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -652,6 +680,7 @@
    "brand_pred": false,
    "risk": "中",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -675,6 +704,7 @@
    "brand_pred": true,
    "risk": "高",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -698,6 +728,7 @@
    "brand_pred": false,
    "risk": "中",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -721,6 +752,7 @@
    "brand_pred": false,
    "risk": "中",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -744,6 +776,7 @@
    "brand_pred": false,
    "risk": "中",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -767,6 +800,7 @@
    "brand_pred": false,
    "risk": "中",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -790,6 +824,7 @@
    "brand_pred": false,
    "risk": "中",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -813,6 +848,7 @@
    "brand_pred": true,
    "risk": "中",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -835,6 +871,7 @@
    "brand_pred": false,
    "risk": "低",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -858,6 +895,7 @@
    "brand_pred": false,
    "risk": "中",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -883,6 +921,7 @@
    "brand_pred": false,
    "risk": "中",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   },
   {
@@ -906,6 +945,7 @@
    "brand_pred": true,
    "risk": "高",
    "latency_ms": 0,
+   "busy_retries": 0,
    "failure": null
   }
  ]

@@ -17,13 +17,18 @@ const certIds = (r: any) => new Set<string>(r.certs.filter((h: any) => h.rule.ma
 async function one(x: any) {
   const input = { title: x.title, description: "", country: x.country, platform: x.platform, category: "auto" } as any;
   const gt = certIds(buildReport({ ...input, category: x.gt.category }, { items: x.gt.items, features: x.gt.features }));
-  const t0 = Date.now(); let llm: any = null; let failure: string | null = null;
+  let t0 = Date.now(); let llm: any = null; let failure: string | null = null; let retries = 0;
   if (!baseline) {
+    for (let attempt = 0; attempt < 4; attempt++) {
+    failure = null; t0 = Date.now();
     try {
       const res = await fetch(`${API}/api/check`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(input), signal: AbortSignal.timeout(70000) });
       const b: any = await res.json().catch(() => ({}));
       if (res.ok && b.ok) llm = b; else failure = b.code || `http_${res.status}`;
     } catch (e: any) { failure = e.name === "TimeoutError" ? "client_timeout" : "network"; }
+    if (failure !== "busy") break;
+    retries++; await new Promise((r) => setTimeout(r, 20000 * (attempt + 1))); // upstream 1302 rate limit: back off
+    }
   }
   const rep = llm ? buildReport(input, { category: llm.category, features: llm.features, items: llm.items, extraRuleIds: llm.extra_rule_ids }) : buildReport(input);
   const pred = certIds(rep);
@@ -35,7 +40,7 @@ async function one(x: any) {
   return { id: x.id, country: x.country, cat_gt: x.gt.category, cat_pred: rep.category, gt: [...gt], pred: [...pred], tp,
     notes: notes.length, bad_notes: bad, dropped: llm?.dropped ?? 0, review: rep.review.length, needs_review_any: rep.review.length > 0 || rep.risk.level === "待复核",
     brand_gt: x.brand, brand_pred: rep.brand.hits.length > 0,
-    risk: rep.risk.level, latency_ms: baseline ? 0 : Date.now() - t0, failure, impl: llm?.impl, tools: llm?.tool_calls };
+    risk: rep.risk.level, latency_ms: baseline ? 0 : Date.now() - t0, busy_retries: retries, failure, impl: llm?.impl, tools: llm?.tool_calls };
 }
 
 async function main() {
@@ -56,6 +61,7 @@ const metrics = {
   hallucinated_citation_rate: +((sum((r) => r.bad_notes) + sum((r) => r.dropped)) / Math.max(1, sum((r) => r.notes) + sum((r) => r.dropped))).toFixed(3),
   review_rate: +(out.filter((r) => r.needs_review_any).length / out.length).toFixed(3),
   brand_recall: `${brandTP}/${out.filter((r) => r.brand_gt).length}`, brand_false_pos: out.filter((r) => !r.brand_gt && r.brand_pred).length,
+  busy_retries: sum((r) => r.busy_retries || 0),
   failures: out.filter((r) => r.failure).length, failure_codes: out.filter((r) => r.failure).map((r) => `${r.id}:${r.failure}`),
   latency_ms: { p50: q(0.5), p90: q(0.9), max: lat.at(-1) || 0 },
 };

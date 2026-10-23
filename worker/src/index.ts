@@ -71,7 +71,7 @@ export default {
       const impl = env.AGENT_IMPL === "fetch" ? runFetch : runPi;
       try { run = await impl(input, cfg); }
       catch (e) {
-        if (e instanceof UpstreamError && e.code === "busy" && !ctl.signal.aborted) { await new Promise((r) => setTimeout(r, 1500)); run = await impl(input, cfg); }
+        if (e instanceof UpstreamError && e.code === "busy" && !ctl.signal.aborted) { await new Promise((r) => setTimeout(r, 3000)); run = await impl(input, cfg); }
         else throw e;
       }
       const parsed = extractJson(run.text);
