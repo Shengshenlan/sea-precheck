@@ -1,11 +1,11 @@
 import { sanitizeInput } from "../../src/lib/core/match";
 import type { CheckInput } from "../../src/lib/core/types";
-import { runFetch, runPi, UpstreamError, type LlmConfig } from "./agent";
+import { runFetch, runPi, UpstreamError, resolveThinking, type LlmConfig } from "./agent";
 import { extractJson, postProcess } from "./parse";
 
 interface RateLimit { limit(o: { key: string }): Promise<{ success: boolean }> }
 export interface Env {
-  ZHIPUAI_API_KEY?: string; LLM_BASE_URL: string; LLM_MODEL: string; ALLOWED_ORIGINS: string;
+  ZHIPUAI_API_KEY?: string; LLM_THINKING?: string; LLM_BASE_URL: string; LLM_MODEL: string; ALLOWED_ORIGINS: string;
   RATE_LIMIT_PER_HOUR?: string; AGENT_IMPL?: string; REQUEST_TIMEOUT_MS?: string; PI_DEBUG?: string; RATE_LIMIT_DISABLED_LOCAL?: string;
   RL_IP?: RateLimit; RL_GLOBAL?: RateLimit;
 }
@@ -37,7 +37,7 @@ export default {
   async fetch(req: Request, env: Env): Promise<Response> {
     const url = new URL(req.url); const origin = req.headers.get("origin"); const ch = cors(origin, env);
     if (req.method === "OPTIONS") return new Response(null, { status: ch["Access-Control-Allow-Origin"] ? 204 : 403, headers: ch });
-    if (url.pathname === "/api/health") return json({ ok: true, model: env.LLM_MODEL, impl: env.AGENT_IMPL || "pi", key_configured: !!env.ZHIPUAI_API_KEY }, 200, ch);
+    if (url.pathname === "/api/health") return json({ ok: true, model: env.LLM_MODEL, impl: env.AGENT_IMPL || "pi", thinking: resolveThinking(env.LLM_THINKING), key_configured: !!env.ZHIPUAI_API_KEY }, 200, ch);
     if (url.pathname !== "/api/check") return json({ ok: false, message: "not found" }, 404, ch);
     if (req.method !== "POST") return json({ ok: false, message: "method not allowed" }, 405, ch);
     // Browser requests from non-allowed origins are refused. Requests without Origin (curl, eval) are allowed but still rate limited.
@@ -63,24 +63,29 @@ export default {
 
     const timeoutMs = parseInt(env.REQUEST_TIMEOUT_MS || "45000", 10);
     const ctl = new AbortController(); const timer = setTimeout(() => ctl.abort(), timeoutMs);
-    const cfg: LlmConfig = { baseUrl: env.LLM_BASE_URL, model: env.LLM_MODEL, apiKey: env.ZHIPUAI_API_KEY, timeoutMs: Math.max(5000, timeoutMs - 3000), signal: ctl.signal };
+    const cfg: LlmConfig = { baseUrl: env.LLM_BASE_URL, model: env.LLM_MODEL, apiKey: env.ZHIPUAI_API_KEY, timeoutMs: Math.max(5000, timeoutMs - 3000), signal: ctl.signal, thinking: resolveThinking(env.LLM_THINKING) };
     const t0 = Date.now();
     (globalThis as any).__PI_DEBUG = env.PI_DEBUG === "1";
     try {
       let run;
       const impl = env.AGENT_IMPL === "fetch" ? runFetch : runPi;
-      try { run = await impl(input, cfg); }
-      catch (e) {
-        if (e instanceof UpstreamError && e.code === "busy" && !ctl.signal.aborted) { await new Promise((r) => setTimeout(r, 3000)); run = await impl(input, cfg); }
-        else throw e;
-      }
+      // hard deadline: don't rely on the upstream fetch honouring abort (observed 100 s+ hangs in workerd)
+      const deadline = new Promise<never>((_, rej) => ctl.signal.addEventListener("abort", () => rej(new UpstreamError("timeout", "deadline"))));
+      const attempt = async () => {
+        try { return await impl(input, cfg); }
+        catch (e) {
+          if (e instanceof UpstreamError && e.code === "busy" && !ctl.signal.aborted) { await new Promise((r) => setTimeout(r, 3000)); return await impl(input, cfg); }
+          throw e;
+        }
+      };
+      run = await Promise.race([attempt(), deadline]);
       const parsed = extractJson(run.text);
       if (!parsed) return json({ ok: false, code: "bad_output", message: "AI 输出无法解析，以下为纯规则结果。" }, 502, ch);
       const out = postProcess(input, parsed);
       return json({ ok: true, model: env.LLM_MODEL, impl: run.impl, tool_calls: run.toolCalls, latency_ms: Date.now() - t0, ...out }, 200, ch);
     } catch (e) {
       const code = e instanceof UpstreamError ? e.code : ctl.signal.aborted ? "timeout" : "error";
-      console.log(JSON.stringify({ evt: "llm_error", code, ms: Date.now() - t0 })); // never log input or key
+      console.log(JSON.stringify({ evt: "llm_error", code, detail: e instanceof UpstreamError ? e.detail : String((e as any)?.name || ""), ms: Date.now() - t0 })); // never log input or key
       const msg: Record<string, string> = {
         quota: "AI 免费额度已用完，以下为纯规则结果。", busy: "AI 服务繁忙，以下为纯规则结果。", timeout: "AI 分析超时，以下为纯规则结果。",
         auth: "AI 后端配置有误，以下为纯规则结果。", model: "AI 后端模型配置有误，以下为纯规则结果。", error: "AI 分析失败，以下为纯规则结果。",

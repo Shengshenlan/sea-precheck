@@ -32,12 +32,14 @@ async function one(x: any) {
   }
   const rep = llm ? buildReport(input, { category: llm.category, features: llm.features, items: llm.items, extraRuleIds: llm.extra_rule_ids }) : buildReport(input);
   const pred = certIds(rep);
+  const predRaw = llm?.features_suggested ? certIds(buildReport(input, { category: llm.category, features: llm.features_suggested, items: llm.items, extraRuleIds: llm.extra_rule_ids_suggested })) : pred;
+  const tpRaw = [...predRaw].filter((i) => gt.has(i)).length;
   const tp = [...pred].filter((i) => gt.has(i)).length;
   // re-validate citations client-side, like the UI does
   const allowed = new Set(candidateRules(x.country, rep.category ?? x.gt.category).map((r) => r.id));
   const notes = llm ? llm.notes.map((n: any) => validateNote(n, allowed)) : [];
   const bad = notes.filter((n: any) => n.status !== "verified").length;
-  return { id: x.id, country: x.country, cat_gt: x.gt.category, cat_pred: rep.category, gt: [...gt], pred: [...pred], tp,
+  return { id: x.id, country: x.country, cat_gt: x.gt.category, cat_pred: rep.category, gt: [...gt], pred: [...pred], tp, pred_unguarded: [...predRaw], tp_unguarded: tpRaw, guard_removed: llm?.guard_removed || [],
     notes: notes.length, bad_notes: bad, dropped: llm?.dropped ?? 0, review: rep.review.length, needs_review_any: rep.review.length > 0 || rep.risk.level === "待复核",
     brand_gt: x.brand, brand_pred: rep.brand.hits.length > 0,
     risk: rep.risk.level, latency_ms: baseline ? 0 : Date.now() - t0, busy_retries: retries, failure, impl: llm?.impl, tools: llm?.tool_calls };
@@ -56,6 +58,9 @@ const metrics = {
   label, n: out.length, when: new Date().toISOString(),
   cert_recall: +(TP / G).toFixed(3), cert_precision: +(P ? TP / P : 1).toFixed(3),
   exact_cert_match: out.filter((r) => r.tp === r.gt.length && r.pred.length === r.gt.length).length,
+  unguarded: { cert_recall: +(sum((r) => r.tp_unguarded) / G).toFixed(3), cert_precision: +(sum((r) => r.tp_unguarded) / Math.max(1, sum((r) => r.pred_unguarded.length))).toFixed(3),
+    exact_cert_match: out.filter((r) => r.tp_unguarded === r.gt.length && r.pred_unguarded.length === r.gt.length).length },
+  guard_removed_total: sum((r) => r.guard_removed.length),
   category_acc: +(out.filter((r) => r.cat_pred === r.cat_gt).length / out.length).toFixed(3),
   notes_total: sum((r) => r.notes), notes_unverified: sum((r) => r.bad_notes), notes_dropped_bad_rule_id: sum((r) => r.dropped),
   hallucinated_citation_rate: +((sum((r) => r.bad_notes) + sum((r) => r.dropped)) / Math.max(1, sum((r) => r.notes) + sum((r) => r.dropped))).toFixed(3),

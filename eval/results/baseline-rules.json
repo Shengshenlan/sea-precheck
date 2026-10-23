@@ -2,10 +2,16 @@
  "metrics": {
   "label": "baseline-rules",
   "n": 39,
-  "when": "2026-10-23T06:18:24.366Z",
+  "when": "2026-10-23T08:07:58.592Z",
   "cert_recall": 0.829,
   "cert_precision": 1,
   "exact_cert_match": 33,
+  "unguarded": {
+   "cert_recall": 0.829,
+   "cert_precision": 1,
+   "exact_cert_match": 33
+  },
+  "guard_removed_total": 0,
   "category_acc": 0.897,
   "notes_total": 0,
   "notes_unverified": 0,
@@ -36,6 +42,11 @@
     "MY-ST-VACUUM"
    ],
    "tp": 1,
+   "pred_unguarded": [
+    "MY-ST-VACUUM"
+   ],
+   "tp_unguarded": 1,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -60,6 +71,11 @@
     "MY-ST-RICE_COOKER"
    ],
    "tp": 1,
+   "pred_unguarded": [
+    "MY-ST-RICE_COOKER"
+   ],
+   "tp_unguarded": 1,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -84,6 +100,11 @@
     "MY-ST-MASSAGER"
    ],
    "tp": 1,
+   "pred_unguarded": [
+    "MY-ST-MASSAGER"
+   ],
+   "tp_unguarded": 1,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -108,6 +129,11 @@
     "MY-ST-KETTLE"
    ],
    "tp": 1,
+   "pred_unguarded": [
+    "MY-ST-KETTLE"
+   ],
+   "tp_unguarded": 1,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -132,6 +158,11 @@
     "MY-NPRA-COSM"
    ],
    "tp": 1,
+   "pred_unguarded": [
+    "MY-NPRA-COSM"
+   ],
+   "tp_unguarded": 1,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -154,6 +185,9 @@
    ],
    "pred": [],
    "tp": 0,
+   "pred_unguarded": [],
+   "tp_unguarded": 0,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -178,6 +212,11 @@
     "MY-NPRA-COSM"
    ],
    "tp": 1,
+   "pred_unguarded": [
+    "MY-NPRA-COSM"
+   ],
+   "tp_unguarded": 1,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -202,6 +241,11 @@
     "MY-ST-ADAPTER"
    ],
    "tp": 1,
+   "pred_unguarded": [
+    "MY-ST-ADAPTER"
+   ],
+   "tp_unguarded": 1,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -222,6 +266,9 @@
    "gt": [],
    "pred": [],
    "tp": 0,
+   "pred_unguarded": [],
+   "tp_unguarded": 0,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -246,6 +293,11 @@
     "MY-ST-ADAPTER"
    ],
    "tp": 1,
+   "pred_unguarded": [
+    "MY-ST-ADAPTER"
+   ],
+   "tp_unguarded": 1,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -270,6 +322,11 @@
     "MY-KPDN-TOY"
    ],
    "tp": 1,
+   "pred_unguarded": [
+    "MY-KPDN-TOY"
+   ],
+   "tp_unguarded": 1,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -296,6 +353,12 @@
     "MY-KPDN-TOY"
    ],
    "tp": 2,
+   "pred_unguarded": [
+    "MY-MCMC-COMM",
+    "MY-KPDN-TOY"
+   ],
+   "tp_unguarded": 2,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -318,6 +381,9 @@
    ],
    "pred": [],
    "tp": 0,
+   "pred_unguarded": [],
+   "tp_unguarded": 0,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -342,6 +408,11 @@
     "PH-BPS-KETTLE"
    ],
    "tp": 1,
+   "pred_unguarded": [
+    "PH-BPS-KETTLE"
+   ],
+   "tp_unguarded": 1,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -366,6 +437,11 @@
     "PH-BPS-BLENDER"
    ],
    "tp": 1,
+   "pred_unguarded": [
+    "PH-BPS-BLENDER"
+   ],
+   "tp_unguarded": 1,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -390,6 +466,11 @@
     "PH-BPS-MICROWAVE"
    ],
    "tp": 1,
+   "pred_unguarded": [
+    "PH-BPS-MICROWAVE"
+   ],
+   "tp_unguarded": 1,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -414,6 +495,11 @@
     "PH-BPS-INDUCTION"
    ],
    "tp": 1,
+   "pred_unguarded": [
+    "PH-BPS-INDUCTION"
+   ],
+   "tp_unguarded": 1,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -438,6 +524,11 @@
     "PH-FDA-COSM"
    ],
    "tp": 1,
+   "pred_unguarded": [
+    "PH-FDA-COSM"
+   ],
+   "tp_unguarded": 1,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -462,6 +553,11 @@
     "PH-FDA-COSM"
    ],
    "tp": 1,
+   "pred_unguarded": [
+    "PH-FDA-COSM"
+   ],
+   "tp_unguarded": 1,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -486,6 +582,11 @@
     "PH-FDA-COSM"
    ],
    "tp": 1,
+   "pred_unguarded": [
+    "PH-FDA-COSM"
+   ],
+   "tp_unguarded": 1,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -508,6 +609,9 @@
    ],
    "pred": [],
    "tp": 0,
+   "pred_unguarded": [],
+   "tp_unguarded": 0,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -530,6 +634,9 @@
    ],
    "pred": [],
    "tp": 0,
+   "pred_unguarded": [],
+   "tp_unguarded": 0,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -550,6 +657,9 @@
    "gt": [],
    "pred": [],
    "tp": 0,
+   "pred_unguarded": [],
+   "tp_unguarded": 0,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -574,6 +684,11 @@
     "PH-FDA-TOY"
    ],
    "tp": 1,
+   "pred_unguarded": [
+    "PH-FDA-TOY"
+   ],
+   "tp_unguarded": 1,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -599,6 +714,11 @@
     "PH-FDA-TOY"
    ],
    "tp": 1,
+   "pred_unguarded": [
+    "PH-FDA-TOY"
+   ],
+   "tp_unguarded": 1,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -623,6 +743,11 @@
     "PH-FDA-TOY"
    ],
    "tp": 1,
+   "pred_unguarded": [
+    "PH-FDA-TOY"
+   ],
+   "tp_unguarded": 1,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -647,6 +772,11 @@
     "TH-TISI-RICE_COOKER"
    ],
    "tp": 1,
+   "pred_unguarded": [
+    "TH-TISI-RICE_COOKER"
+   ],
+   "tp_unguarded": 1,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -671,6 +801,11 @@
     "TH-TISI-FAN"
    ],
    "tp": 1,
+   "pred_unguarded": [
+    "TH-TISI-FAN"
+   ],
+   "tp_unguarded": 1,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -695,6 +830,11 @@
     "TH-TISI-HAIR_DRYER"
    ],
    "tp": 1,
+   "pred_unguarded": [
+    "TH-TISI-HAIR_DRYER"
+   ],
+   "tp_unguarded": 1,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -719,6 +859,11 @@
     "TH-TISI-IRON"
    ],
    "tp": 1,
+   "pred_unguarded": [
+    "TH-TISI-IRON"
+   ],
+   "tp_unguarded": 1,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -743,6 +888,11 @@
     "TH-FDA-COSM"
    ],
    "tp": 1,
+   "pred_unguarded": [
+    "TH-FDA-COSM"
+   ],
+   "tp_unguarded": 1,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -767,6 +917,11 @@
     "TH-FDA-COSM"
    ],
    "tp": 1,
+   "pred_unguarded": [
+    "TH-FDA-COSM"
+   ],
+   "tp_unguarded": 1,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -791,6 +946,11 @@
     "TH-FDA-COSM"
    ],
    "tp": 1,
+   "pred_unguarded": [
+    "TH-FDA-COSM"
+   ],
+   "tp_unguarded": 1,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -815,6 +975,11 @@
     "TH-TISI-POWERBANK"
    ],
    "tp": 1,
+   "pred_unguarded": [
+    "TH-TISI-POWERBANK"
+   ],
+   "tp_unguarded": 1,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -839,6 +1004,11 @@
     "TH-TISI-ADAPTER"
    ],
    "tp": 1,
+   "pred_unguarded": [
+    "TH-TISI-ADAPTER"
+   ],
+   "tp_unguarded": 1,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -862,6 +1032,9 @@
    ],
    "pred": [],
    "tp": 0,
+   "pred_unguarded": [],
+   "tp_unguarded": 0,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -886,6 +1059,11 @@
     "TH-TISI-TOY"
    ],
    "tp": 1,
+   "pred_unguarded": [
+    "TH-TISI-TOY"
+   ],
+   "tp_unguarded": 1,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -912,6 +1090,12 @@
     "TH-NBTC-RADIO"
    ],
    "tp": 2,
+   "pred_unguarded": [
+    "TH-TISI-TOY",
+    "TH-NBTC-RADIO"
+   ],
+   "tp_unguarded": 2,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,
@@ -936,6 +1120,11 @@
     "TH-TISI-TOY"
    ],
    "tp": 1,
+   "pred_unguarded": [
+    "TH-TISI-TOY"
+   ],
+   "tp_unguarded": 1,
+   "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
    "dropped": 0,

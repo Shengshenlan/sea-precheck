@@ -2,14 +2,21 @@ import type { CheckInput } from "../../src/lib/core/types";
 import { makeTools } from "./tools";
 import { SYSTEM_PROMPT, userPrompt } from "./prompt";
 
-export interface LlmConfig { baseUrl: string; model: string; apiKey: string; timeoutMs: number; signal: AbortSignal }
+export interface LlmConfig { baseUrl: string; model: string; apiKey: string; timeoutMs: number; signal: AbortSignal; thinking?: Thinking }
+export type Thinking = "off" | "low" | "high";
+/** thinking on => reasoning tokens count against max_tokens, so give more room or content comes back empty. */
+const maxTok = (t: Thinking) => (t === "off" ? 1500 : 6000);
+export const resolveThinking = (v: string | undefined): Thinking => (v === "low" || v === "high" ? v : "off");
 export interface AgentRun { text: string; toolCalls: string[]; impl: "pi" | "fetch" }
-export class UpstreamError extends Error { constructor(public code: "quota" | "busy" | "auth" | "model" | "timeout" | "error", msg: string) { super(msg); } }
+export class UpstreamError extends Error { constructor(public code: "quota" | "busy" | "auth" | "model" | "timeout" | "error", msg: string, public detail = "") { super(msg); } }
 
-/** GLM-5.x cannot disable thinking (error 1210) -> enable with low effort; others: disable to save latency. */
-const needsThinking = (model: string) => /^glm-5/i.test(model);
 
 export function classifyUpstream(msg: string): UpstreamError {
+  const e = classify(msg);
+  e.detail = (msg.match(/\b(1\d{3}|[45]\d\d)\b/g) || []).join("/").slice(0, 20) || msg.replace(/[^A-Za-z ]/g, "").slice(0, 30); // status/code only, never content
+  return e;
+}
+function classify(msg: string): UpstreamError {
   const m = msg.toLowerCase();
   // explicit Zhipu codes first (https://docs.bigmodel.cn/cn/faq/api-code)
   if (/\b(1302|1303|1305)\b/.test(m) || /速率限制|并发|too many requests/.test(m)) return new UpstreamError("busy", "upstream rate limited");
@@ -25,9 +32,12 @@ export function classifyUpstream(msg: string): UpstreamError {
  * Zhipu text models (e.g. glm-4-flash-250414) ignore OpenAI-style content-part arrays
  * ([{type:"text",text}]) and answer as if the message were empty. Flatten text-only parts to strings.
  */
-export function flattenForZhipu(params: any, model?: string) {
-  // Zhipu thinking switch: glm-4.5/4.6 think by default (slow: 30-60 s); disable unless the model requires it.
-  if (params && model && !needsThinking(model)) params.thinking = { type: "disabled" };
+export function flattenForZhipu(params: any, thinking: Thinking = "off") {
+  // Zhipu thinking switch: GLM-4.5+/5.x think by default (slow). LLM_THINKING=off|low|high.
+  if (params) {
+    params.thinking = { type: thinking === "off" ? "disabled" : "enabled" };
+    if (thinking === "off") delete params.reasoning_effort; else params.reasoning_effort = thinking;
+  }
   for (const m of params?.messages || []) {
     if (Array.isArray(m.content) && m.content.every((p: any) => p?.type === "text")) m.content = m.content.map((p: any) => p.text).join("\n");
   }
@@ -52,9 +62,9 @@ export async function runPi(input: CheckInput, cfg: LlmConfig): Promise<AgentRun
   const agent = new Agent({
     initialState: { systemPrompt: SYSTEM_PROMPT, model, tools: tools as any },
     streamFn: (m: any, c: any, o: any) => streamSimple(m, c, {
-      ...o, apiKey: cfg.apiKey, maxTokens: 1500, timeoutMs: cfg.timeoutMs, maxRetries: 1, signal: cfg.signal,
-      ...(needsThinking(cfg.model) ? { reasoning: "low" } : {}),
-      onPayload: (p: any) => flattenForZhipu(p, cfg.model),
+      ...o, apiKey: cfg.apiKey, maxTokens: maxTok(cfg.thinking || "off"), timeoutMs: cfg.timeoutMs, maxRetries: 1, signal: cfg.signal,
+      ...(cfg.thinking && cfg.thinking !== "off" ? { reasoning: cfg.thinking } : {}),
+      onPayload: (p: any) => flattenForZhipu(p, cfg.thinking),
     }),
   } as any);
   const dbg = (globalThis as any).__PI_DEBUG;
@@ -73,10 +83,10 @@ export async function runFetch(input: CheckInput, cfg: LlmConfig): Promise<Agent
   const messages: any[] = [{ role: "system", content: SYSTEM_PROMPT }, { role: "user", content: userPrompt(input) }];
   const toolCalls: string[] = [];
   for (let turn = 0; turn < 5; turn++) {
-    const body: any = { model: cfg.model, messages, max_tokens: 1500, temperature: 0.2,
+    const body: any = { model: cfg.model, messages, max_tokens: maxTok(cfg.thinking || "off"), temperature: 0.2,
       tools: tools.map((t) => ({ type: "function", function: { name: t.name, description: t.description, parameters: t.parameters } })),
-      thinking: needsThinking(cfg.model) ? { type: "enabled" } : { type: "disabled" } };
-    if (needsThinking(cfg.model)) body.reasoning_effort = "low";
+    };
+    flattenForZhipu(body, cfg.thinking);
     const res = await fetch(`${cfg.baseUrl.replace(/\/$/, "")}/chat/completions`, {
       method: "POST", headers: { "content-type": "application/json", authorization: `Bearer ${cfg.apiKey}` }, body: JSON.stringify(body), signal: cfg.signal,
     }).catch((e) => { throw classifyUpstream(String(e?.name || e)); });

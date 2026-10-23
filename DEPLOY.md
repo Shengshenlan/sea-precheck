@@ -16,8 +16,10 @@ npx wrangler login                       # 浏览器登录 Cloudflare 账号（�
 npx wrangler secret put ZHIPUAI_API_KEY  # 交互式粘贴，不会写入文件
 # 编辑 wrangler.toml 的 [vars]：
 #   ALLOWED_ORIGINS = "https://<user>.github.io"        # 只写 origin，不带路径；多个用逗号分隔
-#   LLM_MODEL       = "glm-4.5-flash"                   # 已验证可用
-#   AGENT_IMPL      = "pi"  或 "fetch"                   # 见下文 CPU 说明
+#   LLM_BASE_URL    = "https://open.bigmodel.cn/api/coding/paas/v4"  # Coding Plan；按量付费用 /api/paas/v4
+#   LLM_MODEL       = "glm-5.3-flash"                   # 已验证可用（备选 glm-4.5-flash，走 /api/paas/v4）
+#   LLM_THINKING    = "off"                             # off|low|high；开启后更慢，max_tokens 自动加到 6000
+#   AGENT_IMPL      = "fetch"（默认，免费层推荐）或 "pi"   # 见下文 CPU 说明
 npx wrangler deploy
 curl https://sea-precheck-api.<sub>.workers.dev/api/health
 ```
@@ -72,3 +74,7 @@ NEXT_PUBLIC_BASE_PATH=/sea-precheck NEXT_PUBLIC_API_URL=http://localhost:8787 np
 
 ## 4. 更新知识库
 见 `kb/README.md`。改 `kb/build_rules.py`，然后运行 `npm run kb:build && npm run kb:verify`，提交后 Pages 会自动重新构建。
+
+## 关于 GLM Coding Plan 密钥
+
+Coding Plan 套餐的定位是"在编程工具里使用"。把它用作公开网站的后端是否符合智谱的服务条款，请在上线前自行查阅套餐条款/咨询客服；如有疑问，改用按量付费 key + `LLM_BASE_URL=https://open.bigmodel.cn/api/paas/v4`（只需改 vars 和 secret，代码不变）。

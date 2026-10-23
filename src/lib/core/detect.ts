@@ -37,7 +37,7 @@ const CAT_KEYWORDS: Record<Category, string[]> = {
   cosmetic: ["化妆品", "彩妆", "护肤", "口红", "唇膏", "唇釉", "唇彩", "粉底", "气垫", "面霜", "精华", "乳液", "爽肤水", "面膜", "眼影", "眼线", "睫毛膏", "腮红", "洗面奶", "防晒", "香水", "身体乳", "洗发水", "沐浴露", "护发", "指甲油", "lipstick", "foundation", "serum", "moisturizer", "sunscreen", "mascara", "toner", "cosmetic", "skincare", "perfume", "lip gloss", "cushion"],
 };
 
-const FEATURE_KEYWORDS: Record<Feature, string[]> = {
+export const FEATURE_KEYWORDS: Record<Feature, string[]> = {
   wireless: ["蓝牙", "bluetooth", "wifi", "wi-fi", "wlan", "无线网", "2.4g", "5.8g", "app控制", "app 控制", "智能联网", "zigbee", "遥控车", "rc car", "无线遥控", "nfc"],
   battery: ["电池", "锂电", "充电式", "可充电", "usb充电", "type-c充电", "rechargeable", "battery", "18650"],
   charger: ["充电器", "充电头", "适配器", "快充头", "氮化镓", "gan", "charger", "adapter", "adaptor", "pd快充", "车充", "无线充"],

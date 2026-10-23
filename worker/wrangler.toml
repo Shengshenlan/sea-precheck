@@ -8,12 +8,13 @@ workers_dev = true
 "@opentelemetry/api" = "./src/stubs/otel.ts"
 
 [vars]
-LLM_BASE_URL = "https://open.bigmodel.cn/api/paas/v4"
-LLM_MODEL = "glm-4.5-flash"
+LLM_BASE_URL = "https://open.bigmodel.cn/api/coding/paas/v4"   # Coding Plan endpoint; pay-as-you-go: https://open.bigmodel.cn/api/paas/v4
+LLM_MODEL = "glm-5.3-flash"
+LLM_THINKING = "off"        # off | low | high (on = slower, needs more max_tokens)
 # Comma-separated list of allowed browser origins (GitHub Pages origin, no path). Localhost is for local testing.
 ALLOWED_ORIGINS = "http://localhost:3000,http://127.0.0.1:3000"
 RATE_LIMIT_PER_HOUR = "10"
-AGENT_IMPL = "pi"          # "pi" (pi-agent-core) or "fetch" (thin built-in loop)
+AGENT_IMPL = "fetch"         # "pi" (pi-agent-core) or "fetch" (thin built-in loop)
 REQUEST_TIMEOUT_MS = "55000"
 
 # Free-tier Workers Rate Limiting API. period must be 10 or 60 seconds.

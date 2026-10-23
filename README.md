@@ -26,6 +26,7 @@ GitHub Pages（静态 Next.js export）               Cloudflare Worker（worker
 
 - 规则与确定性匹配优先；LLM 只负责品类判断、边缘特征（如无线/蓝牙）、补充规则和中文解释。
 - LLM 给的引用在服务端和前端各校验一次，不是原文子串的引用会显示为"待人工复核"或直接丢弃。
+- LLM 建议的"无线"/"充电器"特征要在标题/描述里找到明确关键词才采纳（`src/lib/core/guard.ts`），避免把射频认证套到普通电器上、把适配器认证套到充电宝上。
 - 不存储任何用户输入；Worker 日志只记 `{evt, code, ms}`。
 
 ## 知识库
@@ -50,13 +51,13 @@ npx wrangler dev --port 8787
 curl http://127.0.0.1:8787/api/health
 ```
 
-`wrangler.toml` 变量：`LLM_BASE_URL`（默认 `https://open.bigmodel.cn/api/paas/v4`）、`LLM_MODEL`（默认 `glm-4.5-flash`）、`AGENT_IMPL`（`pi` | `fetch`）、`REQUEST_TIMEOUT_MS`、`ALLOWED_ORIGINS`、`RATE_LIMIT_PER_HOUR`。密钥只用 `wrangler secret put ZHIPUAI_API_KEY`。
+`wrangler.toml` 变量：`LLM_BASE_URL`（默认 Coding Plan `https://open.bigmodel.cn/api/coding/paas/v4`）、`LLM_MODEL`（默认 `glm-5.3-flash`）、`LLM_THINKING`（`off` | `low` | `high`，默认 off）、`AGENT_IMPL`（`fetch` 默认 | `pi`）、`REQUEST_TIMEOUT_MS`、`ALLOWED_ORIGINS`、`RATE_LIMIT_PER_HOUR`。密钥只用 `wrangler secret put ZHIPUAI_API_KEY`。
 
 ## 评测
 
 ```bash
 npm run eval:baseline                                    # 纯规则
-npx tsx eval/run.ts --api http://127.0.0.1:8788 --label glm-4.5-flash --concurrency 1
+npx tsx eval/run.ts --api http://127.0.0.1:8788 --label glm-5.3-flash-fetch --concurrency 2
 ```
 
 `eval/samples.json` 共 39 条（3 国 × 4 品类），结果写入 `eval/results/<label>.json`。指标：认证召回/精确率、完全匹配、品类准确率、幻觉引用率（未通过校验 + 因 rule_id 不存在被丢弃的 notes 占比）、待复核率、品牌命中、延迟、失败码。
