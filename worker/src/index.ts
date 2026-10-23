@@ -6,7 +6,7 @@ import { extractJson, postProcess } from "./parse";
 interface RateLimit { limit(o: { key: string }): Promise<{ success: boolean }> }
 export interface Env {
   ZHIPUAI_API_KEY?: string; LLM_BASE_URL: string; LLM_MODEL: string; ALLOWED_ORIGINS: string;
-  RATE_LIMIT_PER_HOUR?: string; AGENT_IMPL?: string; REQUEST_TIMEOUT_MS?: string; PI_DEBUG?: string;
+  RATE_LIMIT_PER_HOUR?: string; AGENT_IMPL?: string; REQUEST_TIMEOUT_MS?: string; PI_DEBUG?: string; RATE_LIMIT_DISABLED_LOCAL?: string;
   RL_IP?: RateLimit; RL_GLOBAL?: RateLimit;
 }
 
@@ -44,10 +44,12 @@ export default {
     if (origin && !ch["Access-Control-Allow-Origin"]) return json({ ok: false, message: "origin not allowed" }, 403, ch);
 
     const ip = req.headers.get("cf-connecting-ip") || "local";
+    // Local eval only: honoured solely for loopback hosts, so it is inert on workers.dev / custom domains.
+    const localBypass = env.RATE_LIMIT_DISABLED_LOCAL === "1" && ["localhost", "127.0.0.1"].includes(url.hostname);
     const perHour = Math.max(1, parseInt(env.RATE_LIMIT_PER_HOUR || "10", 10));
-    if (env.RL_GLOBAL && !(await env.RL_GLOBAL.limit({ key: "global" })).success)
+    if (!localBypass && env.RL_GLOBAL && !(await env.RL_GLOBAL.limit({ key: "global" })).success)
       return json({ ok: false, code: "rate_limited", message: "当前使用人数较多，AI 分析暂时排队中，请一分钟后再试。以下为纯规则结果。" }, 429, ch);
-    if ((env.RL_IP && !(await env.RL_IP.limit({ key: `ip:${ip}` })).success) || !hourlyOk(ip, perHour))
+    if (!localBypass && ((env.RL_IP && !(await env.RL_IP.limit({ key: `ip:${ip}` })).success) || !hourlyOk(ip, perHour)))
       return json({ ok: false, code: "rate_limited", message: `AI 分析次数已达上限（每个 IP 每小时约 ${perHour} 次），请稍后再试。以下为纯规则结果。` }, 429, ch);
 
     const len = parseInt(req.headers.get("content-length") || "0", 10);

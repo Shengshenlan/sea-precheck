@@ -1,0 +1,44 @@
+name: Deploy static site to GitHub Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Verify KB excerpts against snapshots (snapshot-missing entries are counted, not failed)
+        run: npm run kb:verify
+      - name: Build static export
+        env:
+          # project site: https://<user>.github.io/<repo>/ ; set repo variable PAGES_BASE_PATH="" for a custom domain / user site
+          NEXT_PUBLIC_BASE_PATH: ${{ vars.PAGES_BASE_PATH != null && vars.PAGES_BASE_PATH || format('/{0}', github.event.repository.name) }}
+          # Worker URL, e.g. https://sea-precheck-api.<sub>.workers.dev  (public, not a secret). Empty => rules-only mode.
+          NEXT_PUBLIC_API_URL: ${{ vars.API_URL }}
+        run: npx next build
+      - run: touch out/.nojekyll
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

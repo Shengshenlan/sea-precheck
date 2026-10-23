@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "kb:build": "python3 kb/build_rules.py",
+    "kb:verify": "tsx scripts/verify-kb.ts",
+    "eval:baseline": "tsx eval/run.ts --baseline",
+    "eval": "tsx eval/run.ts --api http://127.0.0.1:8788 --label local",
+    "serve": "python3 -m http.server 3000 --bind 127.0.0.1 --directory out"
   },
   "dependencies": {
     "@mariozechner/pi-agent-core": "^0.73.1",

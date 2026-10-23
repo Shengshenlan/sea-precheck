@@ -19,6 +19,17 @@ export function classifyUpstream(msg: string): UpstreamError {
   return new UpstreamError("error", "upstream error");
 }
 
+/**
+ * Zhipu text models (e.g. glm-4-flash-250414) ignore OpenAI-style content-part arrays
+ * ([{type:"text",text}]) and answer as if the message were empty. Flatten text-only parts to strings.
+ */
+export function flattenForZhipu(params: any) {
+  for (const m of params?.messages || []) {
+    if (Array.isArray(m.content) && m.content.every((p: any) => p?.type === "text")) m.content = m.content.map((p: any) => p.text).join("\n");
+  }
+  return params;
+}
+
 // ---------------- pi-mono implementation ----------------
 export async function runPi(input: CheckInput, cfg: LlmConfig): Promise<AgentRun> {
   const { Agent } = await import("@mariozechner/pi-agent-core");
@@ -39,6 +50,7 @@ export async function runPi(input: CheckInput, cfg: LlmConfig): Promise<AgentRun
     streamFn: (m: any, c: any, o: any) => streamSimple(m, c, {
       ...o, apiKey: cfg.apiKey, maxTokens: 1500, timeoutMs: cfg.timeoutMs, maxRetries: 1, signal: cfg.signal,
       ...(needsThinking(cfg.model) ? { reasoning: "low" } : {}),
+      onPayload: flattenForZhipu,
     }),
   } as any);
   const dbg = (globalThis as any).__PI_DEBUG;
