@@ -1,12 +1,12 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import {
   AlertTriangle, BadgeCheck, Bot, Camera, CheckCircle2, ChevronDown, Circle, Copyright, Globe2, ListChecks, Lock,
-  Megaphone, ShieldAlert, ShieldCheck, ShieldQuestion, ShoppingBag, Sparkles, Truck, Zap, Battery, Plug, Languages, Tag,
+  ChevronsDownUp, ChevronsUpDown, Megaphone, ShieldAlert, ShieldCheck, ShieldQuestion, ShoppingBag, Sparkles, Truck, Zap, Battery, Plug, Languages, Tag,
 } from "lucide-react";
 import type { ImageFacts, Report } from "@/lib/core/types";
-import { CATEGORY_ZH, COUNTRY_ZH, PLATFORM_ZH } from "@/lib/core/match";
+import { CATEGORY_ZH, COUNTRY_ZH, PLATFORM_ZH, conclusion, riskLevel } from "@/lib/core/match";
 import type { LlmResult } from "@/lib/api";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -14,6 +14,8 @@ import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Flag } from "@/components/site/Flag";
 import { RuleCard } from "./RuleCard";
+import { Gloss } from "./Gloss";
+import { foreignSeaMarks, markCountryZh } from "@/lib/core/marks";
 import { cn } from "@/lib/utils";
 
 const RISK = {
@@ -25,18 +27,36 @@ const RISK = {
 const CAT_SRC = { user: "手动选择", auto: "关键词识别", llm: "AI 识别", none: "—" } as const;
 const LANG_ZH: Record<string, string> = { zh: "中文", en: "英文", th: "泰文", ms: "马来文", fil: "菲律宾语", tl: "菲律宾语", id: "印尼文", vi: "越南文", ja: "日文", ko: "韩文" };
 
-export function Section({ icon: I, title, hint, count, children, tone = "primary" }: { icon: React.ComponentType<{ className?: string }>; title: string; hint?: string; count?: number; children: React.ReactNode; tone?: "primary" | "red" | "amber" | "sky" | "violet" | "green" }) {
+/** Expand/collapse-all signal: [open, generation]. Sections reset to `open` whenever generation changes. */
+const ExpandCtx = createContext<[boolean, number]>([false, 0]);
+
+export function Section({ icon: I, title, hint, count, children, tone = "primary", collapsible, defaultOpen = true }: { icon: React.ComponentType<{ className?: string }>; title: string; hint?: string; count?: number; children: React.ReactNode; tone?: "primary" | "red" | "amber" | "sky" | "violet" | "green"; collapsible?: boolean; defaultOpen?: boolean }) {
   const tones = { primary: "bg-indigo-500/10 text-indigo-600 dark:text-indigo-300", red: "bg-red-500/10 text-red-600 dark:text-red-300", amber: "bg-amber-500/10 text-amber-600 dark:text-amber-300", sky: "bg-sky-500/10 text-sky-600 dark:text-sky-300", violet: "bg-violet-500/10 text-violet-600 dark:text-violet-300", green: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-300" };
+  const [all, gen] = useContext(ExpandCtx);
+  const [open, setOpen] = useState(collapsible ? defaultOpen : true);
+  useEffect(() => { if (collapsible && gen > 0) setOpen(all); }, [all, gen, collapsible]);
+  const head = (
+    <>
+      <span className={cn("grid size-8 shrink-0 place-items-center rounded-lg", tones[tone])}><I className="size-4" /></span>
+      <div className="min-w-0 flex-1">
+        <h3 className="flex items-center gap-2 text-[15px] font-semibold">{title}{count !== undefined && <span className="rounded-full bg-muted px-2 text-xs font-medium text-muted-foreground">{count}</span>}</h3>
+        {hint && <p className="mt-0.5 text-xs text-muted-foreground">{hint}</p>}
+      </div>
+    </>
+  );
+  if (!collapsible) return (
+    <Card className="animate-fade-up overflow-hidden">
+      <div className="flex items-start gap-3 border-b bg-muted/30 px-5 py-3.5">{head}</div>
+      <div className="space-y-3 p-4 sm:p-5">{children}</div>
+    </Card>
+  );
   return (
     <Card className="animate-fade-up overflow-hidden">
-      <div className="flex items-start gap-3 border-b bg-muted/30 px-5 py-3.5">
-        <span className={cn("grid size-8 shrink-0 place-items-center rounded-lg", tones[tone])}><I className="size-4" /></span>
-        <div className="min-w-0 flex-1">
-          <h3 className="flex items-center gap-2 text-[15px] font-semibold">{title}{count !== undefined && <span className="rounded-full bg-muted px-2 text-xs font-medium text-muted-foreground">{count}</span>}</h3>
-          {hint && <p className="mt-0.5 text-xs text-muted-foreground">{hint}</p>}
-        </div>
-      </div>
-      <div className="space-y-3 p-4 sm:p-5">{children}</div>
+      <button type="button" aria-expanded={open} onClick={() => setOpen((o) => !o)} className={cn("flex w-full items-start gap-3 bg-muted/30 px-5 py-3.5 text-left transition-colors hover:bg-muted/60", open && "border-b")}>
+        {head}
+        <span className="mt-1.5 flex shrink-0 items-center gap-1 text-xs text-muted-foreground"><span className="hidden sm:inline">{open ? "收起" : "展开"}</span><ChevronDown className={cn("size-4 transition-transform", open && "rotate-180")} /></span>
+      </button>
+      {open && <div className="space-y-3 p-4 sm:p-5">{children}</div>}
     </Card>
   );
 }
@@ -45,7 +65,12 @@ const Empty = () => <p className="rounded-lg border border-dashed p-4 text-cente
 export function ReportView({ report: r, llm, loading, hasImages }: { report: Report; llm: LlmResult | null; loading: boolean; hasImages?: boolean }) {
   const risk = RISK[r.risk.level];
   const reviewCount = r.review.length + (r.llm?.notes.filter((n) => n.status !== "verified").length || 0);
+  // reports saved before 2026.10.23-2 have no conclusion / basis — recompute from the stored hits
+  const concl = r.conclusion?.length ? r.conclusion : conclusion(r);
+  const basis = r.risk.basis || riskLevel(r).basis;
+  const [expand, setExpand] = useState<[boolean, number]>([false, 0]);
   return (
+    <ExpandCtx.Provider value={expand}>
     <div className="space-y-4">
       {/* Summary */}
       <Card className="relative animate-fade-up overflow-hidden">
@@ -68,23 +93,41 @@ export function ReportView({ report: r, llm, loading, hasImages }: { report: Rep
             <div key={k as string} className="px-2 py-3"><p className="text-lg font-bold tabular-nums">{v}</p><p className="text-[11px] text-muted-foreground">{k}</p></div>
           ))}
         </div>
-        {r.risk.reasons.length > 0 && <ul className="relative space-y-1 border-t px-5 py-3 text-[13px] text-muted-foreground">{r.risk.reasons.map((x, i) => <li key={i} className="flex gap-2"><span className="mt-2 size-1 shrink-0 rounded-full bg-muted-foreground/60" />{x}</li>)}</ul>}
+        <div className="relative border-t px-5 py-4" data-testid="conclusion">
+          <p className="mb-2 text-[11px] font-semibold tracking-wider text-muted-foreground">结论</p>
+          <ol className="space-y-1.5">
+            {concl.map((x, i) => (
+              <li key={i} className={cn("flex gap-2.5 text-[14px] leading-relaxed", i === 2 && "font-medium text-foreground")}>
+                <span className={cn("mt-[3px] grid size-[18px] shrink-0 place-items-center rounded-full text-[10.5px] font-bold", i === 2 ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground")}>{i + 1}</span>
+                <span><Gloss text={x} /></span>
+              </li>
+            ))}
+          </ol>
+          {basis && <p className="mt-3 rounded-lg bg-muted/50 px-3 py-2 text-xs leading-relaxed text-muted-foreground"><b className="font-medium text-foreground/80">判定依据</b>　{basis.replace(/^判定依据[：:]\s*/, "")}</p>}
+        </div>
+        {r.risk.reasons.length > 0 && <ul className="relative space-y-1 border-t px-5 py-3 text-[13px] text-muted-foreground">{r.risk.reasons.map((x, i) => <li key={i} className="flex gap-2"><span className="mt-2 size-1 shrink-0 rounded-full bg-muted-foreground/60" /><span><Gloss text={x} /></span></li>)}</ul>}
       </Card>
 
       <AiPanel r={r} llm={llm} loading={loading} hasImages={hasImages} />
-      {(r.image_facts || (loading && hasImages)) && <ImageFactsCard f={r.image_facts} loading={loading} />}
+      {(r.image_facts || (loading && hasImages)) && <ImageFactsCard f={r.image_facts} loading={loading} country={r.input.country} />}
 
-      <Section icon={BadgeCheck} tone="red" title="① 认证 / 许可 / 通报" hint="强制 = 未取得即上架属违规；待复核 = 知识库无法确定，需人工确认" count={r.certs.length}>
+      <div className="flex items-center justify-between gap-2 px-1 pt-1">
+        <p className="text-xs text-muted-foreground">以下为详细依据，点击标题展开</p>
+        <Button type="button" variant="ghost" size="sm" className="h-7 gap-1 text-xs" onClick={() => setExpand(([o, g]) => [!o, g + 1])}>
+          {expand[0] ? <><ChevronsDownUp className="size-3.5" />全部收起</> : <><ChevronsUpDown className="size-3.5" />全部展开</>}
+        </Button>
+      </div>
+      <Section collapsible defaultOpen={false} icon={BadgeCheck} tone="red" title="① 认证 / 许可 / 通报" hint="强制 = 未取得即上架属违规；待复核 = 知识库无法确定，需人工确认" count={r.certs.length}>
         {r.certs.length ? r.certs.map((h) => <RuleCard key={h.rule.id} hit={h} />) : <Empty />}
       </Section>
-      <Section icon={ShoppingBag} tone="sky" title="② 平台禁限售规则命中" count={r.platform.length}>
+      <Section collapsible defaultOpen={false} icon={ShoppingBag} tone="sky" title="② 平台禁限售规则命中" count={r.platform.length}>
         {r.platform.length ? r.platform.map((h) => <RuleCard key={h.rule.id} hit={h} />) : <Empty />}
       </Section>
-      <Section icon={Megaphone} tone="violet" title="③ Listing 展示义务与违规后果" count={r.display.length}>
+      <Section collapsible defaultOpen={false} icon={Megaphone} tone="violet" title="③ Listing 展示义务与违规后果" count={r.display.length}>
         {r.display.length ? r.display.map((h) => <RuleCard key={h.rule.id} hit={h} />) : <Empty />}
       </Section>
       <BrandCard r={r} />
-      {r.customs.length > 0 && <Section icon={Truck} tone="amber" title="税费 / 清关提示" count={r.customs.length}>{r.customs.map((h) => <RuleCard key={h.rule.id} hit={h} compact />)}</Section>}
+      {r.customs.length > 0 && <Section collapsible defaultOpen={false} icon={Truck} tone="amber" title="税费 / 清关提示" count={r.customs.length}>{r.customs.map((h) => <RuleCard key={h.rule.id} hit={h} compact />)}</Section>}
       <NextSteps r={r} reviewCount={reviewCount} />
       {r.other_markets.length > 0 && (
         <details className="group rounded-2xl border bg-card">
@@ -97,6 +140,7 @@ export function ReportView({ report: r, llm, loading, hasImages }: { report: Rep
       )}
       <p className="px-1 text-center text-xs text-muted-foreground">知识库版本 {r.kb_version} · 结果仅供自查，不构成法律意见 · 以官方原文为准</p>
     </div>
+    </ExpandCtx.Provider>
   );
 }
 
@@ -130,7 +174,7 @@ function AiPanel({ r, llm, loading, hasImages }: { r: Report; llm: LlmResult | n
     <Card className="animate-fade-up overflow-hidden">
       <div className="flex flex-wrap items-center gap-2 border-b bg-gradient-to-r from-indigo-500/[0.07] to-cyan-500/[0.05] px-5 py-3.5">
         <Sparkles className="size-4 text-primary" /><h3 className="text-[15px] font-semibold">AI 补充分析</h3>
-        <Badge tone="blue">{r.llm.model}</Badge><span className="text-xs text-muted-foreground">{(r.llm.latency_ms / 1000).toFixed(1)}s</span>
+        <span className="text-xs text-muted-foreground">用时 {(r.llm.latency_ms / 1000).toFixed(1)} 秒</span>
         <span className="ml-auto text-[11px] text-muted-foreground">AI 不能新增知识库外的规则 · 引用已逐字校验</span>
       </div>
       <div className="space-y-3 p-5">
@@ -150,21 +194,24 @@ function AiPanel({ r, llm, loading, hasImages }: { r: Report; llm: LlmResult | n
   );
 }
 
-export function ImageFactsCard({ f, loading }: { f?: ImageFacts; loading?: boolean }) {
+export function ImageFactsCard({ f, loading, country }: { f?: ImageFacts; loading?: boolean; country?: string }) {
   if (!f) return loading ? null : null;
+  const foreign = country ? foreignSeaMarks(f.marks, country) : [];
   const tri = (v: boolean | null) => (v === null ? "不确定" : v ? "是" : "否");
   return (
-    <Section icon={Camera} tone="green" title="图片识别结果" hint={`${f.model} 从 ${f.images} 张图片中提取 · 仅作为匹配证据，不作为法规依据`}>
+    <Section icon={Camera} tone="green" title="图片识别结果" hint={`已分析 ${f.images} 张商品图片 · 仅作为匹配证据，不作为法规依据`}>
       <div className="grid gap-2.5 sm:grid-cols-2">
         <Fact icon={Tag} k="商品类型">{f.product_type || "—"}</Fact>
         <Fact icon={Copyright} k="品牌 / 商标">{f.brands.length ? f.brands.join("、") : "未识别"}</Fact>
-        <Fact icon={BadgeCheck} k="认证标志">{f.marks.length ? <span className="flex flex-wrap gap-1">{f.marks.map((m) => <Badge key={m} tone="green">{m}</Badge>)}</span> : "未识别到"}</Fact>
+        <Fact icon={BadgeCheck} k="认证标志">{f.marks.length ? <span className="flex flex-wrap gap-1">{f.marks.map((m) => <Badge key={m} tone="green">{m}{markCountryZh(m) && <span className="font-normal opacity-75">· {markCountryZh(m)}</span>}</Badge>)}</span> : "未识别到"}</Fact>
         <Fact icon={Plug} k="插头">{f.plug_type || "—"}</Fact>
         <Fact icon={Battery} k="含电池">{tri(f.battery)}</Fact>
         <Fact icon={Zap} k="无线功能">{tri(f.wireless)}{f.wireless && f.wireless_evidence ? <span className="text-muted-foreground">（{f.wireless_evidence}）</span> : null}</Fact>
         <Fact icon={Languages} k="标签语言">{f.label_langs.length ? f.label_langs.map((l) => LANG_ZH[l] || l).join("、") : "—"}</Fact>
       </div>
-      {f.label_text && <details className="group rounded-xl border bg-muted/40"><summary className="flex cursor-pointer list-none items-center gap-2 px-3 py-2.5 text-xs text-muted-foreground [&::-webkit-details-marker]:hidden">识别到的标签文字<ChevronDown className="ml-auto size-3.5 transition-transform group-open:rotate-180" /></summary><p className="border-t px-3.5 py-3 text-[13px] leading-relaxed">{f.label_text}</p></details>}
+      {!f.label_text?.trim() && <p className="rounded-xl border border-dashed px-3 py-2.5 text-xs text-muted-foreground">标签文字：未识别到清晰文字（可上传更清晰的铭牌/包装背面照片）</p>}
+      {!!f.label_text?.trim() && <details className="group rounded-xl border bg-muted/40"><summary className="flex cursor-pointer list-none items-center gap-2 px-3 py-2.5 text-xs text-muted-foreground [&::-webkit-details-marker]:hidden">识别到的标签文字<ChevronDown className="ml-auto size-3.5 transition-transform group-open:rotate-180" /></summary><p className="border-t px-3.5 py-3 text-[13px] leading-relaxed">{f.label_text}</p></details>}
+      {foreign.length > 0 && <p className="text-xs text-amber-800 dark:text-amber-300">图片中的 {foreign.map((m) => `${m}（${markCountryZh(m)}）`).join("、")} 标志属于其他国家，不能替代目标市场的认证。</p>}
       {f.marks.length > 0 && <p className="text-xs text-muted-foreground">注意：包装上印有标志 ≠ 已取得有效认证。请向供应商索取证书编号并在官方数据库核验。</p>}
     </Section>
   );
@@ -176,7 +223,7 @@ const Fact = ({ icon: I, k, children }: { icon: React.ComponentType<{ className?
 function BrandCard({ r }: { r: Report }) {
   const TXT = { brand: (b: string) => `疑似他人品牌：${b}。无授权使用可能构成商标侵权，平台可直接下架。`, counterfeit: () => "仿冒暗示词，平台通常按假货处理。", compat: (b: string) => `兼容性描述（${b}）。只能如实说明兼容，不要放在标题开头、不要用对方 logo。`, dupe: () => "“平替/dupe”类表述会把他人品牌和你的商品关联，容易被投诉。" };
   return (
-    <Section icon={Copyright} tone="amber" title="④ 商标 / 品牌词风险" hint="只做词表提醒，不能证明“不侵权”" count={r.brand.hits.length}>
+    <Section collapsible defaultOpen={false} icon={Copyright} tone="amber" title="④ 商标 / 品牌词风险" hint="只做词表提醒，不能证明“不侵权”" count={r.brand.hits.length}>
       {r.brand.hits.length ? (
         <ul className="grid gap-2">{r.brand.hits.map((h, i) => (
           <li key={i} className="flex items-start gap-3 rounded-xl border p-3 text-[13px]">
@@ -194,7 +241,7 @@ function NextSteps({ r, reviewCount }: { r: Report; reviewCount: number }) {
   const [done, setDone] = useState<Set<number>>(new Set());
   const toggle = (i: number) => setDone((s) => { const n = new Set(s); if (n.has(i)) n.delete(i); else n.add(i); return n; });
   return (
-    <Section icon={ListChecks} tone="primary" title="⑤ 下一步清单" hint={`${done.size}/${r.next_steps.length} 已完成 · ${reviewCount} 项待复核（勾选状态仅保存在本页）`}>
+    <Section collapsible defaultOpen={false} icon={ListChecks} tone="primary" title="⑤ 下一步清单" hint={`${done.size}/${r.next_steps.length} 已完成 · ${reviewCount} 项待复核（勾选状态仅保存在本页）`}>
       <div className="h-1.5 overflow-hidden rounded-full bg-muted"><div className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-cyan-500 transition-all duration-500" style={{ width: `${r.next_steps.length ? (done.size / r.next_steps.length) * 100 : 0}%` }} /></div>
       <ul className="grid gap-1.5">{r.next_steps.map((s, i) => (
         <li key={i}><button type="button" onClick={() => toggle(i)} className="flex w-full items-start gap-2.5 rounded-lg px-2 py-1.5 text-left text-[13px] transition-colors hover:bg-muted">
@@ -203,7 +250,7 @@ function NextSteps({ r, reviewCount }: { r: Report; reviewCount: number }) {
       </ul>
       {r.review.length > 0 && <div className="rounded-xl border border-amber-300/70 bg-amber-50/60 p-3.5 text-[13px] dark:bg-amber-500/5">
         <p className="flex items-center gap-1.5 font-medium text-amber-800 dark:text-amber-300"><ShieldQuestion className="size-4" />待复核</p>
-        <ul className="mt-1.5 space-y-1">{r.review.map((x, i) => <li key={i}>{x.text} <span className="text-muted-foreground">—— {x.reason}</span></li>)}</ul>
+        <ul className="mt-1.5 space-y-1">{r.review.map((x, i) => <li key={i}><Gloss text={x.text} /> <span className="text-muted-foreground">—— {x.reason}</span>{x.verify_with && <span className="mt-0.5 block text-xs text-amber-800/90 dark:text-amber-300/90">→ 建议向 <Gloss text={x.verify_with} /> 核实</span>}</li>)}</ul>
       </div>}
     </Section>
   );

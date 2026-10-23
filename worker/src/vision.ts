@@ -1,5 +1,6 @@
 import type { ImageFacts } from "../../src/lib/core/types";
 import { classifyUpstream, UpstreamError } from "./agent";
+import { markWithCountry } from "../../src/lib/core/marks";
 
 export interface VisionConfig { baseUrl: string; model: string; apiKey: string; signal: AbortSignal }
 
@@ -68,7 +69,7 @@ export async function runVision(images: string[], cfg: VisionConfig, parse: (t: 
 
 /** Human-readable evidence block for the text LLM prompt. */
 export function factsForPrompt(f: ImageFacts): string {
-  return [`商品类型：${f.product_type || "未知"}`, `可见品牌：${f.brands.join("、") || "无"}`, `可见标志：${f.marks.join("、") || "无"}`,
+  return [`商品类型：${f.product_type || "未知"}`, `可见品牌：${f.brands.join("、") || "无"}`, `可见标志（国别按知识库映射）：${f.marks.map(markWithCountry).join("、") || "无"}`,
     `插头：${f.plug_type || "未见"}`, `电池：${f.battery == null ? "未知" : f.battery ? "有" : "无"}`,
     `无线功能：${f.wireless == null ? "未知" : f.wireless ? `有（${f.wireless_evidence}）` : "无"}`, `标签文字：${f.label_text}`, `标签语言：${f.label_langs.join("/") || "未知"}`].join("\n");
 }
