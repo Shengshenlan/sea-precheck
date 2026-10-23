@@ -1,0 +1,1123 @@
+{
+ "metrics": {
+  "label": "glm-4.5-flash",
+  "n": 39,
+  "when": "2026-10-23T07:22:09.253Z",
+  "cert_recall": 1,
+  "cert_precision": 0.891,
+  "exact_cert_match": 34,
+  "category_acc": 1,
+  "notes_total": 98,
+  "notes_unverified": 13,
+  "notes_dropped_bad_rule_id": 20,
+  "hallucinated_citation_rate": 0.28,
+  "review_rate": 0.821,
+  "brand_recall": "10/11",
+  "brand_false_pos": 0,
+  "busy_retries": 0,
+  "failures": 2,
+  "failure_codes": [
+   "my-app-4:error",
+   "ph-toy-1:timeout"
+  ],
+  "latency_ms": {
+   "p50": 14683,
+   "p90": 25798,
+   "max": 29928
+  }
+ },
+ "rows": [
+  {
+   "id": "my-app-1",
+   "country": "MY",
+   "cat_gt": "appliance",
+   "cat_pred": "appliance",
+   "gt": [
+    "MY-ST-VACUUM"
+   ],
+   "pred": [
+    "MY-ST-VACUUM",
+    "MY-MCMC-COMM"
+   ],
+   "tp": 1,
+   "notes": 3,
+   "bad_notes": 0,
+   "dropped": 0,
+   "review": 3,
+   "needs_review_any": true,
+   "brand_gt": false,
+   "brand_pred": false,
+   "risk": "中",
+   "latency_ms": 13913,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules"
+   ]
+  },
+  {
+   "id": "my-app-2",
+   "country": "MY",
+   "cat_gt": "appliance",
+   "cat_pred": "appliance",
+   "gt": [
+    "MY-ST-RICE_COOKER"
+   ],
+   "pred": [
+    "MY-ST-RICE_COOKER"
+   ],
+   "tp": 1,
+   "notes": 3,
+   "bad_notes": 0,
+   "dropped": 0,
+   "review": 2,
+   "needs_review_any": true,
+   "brand_gt": false,
+   "brand_pred": false,
+   "risk": "中",
+   "latency_ms": 12407,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules"
+   ]
+  },
+  {
+   "id": "my-app-3",
+   "country": "MY",
+   "cat_gt": "appliance",
+   "cat_pred": "appliance",
+   "gt": [
+    "MY-ST-MASSAGER"
+   ],
+   "pred": [
+    "MY-ST-MASSAGER"
+   ],
+   "tp": 1,
+   "notes": 4,
+   "bad_notes": 2,
+   "dropped": 0,
+   "review": 1,
+   "needs_review_any": true,
+   "brand_gt": false,
+   "brand_pred": false,
+   "risk": "中",
+   "latency_ms": 16001,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules",
+    "check_brand_words"
+   ]
+  },
+  {
+   "id": "my-app-4",
+   "country": "MY",
+   "cat_gt": "appliance",
+   "cat_pred": "appliance",
+   "gt": [
+    "MY-ST-KETTLE"
+   ],
+   "pred": [
+    "MY-ST-KETTLE"
+   ],
+   "tp": 1,
+   "notes": 0,
+   "bad_notes": 0,
+   "dropped": 0,
+   "review": 2,
+   "needs_review_any": true,
+   "brand_gt": true,
+   "brand_pred": true,
+   "risk": "高",
+   "latency_ms": 13178,
+   "busy_retries": 0,
+   "failure": "error"
+  },
+  {
+   "id": "my-cos-1",
+   "country": "MY",
+   "cat_gt": "cosmetic",
+   "cat_pred": "cosmetic",
+   "gt": [
+    "MY-NPRA-COSM"
+   ],
+   "pred": [
+    "MY-NPRA-COSM"
+   ],
+   "tp": 1,
+   "notes": 0,
+   "bad_notes": 0,
+   "dropped": 3,
+   "review": 2,
+   "needs_review_any": true,
+   "brand_gt": false,
+   "brand_pred": false,
+   "risk": "中",
+   "latency_ms": 7294,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": []
+  },
+  {
+   "id": "my-cos-2",
+   "country": "MY",
+   "cat_gt": "cosmetic",
+   "cat_pred": "cosmetic",
+   "gt": [
+    "MY-NPRA-COSM"
+   ],
+   "pred": [
+    "MY-NPRA-COSM"
+   ],
+   "tp": 1,
+   "notes": 4,
+   "bad_notes": 0,
+   "dropped": 0,
+   "review": 3,
+   "needs_review_any": true,
+   "brand_gt": false,
+   "brand_pred": false,
+   "risk": "中",
+   "latency_ms": 14242,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules",
+    "search_kb"
+   ]
+  },
+  {
+   "id": "my-cos-3",
+   "country": "MY",
+   "cat_gt": "cosmetic",
+   "cat_pred": "cosmetic",
+   "gt": [
+    "MY-NPRA-COSM"
+   ],
+   "pred": [
+    "MY-NPRA-COSM"
+   ],
+   "tp": 1,
+   "notes": 0,
+   "bad_notes": 0,
+   "dropped": 2,
+   "review": 1,
+   "needs_review_any": true,
+   "brand_gt": true,
+   "brand_pred": true,
+   "risk": "高",
+   "latency_ms": 4531,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": []
+  },
+  {
+   "id": "my-pow-1",
+   "country": "MY",
+   "cat_gt": "power",
+   "cat_pred": "power",
+   "gt": [
+    "MY-ST-ADAPTER"
+   ],
+   "pred": [
+    "MY-ST-ADAPTER",
+    "MY-MCMC-COMM"
+   ],
+   "tp": 1,
+   "notes": 1,
+   "bad_notes": 0,
+   "dropped": 0,
+   "review": 3,
+   "needs_review_any": true,
+   "brand_gt": true,
+   "brand_pred": true,
+   "risk": "高",
+   "latency_ms": 27843,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules",
+    "check_brand_words"
+   ]
+  },
+  {
+   "id": "my-pow-2",
+   "country": "MY",
+   "cat_gt": "power",
+   "cat_pred": "power",
+   "gt": [],
+   "pred": [],
+   "tp": 0,
+   "notes": 4,
+   "bad_notes": 2,
+   "dropped": 0,
+   "review": 3,
+   "needs_review_any": true,
+   "brand_gt": false,
+   "brand_pred": false,
+   "risk": "低",
+   "latency_ms": 21744,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules"
+   ]
+  },
+  {
+   "id": "my-pow-3",
+   "country": "MY",
+   "cat_gt": "power",
+   "cat_pred": "power",
+   "gt": [
+    "MY-ST-ADAPTER"
+   ],
+   "pred": [
+    "MY-ST-ADAPTER"
+   ],
+   "tp": 1,
+   "notes": 1,
+   "bad_notes": 0,
+   "dropped": 6,
+   "review": 1,
+   "needs_review_any": true,
+   "brand_gt": false,
+   "brand_pred": false,
+   "risk": "中",
+   "latency_ms": 15165,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules"
+   ]
+  },
+  {
+   "id": "my-toy-1",
+   "country": "MY",
+   "cat_gt": "toy",
+   "cat_pred": "toy",
+   "gt": [
+    "MY-KPDN-TOY"
+   ],
+   "pred": [
+    "MY-KPDN-TOY"
+   ],
+   "tp": 1,
+   "notes": 2,
+   "bad_notes": 0,
+   "dropped": 0,
+   "review": 2,
+   "needs_review_any": true,
+   "brand_gt": false,
+   "brand_pred": false,
+   "risk": "中",
+   "latency_ms": 17970,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules"
+   ]
+  },
+  {
+   "id": "my-toy-2",
+   "country": "MY",
+   "cat_gt": "toy",
+   "cat_pred": "toy",
+   "gt": [
+    "MY-MCMC-COMM",
+    "MY-KPDN-TOY"
+   ],
+   "pred": [
+    "MY-MCMC-COMM",
+    "MY-KPDN-TOY"
+   ],
+   "tp": 2,
+   "notes": 3,
+   "bad_notes": 0,
+   "dropped": 0,
+   "review": 2,
+   "needs_review_any": true,
+   "brand_gt": false,
+   "brand_pred": false,
+   "risk": "中",
+   "latency_ms": 18897,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules"
+   ]
+  },
+  {
+   "id": "my-toy-3",
+   "country": "MY",
+   "cat_gt": "toy",
+   "cat_pred": "toy",
+   "gt": [
+    "MY-KPDN-TOY"
+   ],
+   "pred": [
+    "MY-KPDN-TOY"
+   ],
+   "tp": 1,
+   "notes": 3,
+   "bad_notes": 0,
+   "dropped": 0,
+   "review": 1,
+   "needs_review_any": true,
+   "brand_gt": true,
+   "brand_pred": false,
+   "risk": "中",
+   "latency_ms": 10600,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules",
+    "check_brand_words"
+   ]
+  },
+  {
+   "id": "ph-app-1",
+   "country": "PH",
+   "cat_gt": "appliance",
+   "cat_pred": "appliance",
+   "gt": [
+    "PH-BPS-KETTLE"
+   ],
+   "pred": [
+    "PH-BPS-KETTLE"
+   ],
+   "tp": 1,
+   "notes": 1,
+   "bad_notes": 0,
+   "dropped": 0,
+   "review": 1,
+   "needs_review_any": true,
+   "brand_gt": false,
+   "brand_pred": false,
+   "risk": "中",
+   "latency_ms": 6139,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules"
+   ]
+  },
+  {
+   "id": "ph-app-2",
+   "country": "PH",
+   "cat_gt": "appliance",
+   "cat_pred": "appliance",
+   "gt": [
+    "PH-BPS-BLENDER"
+   ],
+   "pred": [
+    "PH-BPS-BLENDER"
+   ],
+   "tp": 1,
+   "notes": 4,
+   "bad_notes": 1,
+   "dropped": 0,
+   "review": 1,
+   "needs_review_any": true,
+   "brand_gt": false,
+   "brand_pred": false,
+   "risk": "中",
+   "latency_ms": 10475,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules"
+   ]
+  },
+  {
+   "id": "ph-app-3",
+   "country": "PH",
+   "cat_gt": "appliance",
+   "cat_pred": "appliance",
+   "gt": [
+    "PH-BPS-MICROWAVE"
+   ],
+   "pred": [
+    "PH-BPS-MICROWAVE"
+   ],
+   "tp": 1,
+   "notes": 1,
+   "bad_notes": 0,
+   "dropped": 0,
+   "review": 0,
+   "needs_review_any": false,
+   "brand_gt": true,
+   "brand_pred": true,
+   "risk": "高",
+   "latency_ms": 13603,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules"
+   ]
+  },
+  {
+   "id": "ph-app-4",
+   "country": "PH",
+   "cat_gt": "appliance",
+   "cat_pred": "appliance",
+   "gt": [
+    "PH-BPS-INDUCTION"
+   ],
+   "pred": [
+    "PH-BPS-INDUCTION"
+   ],
+   "tp": 1,
+   "notes": 4,
+   "bad_notes": 1,
+   "dropped": 0,
+   "review": 1,
+   "needs_review_any": true,
+   "brand_gt": false,
+   "brand_pred": false,
+   "risk": "中",
+   "latency_ms": 20359,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules"
+   ]
+  },
+  {
+   "id": "ph-cos-1",
+   "country": "PH",
+   "cat_gt": "cosmetic",
+   "cat_pred": "cosmetic",
+   "gt": [
+    "PH-FDA-COSM"
+   ],
+   "pred": [
+    "PH-FDA-COSM"
+   ],
+   "tp": 1,
+   "notes": 3,
+   "bad_notes": 1,
+   "dropped": 0,
+   "review": 2,
+   "needs_review_any": true,
+   "brand_gt": true,
+   "brand_pred": true,
+   "risk": "中",
+   "latency_ms": 18066,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules",
+    "search_kb"
+   ]
+  },
+  {
+   "id": "ph-cos-2",
+   "country": "PH",
+   "cat_gt": "cosmetic",
+   "cat_pred": "cosmetic",
+   "gt": [
+    "PH-FDA-COSM"
+   ],
+   "pred": [
+    "PH-FDA-COSM"
+   ],
+   "tp": 1,
+   "notes": 2,
+   "bad_notes": 0,
+   "dropped": 0,
+   "review": 1,
+   "needs_review_any": true,
+   "brand_gt": false,
+   "brand_pred": false,
+   "risk": "中",
+   "latency_ms": 12646,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules",
+    "search_kb",
+    "check_brand_words"
+   ]
+  },
+  {
+   "id": "ph-cos-3",
+   "country": "PH",
+   "cat_gt": "cosmetic",
+   "cat_pred": "cosmetic",
+   "gt": [
+    "PH-FDA-COSM"
+   ],
+   "pred": [
+    "PH-FDA-COSM"
+   ],
+   "tp": 1,
+   "notes": 3,
+   "bad_notes": 0,
+   "dropped": 0,
+   "review": 0,
+   "needs_review_any": false,
+   "brand_gt": false,
+   "brand_pred": false,
+   "risk": "中",
+   "latency_ms": 10109,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules"
+   ]
+  },
+  {
+   "id": "ph-pow-1",
+   "country": "PH",
+   "cat_gt": "power",
+   "cat_pred": "power",
+   "gt": [
+    "PH-BPS-EXTENSION_CORD"
+   ],
+   "pred": [
+    "PH-BPS-EXTENSION_CORD"
+   ],
+   "tp": 1,
+   "notes": 1,
+   "bad_notes": 0,
+   "dropped": 0,
+   "review": 2,
+   "needs_review_any": true,
+   "brand_gt": false,
+   "brand_pred": false,
+   "risk": "中",
+   "latency_ms": 25798,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules"
+   ]
+  },
+  {
+   "id": "ph-pow-2",
+   "country": "PH",
+   "cat_gt": "power",
+   "cat_pred": "power",
+   "gt": [
+    "PH-NTC-WIRELESS"
+   ],
+   "pred": [
+    "PH-NTC-WIRELESS"
+   ],
+   "tp": 1,
+   "notes": 3,
+   "bad_notes": 1,
+   "dropped": 0,
+   "review": 3,
+   "needs_review_any": true,
+   "brand_gt": true,
+   "brand_pred": true,
+   "risk": "高",
+   "latency_ms": 13849,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules",
+    "check_brand_words"
+   ]
+  },
+  {
+   "id": "ph-pow-3",
+   "country": "PH",
+   "cat_gt": "power",
+   "cat_pred": "power",
+   "gt": [],
+   "pred": [],
+   "tp": 0,
+   "notes": 2,
+   "bad_notes": 1,
+   "dropped": 0,
+   "review": 1,
+   "needs_review_any": true,
+   "brand_gt": false,
+   "brand_pred": false,
+   "risk": "低",
+   "latency_ms": 22264,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules"
+   ]
+  },
+  {
+   "id": "ph-toy-1",
+   "country": "PH",
+   "cat_gt": "toy",
+   "cat_pred": "toy",
+   "gt": [
+    "PH-FDA-TOY"
+   ],
+   "pred": [
+    "PH-FDA-TOY"
+   ],
+   "tp": 1,
+   "notes": 0,
+   "bad_notes": 0,
+   "dropped": 0,
+   "review": 1,
+   "needs_review_any": true,
+   "brand_gt": false,
+   "brand_pred": false,
+   "risk": "中",
+   "latency_ms": 426129,
+   "busy_retries": 0,
+   "failure": "timeout"
+  },
+  {
+   "id": "ph-toy-2",
+   "country": "PH",
+   "cat_gt": "toy",
+   "cat_pred": "toy",
+   "gt": [
+    "PH-FDA-TOY",
+    "PH-NTC-WIRELESS"
+   ],
+   "pred": [
+    "PH-FDA-TOY",
+    "PH-NTC-WIRELESS"
+   ],
+   "tp": 2,
+   "notes": 4,
+   "bad_notes": 0,
+   "dropped": 0,
+   "review": 2,
+   "needs_review_any": true,
+   "brand_gt": false,
+   "brand_pred": false,
+   "risk": "中",
+   "latency_ms": 12652,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules"
+   ]
+  },
+  {
+   "id": "ph-toy-3",
+   "country": "PH",
+   "cat_gt": "toy",
+   "cat_pred": "toy",
+   "gt": [
+    "PH-FDA-TOY"
+   ],
+   "pred": [
+    "PH-FDA-TOY"
+   ],
+   "tp": 1,
+   "notes": 8,
+   "bad_notes": 0,
+   "dropped": 0,
+   "review": 0,
+   "needs_review_any": false,
+   "brand_gt": true,
+   "brand_pred": true,
+   "risk": "高",
+   "latency_ms": 21935,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules",
+    "check_brand_words"
+   ]
+  },
+  {
+   "id": "th-app-1",
+   "country": "TH",
+   "cat_gt": "appliance",
+   "cat_pred": "appliance",
+   "gt": [
+    "TH-TISI-RICE_COOKER"
+   ],
+   "pred": [
+    "TH-TISI-RICE_COOKER"
+   ],
+   "tp": 1,
+   "notes": 3,
+   "bad_notes": 1,
+   "dropped": 0,
+   "review": 0,
+   "needs_review_any": false,
+   "brand_gt": false,
+   "brand_pred": false,
+   "risk": "中",
+   "latency_ms": 26229,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules"
+   ]
+  },
+  {
+   "id": "th-app-2",
+   "country": "TH",
+   "cat_gt": "appliance",
+   "cat_pred": "appliance",
+   "gt": [
+    "TH-TISI-FAN"
+   ],
+   "pred": [
+    "TH-TISI-FAN",
+    "TH-NBTC-RADIO"
+   ],
+   "tp": 1,
+   "notes": 1,
+   "bad_notes": 0,
+   "dropped": 0,
+   "review": 1,
+   "needs_review_any": true,
+   "brand_gt": false,
+   "brand_pred": false,
+   "risk": "中",
+   "latency_ms": 11876,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules"
+   ]
+  },
+  {
+   "id": "th-app-3",
+   "country": "TH",
+   "cat_gt": "appliance",
+   "cat_pred": "appliance",
+   "gt": [
+    "TH-TISI-HAIR_DRYER"
+   ],
+   "pred": [
+    "TH-TISI-HAIR_DRYER",
+    "TH-NBTC-RADIO"
+   ],
+   "tp": 1,
+   "notes": 4,
+   "bad_notes": 1,
+   "dropped": 0,
+   "review": 1,
+   "needs_review_any": true,
+   "brand_gt": true,
+   "brand_pred": true,
+   "risk": "高",
+   "latency_ms": 21675,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules",
+    "check_brand_words"
+   ]
+  },
+  {
+   "id": "th-app-4",
+   "country": "TH",
+   "cat_gt": "appliance",
+   "cat_pred": "appliance",
+   "gt": [
+    "TH-TISI-IRON"
+   ],
+   "pred": [
+    "TH-TISI-IRON"
+   ],
+   "tp": 1,
+   "notes": 2,
+   "bad_notes": 0,
+   "dropped": 0,
+   "review": 0,
+   "needs_review_any": false,
+   "brand_gt": false,
+   "brand_pred": false,
+   "risk": "中",
+   "latency_ms": 10921,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules"
+   ]
+  },
+  {
+   "id": "th-cos-1",
+   "country": "TH",
+   "cat_gt": "cosmetic",
+   "cat_pred": "cosmetic",
+   "gt": [
+    "TH-FDA-COSM"
+   ],
+   "pred": [
+    "TH-FDA-COSM"
+   ],
+   "tp": 1,
+   "notes": 5,
+   "bad_notes": 0,
+   "dropped": 0,
+   "review": 1,
+   "needs_review_any": true,
+   "brand_gt": false,
+   "brand_pred": false,
+   "risk": "中",
+   "latency_ms": 14683,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules"
+   ]
+  },
+  {
+   "id": "th-cos-2",
+   "country": "TH",
+   "cat_gt": "cosmetic",
+   "cat_pred": "cosmetic",
+   "gt": [
+    "TH-FDA-COSM"
+   ],
+   "pred": [
+    "TH-FDA-COSM"
+   ],
+   "tp": 1,
+   "notes": 0,
+   "bad_notes": 0,
+   "dropped": 2,
+   "review": 1,
+   "needs_review_any": true,
+   "brand_gt": false,
+   "brand_pred": false,
+   "risk": "中",
+   "latency_ms": 12823,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": []
+  },
+  {
+   "id": "th-cos-3",
+   "country": "TH",
+   "cat_gt": "cosmetic",
+   "cat_pred": "cosmetic",
+   "gt": [
+    "TH-FDA-COSM"
+   ],
+   "pred": [
+    "TH-FDA-COSM"
+   ],
+   "tp": 1,
+   "notes": 0,
+   "bad_notes": 0,
+   "dropped": 2,
+   "review": 1,
+   "needs_review_any": true,
+   "brand_gt": false,
+   "brand_pred": false,
+   "risk": "中",
+   "latency_ms": 3400,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": []
+  },
+  {
+   "id": "th-pow-1",
+   "country": "TH",
+   "cat_gt": "power",
+   "cat_pred": "power",
+   "gt": [
+    "TH-TISI-POWERBANK"
+   ],
+   "pred": [
+    "TH-TISI-ADAPTER",
+    "TH-TISI-POWERBANK"
+   ],
+   "tp": 1,
+   "notes": 4,
+   "bad_notes": 0,
+   "dropped": 0,
+   "review": 1,
+   "needs_review_any": true,
+   "brand_gt": false,
+   "brand_pred": false,
+   "risk": "中",
+   "latency_ms": 29928,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules",
+    "search_kb"
+   ]
+  },
+  {
+   "id": "th-pow-2",
+   "country": "TH",
+   "cat_gt": "power",
+   "cat_pred": "power",
+   "gt": [
+    "TH-TISI-ADAPTER"
+   ],
+   "pred": [
+    "TH-TISI-ADAPTER"
+   ],
+   "tp": 1,
+   "notes": 3,
+   "bad_notes": 1,
+   "dropped": 0,
+   "review": 0,
+   "needs_review_any": false,
+   "brand_gt": true,
+   "brand_pred": true,
+   "risk": "中",
+   "latency_ms": 20913,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules",
+    "check_brand_words"
+   ]
+  },
+  {
+   "id": "th-pow-3",
+   "country": "TH",
+   "cat_gt": "power",
+   "cat_pred": "power",
+   "gt": [
+    "TH-TISI-ADAPTER",
+    "TH-NBTC-RADIO"
+   ],
+   "pred": [
+    "TH-TISI-ADAPTER",
+    "TH-NBTC-RADIO"
+   ],
+   "tp": 2,
+   "notes": 0,
+   "bad_notes": 0,
+   "dropped": 5,
+   "review": 2,
+   "needs_review_any": true,
+   "brand_gt": false,
+   "brand_pred": false,
+   "risk": "中",
+   "latency_ms": 9737,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": []
+  },
+  {
+   "id": "th-toy-1",
+   "country": "TH",
+   "cat_gt": "toy",
+   "cat_pred": "toy",
+   "gt": [
+    "TH-TISI-TOY"
+   ],
+   "pred": [
+    "TH-TISI-TOY"
+   ],
+   "tp": 1,
+   "notes": 4,
+   "bad_notes": 0,
+   "dropped": 0,
+   "review": 0,
+   "needs_review_any": false,
+   "brand_gt": false,
+   "brand_pred": false,
+   "risk": "中",
+   "latency_ms": 16403,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules"
+   ]
+  },
+  {
+   "id": "th-toy-2",
+   "country": "TH",
+   "cat_gt": "toy",
+   "cat_pred": "toy",
+   "gt": [
+    "TH-TISI-TOY",
+    "TH-NBTC-RADIO"
+   ],
+   "pred": [
+    "TH-TISI-TOY",
+    "TH-NBTC-RADIO"
+   ],
+   "tp": 2,
+   "notes": 4,
+   "bad_notes": 0,
+   "dropped": 0,
+   "review": 2,
+   "needs_review_any": true,
+   "brand_gt": false,
+   "brand_pred": false,
+   "risk": "中",
+   "latency_ms": 24040,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules"
+   ]
+  },
+  {
+   "id": "th-toy-3",
+   "country": "TH",
+   "cat_gt": "toy",
+   "cat_pred": "toy",
+   "gt": [
+    "TH-TISI-TOY"
+   ],
+   "pred": [
+    "TH-TISI-TOY"
+   ],
+   "tp": 1,
+   "notes": 4,
+   "bad_notes": 1,
+   "dropped": 0,
+   "review": 1,
+   "needs_review_any": true,
+   "brand_gt": true,
+   "brand_pred": true,
+   "risk": "高",
+   "latency_ms": 21727,
+   "busy_retries": 0,
+   "failure": null,
+   "impl": "pi",
+   "tools": [
+    "lookup_rules",
+    "search_kb"
+   ]
+  }
+ ]
+}

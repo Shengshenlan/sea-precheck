@@ -1,3 +1,4 @@
+import { jsonrepair } from "jsonrepair";
 import { ITEM_KEYWORDS } from "../../src/lib/core/detect";
 import { validateNote } from "../../src/lib/core/validate";
 import { ruleById } from "../../src/lib/core/kb";
@@ -11,7 +12,22 @@ export function extractJson(s: string): any | null {
   const a = t.indexOf("{"), b = t.lastIndexOf("}");
   if (a < 0 || b <= a) return null;
   t = t.slice(a, b + 1);
-  try { return JSON.parse(t); } catch { try { return JSON.parse(t.replace(/,\s*([}\]])/g, "$1")); } catch { return null; } }
+  let o: any = null;
+  try { o = JSON.parse(t); } catch {
+    // small models often drop closing brackets mid-structure (e.g. next_steps nested inside the last note)
+    try { o = JSON.parse(jsonrepair(t)); } catch { return null; }
+  }
+  return hoistMisplaced(o);
+}
+
+/** Move top-level keys that a model nested inside the last note back to the top level. */
+function hoistMisplaced(o: any) {
+  if (!o || typeof o !== "object") return o;
+  for (const n of Array.isArray(o.notes) ? o.notes : []) {
+    if (!n || typeof n !== "object") continue;
+    for (const k of ["next_steps", "summary", "extra_rule_ids"]) if (k in n && !(k in o)) { o[k] = n[k]; delete n[k]; }
+  }
+  return o;
 }
 
 const CATS = ["appliance", "power", "toy", "cosmetic"]; const FEATS = ["wireless", "battery", "charger", "powerbank", "kids"];

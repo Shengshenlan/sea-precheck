@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "@mariozechner/pi-agent-core": "^0.73.1",
-    "@mariozechner/pi-ai": "^0.73.1"
+    "@mariozechner/pi-ai": "^0.73.1",
+    "jsonrepair": "^3.15.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^5.20261023.1",
