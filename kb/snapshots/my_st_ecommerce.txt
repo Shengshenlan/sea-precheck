@@ -1,0 +1,406 @@
+REGULATED ELECTRICAL EQUIPMENT
+         IN MALAYSIA
+
+                  by
+
+        RIZAUDIN BIN ISMAIL
+        Senior Assistant Director
+        Electrical Equipment Unit
+      Safety Regulation Department
+       CONTENT
+01   Malaysian’s Legislations on Electrical Appliances
+
+
+02
+     Regulated Electrical Appliances
+
+03   Regulatory Requirements Related to
+     National Differences
+
+04   Minimum Energy Performance Standards (MEPS)
+
+05    Process Flow for The Importation /
+      Manufacturing of Electrical Appliances
+
+06   Activities / Statistic
+
+07   Penalty
+              ENERGY COMMISSION
+• Energy Commission / Suruhanjaya
+  Tenaga (ST), a statutory body
+  established under the Energy
+  Commission Act 2001, is responsible for
+  regulating the energy sector, specifically
+  the electricity supply and piped gas
+  supply industries in Peninsular Malaysia
+  and Sabah
+
+• Fully operational on January 1, 2002, the
+  EC took over the role of the Department
+  of Electricity and Gas Supply, which was
+  dissolved on the same date
+
+
+
+                                               3
+   ENERGY SUPPLY LAWS
+
+• Electricity Supply Act 1990 [Act
+  447]
+  Electricity Regulations 1994
+   Licensee Supply Regulations 1990
+   Electricity Supply (Compounding of
+    Offences) Regulations 2001
+   Efficient Management of Electrical
+    Energy Regulations 2008
+
+• Gas Supply Act 1993
+   Gas Supply Regulations 1997
+   Gas Supply (Compoundable Offences)
+    Order 2006
+                                   COMPLIANCE OF
+                                    LEGISLATION
+                               Sec 4(l) - to prescribe the minimum standards
+    1   Electricity Supply     & specifications & appraise & approve, where
+            Act 1990           necessary, any electrical installation or equipment
+
+                               Reg 97 (1) - Certificate of Approval (CoA) is
+                               required to manufacture, import, display, sell or
+           Electricity         advertise of electrical equipment
+        Regulations 1994
+2                              Reg 97 (C) - Certificate of Registration (CoR)
+                               is required to manufacture & import of electrical
+         (Reg. 97 – Reg.       equipment
+              109)
+                               Reg 98 - Marking or labelling of approved
+                               equipment
+
+                               Reg 101A – Efficient use of electricity
+                               equipment
+    3   Customs (Prohibition
+         of Imports) Order     Schedule IV, Part II - List of electrical
+               2012            goods that required EC permit
+ Roles of Energy Commission
+            (EC)
+  - as a Regulator of EEE
+               Safety Regulation
+
+To protect the public from dangers arising from
+ the generation, transmission, distribution and
+supply and use of electricity and the supply and
+               use of piped gas.
+ LIST OF REGULATED EQUIPMENT
+
+
+
+
+34 categories item
+199 sub categories
+      List of 34 Categories of Electrical Appliances Requiring
+                          CoA & Labeling
+No             Category Equipment                   National Standard
+1.   Plug Top /Plug                    MS 589-1, 1577, 1578
+                                       MS IEC 60320-1,-2-2
+                                       MS 589-3, 1144
+                                       MS IEC 60998-1,-2-1,-2-2,-2-3,-2-4,
+                                       MS 1873, -22
+2.   Switch & Dimmer                   MS IEC 60669-1,-2-1,-2-2,-2-3
+                                       MS IEC 61558-1,-2-8
+3.   Socket Outlet                     MS 589-2, 1577, 1579, 1141
+                                       MS IEC 61558-1, -2-5
+4.   Lampholder / StarterHolder        MS IEC 60400
+5.   Ceiling Rose                      MS 770, MS IEC 60238
+6.   Bayonet Cap & Multiways Adaptor   MS 769, IEC 61184
+7.   Lamp fitting                      MS IEC 60598-1,-2-1,-2-2
+                                       MS IEC 60155, 60968, 60969
+                                       MS IEC 61347-1,-2-13
+                                       MS IEC 60838-1,-2-2
+                                       MS IEC 62031,62776,62560
+     List of 34 Categories of Electrical Appliances Requiring
+                         CoA & Labeling
+No            Category Equipment                        National Standard
+8.   Capacitors for fluorescent lamp        MS IEC 61048, 61049
+
+9.   Ballasts / Control Gear                MS IEC 61347-1, -2-3, -2-8, MS141-2, MS IEC
+                                            60929, 61000
+10   Circuit breaker:- RCD, MCB, Fuse       MS IEC 61008-1,-2-1, -2-2
+                                            MS IEC 61009-1,-2-1, -2-2
+                                            MS IEC 60898-1,-2,
+                                            MS IEC 60269-1,-2,-3
+                                            MS IEC 60947-1, -3
+11   Portable Luminaire Lamp                MS IEC 60598-1, -2-4, -2-8, -2-12
+12   Kettle including heating element       MS IEC 60335-2-9,-2-12,-2-13,
+                                            -2-15,-2-36
+                                            MS 1597-2-21,24,35
+13   Kitchen Machine -Food mixer/blenders   MS IEC 60335-1, -2-14
+14   Toasters / Oven                        MS IEC 60335-1, -2-6, -2-9, -2-25
+      List of 34 Categories of Electrical Appliances Requiring
+                          CoA & Labeling
+No             Category Equipment                          National Standard
+15   Rice Cooker                              MS IEC 60335-1, -2-15
+16   Refrigerator                             MS IEC 60335-1, MS 1597-2-24
+17   Immersion Water Heater                   MS IEC 60335-1, -2-73, -2-74
+18   Water Heater – Storage / Instantaneous   MS IEC 60335-1
+                                              MS 1597-2-35, -2-21
+19   Washing Machine                          MS IEC 60335-1, -2-4, -2-11, -2-43
+                                              MS 1597-2-7, -2-5
+20   Fan                                      MS IEC 60335-1, -2-31,-2-65,-2-98
+                                              MS 1597-2-80, MS 1220
+21   Hand Operated – Hairdryer/Skin Care      MS IEC 60335-1, -2-23
+22   Iron                                     MS IEC 60335-1, -2-3, -2-85
+23   Shaver                                   MS IEC 60335-1, -2-8
+24   Vaporiser - Mosquito mat / Aroma         MS IEC 60335-1, -2-101
+25   Vacuum Cleaner                           MS IEC 60335-1, -2-2
+     List of 34 Categories of Electrical Appliances Requiring
+                         CoA & Labeling
+
+No              Category Equipment                        National Standard
+26   Hi – Fidelity set                      MS IEC 60065
+27   Video & Visual Display Unit - TV       MS IEC 60065
+28   Audio & Video Player Unit – VCD, DVD   MS IEC 60065
+29   Massager                               MS IEC 60335-1, -2-32
+30   Air Conditioner <32,000 btu/hr         MS IEC 60335-1, MS I597-2-40
+31   Christmas Light                        MS IEC 60598-1, -2-20
+32   Domestic Power Tools                   MS IEC 60745-1, -2-1,-2-3,-2-4,-2-5,-2-7, -2-
+                                            11, -2-14, -2-15, -2-17
+                                            MS IEC 60335-1, -2-79, -2-28, -2-45
+33   Adapter / Charger                      MS IEC 60335-1, -2-29, -2-8
+                                            MS IEC 60950-1, 60065
+                                            MS IEC 61558-1, -2-6, -2-7, -2-17
+34   Wires/Cables/Cords (0.5mm-35mm)        MS 2112-2, -3, -4
+ Approved      electrical appliances or
+equipment are required to be affixed with
+safety labels before being sold to public
+
+
+
+
+                                                          SIRIM
+                                                 CERTIFIED TO YY : XXXX
+                                               CERTIFICATION NO:xxxxxxxx
+                                            SIRIM-ST Label Licensing Programme
+
+                                              SIRIM Certification Mark
+1
+                   2
+
+
+
+
+                       6
+
+
+
+    MEPS
+               5
+           4
+3
+7
+
+
+
+
+        8
+ MEPS
+(NEW)
+              REGULATORY REQUIREMENTS RELATED TO
+                     NATIONAL DIFFERENCES
+  shall be subjected to tests under tropical conditions as specified in the related standards
+
+          1                             3                                   4
+
+                                 Plug Top                           Power supply cord
+Nominal Voltages Low
+  voltage supply          3 Pole Power Plug
+                                                        MS2112-5 or BS EN 50525-2-11 or IEC
+                          MS 589 / BS 1363
+                                                        60227-5 (PVC insulated – flexible cords) ;
+230/400V (+10%, -6%)
+                          2 Pole Power Plug
+MS IEC 60038                                            MS 2127-4 or BS EN 50525-2-11 or IEC
+                          MS 1578 / BS EN 50075
+                                                        60245-1 & IEC 60245-4 (Rubber insulated -
+                                                        flexible cables/cords)
+                                            5
+         2
+                         Class I and class II Equipment
+     Nominal
+    Frequency            Fig.1 for Class I and Fig.2 for
+                         Class II as symbol.
+50Hz is allowed to
+fluctuate at ± 1%
+                                Fig.1           Fig.2
+              6
+     Isolation Barrier for
+    Storage Water Heater
+       Storage water heater
+ shall be prefitted with isolation
+ barriers at both water inlet and
+        outlet connections
+
+MS 1597-2-21:2015 or IEC 60335-
+  2-21:2012 with modification
+
+
+                                                 7
+                                     Suspension System for
+                                          Ceiling Fan
+                                     Provided with special wire
+
+                                       MS 1597-2-80 or IEC
+                                        60335-2-80 with
+                                          modification
+                  HYBRID PRODUCT
+• Household electrical products which are normally connected
+  to power socket outlet have become hybrid products which
+  can be remotely controlled or operated by itself. Such
+  products may fall under electrical products, electronics
+  products or communication products.
+• Thus, the hybrid product need to get the approval from 2
+  (two) authorities.
+
+
+
+
+ Vacuum cleaner    +   electronic devices = remote control machine
+      PROCESS FLOW FOR THE
+ IMPORTATION/MANUFACTURING OF
+ELECTRICAL & ELECTRONIC EQUIPMENT
+                          Evaluation &
+                          verification
+ Registered applicant     Certificate issued
+ apply for CoR & CoA                                        IMPORT
+
+           Cancelled CoA
+           Return to origin /
+           dispose equipment/
+           Product recall
+
+
+                                                       CONSIGNMENT /PCS
+
+
+
+
+Equipment can be placed      Tested and verified,
+     in the market         safety & MEPS labels will
+                                   be issued
+RECOGNISED TEST REPORT
+
+
+
+
+     Sirim / QAV / Phychrometric        Lab which are accredited by the
+01   (DAIKIN) / accredited lab
+     under Laboratory              03   accreditation body that have
+                                        signed the APLAC MRA or ILAC
+     Accreditation Scheme of            MRA
+     Malaysia (SAMM) by DSM
+
+02 Lab under IECEE CB Scheme
+   which CB test report need to
+                                   Lab listed as Designated
+                                04 Testing Laboratory (DTL)
+     be accompanied by CB test          under ASEAN EEE MRA
+     certificate
+Guideline under
+section 50C,
+Electricity Supply
+Act 1990 [Act 447]
+                                   CONSIGNMENT
+01                                  TEST FAILED
+                                   02
+
+
+
+
+ 100 units Cordless Water Kettle
+
+
+                                        200 units Rice Cooker
+               04
+CONSIGNMENT
+ TEST FAILED
+
+ 03
+                        174 units of all type of equipment
+
+
+
+
+           10 units Build-in oven
+STATISTIC
+2018
+
+
+        2019
+
+
+
+       9,500
+       5,644
+       2,845
+                   2019
+
+
+
+
+         29*
+2018
+                          22*
+       * Notis tunjuk sebab dikeluarkan
+14%
+
+
+        2019
+     Certificate of
+      Registration
+to Manufacture / Import
+          %
+
+
+
+
+                86%       Mengimport
+
+
+                          Mengilang
+ Sub-standard, counterfeit, unapproved electronic equipment
+ or equipment with fake safety labels in the market may
+ caused internal components overheated or harmful to users.
+
+
+
+
+Approved label
+
+
+
+
+ Fake label
+Enforcement
+   Activities
+Engagement Session
+34
+           Sec. 37(1), Electricity Supply Act 1990
+“Any person who tempers with or adjusts any installation or part thereof or
+   manufactures or importers or sells any equipment so as to cause or to be
+   likely to cause danger to human life or limb or injury to any equipment or
+  other property shall be guilty of an offence and for each such offence shall,
+       on conviction, be liable to a fine not exceeding RM1,000,000 or to
+          imprisonment for a term not exceeding 10 years or to both. ”
+CONCLUSION
+
+             Compatible to supply system
+
+             Comply to standard
+
+             Tested by accredited
+             laboratory
+
+             Labelled with SIRIM-ST’s label
+
+             Labelled with MEPS’s label
+   Thank You
+Electricity Safety Begin with you!
+

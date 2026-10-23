@@ -1,0 +1,193 @@
+
+List of Regulated Electrical Equipment | Suruhanjaya Tenaga
+      Skip to main content
+Secondary Menu
+          About Us
+          Sourcing
+          Resources
+          Newsroom
+          Contact Us
+          FAQ
+English
+Bahasa Melayu
+English
+Bahasa Melayu
+Main navigation
+          Stakeholders
+          Security
+          Pricing
+          Sustainability
+          Partnership
+Stakeholders
+Public service channels, consumer rights, related support and information for energy users.
+                  Electricity
+                  Gas
+                  Energy Efficiency
+                  National Energy Outlook
+                  Awareness
+                  Training and Development
+Security
+Energy security, reliable supply, resilient systems and long-term national readiness.
+                  System Average Interruption Duration Index (SAIDI)
+                  System Average Interruption Frequency Index (SAIFI)
+                  System Average RMS Frequency Index (SARFI)
+                  Grid System Operation
+Pricing
+Electricity tariffs, gas facility tariff frameworks and market-based cost mechanisms across the energy sector.
+                  Electricity Pricing Framework
+                  Gas Facility Tariff Framework
+                  Your Electricity Tariff Facts
+Sustainability
+Renewable energy, energy efficiency, conservation measures and transition initiatives that support a more sustainable energy future.
+                  Energy Transition Programmes
+                  Market Structure & Access
+Partnership
+Collaborations, procurement channels, investment initiatives, and ecosystem partnerships that drive scale.
+                  ASEAN
+                  International Collaboration
+                  National Collaboration
+                  ST Annual Regulatory Review
+                  Karnival Bijak Tenaga
+                  Energy Regulatory Insights (ERI)
+Other topics
+                      Pencarian Wira Bijak Tenaga 2026
+Stakeholders
+Electricity
+Appliances
+‹
+Appliances
+List of Regulated Electrical Equipment
+Search
+Category
+- Any -
+PLUG TOP/PLUG (a) Plug
+PLUG TOP/PLUG (b) Coupler
+PLUG TOP/PLUG (c) Adaptor
+PLUG TOP/PLUG (d) Connector
+SWITCH AND DIMMER
+SOCKET OUTLET (a) Socket Outlet
+SOCKET OUTLET (b) Portable
+FLUORESCENT LAMPHOLDER / STARTER HOLDER (a) Lamp Holder
+FLUORESCENT LAMPHOLDER / STARTER HOLDER (b) Starter Holder
+CEILING ROSE
+BAYONET CAP and MULTIWAYS ADAPTOR
+LAMP FITTING (a) Luminaires
+LAMP FITTING (b) Glow Starter
+LAMP FITTING (c) Self-ballasted Compact Fluorescent Lamp (CFL)
+LAMP FITTING (d) LED Lighting
+CAPACITOR for FLUORESCENT LAMP
+BALLAST / CONTROL GEAR / DRIVER FOR LAMP (a) Ballast
+BALLAST / CONTROL GEAR / DRIVER FOR LAMP (b) Control Gear
+CIRCUIT BREAKER including AC CURRENT OPERATED EARTH LEAKAGE CIRCUIT BREAKER and MINIATURE CIRCUIT BREAKER (a) Residual Current D
+CIRCUIT BREAKER including AC CURRENT OPERATED EARTH LEAKAGE CIRCUIT BREAKER and MINIATURE CIRCUIT BREAKER (b) Fuse
+PORTABLE LUMINAIRE LAMP
+KETTLE including HEATING ELEMENTS IF SUPPLIED SEPARATELY
+KITCHEN MACHINE
+TOASTER / OVEN (Cooking Appliance)
+RICE COOKER
+REFRIGERATOR
+IMMERSION WATER HEATER
+WATER HEATER including HEATING ELEMENTS IF SUPPLIED SEPARATELY (a) Storage
+WATER HEATER including HEATING ELEMENTS IF SUPPLIED SEPARATELY (b) Instantaneous
+WASHING MACHINE
+FAN
+HAND OPERATED HAIR DRYER / HAIRCARE / SKIN CARE
+IRON
+SHAVER
+VAPORISER
+VACUUM CLEANER
+HI-FIDELITY SET
+VIDEO and VISUAL DISPLAY UNIT
+AUDIO and VIDEO PLAYER UNIT
+MASSAGER
+AIR CONDITIONER (Cooling Capacity of 32000 Btu/hr & below)
+CHRISTMAS LIGHT
+DOMESTIC POWER TOOLS (Portable Type)
+ADAPTER / CHARGER
+	WIRE / CABLE / CORD (non-armoured) 0.5mm² to 35mm²
+Equipment Name
+Category
+Description
+National Standard
+International Standard
+                Flat Non-Rewirable Two Pole Plug with supply cord (max. 2.5A)              
+                PLUG TOP/PLUG (a) Plug              
+                makes a detachable connection between the contacts of a socket-outlet and the conductors of a flexible cord; has insulating sleeves on the line and neutral plug pins for insertion into a socket-outlet; and has a maximum rating of 15 A              
+                MS 1578:2003              
+                BS EN 50075:1991              
+                13 A Fused Plug              
+                PLUG TOP/PLUG (a) Plug              
+                makes a detachable connection between the contacts of a socket-outlet and the conductors of a flexible cord; has insulating sleeves on the line and neutral plug pins for insertion into a socket-outlet; and has a maximum rating of 15 A              
+                MS 589-1:2011              
+                BS 1363:PT.1:1995 +A1 A2 A3              
+                15 A Plug              
+                PLUG TOP/PLUG (a) Plug              
+                makes a detachable connection between the contacts of a socket-outlet and the conductors of a flexible cord; has insulating sleeves on the line and neutral plug pins for insertion into a socket-outlet; and has a maximum rating of 15 A              
+                MS 1577:2003              
+                No corresponding international standard              
+                Appliance Coupler              
+                PLUG TOP/PLUG (b) Coupler              
+                is for attachment to a flexible cord; and makes a detachable connection between the conductors of the cord and the pins or contacts of any low voltage appliance or equipment of a type intended or generally used for household applications              
+                MS IEC 60320-1:2010              
+                IEC 60320-1:2007              
+                Interconnection Coupler              
+                PLUG TOP/PLUG (b) Coupler              
+                is for attachment to a flexible cord; and makes a detachable connection between the conductors of the cord and the pins or contacts of any low voltage appliance or equipment of a type intended or generally used for household applications              
+                MS IEC 60320-1:2010; MS IEC 60320-2-2:2011 (confirmed 2015)              
+                IEC 60320-1:2007; IEC 60320-2-2:1998              
+                Adaptor (Multiways)              
+                PLUG TOP/PLUG (c) Adaptor              
+                extends supply from a socket-outlet; incorporates one or more integral socket-outlets; and has insulating sleeves on the line and neutral plug pins              
+                MS 589-3:2018              
+                BS 1363 PT.3:1995 +A1 A2 A3              
+                Integrated Adaptor              
+                PLUG TOP/PLUG (c) Adaptor              
+                extends supply from a socket-outlet; incorporates one or more integral socket-outlets; and has insulating sleeves on the line and neutral plug pins              
+                MS 1144:2017              
+                BS 5733:2010+A1 2014              
+                Travel Adaptor              
+                PLUG TOP/PLUG (c) Adaptor              
+                extends supply from a socket-outlet; incorporates one or more integral socket-outlets; and has insulating sleeves on the line and neutral plug pins              
+                No corresponding MS              
+                IEC 60884-1:2006; IEC 60884-2-5:1995              
+                Electrical Connector (connecting device)              
+                PLUG TOP/PLUG (d) Connector              
+                Connecting devices for the connection of two or more electrical copper conductors              
+                MS IEC 60998-1:2005              
+                IEC 60998-1:2002              
+                Connecting device with screw type clamping unit              
+                PLUG TOP/PLUG (d) Connector              
+                Connecting devices for the connection of two or more electrical copper conductors              
+                MS IEC 60998-1:2005; MS IEC 60998-2-1:2005              
+                IEC 60998-1:2002; IEC 60998-2-1:2002              
+Pagination
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+    Next ›
+    Last »
+Energy Commission,
+No. 12, Jalan Tun Hussein,
+Precinct 2,
+62100 Putrajaya, Malaysia.
+Toll Free: 1-800-2222-78
+Tel: (603) 8870 8500
+Fax: (603) 8888 8637
+                  Career
+                  Disclaimer
+                  Privacy
+                  Security
+Follow Us On:
+Recognitions
+✕
+Close
+esc
+Sort By: 
+Filter By: 
+close

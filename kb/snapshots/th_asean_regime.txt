@@ -1,0 +1,725 @@
+THAILAND
+  I.     RATIONALE FOR REGULATION
+
+         COUNTRY                                      RATIONALE FOR REGULATION
+
+  Thailand          Consumer Protection.
+
+
+  II.    REGULATION BODY
+
+         COUNTRY                                            REGULATORY BODY
+
+  Thailand          Thai Industrial Standards Institute (TISI) under the Ministry of Industry.
+
+
+  III.        LEGISLATIVE FRAMEWORK
+
+         COUNTRY                                        LEGISLATIVE FRAMEWORK
+
+  Thailand          Industrial Product Standards Act. (1968)
+                    Industrial Product Standards Act(No.2), B.E. 2522 (1997)
+                    Industrial Product Standards Act(No.3), B.E. 2522 (1997)
+                    Industrial Product Standards Act(No.4), B.E. 2531 (1989)
+                    Industrial Product Standards Act(No.5), B.E. 2535 (1992)
+                    Industrial Product Standards Act(No.6), B.E. 2548 (2005)
+                    Industrial Product Standards Act(No.7), B.E. 2558 (2015)
+                    Industrial Product Standards Act(No.8), B.E. 2562 (2019)
+
+
+
+
+                                                                  1
+       IV.      MANDATORY STANDARDS
+                        REVISED MATRIX ON MANDATORY STANDARDS FOR THAILAND (AS OF April, 2025)
+No.                                                                                      STANDARDS
+                                                                                                                                   Indicate whether   HS Code
+                                                                                                                                       requires:
+                                                            Please tick         Relevant                                              Safety (S),
+      Product type or grouping            Domestic                                                   Extent of     State reason if
+                                                              box if          International                                        Environment (E),
+                                          Standards                                                  Alignment           MOD            EMC,
+                                                            mandatory          Standards
+                                                                                                                                          or
+                                                                                                                                     combination
+1     Tungsten Filament Lamps         TIS 4 Part 1-2558                  IEC 60432-1 Ed 2.2           MOD       Cabs E26, E26d           S         8539.22.91
+                                      (2015)                              (2012)                                 and E26/50x39 are                  8539.22.93
+                                                                                                                 not allowed.                       8539.29.50
+                                                                                                                                                    8539.29.90
+                                                                                                                                                    8539.22.92
+                                                                                                                                                    8539.22.99
+                                                                                                                                                    8539.29.60
+2     PVC insulated Copper            TIS 11 Part 3-2553                 IEC 60227-3 Ed 2.1            IDT               -               S         8544.49.41
+      cables                          (2010)                              (1997)                                                                    8544.49.42
+                                      TIS 11 Part 4-2553                  IEC 60227-4 Ed 2.1            IDT                                         8544.49.49
+                                      (2010)                              (1997)
+                                      TIS 11 Part 5-2553                  IEC 60227-5 Ed 2.2            IDT
+                                      (2010)                              (2003)
+                                      TIS 11 Part 101-                    All Parts of IEC 60227       NEQ
+                                      2559(2016)
+
+3     Ballast for fluorescent lamps   TISI 23-2558 (2015)                IEC 61347-2-8 (2002),        MOD           (Editorial           S        8504.10.00
+                                                                          Am 1 (2006)                               modification)
+4     Starters for fluorescent        TIS 183-2562                       IEC                           IDT               -               S        8536.50.99
+      lamps                           (2019)                              60155:1993+Amd1:1
+                                                                          995+Amd2:2006
+
+
+
+
+5     PVC insulated aluminium         TIS 293-2541                                  -                   -       No IEC standard          S        8544.49.41
+      cables                          (1998)                                                                     available                         8544.49.42
+                                                                                                                                                   8544.49.49
+
+                                                                                    2
+No.                                                                                STANDARDS
+                                                                                                                                  Indicate whether   HS Code
+                                                                                                                                      requires:
+                                                      Please tick           Relevant                                                 Safety (S),
+      Product type or grouping           Domestic                                              Extent of     State reason if
+                                                        box if            International                                           Environment (E),
+                                         Standards                                             Alignment          MOD                  EMC,
+                                                      mandatory            Standards
+                                                                                                                                         or
+                                                                                                                                    combination
+6     Lampholders for tubular        TIS 344-2562                  IEC 60400 Ed 7.2              IDT               -                    S         8536.61.10
+      fluorescent lamps and          (2019)                         (2008+Amd1:2011+Am                                                             8536.61.91
+      starterholders                                                d:2014)
+7     Electric irons                 TIS 60335 Part                 (IEC 60335-2-3-2022)         IDT                                   S         8516.40.90
+                                     2(3)-2567
+                                     Effective date
+                                     24 Dec 2025
+8     Motor-compressors              TIS 812-2558                  IEC 60335-2-34 Ed 5.0         IDT      Remark                       S         8414.30.90
+                                     (2015)                           1
+                                                                    (20 2)                                 Class 0 appliances
+                                                                                                           and class 0I
+                                                                                                           appliances shall
+                                                                                                           comply with Annex
+                                                                                                           P of IEC 60335-1.
+9     Electrical Switches            TIS 824-2551                  IEC 60669-                    IDT                                   S         8536.50.61
+                                     (2008)                         1:1998+Amd1:1999+A                                                            8536.50.69
+                                                                    md2:2006                                                                      8536.50.99
+10    Grills, toasters and similar   TIS 1641-                     IEC 60335-2-9 Ed 5.2         MOD       Sub-clause 6.1               S         8516.60.90
+      portable cooking appliances    2552(2009)                     (2006)                                 Modification :                         8516.72.00
+                                                                                                           Appliances shall be                    8516.79.90
+                                                                                                           class I, class II or
+                                                                                                           class III.
+
+
+
+
+                                                                               3
+No.                                                                               STANDARDS
+                                                                                                                                Indicate whether   HS Code
+                                                                                                                                    requires:
+                                                       Please tick         Relevant                                                Safety (S),
+      Product type or grouping             Domestic                                           Extent of     State reason if
+                                                         box if          International                                          Environment (E),
+                                           Standards                                          Alignment          MOD                 EMC,
+                                                       mandatory          Standards
+                                                                                                                                       or
+                                                                                                                                  combination
+11    Residual current operated        TIS 909-2548                 IEC 61009-1 (2003)         MOD       Sub-clause 1                 S         8536.30.90
+      circuit-breakers with integral   (2005)                                                             Replace                                8536.50.20
+      overcurrent protection for                                                                          “for rated voltages
+      household and similar uses                                                                          not exceeding 440
+      (RCBOs)                                                                                             V a.c.;”
+                                                                                                           with
+                                                                                                          “for rated voltages
+                                                                                                          between 220 and
+                                                                                                          440 V a.c.;”
+                                                                                                          Sub-clause 5.3.1
+                                                                                                          Delete the second
+                                                                                                          row of the table in
+                                                                                                          subclause 5.3.1
+                                                                                                          Sub-clause
+                                                                                                          9.22.1.3
+                                                                                                          Replace the testing
+                                                                                                          temperature
+                                                                                                          “25 oC 3 oC”
+                                                                                                          with
+                                                                                                          “37 oC 3 oC”
+12    AC electric fans                 TIS 934-2558                 IEC 60335-2-80 Ed 2.2       IDT      Remark                      S         8414.51.10
+                                       (2015)                        (2008)                               Class 0 appliances                    8414.51.91
+                                                                                                          and class 0I                          8414.51.99
+                                                                                                          appliances shall                      8414.59.30
+                                                                                                          comply with Annex                     8414.59.41
+                                                                                                          P of IEC 60335-1.                     8414.59.49
+                                                                                                                                                8414.59.50
+                                                                                                                                                8414.59.91
+                                                                                                                                                8414.59.99
+13    Double-Capped Fluorescent        TIS 956-2557                 IEC 61195 (1999) +         MOD           (Editorial              S         8539.31.10
+      lamps                            (2014)                        Am 1 (2012)                             modification)                      8539.31.20
+
+
+
+                                                                              4
+No.                                                                         STANDARDS
+                                                                                                                         Indicate whether   HS Code
+                                                                                                                             requires:
+                                                 Please tick         Relevant                                               Safety (S),
+      Product type or grouping       Domestic                                           Extent of     State reason if
+                                                   box if          International                                         Environment (E),
+                                     Standards                                          Alignment          MOD                EMC,
+                                                 mandatory          Standards
+                                                                                                                                or
+                                                                                                                           combination
+14    Electric rice-cookers      TIS 1039-2547                IEC 60335-2-15 (2002-      MOD             (Editorial            S         8516.60.10
+                                 (2004)                        07)                                     modification)
+                                                                                                    Remark
+                                                                                                    Class 0 appliances
+                                                                                                    and class 0I
+                                                                                                    appliances shall
+                                                                                                    comply with Annex
+                                                                                                    P of IEC 60335-1.
+
+
+
+
+                                                                        5
+No.                                                                                STANDARDS
+                                                                                                                             Indicate whether   HS Code
+                                                                                                                                 requires:
+                                                        Please tick         Relevant                                            Safety (S),
+      Product type or grouping          Domestic                                               Extent of   State reason if
+                                                          box if          International                                      Environment (E),
+                                        Standards                                              Alignment        MOD               EMC,
+                                                        mandatory          Standards
+                                                                                                                                    or
+                                                                                                                               combination
+15    Mains operated electronic     TIS 62368 Part 1-                IEC 62368-1 (2018)          IDT                               S         8504 40.30
+      and related apparatus for     2563 (2020)                                                                                               8518.10.11
+      household and similar                                                                                                                   8518.10.19
+      general use                                                                                                                             8518.21.10
+      - Radio                                                                                                                                 8518.21.90
+      - Television                                                                                                                            8518.22.10
+      - Amplifier                                                                                                                             8518.22.90
+      - Disc player                                                                                                                           8518.40.40
+      - Video game console                                                                                                                    8518.40.90
+      - Wireless microphone                                                                                                                   8518.50.10
+      receiver                                                                                                                                8518.50.20
+      - Radio receiver                                                                                                                        8518.50.90
+      - Television receiver                                                                                                                   8519.30.00
+      - Satellite receiver                                                                                                                    8519.81.10
+      - Speaker and amplifier                                                                                                                 8519.81.20
+      - Signal converter                                                                                                                      8519.81.30
+      - Signal processor                                                                                                                      8519.81.69
+      - Audio mixer                                                                                                                           8519.81.79
+      - Electronic musical                                                                                                                    8519.81.99
+      instrument                                                                                                                              8519.89.20
+      - Audio and video player                                                                                                                8521.10.90
+      - Network audio/video                                                                                                                   8521.90.19
+      receiver                                                                                                                                8521.90.99
+      - Cable TV head-end                                                                                                                     8527.12.00
+      receiver
+      - Audio and video converter
+      - Supply equipment
+      (adaptor) for electronics
+      - Supply equipment
+      (adaptor) for smart phone
+      and tablet
+
+
+
+                                                                               6
+No.                                                                            STANDARDS
+                                                                                                                            Indicate whether    HS Code
+                                                                                                                                requires:
+                                                    Please tick         Relevant                                               Safety (S),
+      Product type or grouping       Domestic                                              Extent of     State reason if
+                                                      box if          International                                         Environment (E),
+                                     Standards                                             Alignment          MOD                EMC,
+                                                    mandatory          Standards
+                                                                                                                                   or
+                                                                                                                              combination
+                                                                                                                                               8527.13.10
+                                                                                                                                               8527.13.90
+                                                                                                                                               8527.19.20
+                                                                                                                                               8527.19.90
+                                                                                                                                               8528.71.11
+                                                                                                                                               8528.71.19
+                                                                                                                                               8528.71.91
+                                                                                                                                               8528.71.99
+                                                                                                                                               8528.72.91
+                                                                                                                                               8528.72.92
+                                                                                                                                               8528.72.99
+                                                                                                                                               8528.73.00
+                                                                                                                                               9207.10.00
+                                                                                                                                               9207.90.00
+16    Uninterruptible power      TIS 1291 Part 1-                IEC 62040-1 Ed 1.0          IDT               -                 S            8504.40.11
+      system                     2553 (2010)                      (2008)                                                                       8504.40.19
+                                 TIS 1291 Part 2-                 IEC 62040-2 Ed 2.0          IDT
+                                 2553 (2010)                      (2005)
+                                 TIS 1291 Part 3-                 IEC 62040-3 Ed 1.0          IDT
+                                 2555 (2012)                      (1999)
+17    Tumbler dryers             TIS 1389-2559                   IEC 60335-2-11 Ed 7.1       IDT      Remark                     S            8451.21.00
+                                 (2016)                           (2012)                               Class 0 appliances                      8451.29.00
+                                                                                                       and class 0I
+                                                                                                       appliances shall
+                                                                                                       comply with Annex
+                                                                                                       P of IEC 60335-1.
+
+
+
+
+                                                                           7
+No.                                                                                  STANDARDS
+                                                                                                                                Indicate whether   HS Code
+                                                                                                                                    requires:
+                                                          Please tick         Relevant                                             Safety (S),
+      Product type or grouping          Domestic                                                 Extent of     State reason if
+                                                            box if          International                                       Environment (E),
+                                        Standards                                                Alignment          MOD              EMC,
+                                                          mandatory          Standards
+                                                                                                                                       or
+                                                                                                                                  combination
+18    Washing machines              TIS 1463-2556                      IEC 60335-2-7 Ed 7.0        IDT      Remark                    S         8450.11.10
+                                    (2013)                              (2008-06)                            Class 0 appliances                  8450.11.90
+                                                                                                             and class 0I                        8450.12.10
+                                                                                                             appliances shall                    8450.12.90
+                                                                                                             comply with Annex                   8450.19.11
+                                                                                                             P of IEC 60335-1.                   8450.19.19
+                                                                                                                                                 8450.19.91
+                                    TIS 1462-2562                      No Reference                 -                -                E         8450.19.99
+                                    (2019)                                                                                                       8450.20.00
+19    Frying pans and deep fat      TIS 60335 Part                     IEC 60335-2-13 Ed6.1        IDT                                S         8516.60.90
+      fryers (quantity of oil not   2(13)-2564                          (2016)
+      exceeding 5 l)                Effective date: Oct
+                                    1, 2025
+
+
+
+
+                                                                                 8
+No.                                                                                  STANDARDS
+                                                                                                                                Indicate whether   HS Code
+                                                                                                                                    requires:
+                                                          Please tick         Relevant                                             Safety (S),
+      Product type or grouping          Domestic                                                 Extent of     State reason if
+                                                            box if          International                                       Environment (E),
+                                        Standards                                                Alignment          MOD              EMC,
+                                                          mandatory          Standards
+                                                                                                                                       or
+                                                                                                                                  combination
+20    Instantaneous water heaters   TIS 1693-2547                      IEC 60335-2-35 (2002-       IDT      Remark                    S         8516.10.11
+                                    (2004)                    -         10)                                  Class 0 appliances                  8516.10.19
+                                                                                                             and class 0I
+                                                                                                             appliances shall
+                                                                                                             comply with Annex
+                                                                                                             P of IEC 60335-1.
+21    Microwave ovens               TIS 60335 Part                      IEC 60335-2-25 Ed7.0        IDT                                S         8516.50.00
+                                    2(25)-2565                          (2020)
+                                    Effective date: Dec
+                                    30, 2025
+22    Lighting and similar          TIS 1955-2551                      CISPR 15 Ed 7.1            MOD       (Editorial              EMC        8504.10.00
+      equipment : radio             (2008)                              (2007)                               modification)                      8504.31.93
+      disturbance limits                                                                                                                        8504.31.99
+                                                                                                                                                8504.40.30
+                                                                                                                                                8539.31.10
+                                                                                                                                                8539.31.20
+                                                                                                                                                8539.31.30
+                                                                                                                                                8539.31.90
+                                                                                                                                                8539.39.10
+                                                                                                                                                8539.39.30
+                                                                                                                                                8539.39.90
+                                                                                                                                                8539.50.00
+                                                                                                                                                9405.10.91
+                                                                                                                                                9405.10.92
+                                                                                                                                                9405.10.99
+                                                                                                                                                9405.20.90
+                                                                                                                                                9405.30.00
+                                                                                                                                                9405.40.20
+                                                                                                                                                9405.40.40
+                                                                                                                                                9405.40.50
+                                                                                                                                                9405.40.60
+                                                                                                                                                9405.40.99
+                                                                                                                                                9405.60.90
+
+                                                                                 9
+No.                                                                                     STANDARDS
+                                                                                                                                       Indicate whether   HS Code
+                                                                                                                                           requires:
+                                                            Please tick         Relevant                                                  Safety (S),
+      Product type or grouping           Domestic                                                   Extent of     State reason if
+                                                              box if          International                                            Environment (E),
+                                         Standards                                                  Alignment          MOD                  EMC,
+                                                            mandatory          Standards
+                                                                                                                                              or
+                                                                                                                                         combination
+23    Appliances for skin or hair   TIS 60335 Part                        IEC 60335-2-23 Ed6.1         IDT                                    S         8516.31.00
+      care : safety requirement     2(23)-2564                            (2019)                                                                        8516.32.00
+                                    Effective date: Oct                                                                                                 8516.33.00
+                                    1, 2025                                                                                                             8516.79.90
+24    Electric thermo pots          TIS 2062-2558                        IEC 60335-2-15 Ed 6         MOD       (Editorial                    S         8516.79.90
+                                    (2015)                                (2012)                                modification)
+                                                                                                                TIS 2062-2558
+                                                                                                                Contents of the
+                                                                                                                standard deals with
+                                                                                                                thermo pots only.
+                                                                                                                Remark
+                                                                                                                Class 0 appliances
+                                                                                                                and class 0I
+                                                                                                                appliances shall
+                                                                                                                comply with Annex
+                                                                                                                P of IEC 60335-1.
+25    Room Air Conditioners         TIS 2134-2565                                  -                   -        conform with TIS            E         8415.10.10
+                                    (2022)                                                                       2710-2558                             8415.82.91
+                                    Effective date: April                                                        (ISO 5151:2010)                       8415.90.19
+                                    4, 2026                                                                      and
+                                                                                                                 TIS 2714 book 1-
+                                                                                                                 2558 (ISO 16358-
+                                                                                                                 1:2013)
+
+                                    TIS 1529-2561                        IEC 60335-2-40 (2013)       MOD       TIS 1529-2561
+                                    (2018)                                                                      Content of the
+                                                                                                                standard applied             S
+                                                                                                                only air conditioner
+26    Household refrigerators and   TIS 2186-2561                                  -                   -       -                            E         8418.10.10
+      refrigerator-freezer:         (2018)                                                                                                             8418.21.00
+      environmental requirements                                                                                                                       8418.69.30
+      : energy efficiency
+
+
+                                                                                   10
+No.                                                                           STANDARDS
+                                                                                                                              Indicate whether   HS Code
+                                                                                                                                  requires:
+                                                   Please tick         Relevant                                                  Safety (S),
+      Product type or grouping         Domestic                                           Extent of     State reason if
+                                                     box if          International                                            Environment (E),
+                                       Standards                                          Alignment          MOD                   EMC,
+                                                   mandatory          Standards
+                                                                                                                                     or
+                                                                                                                                combination
+27    Household refrigerator and   TIS 2214-2561                IEC 60335-2-24 2010        MOD        2. Scope ;                    S         8418.10.11
+      refrigerator-freezer         (2018)                        + Amd1:2012                           Modification                            8418.10.19
+                                                                                                      (1) Ice-cream                            8418.21.00
+                                                                                                          appliances and                       8418.21.90
+                                                                                                          Ice-maker
+                                                                                                          requirement are
+                                                                                                          not applicable.
+                                                                                                      (2) Motor-
+                                                                                                          compressor (IEC
+                                                                                                          60335-2-24)
+                                                                                                          requirement are
+                                                                                                          not applicable.
+                                                                                                      (3) Note 2 dash 4 :
+                                                                                                          Modification
+                                                                                                          ‘refrigerator
+                                                                                                          appliance
+                                                                                                          incorporating a
+                                                                                                          battery over than
+                                                                                                          24 V for the
+                                                                                                          refrigerating
+                                                                                                          function.’
+                                                                                                       (4) Addition
+                                                                                                       Note 3 Thai
+                                                                                                       Industrial
+                                                                                                       Standard cover
+                                                                                                       the following.
+                                                                                                       - Refrigerator
+                                                                                                       appliance not
+                                                                                                       incorporate with
+                                                                                                       enclosure.
+                                                                                                       - Refrigerator
+                                                                                                       appliance
+                                                                                                       assemble with full
+
+                                                                         11
+No.                                                                 STANDARDS
+                                                                                                                     Indicate whether   HS Code
+                                                                                                                         requires:
+                                             Please tick     Relevant                                                   Safety (S),
+      Product type or grouping   Domestic                                       Extent of     State reason if
+                                               box if      International                                             Environment (E),
+                                 Standards                                      Alignment          MOD                    EMC,
+                                             mandatory      Standards
+                                                                                                                            or
+                                                                                                                       combination
+                                                                                             refrigerating circuit
+                                                                                             but not charge
+                                                                                             refrigerant.
+                                                                                             - Fixed refrigerator
+                                                                                             appliance
+                                                                                             intended to built-in
+                                                                                             or similar.
+                                                                                            - Other refrigerator
+                                                                                            appliance than
+                                                                                            given in Note 2
+
+                                                                                            Subclsuse 6.1
+                                                                                            Addition
+                                                                                            “Appliances used in
+                                                                                            Thailand shall be
+                                                                                            class 0I, class I
+                                                                                            class II and Class
+                                                                                            III”
+
+                                                                                            Subclause 7.1
+                                                                                             Addition :
+                                                                                            - Climatic class
+                                                                                            of the
+                                                                                            Refrigerator
+                                                                                            appliance for use
+                                                                                            in Thailand shall
+                                                                                            be SN N ST or
+                                                                                            T
+                                                                                            - Single component
+                                                                                            refrigerant shall be
+                                                                                            mark number
+                                                                                            refrigerant or
+                                                                                            mark the
+
+                                                               12
+No.                                                                               STANDARDS
+                                                                                                                                     Indicate whether    HS Code
+                                                                                                                                         requires:
+                                                      Please tick         Relevant                                                      Safety (S),
+      Product type or grouping            Domestic                                            Extent of       State reason if
+                                                        box if          International                                                Environment (E),
+                                          Standards                                           Alignment            MOD                    EMC,
+                                                      mandatory          Standards
+                                                                                                                                            or
+                                                                                                                                       combination
+                                                                                                          chemical name
+                                                                                                          and the chemical
+                                                                                                          formula;
+
+
+
+
+28    Secondary cells and             TIS 2217-2548                IEC 62133 Ed.1.0             IDT      -                                S            8507.30.90
+      batteries containing alkaline   (2005)                        (2002)                                                                              8507.40.90
+      or other non-acid                                                                                                                                 8507.50.90
+      electrolytes - safety                                                                                                                             8507.60.10
+      requirements for portable                                                                                                                         8507.60.90
+      sealed secondary cells, and
+      for batteries made from
+      them, for use in portable
+      applications
+29    Residual current operated       TIS 2425-2560                IEC 61008-1 Ed.2.1          MOD       (Editorial modification)         S            8536.30.90
+      circuit-breakers without        (2017)                        (2002)                                Subclause 5.3.3                               8536.50.20
+      integral overcurrent                                                                                Replacement:
+      protection for household and                                                                        “Standard values of
+      similar uses (RCCBs) - Part                                                                         rated residual
+      1 : general rules                                                                                   operating current are
+                                                                                                           0.006 - 0.01 - 0.01 -
+                                                                                                          0.015 - 0.3 - 0.5 A.”
+
+30    Ballasts for tubular            TIS 2337-2557                IEC 62442-1 (2011)          NEQ       -                                E            8504.10.00
+      fluorescent lamps: energy       (2014)
+      efficiency requirements
+31    Self-Ballasts for general       TIS 2234-2557                IEC 60968 (2012)            MOD       (Editorial                       S            8539.31.30
+      Lighting service                (2014)                                                              modification)
+                                                                             13
+No.                                                                                   STANDARDS
+                                                                                                                                    Indicate whether   HS Code
+                                                                                                                                        requires:
+                                                          Please tick         Relevant                                                 Safety (S),
+      Product type or grouping            Domestic                                                Extent of     State reason if
+                                                            box if          International                                           Environment (E),
+                                          Standards                                               Alignment          MOD                 EMC,
+                                                          mandatory          Standards
+                                                                                                                                           or
+                                                                                                                                      combination
+32    Single-capped fluorescent       TIS 2235-2557                    IEC 61199 (2011)            MOD       (Editorial                   S         8539.31.10
+      lamps                           (2014)                                                                  modification)                          8539.31.20
+                                                                                                                                                     8539.31.90
+33    Cord extention sets             TIS 2432-2555                    IEC 60884-2-7 (2011)        MOD       Plug and socket              S         8544.42.94
+                                      (2012)                                                                  Configuration-                         8544.42.96
+                                                                                                              conform with TISI                      8544.42.97
+                                                                                                              166
+34    Portable Power Bank –           TIS 2879-2560                              -                   -       No IEC standard             S         8507.30.90
+      Safety Requirements             (2017)                                                                  available, but used                   8507.40.90
+                                                                                                              IEC 60950 and IEC                     8507.50.90
+                                                                                                              62133 as the                          8507.60.90
+                                                                                                              references.
+35    Plugs and Sock-Outlets for      TIS 166-2549                               -                   -       Safety conform              S          8544.42
+      household and similar           (2006)                                                                  with TISI 2162 (IEC                    8536.69
+      purposes                                                                                                60884-1)
+36    Double-capped LED lamps         TIS 2779-2562                    IEC 62776 (2016)             IDT                -                 S          8539.50
+      designed to retrofit linear     (2019)                                                                                                         8539.49
+      fluorescent lamps
+37    Self-ballasted LED-lamps        TIS 2780-2562                    IEC 62560                    IDT               -                  S          8539.50
+      for general lighting services   (2019)                            (2011)+AMD1:2015
+      by voltage >50 V
+38    High pressure cleaners and      TIS 60335 Part                   IEC 60335-2-79 (2016)        IDT               -                  S         8424.89.50
+      steam cleaners                  2(79)-2563 (2020)
+39    Massage appliances              TIS 60335 Part                   IEC 60335-2-32 (2019)        IDT               -                  S         9019.10.90
+                                      2(32)-2564 (2021)
+40    Air-cleaning appliances         TIS 60335 Part                   IEC 60335-2-65 (2015)        IDT               -                  S         8421.39.20
+                                      2(65)-2564 (2021)
+
+
+41    Deep fat fryers and             TIS 60335 Part                   IEC 60335-2-37 Ed6.0         IDT               -                  S         8516.60.90
+      doughnut fryers (quantity of    2(37)-2564 (2021)                 (2017)
+      oil exceeding 5 l but not
+      exceeding 12 l)
+                                                                                 14
+No.                                                                                    STANDARDS
+                                                                                                                                   Indicate whether   HS Code
+                                                                                                                                       requires:
+                                                           Please tick         Relevant                                               Safety (S),
+      Product type or grouping           Domestic                                                  Extent of     State reason if
+                                                             box if          International                                         Environment (E),
+                                         Standards                                                 Alignment          MOD               EMC,
+                                                           mandatory          Standards
+                                                                                                                                          or
+                                                                                                                                     combination
+42    Hot and cool water             TIS 2461-2565                      IEC 60335-2-75              MOD        Some reference            S           8418.99
+      dispenser and cool water       (2022)                              (2012)                                  standard was
+      dispenser                      Effective date: Oct                                                        adopted as TIS
+                                     1, 2025
+43    Rotating Electrical Machines   TIS 866 Part                       IEC 60034-30-1 (2014)        IDT      Remark                    E             85.01
+      : AC three phase induction     30(101)-2561                                                              IE1 Minimum for
+      motors                         Effective date :                                                          AC three phase
+                                     18 Apr 2026                                                               induction motors
+                                                                                                               0.12 kW to 15 kW
+
+
+
+
+                                                                                  15
+V.    MODE OF REGULATION AND TYPES OF CONFORMITY ASSESSMENT REGIMES
+
+COUNTRY      TYPES OF CON-                                          MODE OF REGULATION
+            FORMITY ASSESS-
+             MENT REGIMES
+ Thailand   Certification     Product Certification System of TISI consists of two phases:
+                              1. License Granting
+                                  Granting a license is based on:
+                                  1.1 The results of tests which are conducted on products in accordance with the application
+                                  standards.
+                                      Consideration on this matter may be:
+                                      (1) Product testing by designated laboratories, or
+                                      (2) Product testing by testing laboratories being accreditation to ISO/IEC 17025, or
+                                      (3) Product testing by testing at manufacturer’s premises under supervision of TISI.
+                                 1.2 The results of manufacturer’s quality control system assessment according to specified
+                                 conditions.
+
+                                      Consideration on this matter may be:
+                                      (1) Factory visit for quality control system assessment, or
+                                      (2) Acceptation of quality system certificates, or
+                                      (3) Acceptation of CoC from the ASEAN Listed CB.
+
+                              2. Surveillance
+                                  After granting a license, the licensee will be followed up by:
+                                 2.1 Product sampling from factories for testing,
+                                 2.2 Product sampling from market for testing,
+                                 2.3 Product sampling for testing each import,
+                                 2.4 Factory visit for audit.
+
+
+
+
+                                                               16
+VI. FLOWCHART OF MEMBER COUNTRIES’ REGIME
+
+
+
+   Processes            Acceptance of Scheme Type 5 product certification
+
+
+
+
+                      a) Supplier submits application, technical documents to
+ 1. Acceptance of        lised CAB ;
+    Certification     b) Listed CAB performs type 5 certification and issue CoC;
+     Procedure        c) Supplier submits CoC, Technical document, Factory
+                         audit report and type test report to Thai Importer.
+
+
+
+
+                      a) Thai Importer submits CoC, Technical document, Factory
+    2. Product           audit report and type test report to TISI (Regulatory
+   registration/         Authority);
+     approval         b) TISI reviews the submitted documents including CoC;
+                      c) TISI grants registration/product approval and/or
+                         registration mark. (max 5 days)
+
+
+
+                      a) Thai Importer affix registration mark on the product;
+3. Place in market    b) Place the product in the market
+
+
+
+
+ 4. Surveillance      a) Factory surveillance by listed CAB;
+ audit & market       b) Factory surveillance audit report evaluation by TISI;
+  surveillance        c) Market surveillance by TISI.
+
+
+
+
+                                   17
+ VII.      MAINS VOLTAGE, FREQUENCY AND MAINS PLUG CONFIGURATION
+
+Country        Mains         Mains     Applicable                                             Mains Plug Configuration
+            Voltage and    Frequency   Legislation     Domestic     Please tick     Relevant         Extent of           Diagram of Mains Plug Configuration-
+             Tolerance        and                      Standard        box if     International      Alignment
+                           Tolerance                                mandatory       Standard              -
+Thailand   Bangkok           50 Hz         NA        TIS 166-2549                     -                 -
+           Metropolitan
+           Area              ± 1%
+
+           230 volts 1
+           phase 2 wires
+           with earth
+           tolerance Max
+           237 V and
+           Min 214 V
+           Other Areas
+           220 volts 1
+           phase 2 wires
+           tolerance Max
+           240 V and
+           Min 200 V                                                                                                             TIS 166-2549 (2006)
+           Bangkok           50 Hz         NA              -             -             -                 -
+           Metropolitan
+           Area              ± 1%
+
+           400 volts 3
+           phase 4 wires
+           tolerance Max
+           410 V and
+           Min 371 V
+           Other Areas
+           380 volts 3
+           phase 4 wires
+           tolerance Max
+           418 V and
+           Min 342 V
+
+
+
+
+                                                                        18
+VIII.       Marking/Logo
+
+
+
+
+                     Voluntary certification mark                    Mandatory certification mark
+
+IX. Other information
+
+     None
+
+X.      CONTACT PERSON
+
+Country            Contact Person and Address
+                   Mr. Norapong Woraakom
+Thailand
+                   Standards Division
+                   Thai Industrial Standards Institute (TISI), Ministry of Industry,
+                   Rama VI Street, Bangkok 10400 Thailand
+                   Telephone (662) 430 6828, Telefax (662) 202 3532
+                   E-mail : nw_tisi@yahoo.com
+
+
+
+
+                                                            19
+

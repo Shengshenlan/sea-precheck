@@ -1,0 +1,164 @@
+
+DTI reminds online platforms to only sell PS or ICC certified consumer products - BPS S&C Portal
+Toggle Accessibility Statement
+Skip to Home
+Skip to Content
+Skip to Site Map
+The iGovPhil Project officially adopts the Web Content Accessibility Guidelines (WCAG 2.0) as the accessibility standard for all its related web development and services. WCAG 2.0 is also an international standard, ISO 40500. This certifies it as a stable and referenceable technical standard. 
+WCAG 2.0 contains 12 guidelines organized under 4 principles: Perceivable, Operable, Understandable, and Robust (POUR for short). There are testable success criteria for each guideline. Compliance to these criteria is measured in three levels: A, AA, or AAA. A guide to understanding and implementing Web Content Accessibility Guidelines 2.0 is available at: https://www.w3.org/TR/UNDERSTANDING-WCAG20/
+All iGovPhil Project services and content are currently moving towards WCAG Level A compliance. Work is being done to make the system fully compliant with this level. 
+Accessibility Features
+Shortcut Keys Combination Activation Combination keys used for each browser.
+    Chrome for Linux press (Alt+Shift+shortcut_key) 
+    Chrome for Windows press (Alt+shortcut_key) 
+    For Firefox press (Alt+Shift+shortcut_key) 
+    For Internet Explorer press (Alt+Shift+shortcut_key) then press (enter) 
+    On Mac OS press (Ctrl+Opt+shortcut_key) 
+    Accessibility Statement (Combination + 0): Statement page that will show the available accessibility keys.
+    Home Page (Combination + H): Accessibility key for redirecting to homepage. 
+    Main Content (Combination + R): Shortcut for viewing the content section of the current page. 
+    FAQ (Combination + Q): Shortcut for FAQ page. 
+    Contact (Combination + C): Shortcut for contact page or form inquiries. 
+    Feedback (Combination + K): Shortcut for feedback page. 
+    Site Map (Combination + M): Shortcut for site map (footer agency) section of the page. 
+    Search (Combination + S): Shortcut for search page. 
+Press esc, or click the close the button to close this dialog box.
+×
+Home
+Transparency Seal
+Citizen's Charter
+PhilGEPS Procurement
+BAC Resources
+Sitemap
+FAQs
+Contact
+AUXILIARY MENU
+Home
+About Us
+Bureau of Philippine Standards (DTI-BPS)
+FAQs
+Laws & Issuances
+Media
+Standards
+Standards and Standardization
+Standards Data Center (SDC)
+Standards Development
+Membership to ISO and IEC
+Standards Development Work Program
+Recently Published PNS
+Draft PNS for Comments
+Standards Development Downloadable Forms
+How to Propose New Work Item
+BPS Technical Committees
+Standards Dev't Partnership (Recognized SDOs)
+Standards Regulations/Policies
+Notice of Adoption
+Product Certification
+Product Certification Schemes
+List of Products Under Mandatory Certification
+PS and ICC Marks
+PS and ICC Application Requirements
+PS and ICC Process Flowcharts
+Schematic Diagram of Handling Complaints and Appeals
+Product Certification Information Management System (PCIMS)
+List of BPS Qualified Auditors and Recognized Auditing & Inspection Bodies
+List of BPS Recognized Testing Laboratories
+Approved Logos for Steel Products
+Downloadable Forms
+Draft Technical Regulations for Comments
+ICC Verification Mobile App
+List of Certified Products
+Schedule of Fees
+Product Test
+BPS Product Testing Laboratory (BPSTL)
+Schedule of Fees
+Contact Information
+International Relations
+STRACAP Commitments
+WTO-TBT Notifications Bulletin
+TBT NOTIFS Request Form
+Draft MRA for Comments
+GOVPH
+MENU
+GOVPH
+Home
+Transparency Seal
+Citizen's Charter
+PhilGEPS Procurement
+BAC Resources
+Sitemap
+FAQs
+Contact
+Accessibility Button
+Accessibility Statement
+Toggle High Contrast
+Skip to Content
+Skip to Footer
+Philippine Standard Time
+  PCIMS Quick Access
+DTI reminds online platforms to only sell PS or ICC certified consumer products - BPS S&C Portal
+Home
+About Us
+Bureau of Philippine Standards (DTI-BPS)
+FAQs
+Laws & Issuances
+Media
+Standards
+Standards and Standardization
+Standards Data Center (SDC)
+Standards Development
+Membership to ISO and IEC
+Standards Development Work Program
+Recently Published PNS
+Draft PNS for Comments
+Standards Development Downloadable Forms
+How to Propose New Work Item
+BPS Technical Committees
+Standards Dev't Partnership (Recognized SDOs)
+Standards Regulations/Policies
+Notice of Adoption
+Product Certification
+Product Certification Schemes
+List of Products Under Mandatory Certification
+PS and ICC Marks
+PS and ICC Application Requirements
+PS and ICC Process Flowcharts
+Schematic Diagram of Handling Complaints and Appeals
+Product Certification Information Management System (PCIMS)
+List of BPS Qualified Auditors and Recognized Auditing & Inspection Bodies
+List of BPS Recognized Testing Laboratories
+Approved Logos for Steel Products
+Downloadable Forms
+Draft Technical Regulations for Comments
+ICC Verification Mobile App
+List of Certified Products
+Schedule of Fees
+Product Test
+BPS Product Testing Laboratory (BPSTL)
+Schedule of Fees
+Contact Information
+International Relations
+STRACAP Commitments
+WTO-TBT Notifications Bulletin
+TBT NOTIFS Request Form
+Draft MRA for Comments
+				DTI reminds online platforms to only sell PS or ICC certified consumer products			
+		Print	
+									Details							
+					Published: 11 April 2022				
+The Department of Trade and Industry’s Consumer Protection Group (DTI-CPG), through the Bureau of Philippine Standards (DTI-BPS), reminds online platforms, including its sellers, merchants, or e-retailers to ensure that all products under the DTI mandatory certification that are offered for sale in their sites should bear the Philippine Standard (PS) mark or the Import Commodity Clearance (ICC) sticker.
+In response to the proliferation of prohibited and regulated products sold on marketplace platforms and social media marketplaces, the DTI, Department of Health (DOH), Department of Agriculture (DA), Department of Environment and Natural Resources (DENR), Intellectual Property of the Philippines (IPOPHL), and National Privacy Commission (NPC) recently issued Joint Administrative Order (JAO) No. 22-01 consolidating all existing rules and guidelines on online businesses. The JAO adopted the ASEAN Online Business Code of Conduct to ensure that merchants are aware of their responsibilities to consumers.
+"Laws that apply to brick and mortar stores also apply to online businesses. Hence, we remind online platforms, including its sellers, merchants, or e-retailers in the country to ensure compliance with the requirements of applicable laws, rules, and regulations as consolidated in JAO 22-01. Failure to comply with the requirements set forth in relevant issuances shall constrain the DTI and other concerned government agencies to undertake necessary legal action against these sellers," warns DTI Consumer Protection Group (CPG) Undersecretary, Atty. Ruth B. Castelo.
+Section 6 of JAO No. 22-01 reminds online businesses to comply with Republic Act (RA) No. 4109 or the Standards Law including all Department Administrative Orders issued by DTI, particularly Technical Regulations issued to ensure and certify product quality and safety. Currently, there are 87 products under the BPS Mandatory Certification Schemes which includes household appliances such as air conditioners, electric fans, and television sets; lighting and wiring devices such as self-ballasted LED lamps, circuit breakers, PVC electrical tapes, and extension cord sets; steel products such as deformed steel bars and equal-leg steel angle bars; plastic pipes and ceramic products such as pipes for potable water supply and ceramic plumbing fixtures; cement and plywood; chemical products; and automotive related products such as pneumatic tires, automotive safety glass, seat belts, and child restraint systems (CRS). The complete list of products may be accessed through the BPS Standards and Conformance Portal, www.bps.dti.gov.ph (Direct Link: 
+https://bit.ly/BPSmandatoryList
+).
+The DTI-BPS implements the PS Quality and/or Safety Certification Mark Licensing Scheme and the ICC Certification Scheme. Under these certification schemes, mandatory products are not allowed to be distributed in the Philippine market without the necessary PS mark or ICC sticker. Manufacturers and importers of these products are required to secure the PS License or the ICC certificate, respectively, prior to selling or distribution of their products in the country.
+Moreover, the DTI warns the public to beware of fake PS mark and ICC stickers sold online or in physical stores. Only the DTI-BPS has the sole authority to issue PS License and ICC stickers. If uncertain, the public may contact the DTI-BPS through its Facebook page and official contact numbers. Meanwhile, to check if the ICC stickers affixed on regulated products are authentic, the public may use the ICC Mobile Verification System App downloadable from the Google Play Store and Apple App Store.
+The DTI-BPS is the National Standards Body authorized to promulgate Philippine National Standards (PNS). Compliance to PNS is voluntary in nature and may be used as reference by any interested parties, unless a Technical Regulation or Department Administrative Order is issued for a specific product where conformance to PNS or parts thereof becomes mandatory.
+To know more on standards and technical regulations in relation to product quality and safety, please visit the DTI-BPS website at www.bps.dti.gov.ph or call (02) 7751-4748 and (02) 7791-3126 or send an email to 
+This email address is being protected from spambots. You need JavaScript enabled to view it.
+.
+ Also follow our official Facebook page to be updated with the latest news and activities of the DTI-BPS.
+###
+Prev
+Next

@@ -1,0 +1,58 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# worker
+.dev.vars
+worker/.wrangler/
+worker/node_modules/
+worker/.dev.vars
+# KB raw snapshots (third-party PDFs/HTML) are local evidence only; text extracts of
+# official sources are committed, secondary/news commentary is not (copyright).
+kb/snapshots/*.pdf
+kb/snapshots/*.html
+kb/snapshots/*.png
+kb/snapshots/*.htm
+kb/snapshots/th_tilleke_etda.txt
+kb/snapshots/th_csa_nbtc.txt
+kb/snapshots/id_halal_antara.txt
+kb/snapshots/th_grab_tisi.txt
+eval/results/*.raw.jsonl

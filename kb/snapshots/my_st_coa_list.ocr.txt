@@ -1,0 +1,554 @@
+gg Suruhanjaya Tenaga
+
+Energy Commission
+
+REGULATED ELECTRICAL
+EQUIPMENT THAT REQUIRES
+CERTIFICATE OF APPROVAL (COA)
+
+TO MANUFACTURE, IMPORT, DISPLAY, SELL OR ADVERTISE
+
+www.st.gov.my
+
+The electrical equipments as illustrated below which are for purposes of manufacturer,
+import, display, sale or advertisement and falling under the following categories:
+
+a. any domestic equipment;
+b. any equipment which is usually sold direct to the general public; or
+c. any equipment which does not require special skill in its operation
+
+must be approved by the Energy Commission and labeled pursuant to the Electricity
+Regulations 1994.
+
+However, the illustrations are to facilitate and as reference to the illustration to the
+description of the electrical equipments requiring such approval and labeling. Any other
+electrical equipment not illustrated herein but which are for the said purposed and falling
+under the said categories must also be approved and labeled in accordance with the said
+Electricity Regulations 1994,
+
+The applicable safety and performance standards for electrical equipments can be accessed
+
+from the Energy Commission.
+
+1, PLUG TOP/PLUG (15A and below)
+
+Product Domestic Std Intl. Std
+(MS IEC/ MS*) (IEC/BS*/
+BS EN**)
+2 Pole Plug *1578 **50075
+13 A Fused Plug *589-1 *1363-1
+15 A Plug *1577 =
+Appliance Coupler 60320-1 60320-1
+Interconnection Coupler 60320-1, -2-2 60320-1, -2-2
+Adaptor (Multiways) *589-3 *1363-3
+Adaptor (Integrated adaptor) *1144 #5733
+Travel Adaptor - 60884-1, -2-5
+Electrical Connector (connecting device) 60998-1 60998-1
+Connecting device with screw type clamping 60998-1, -2-1 60998-1, -2-1
+unit
+Connecting device with screw -less type 60998-1, -2-2 60998-1, -2-2
+clamping unit
+Connecting device with insulation -piercing 60998-1, -2-3 60998-1, -2-3
+clamping units
+Twist-on connecting device 60998-1, -2-4 60998-1, -2-4
+Connecting boxes 60998-1, -2-5 60998-1, -2-5
+
+Oo
+
+iny
+2. SWITCH AND DIMMER
+Product Domestic Std Intl, Std
+(Ms lEC /Ms*) (IEC/BS*/
+BS EN**)
+General Purpose Switch 60669-1
+Door Bell & Chime 61558-1, -2-8
+Electronic Switch 60669-1, -2-1
+Remote-control Switch 60669-1, -2-2
+Time Delay Switch 60669-1, -2-3
+Cooker Control Unit, -
+
+3. SOCKET OUTLET (15A and below)
+
+Product Domestic Std Intl. Std
+(Ms |EC /Ms*) (lec/as*/
+BS EN**)
+Electric Shaver Socket Outlet 61558-1, -2-5 | 61558-1, -2-5
+13A Switch & Unswitch Socket Outlet *589-2 *1363-2
+15A Socket Outlet & Plug *1577 -
+Portable 2 Pin Socket Outlet Class 1! *1579 :
+Portable Cable Reel *1141 61242 with mod.
+
+4, FLUORESCENT LAMPHOLDER / STARTER HOLDER
+
+Gs
+
+Product Domestic Std Intl. Std
+(MS IEC /MS*) (IEC/BS*/
+BS EN**)
+Lamp Holder for Tubular Fluorescent Lamp | 60400 60400
+Starter Holder for Tubular Fluorescent Lamp 60400 60400
+ie) &®
+5. CEILING ROSE
+Product Domestic Std Intl. Std
+(Ms lec /Ms*) (lEc/Bs*/
+BS EN**)
+Ceiling Rose "770 *67
+Edison Screw Lamp Holder 60238 60238
+6. BAYONET CAP and MULTIWAYS ADAPTOR B
+Product Domestic Std Intl. Std
+(Ms IEC /Ms*) (lec/as*/
+BS EN**)
+Bayonet cap Lamp Holder - 61184
+
+Bayonet Lamp Adaptor *769, IEC 61184
+
+61184, MS 769
+
+3)
+
+7. LAMP FITTING
+Product Domestic Std Intl, Std
+(Ms 1EC/ Ms*) (IEC/BS*/
+BS EN**)
+
+Fixed general purpose Luminaries (excluding 60598-1, -2-1 60598-1, -2-1
+
+Tube/Bulb),
+
+Batten Luminaries (excluding Tube/Bulb),
+
+Luminaries with self-ballasted florescent lamp
+
+Recessed Luminaries (excluding Tube/Bulb) 60598-1, -2-2 60598-1, -2-2
+
+Glow-starter for tubular fluorescent 60155 60155
+
+Self-ballasted Compact Florescent Lamp (CFL) with 60968 60968
+
+Edison screw or bayonet caps 60969 60969
+
+LED General and safety for lamp contolgear for use| 61347-1 61347-1
+
+‘on de supplies up to 250V and or ac supplies up to
+1000V
+
+Lamp controlgear: Particular requirements for dc
+or ac supplied electronic controlgear for LED
+modules
+
+61347-1, -2-13 (P)
+
+61347-1, -2-13
+
+LED Lampholder (Connectors for LED-modules) 60838-1, -2-2 60838-1, -2-2
+LED Modules for general lighting 62031, 62031,
+(eg. Double capped self-ballasted LED lamp) 60061-1 60061-1
+Self-ballasted single capped LED lamps for general | 62560 (P) 62560
+lighting services by voltage>50V
+8. CAPACITOR for FLUORESCENT LAMP ~s
+Product Domestic Std Intl. Std
+(MS IEC/ MS*) (lec/es*/
+BSEN**)
+Capacitors for use in Tubular Fluorescent Lamp 61048, 61048,
+and other circuits 61049 61049
+9. BALLAST / CONTROL GEAR / DRIVER FOR LAMP ee
+Product Domestic Std Intl. Std
+(Ms IEC/ Ms*) (lEC/BS*/
+BS EN**)
+
+‘Magnetic Ballast for Tabular Fluorescent Lamp
+
+61347-1,
+141-2
+
+61347-1, -2-8,
+60921 with mod
+
+Electronic Ballast for Fluorescent Lamp
+
+61347-1,
+60929 with
+61000-3-2
+
+61347-1, -2-3,
+60929 with
+61000-3-2
+
+10. CIRCUIT BREAKER including AC CURRENT OPERATED EARTH
+LEAKAGE CIRCUIT BREAKER and MINIATURE CIRCUIT BREAKER
+
+Product
+
+Domestic Std
+(Ms IEC/ Ms*)
+
+intl Std
+(IEC/BS*/
+BS EN**)
+
+Residual Current Circuit Breaker (RCCB)
+
+6108-1, -2-1, -2-2
+
+Residual Current Breaker with Overcurrent
+Protection (RCBO)
+
+61009-1,-2-1, -2-2
+
+Miniature Circuit Breaker (MCB) for ac 60898-1 60898-1
+Miniature Circuit Breaker (MCB) for ac & de 60898-2 60898-2
+Fuse Base & Carrier up to 32A 60269-1, -2 60269-1, -2
+Fuse/Fuse Link up to 634 60269-2, -3 60269-2, -3
+‘Switch fuse up to 63A 60947-1, -3 60947-1, -3
+
+11. PORTABLE LUMINAIRE LAMP
+
+i
+
+x
+
+Product Domestic Std Intl. Std
+(Ms IEC/Ms*) (IEC/BS*/
+BS EN**)
+Standing Lamp with detachable or non-detachable 60598-1, -2-4 | 60598-1, -2-4
+‘mains supply flexible cord,Standing Lamp &
+adaptor, Table lamp with detachable or non-detachable
+‘mains supply flexible cord,Table Lamp & adaptor, Night
+Lamp integral with direct in plug, Portable LED Lamp
+Hand Lamp & Adaptor 60598-1, -2-8 | 60598-1, -2-8
+Eo \
+12. KETTLE including HEATING ELEMENTS IF SUPPLIED SEPARATELY ) J
+Product Domestic Std Intl. Std
+(Ms IEC/Ms*) (lec/Bs*/
+BS EN**)
+Warming Plate 6035-1, -2-12 60335-1, -2-12
+Deep Fryer 6035-1, -2-13 60335-1, -2-13
+Heating Liquids such as: 60335-1, -2-15 60335-1, -2-15
+Coffee / Tea Maker,Food
+Steamer,
+gq Boiler,Jug,Slow
+Cooker,Steam
+Boat, Kettle Airpot,Bottle
+Warmer,
+Sterilizer
+Multi-purpose cooker 60335-1, 60335-1, -2-9, -2-1
+Water Dispenser/Filter 60335-1 60335-1
+Water Dispenser 6035-1, -2-15 60335-1, -2-15
+-Hot
+Water Dispenser 60335-1, -2-24 or *1597-2-75 60335-1, -2-24 or -2-75
+~ Cold
+Water Dispenser 60335-1, -2-15,-2-24 60335-1, -2-15, -2-24
+= Hot and Cold or *1597 _-2-75 or -2-75
+Built in Hob 60335-1 60335-1, -2-36
+fi
+13. KITCHEN MACHINE »
+Product Domestic Std Intl. Std
+(MS 1EC/MS*) (IEC/BS*/
+BS EN*
+
+Blender, Chopper, Food Processor,
+Juice Extractor, Grinder, Mixer
+
+60335-1, -2-14
+
+60335-1, -2-14
+
+14, TOASTER / OVEN (Cooking Appliance) —
+Product Domestic Std Intl. Std
+(Ms 1EC/Ms*) (IEC/BS*/
+BS EN**)
+Stationary Electric Oven, Induction Hob 60335-1, -2-6 6035-1, -2-6
+or-1,*1597 -2-6
+Bread Maker,BreadToaster, 60335-1, -2-9  60335-1, -2-9
+
+Portable Oven, Induction Cooker,
+Grill, Sandwich Maker/Waffle Maker, Roaster
+
+Microwave Oven
+
+60335-1, -2-25
+
+60335-1,  -2-25
+
+14, RICE COOKER
+
+Ww
+
+Product Domestic Std Intl, Std
+(Ms lec/Ms*) (IEC/Bs*/
+BS EN**)
+
+Rice Cooker 60335-1, -2-15
+
+60335-1, -2-15
+
+15. REFRIGERATOR
+
+i
+i
+
+Product Domestic Std intl. Std
+(Ms IEC/Ms*) (lEC/BS*/
+BSEN**)
+
+Refrigerator Freezer, Minibar 60335-1, *1597-2-24
+
+6035-1, -2-24 with mod
+
+16. IMMERSION WATER HEATER
+
+é
+
+<x
+Product Domestic Std Intl, Std
+(Ms \EC/Ms*) (lEC/8s*/
+BS EN**)
+Fixed Immersion Heater 60335-1 60335-1, -2-73
+Portable Immersion Heater 6035-1,  -2-74 60335-1, -2-74
+ill!
+2
+17. WATER HEATER including HEATING ELEMENTS IF SUPPLIED SEPARATELY tT
+Product Domestic Std Intl. Std
+(Ms IEC/Ms*) (IEC/BS*/
+BS EN**)
+Storage Water Heater 60335-1, *1597-2-21 or 60335-2-21 | 60335-1, -2-21 wt mod
+
+Instantaneous Water Heater | 60335-1, *1597-2-35
+
+6035-1, -2-35 wt. mod
+
+18. WASHING MACHINE
+
+Product Domestic Std intl. Std
+(Ms IEC/Ms*) (IEC/BS*/
+BSEN**)
+Washing Machine having drying 60335-1, *1597-2-7 6035-1, -2-7 wt mod
+Washing Machine with separate 60335-1, “2-4, 6035-1, -2-4,-2-7
+spin container *1597 27
+Tumbler Dryers 60335-1, 2-11 60335-1, -2-11
+Cloth Dryers (on rack located) 60335-1, 2-43 60335-1, -2-43
+Dish Washer and other utensils 60335-1, *1597-2-5 60335-1, -2-5
+19. FAN
+Product Domestic Std intl. Std
+(Ms IEC/Ms*) (IEC/BS*/
+BSEN**)
+
+‘Moving-louver fan, Ceiling fan, Auto fan, Pedestal fan,
+Table fan,
+
+Wall fan & applies to their separate regulators and with
+blade
+
+6035-1, *1597-
+2-80,
+*1220
+
+60335-1, -2-80
+wh mod. (ceiling
+fan), 60879 wh
+‘mod.
+
+Ventilating fan, Decorative fan &
+applies to their separate regulators and fan without
+
+6035-1, *1597-
+2-80
+
+60335-1, -2-80
+wh mod (ceiling
+
+blade fan)
+Range Hood 60335-1, -2-31 | 60335-1,
+‘Cleaning Appliances (eg. Air Purifier ) 60335-1, -2-65 | 6035-1,
+Humidifiers (eg. Air Cooler) 60335-1, -2-98 | 6035-1,
+
+20. HAND OPERATED HAIR DRYER / HAIRCARE/ SKIN CARE
+
+Product Domestic Std intl. Std
+(Ms IEC/Ms*) (lEC/Bs*/
+BS EN**)
+Hair Dryer, Hair Styling Set, Hand Dryer, lonic Facial | 60335-1, -2-23 | 60335-1, -2-23
+
+Steamer or similar to it
+
+(0
+
+21. IRON
+Product Domestic Std intl. Std
+(msiec/ms*) | (IEC/BS*/
+BSEN**)
+tron 60335-1,-2-3 60335-1,
+Fabric Steamer (6335-1, -2-85 60335-1,
+22. SHAVER
+Product Domestic Std intl. Std
+(Ms IEc/Ms*) (lEC/BS*/
+BSEN**)
+Shaver, Hair Clippers 60335-1 60335-1, -2-8
+23. VAPORISER él Qy
+Product Domestic Std intl. Std
+(Ms IEC/Ms*) (IEC/BS*/
+BSEN**)
+‘Mosquito Matt Vapor,
+
+Aroma Vapor (eg. Air Freshener)
+
+6035-1, -2-101
+
+60335-1, -2-101
+
+24, VACUUM CLEANER
+
+)
+
+&
+Product Domestic Std Intl. Std
+(msiec/ms*) | (lEc/8s*/
+BSEN**)
+Vacuum Cleaner, Water Suction Cleaning 60335-1,-2-2 | 60335-1,-2-2
+25, HL-FIDELITY SET af = i.
+Product Domestic Std Intl. Std
+(Ms IEC/Ms*) (lEC/BS*/
+BSEN**)
+Sub-woofer, Amplifier, Cassette Player, Equalizer
+/ Mixer, Hi-Fi System, Karaoke, PA System,
+Portable Hi-Fi System, Portable Radio Cassette,
+Player / Recorder, Radio, Radio Alarm, 60065 60065
+Tuner / Receiver, Turn tables / Record Players,
+Compact Disc Player, Audio/Video Recorder up to
+4 channels
+26. VIDEO and VISUAL DISPLAY UNIT LJ
+Product Domestic Std intl. Std
+(Ms IEC/Ms*) (lEC/BS*/
+BSEN**)
+Electronic appliances such as: aes aes
+
+LCD, LED, Plasma,CRT, and similar to it
+
+0—S
+
+27. AUDIO and VIDEO PLAYER UNIT aca
+Product Domestic Std Intl. Std
+(Ms IEC/Ms*) (IEC/BS*/
+BS EN**)
+VCD , Laser Disc, Video Cassette Recorder, DVD , Video
+‘ i Bee 60065 60065
+Rewinder, Children Video Game
+28. MASSAGER
+Product Domestic Std Intl. Std
+(Ms IEC/Ms*) (IEC/Bs*/
+BS EN**)
+Foot Massagers, Massage Bed,
+Massage Chair, Massage Pads, 60335-1, -2-32 6035-1, -2-32
+
+Handheld Massagers, Massage Belts
+
+29. AIR CONDITIONER
+
+Product
+
+Domestic Std
+(Ms |EC/Ms*)
+
+Intl. Std
+(IEC/BS*/
+BS EN**)
+
+Split Air-conditioner, Portable Air-conditioner, Ceiling
+Air-conditioner
+
+60335-1, -2-40
+
+30. CHRISTMAS LIGHT
+
+W
+
+Product Domestic Std Intl. Std
+(Ms IEC/Ms*) (IEC/BS*/
+BS EN**)
+Lighting Chain, Rope Light,
+Decorative / Festive Light Eeceecnamieseas | coeeeamaeiee
+31. DOMESTIC POWER TOOLS (Portable Type) ¢
+Product Domestic Std Intl. Std
+(Ms 1EC/Ms*) (IEC/BS*/
+BS EN**)
+Drill (drill bit size up to 15mm) 60745-1, -2-1 | 60745-1, -2-1
+Grinder (up to 100 mm) 60745-1, -2-3  60745-1
+2:3
+Sander (up to 300 W) 60745-1, 60745-1,
+“24 24
+Circular Saw and circular knife (Cutting 60745-1, 60745-1,
+Blade up to 160 mm) 25 25
+Spray gun for non-flammable liquid (up 60745-1, 60745-1,
+to 100 bars) 27 27
+Jig and Sabre Saw (up to 60 mm) 60745-1, 60745-1,
+2-11 2-11
+Planer (up to 500 W) 60745-1, 60745-1,
+“2.14 “2:14
+Trimmer (up to 300 W) 60745-1, 60745-1,
+
+Hedge trimmer and Grass shears (up to 750 W) -2-15 2s
+Router and trimmer (up to 500 W) 60745-1, 60745-1,
+-2-17 al
+High Pressure Cleaner 60335-1, 60335-1,
+E278. 27)
+Sewing Machine 60335-1, 60335-1,
+-2-28 2-28
+Portable Heating Tool such as: 60335-1, 60335-1,
+Soldering Gun, Soldering Iron, Heat -2-45 -2-45
+Gun, Hot Air Firelighters, Glue gun
+32. ADAPTER / CHARGER
+Product Domestic Std Intl. Std
+(MS 1EC/Ms*) (IEC/BS*/
+BS EN**)
+Portable Battery Charger (up to 12V) 60335-1,-2-29 | 60335-1,-2-29
+Adaptor for IT Equipment (up to 20V) 60950-1 60950-1
+General electrical appliances, 61558-1,-2-6 61558-1,-2-6
+
+Electronic Isolating Transformer
+
+Switching mode power supply
+
+61558-1,-2-17
+
+61558-1,-2-17
+
+Electric toys 61558-1,-2-7 | 61558-1,-2-7
+Audio video equipment 60065 60065
+IT & Office products 60950-1 60950-1
+Shavers 60335-1 60335-1,-2-8
+33. WIRE / CABLE / CORD (non-armoured) 0.5mm? to 35mm? YY)
+Product Domestic Std Intl. Std
+(Ms IEC/Ms*) BS EN**)
+Polyvinyl chloride (PVC) Insulated flexible cord and cable *140 *6500
+or or
+* 2112-5 60227-1, -5
+Rubber insulated cord and flexible cables *140 *6500
+or
+60245-1, -4
+PVC-insulated cable (non-armoured) for electric power *2112-3 60227-3
+and supply:
+- non-sheathed
+PVC-insulated cable (non-armoured) for electric power *2112-4 60227-4
+
+and supply:
+- sheathed
+
+* \,
+
+All regulated approved electrical equipment must be individually affixed WIHRSIRIM-ST label
+or emboss by SIRIM Certification Mark.
+
+MS0123456789
+
+The Energy Commission expressly disclaims all liability to any person in respect of any
+statement in or omission from this booklet to the extent permitted by the law and nothing
+contained in this booklet should taken as constituting any amendment to the Electricity
+Supply Act [Act 447]and the Electricity Regulation 1994. In the event of any conflict, Act 447
+or the Regulation shall at all time taken precedence.
+
+ENSURING ENERGY FOR ALL
+
+Suruhanjaya Tenaga (Energy Commission)
+No. 12, Jalan Tun Hussein, Precinct 2, 62100, Putrajaya.
+Toll Free Number: 1-800-2222-78 (ST)
+T:03 8870 8500 F: 03 8888 8637

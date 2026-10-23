@@ -1,0 +1,221 @@
+
+MyLVG | Jabatan Kastam Diraja Malaysia
+BM
+EN
+A-
+A
+A+
+ Home
+ About LVG
+ Legislation & Guides
+ Announcement
+ FAQ
+ Login
+Registration
+ Register RS
+ Register RMCD
+ Check Status
+ Contact Us
+BM
+EN
+A-
+A
+A+
+Laman Utama
+Mengenai LVG
+Perundangan & Panduan
+Pengumuman
+ FAQ
+Log Masuk
+Pendaftaran
+ Pendaftaran RS
+ Semak Status
+Hubungi Kami
+Home
+Frequently Asked Questions
+When is the sales tax implementation date on LVG?
+                                            The sales tax legislation on LVG has come into force from 1 January 2023. However, the imposition of sales tax on LVG will only start on 1 January 2024.
+What is meant by Low Value Goods (LVG)?
+                                            All goods (excluding cigarettes; tobacco products; intoxicating liquors; smoking pipes (including pipe bowls); electronic cigarettes and similar personal electric vaporizing devices; and preparation of a kind used for smoking through electronic cigarette and electric vaporizing device, in forms of liquid of gel, whether or not containing nicotine) which are sold at a price not exceeding MYR500 and are brought into Malaysia by land, sea or air.
+Who is RS?
+                                            Sellers registered with the Royal Malaysian Customs Department (RMCD) 
+under the provisions of the Sales Tax Act 2018 (LVG).
+In the context of LVG, who is the seller?
+                                            "Seller" means a person, whether inside or outside Malaysia, who sells LVG on an online platform or operates an online marketplace for the sale and purchase of LVG.
+What is an online platform?
+                                            Online platform refers to a platform that provides facilities for the sale and 
+purchase of LVG which includes marketplace operated via website, internet 
+portal or gateway.
+Is the imposition of tax on LVG also implemented by other countries?
+                                            Yes, countries such as Australia (2018), Switzerland (2019), New Zealand 
+(2019), Norway (2020), United Kingdom (2021) have implemented the 
+imposition of GST / VAT on LVG.
+How is the sale value for LVG determined?
+                                            The sales tax is charged on the sale value of LVG not including any tax, duty, 
+fee or other charges such as transportation, insurance or other costs.
+What is the sales tax rate on LVG?
+                                            The sales tax rate on LVG is 10%.
+What is the threshold value for LVG sellers to be registered under the Sales Tax Act 2018 (LVG)?
+                                            LVG sellers shall register if the total sale value of LVG brought into Malaysia exceeds MYR500,000 in 12 months.
+How to register as RS?
+                                            A seller may apply for registration with effect from 1 January 2023. Application shall be made via https://mylvg.customs.gov.my.
+When and how does RS need to submit a return for sales tax on LVG?
+                                            RS needs to submit a return for sales tax on LVG every three (3) months according to the taxable period by filling in the LVG-02 form via https://mylvg.customs.gov.my.
+Which currency should be used when submitting the return and payment?
+                                            Ringgit Malaysia (MYR).
+What is the source reference for currency exchange?
+                                            RS may use one (1) of the following suggested prevailing acceptable exchange 
+rates and 
+shall use it consistently:
+Is RS allowed to issue credit note or debit note?
+                                            Yes. RS is allowed to issue credit note or debit note under the following   situations:  
+  (i) any changes on sales tax rate on LVG in force under section 10 of the Sales   Tax Act 2018; or  
+  (ii) financial adjustments made in the course of a business transaction.
+Is RS allowed to keep documents outside Malaysia?
+                                            Only RS living abroad is allowed to keep documents or records related to sales tax on LVG outside Malaysia as long as the records are accessible. RS is responsible for keeping records related to LVG transactions for seven (7) years from the last date related to those records.
+Does the LVG imported to Malaysia still need to comply with the existing import procedure?
+                                            Yes, LVG imported into Malaysia is still subject to the existing import procedures as it remains unchanged. Prohibited goods may require permits / approvals from relevant agencies prior to the goods arrival. Goods may also be screened, inspected, or examined prior to their release.
+Is the de minimis facility that currently exempts Import Duty and Sales Tax on Imports for goods at a CIF (Cost + Insurance + Freight) value not exceeding MYR500 consignment sent to Malaysia using air courier services still applicable?
+                                            The de minimis facility under Item 94, Part I of the Schedule, Customs Duties (Exemption) Order 2017 and Item 24, Schedule A, Sales Tax (Persons Exempted from Payment of Tax) Order 2018 is still applicable.
+What are the additional customs requirements for LVG importation?
+                                            During the importation of LVG, the LVG Registration Number information must be provided by the importer / customs agent in the import declaration (e.g., Customs Form No.1 (K1), electronic pre-alert system (e-PAM) or consignment note (CN22 / CN23). Any supporting documents must also be provided upon request by the proper officer of customs.
+Where should I fill in the LVG Registration Number information in the Customs Form No.1 (K1) or Consignment Note (CN22 / CN23)?
+                                            For K1, information about the LVG Registration Number is required to be provided in the “SST/LVG” data field in the system. As for the CN22 / CN23, it is advisable to provide the LVG Registration Number in the Exporter / Consignor column / data field.
+Asma bought LVG valued at MYR300 from a Registered Seller (RS) 
+outside Malaysia and has been charged Sales Tax on LVG. The goods do
+not fall under the prohibited category and will be shipped to Malaysia by 
+air using a courier service. Will there be any additional duties / taxes 
+charged upon importation?
+                                            No additional duties or taxes will be charged upon importation as the goods imported are entitled to de minimis.
+Laura bought tableware for MYR299 from an RS. This tableware will be imported into Malaysia by road. As a customs agent, how do I declare this tableware during importation?
+                                            Laura’s tableware must be declared using K1 and will be subjected to Import Duty and Sales Tax on Imports (if applicable) since de minimis does not apply to goods imported by road. However, Sales Tax on Imports would not be charged during importation since Sales Tax on LVG has been charged at the point of sale, provided that the LVG Registration Number is indicated in the K1.
+What are the consequences if the RS / exporters / customs agents fail to 
+provide the LVG Registration Number for imported LVG?
+                                            Goods declared without any LVG Registration Number information will be charged Sales Tax on Imports (if applicable) during importation.
+I am a customs agent. Will there be any specific transaction type or an 
+exemption type for the importation of goods under the scope of LVG in 
+the declaration system for K1?
+                                            Importers / customs agents may select Transaction Type: “LG” and SST Exemption Type: “LG” for declaration of goods imported under the scope of LVG.
+Zaris bought two (2) sets of the same kitchenware items for MYR300 each 
+and a plastic box for MYR50 from RS. These goods will be shipped in the 
+same consignment package to Malaysia using air courier service. How 
+does the LVG treatment work under this scenario?
+                                            This consignment exceeds the de minimis value (CIF MYR500). Therefore, this consignment will be subjected to Import Duties and Sales Tax on Imports (if applicable). However, since Sales Tax on LVG has been charged by the RS at the point of sale on both line items, Sales Tax on Imports will not be charged upon importation. Only Import Duties will be charged upon importation on both line items.
+I bought one (1) set of kitchenware for MYR460 from RS in China and the 
+Sales Tax on LVG has been charged. This set of kitchenware will be 
+shipped to Malaysia by air courier. Will there be any additional duties / 
+taxes charged or requirements upon importation?
+                                            Upon importation, the customs value declared for this kitchenware will exceed  MYR460 and will be greater than the de minimis value (MYR500) as the  customs value consists of cost, insurance, and freight. The value might also be  affected by the foreign exchange rate. Therefore, this kitchenware will be  subject to Import Duties and Sales Tax on Imports (if applicable) since the de  minimis facility does not apply. Importers / customs agents must provide  supporting documentation to the proper officer of customs to prove that the Sales Tax on LVG has been charged. Sales Tax on Imports will not be charged upon importation if it is proven that the Sales Tax on LVG has been charged by  the RS at the point of sale. If it is proven at this juncture, only Import Duties will  be imposed.
+Soalan Lazim
+When is the sales tax implementation date on LVG?
+                                            The sales tax legislation on LVG has come into force from 1 January 2023. However, the imposition of sales tax on LVG will only start on 1 January 2024.
+What is meant by Low Value Goods (LVG)?
+                                            All goods (excluding cigarettes; tobacco products; intoxicating liquors; smoking pipes (including pipe bowls); electronic cigarettes and similar personal electric vaporizing devices; and preparation of a kind used for smoking through electronic cigarette and electric vaporizing device, in forms of liquid of gel, whether or not containing nicotine) which are sold at a price not exceeding MYR500 and are brought into Malaysia by land, sea or air.
+Who is RS?
+                                            Sellers registered with the Royal Malaysian Customs Department (RMCD) 
+under the provisions of the Sales Tax Act 2018 (LVG).
+In the context of LVG, who is the seller?
+                                            "Seller" means a person, whether inside or outside Malaysia, who sells LVG on an online platform or operates an online marketplace for the sale and purchase of LVG.
+What is an online platform?
+                                            Online platform refers to a platform that provides facilities for the sale and 
+purchase of LVG which includes marketplace operated via website, internet 
+portal or gateway.
+Is the imposition of tax on LVG also implemented by other countries?
+                                            Yes, countries such as Australia (2018), Switzerland (2019), New Zealand 
+(2019), Norway (2020), United Kingdom (2021) have implemented the 
+imposition of GST / VAT on LVG.
+How is the sale value for LVG determined?
+                                            The sales tax is charged on the sale value of LVG not including any tax, duty, 
+fee or other charges such as transportation, insurance or other costs.
+What is the sales tax rate on LVG?
+                                            The sales tax rate on LVG is 10%.
+What is the threshold value for LVG sellers to be registered under the Sales Tax Act 2018 (LVG)?
+                                            LVG sellers shall register if the total sale value of LVG brought into Malaysia exceeds MYR500,000 in 12 months.
+How to register as RS?
+                                            A seller may apply for registration with effect from 1 January 2023. Application shall be made via https://mylvg.customs.gov.my.
+When and how does RS need to submit a return for sales tax on LVG?
+                                            RS needs to submit a return for sales tax on LVG every three (3) months according to the taxable period by filling in the LVG-02 form via https://mylvg.customs.gov.my.
+Which currency should be used when submitting the return and payment?
+                                            Ringgit Malaysia (MYR).
+What is the source reference for currency exchange?
+                                            RS may use one (1) of the following suggested prevailing acceptable exchange 
+rates and <b>shall use it consistently:</b>
+</br>
+<img style="max-width: 70%" src="/img/currency.png"/>
+Is RS allowed to issue credit note or debit note?
+                                            Yes. RS is allowed to issue credit note or debit note under the following   situations:  <br/>  (i) any changes on sales tax rate on LVG in force under section 10 of the Sales   Tax Act 2018; or  <br/>  (ii) financial adjustments made in the course of a business transaction.
+Is RS allowed to keep documents outside Malaysia?
+                                            Only RS living abroad is allowed to keep documents or records related to sales tax on LVG outside Malaysia as long as the records are accessible. RS is responsible for keeping records related to LVG transactions for seven (7) years from the last date related to those records.
+Does the LVG imported to Malaysia still need to comply with the existing import procedure?
+                                            Yes, LVG imported into Malaysia is still subject to the existing import procedures as it remains unchanged. Prohibited goods may require permits / approvals from relevant agencies prior to the goods arrival. Goods may also be screened, inspected, or examined prior to their release.
+Is the de minimis facility that currently exempts Import Duty and Sales Tax on Imports for goods at a CIF (Cost + Insurance + Freight) value not exceeding MYR500 consignment sent to Malaysia using air courier services still applicable?
+                                            The de minimis facility under Item 94, Part I of the Schedule, Customs Duties (Exemption) Order 2017 and Item 24, Schedule A, Sales Tax (Persons Exempted from Payment of Tax) Order 2018 is still applicable.
+What are the additional customs requirements for LVG importation?
+                                            During the importation of LVG, the LVG Registration Number information must be provided by the importer / customs agent in the import declaration (e.g., Customs Form No.1 (K1), electronic pre-alert system (e-PAM) or consignment note (CN22 / CN23). Any supporting documents must also be provided upon request by the proper officer of customs.
+Where should I fill in the LVG Registration Number information in the Customs Form No.1 (K1) or Consignment Note (CN22 / CN23)?
+                                            For K1, information about the LVG Registration Number is required to be provided in the “SST/LVG” data field in the system. As for the CN22 / CN23, it is advisable to provide the LVG Registration Number in the Exporter / Consignor column / data field.
+Asma bought LVG valued at MYR300 from a Registered Seller (RS) 
+outside Malaysia and has been charged Sales Tax on LVG. The goods do
+not fall under the prohibited category and will be shipped to Malaysia by 
+air using a courier service. Will there be any additional duties / taxes 
+charged upon importation?
+                                            No additional duties or taxes will be charged upon importation as the goods imported are entitled to de minimis.
+Laura bought tableware for MYR299 from an RS. This tableware will be imported into Malaysia by road. As a customs agent, how do I declare this tableware during importation?
+                                            Laura’s tableware must be declared using K1 and will be subjected to Import Duty and Sales Tax on Imports (if applicable) since de minimis does not apply to goods imported by road. However, Sales Tax on Imports would not be charged during importation since Sales Tax on LVG has been charged at the point of sale, provided that the LVG Registration Number is indicated in the K1.
+What are the consequences if the RS / exporters / customs agents fail to 
+provide the LVG Registration Number for imported LVG?
+                                            Goods declared without any LVG Registration Number information will be charged Sales Tax on Imports (if applicable) during importation.
+I am a customs agent. Will there be any specific transaction type or an 
+exemption type for the importation of goods under the scope of LVG in 
+the declaration system for K1?
+                                            Importers / customs agents may select Transaction Type: “LG” and SST Exemption Type: “LG” for declaration of goods imported under the scope of LVG.
+Zaris bought two (2) sets of the same kitchenware items for MYR300 each 
+and a plastic box for MYR50 from RS. These goods will be shipped in the 
+same consignment package to Malaysia using air courier service. How 
+does the LVG treatment work under this scenario?
+                                            This consignment exceeds the de minimis value (CIF MYR500). Therefore, this consignment will be subjected to Import Duties and Sales Tax on Imports (if applicable). However, since Sales Tax on LVG has been charged by the RS at the point of sale on both line items, Sales Tax on Imports will not be charged upon importation. Only Import Duties will be charged upon importation on both line items.
+I bought one (1) set of kitchenware for MYR460 from RS in China and the 
+Sales Tax on LVG has been charged. This set of kitchenware will be 
+shipped to Malaysia by air courier. Will there be any additional duties / 
+taxes charged or requirements upon importation?
+                                            Upon importation, the customs value declared for this kitchenware will exceed  MYR460 and will be greater than the de minimis value (MYR500) as the  customs value consists of cost, insurance, and freight. The value might also be  affected by the foreign exchange rate. Therefore, this kitchenware will be  subject to Import Duties and Sales Tax on Imports (if applicable) since the de  minimis facility does not apply. Importers / customs agents must provide  supporting documentation to the proper officer of customs to prove that the Sales Tax on LVG has been charged. Sales Tax on Imports will not be charged upon importation if it is proven that the Sales Tax on LVG has been charged by  the RS at the point of sale. If it is proven at this juncture, only Import Duties will  be imposed.
+day
+00
+month
+0000
+Visitor Information
+Visitor Today : 
+Total Visitor : 
+day
+00
+month
+0000
+Maklumat Pelawat
+Pelawat Hari Ini : 
+Jumlah Pelawat : 
+©Copyright Reserved | Malaysia Low Value Goods (LVG)
+Best viewed in
+Google Chrome/
+Mozilla/
+Edge
+                            latest version with 1280 x 800 screen resolution and above
+Privacy Policy
+|
+Security Policy
+|
+Disclaimer
+|
+Site Map
+©Hak Cipta Terpelihara | Cukai Jualan ke atas Barang Bernilai Rendah  (LVG)
+Paparan terbaik di
+Google Chrome/
+Mozilla/
+Edge
+                            versi terkini dengan resolusi skrin 1280 x 800 dan ke atas
+Dasar Privasi
+|
+Dasar Keselamatan
+|
+Penafian
+|
+Peta Laman

@@ -1,0 +1,234 @@
+                     Republic of the Philippines
+                     DEPARTMENT OF TRANSPORTATION AND COMMUNICATIONS
+                     NATIONAL TELECOMMUNICATIONS COMMISSION
+                     BIR Road, East Triangle, Diliman, Quezon City
+
+MEMORANDUM CIRCULAR
+NO. 09-09-2003
+
+SUBJECT        :       WIRELESS DATA NETWORKS AND DEVICES
+
+Pursuant to Act 3846 (Radio Control Law), Executive Order No. 546 series of 1979, RA7925
+(Public Telecommunications Policy Act) and in line with the thrust of the government to promote
+and develop the information and communications technology (ICT) and to facilitate the
+deployment, use, and development of wireless internet and wireless data networks and devices
+the following guidelines are hereby promulgated.
+
+Section 1      SCOPE
+
+               1.1     This memorandum circular shall cover all wireless data networks and
+                       devices operating within 2400MHz to 2483 MHz, 5150MHz to
+                       5350MHz and 5470MHz to 5850MHz bands.
+
+Sec. 2         DEFINITION OF TERMS
+
+               The following definitions shall apply within the context of this Memorandum
+               Circular
+
+               2.1     Wireless Data Network – network of computers and other computing
+                       devices utilizing radio frequencies.
+
+               2.2     Indoor Equipment and Devices – radio equipment and devices with an
+                       effective radiated power (ERP) not exceeding 250mW and no external
+                       antenna, e.g. WLAN cards or other similar cards directly sold to the end-
+                       users, WLAN enabled portable computers, bluetooth enabled mobile
+                       phones, bluetooth enabled portable computers and personal digital
+                       assistants.
+
+               2.3     Spread Spectrum Technology – radio communications technology
+                       utilizing either direct sequence or frequency hopping technique.
+
+               2.4     Outdoor Equipment/Radio Station – radio equipment/station with an
+                       effective radiated power exceeding 250mW.
+
+               2.5     Effective radiated power – refers to the power at the output of the
+                       antenna and not the radio transmitter output.
+
+               2.6     Public Data Network – refers to wireless data network offered to the
+                       public for compensation and shall only be provided by duly authorized
+                       public telecommunications entities.
+         2.7   Private Data Network – refers to the wireless data network strictly for
+               private use and not offered to the public for compensation.
+
+         2.8   Commission – the National Telecommunications Commission
+
+Sec. 3   OPEN AND UNPROTECTED RADIO FREQUENCY BANDS
+
+         3.1   The operation of wireless data network equipment and devices within
+               radio frequency bands 240MHz to 2483.5MHz, 5150MHz to 5350MHz,
+               and 5470MHz to 5850MHz shall be open and unprotected but shall not,
+               however, cause interference to other authorized radio systems.
+
+Sec. 4   LIMITATIONS
+
+         4.1   Indoor Wireless Data Network (WDN) equipment and devices shall not
+               use external antenna.
+
+         4.2   Indoor Wireless Data Network (WDN) equipment and devices can only
+               be sold and used after these are duly registered type approved/type
+               accepted by the Commission under this circular.
+
+         4.3   WDN equipment and devices shall strictly operate on a non-interference
+               basis (NIB)
+
+Sec. 5   TYPE APPROVAL/ACCEPTANCE REGISTRATION AND LICENSING
+
+         5.1   Indoor equipment and devices shall be submitted for type
+               approval/acceptance registration by the accredited dealers and suppliers
+               before the equipment and devices are placed on stock and sold.
+
+         5.2   Operation of private indoor WDN equipment and devices within
+               buildings shall not require permits and licenses provided that such
+               equipment and devices are registered type approved/accepted by the
+               Commission.
+
+         5.3   Duly registered indoor equipment under this circular shall bear NTC
+               registration number issued by the Commission for profer identification.
+
+         5.4   All indoor equipment/radio station whether for private WDN or public
+               WDN shall be covered by appropriate permits and licenses required
+               under existing rules and regulations.
+
+         5.5   Equipment or radio stations whether indoor or outdoor used by public
+               telecommunications entities (PTE) to offer duly authorized
+               telecommunications services shall be covered by appropriate permits and
+               licenses under existing rules and regulations.
+
+         5.6   Duly registered indoor equipment used by subscribers/customers of PTEs
+               shall not be required to be covered by permits and licenses.
+         5.7   Accredited dealers and suppliers intending to Import WDN equipment
+               and devices shall:
+
+               5.7.1   Secure permit to import from the Commission. The application
+                       for permit to import shall be supported by pro forma invoice
+                       detailing, among others, make/type/model and number of units to
+                       be imported.
+
+               5.7.2   Imported equipment and devices shall, upon release from the
+                       Bureau of Customs, submit sales and stock report to the
+                       Commission.     The Commission shall issue NTC Type
+                       Approval/Acceptance Registration Number for each of the units
+                       imported upon payment of the required registration fee.
+
+         5.8   WDN equipment and devices used by end-users-subscribers of PTEs
+               shall be classified as customer premises equipment (CPE)
+
+Sec. 6   FESS AND CHARGES
+
+         6.1   The registration fee for indoor equipment and devices shall be
+               PhP100.00 per unit.
+
+         6.2   Each outdoor equipment/radio station shall pay appropriate permit and
+               radio station license fees pursuant to existing schedule of fees and
+               charges.
+
+         6.3   The following spectrum user fees (SUF) shall be paid annually:
+
+               6.3.1   PhP500.00 for each outdoor radio station operated by private
+                       persons/entities or PTE and for each indoor radio station
+                       operated by PTEs with a maximum data rate of 11MBPS.
+
+               6.3.2   PhP1,000.00 for each outdoor radio station operated by private
+                       persons/entities or PTE and for each indoor radio station
+                       operated by PTEs with a data rate in excess of 11MBPS.
+
+Sec. 7   OPERATION OF SPREAD SPECTRUM TECHNOLOGY DEVICES WITHIN
+         THE 2400MHz - 2483.5MHz BAND
+
+         7.1   The suspension on the filing and processing of applications for various
+               permits and licenses and demonstration purposes of radio equipment
+               using spread spectrum technology (SST) within the band 2400MHz –
+               2483.5MHz in the areas of National Capital Region, Region III and
+               Region IV is lifted.
+
+Sec. 8   DEALERS AND SUPPLIERS
+
+         8.1   Only radio dealers and suppliers accredited by the Commission can sell
+               WDN equipment and devices.
+          8.2    Duly accredited radio dealers and suppliers shall only sell and maintain
+                 on stock indoor equipment and devices duly registered under this
+                 circular.
+
+          83.    Outdoor equipment shall only be sold to persons or entities with duly
+                 approved permit to purchase.
+
+          8.4    Accredited radio dealers and suppliers shall comply with existing rules
+                 and regulations, among others, on sales and stock reporting and permit to
+                 import, etc.
+
+Sec. 9    TRANSITORY PROVISION
+
+          9.1    Indoor and outdoor equipment/radio stations and devices purchased
+                 and/or operated prior to the effectivity of this circular shall be registered
+                 and licensed respectively within ninety (90) days from the effectivity of
+                 this circular. Failure to comply with registration and licensing after said
+                 period shall subject the user thereof to appropriate administrative fines
+                 and sanctions.
+
+          9.2    The processing and issuance of permits and licenses for WDN shall be
+                 the Central Office until such time as the Commission sees fit to
+                 decentralize the same to its regional offices.
+
+Sec. 10   ADMINISTRATIVE SANCTIONS
+
+          10.1   Violations of any of the provisions of this circular shall be dealt with in
+                 accordance with existing rules and regulations to include cancellation of
+                 registration, accreditation, authorization, permits and licenses.
+
+          10.2   The following fines/sanctions shall be imposed:
+
+                 10.2.1 Selling of unregistered indoor equipment and devices
+                        PhP5,000.00 per unit with forfeiture of equipment/device.
+
+                 10.2.2 Possession of illegally acquired indoor and outdoor equipment
+                        and devices – PhP5,000.00 per unit with forfeiture of
+                        equipment/device.
+
+                 10.2.3 Selling of outdoor equipment to persons or entities without valid
+                        permit to purchase – PhP5,000.00 per unit or station with
+                        forfeiture of equipment.
+
+                 10.2.4 Possession of illegally acquired indoor and/or outdoor equipment
+                        and devices – PhP5,000.00 per unit/station with forfeiture of
+                        equipment.
+
+                 10.2.5 Non-submission of monthly             Sales   and    Stock    Report-
+                        PhP1,000.00 per month.
+               10.3    Appropriate fines and other administrative sanctions to include
+                       cancellation of registration, accreditation, authorization, permits and
+                       licenses shall be imposed on:
+
+                       10.3.1 Persons/entities operating indoor and/or outdoor equipment
+                              without valid registration and/or permits and licenses.
+
+                       10.3.2 Private WDN operators offering WDN services to the public.
+
+                       10.3.3 Persons/entities operating outdoor equipment causing
+                              interference to other licensed and authorized radio systems.
+
+Sec. 11        REPEALING CLAUSE
+
+               11.1    Any circular, memorandum, order or parts thereof inconsistent with the
+                       provision of this circular shall be deemed amended or superseded
+                       accordingly.
+
+Sec. 12        EFFECTIVITY
+
+               12.1    This circular shall take effect (15) days after publication in a newspaper
+                       of general circulation and three (3) certified true copies furnished the UP
+                       Law Center.
+
+Quezon City, Philippines, September 12, 2003.
+
+
+
+
+                                        (Signed)
+                                  ARMI JANE R. BORJE
+                                     Commissioner
+
+
+      (Signed)                                                         (Signed)
+KATHLEEN G. HECETA                                              JORGE V. SARMIENTO
+ Deputy Commissioner                                              Deputy Commissioner
+

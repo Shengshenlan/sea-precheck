@@ -1,0 +1,934 @@
+GUIDELINES FOR ONLINE SHOPPING PLATFORM, MERCHANT AND CONSUMER IN ELECTRONIC COMMERCE
+                                                         FOR COMMUNICATIONS EQUIPMENT
+
+                                                                                      31 July 2025
+
+
+
+
+     Malaysian Communications and Multimedia Commission
+
+
+
+  GUIDELINES FOR ONLINE SHOPPING
+PLATFORM, MERCHANT AND CONSUMER IN
+      ELECTRONIC COMMERCE FOR
+     COMMUNICATIONS EQUIPMENT
+
+
+                                            Notice:
+
+
+
+    The information contained in these guidelines is intended as a guide only and
+    administrative in nature. For this reason, it should not be relied on as legal advice or
+    regarded as a substitute for legal advice in individual cases. Parties should still refer
+    to the legislative provisions contained in the law. The information contained in these
+    guidelines will be updated from time to time either via an addendum or revised
+    guidelines.
+©2025 by MCMC. All rights reserved.
+
+The information in these guidelines is protected under copyright and save where otherwise
+stated, may be reproduced for non-commercial use provided it is reproduced accurately and
+not used in a misleading context. Where any information is reproduced, the Malaysian
+Communications and Multimedia Commission (“MCMC”) at the address below as the source
+of the information must be identified and the copyright status acknowledged.
+
+No part of these guidelines may be reproduced, stored in a retrieval system or transmitted in
+any form by electronic, photocopying, recording means or others, without prior written
+permission from MCMC.
+
+The permission to reproduce does not extend to any information or material the copyright of
+which belongs to any other person, organisation or third-party authorisation or permission to
+reproduce such information or material must be obtained from the copyright holders
+concerned.
+
+Published by:
+Malaysian Communications and Multimedia Commission
+MCMC HQ Tower 1
+Jalan Impact
+Cyber 6
+63000 Cyberjaya
+Selangor Darul Ehsan
+Malaysia
+Tel: +603 8688 8000
+Fax: +603 8688 1000
+Website: www.mcmc.gov.my
+
+
+
+
+                                                                                 Page 1 of 25
+TABLE OF CONTENTS
+
+
+1.0      DEFINITIONS............................................................................................................ 3
+2.0      BACKGROUND ........................................................................................................ 4
+3.0      OBJECTIVE .............................................................................................................. 4
+4.0      LEGISLATIVE FRAMEWORK .................................................................................. 5
+5.0      LEGISLATIVE PROVISIONS .................................................................................... 7
+6.0      ONLINE SHOPPING PLATFORM ........................................................................... 10
+7.0      ONLINE MERCHANT ............................................................................................. 13
+8.0      CONSUMER ........................................................................................................... 15
+9.0      ENQUIRY ................................................................................................................ 16
+ANNEX 1 - SCOPE OF THE COMMUNICATIONS EQUIPMENT ....................................... 17
+ANNEX 2 - PROCESS FLOW FOR LISTING OF COMMUNICATIONS EQUIPMENT ON
+ONLINE SHOPPING PLATFORM ...................................................................................... 18
+ANNEX 3 - COMMUNICATIONS EQUIPMENT THAT IS NOT MEANT FOR PUBLIC USE 19
+ANNEX 4 - VERIFICATION USING CYL MOBILE APPLICATION ..................................... 20
+ANNEX 5 - VERIFICATION USING SIRIM ECOMM WEBSITE .......................................... 22
+ANNEX 6 - SPECIAL APPROVAL AND CLEARANCE LETTER ....................................... 24
+
+
+
+
+                                                                                                                   Page 2 of 25
+              MALAYSIAN COMMUNICATIONS AND MULTIMEDIA COMMISSION
+
+    GUIDELINES FOR ONLINE SHOPPING PLATFORM, MERCHANT AND CONSUMER IN
+              ELECTRONIC COMMERCE FOR COMMUNICATIONS EQUIPMENT
+
+
+1.0     DEFINITIONS
+
+
+1.1     “Certificate of Compliance” refers to a certificate issued by the MCMC or registered
+        certifying agency upon the certification of Communications Equipment.
+
+
+1.2     “Communications Equipment” refers to any network facilities, customer equipment or
+        radiocommunications equipment.
+
+1.3     “Compliance Approval” refers to certification issued by the MCMC or registered
+        certifying agency to a specific model of Communications Equipment, confirming that it
+        complies with the standards.
+
+
+1.4     “Consumer1” refers to a person who purchases products or services through online
+        shops, e-commerce marketplaces or social media platforms for his or her personal use.
+
+1.5     “Importer” refers to an organisation or individual that brings Communications Equipment
+        into the country either for sale or for personal use, and is subject to regulatory
+        requirements under the Communications and Multimedia Act 1998 and Communications
+        and Multimedia (Technical Standards) Regulations 2000.
+
+1.6     “Local Merchant” refers to an Online Merchant that operates inside of Malaysia.
+
+1.7     “Online Merchant1” refers to an organisation or individual selling products or services
+        to the Consumer through online shops, e-commerce marketplaces or social media
+        platforms. Online Merchant includes Local Merchant and Overseas Merchant.
+
+
+1.8     “Online Shopping Platform1” refers to a digital service provider, sometimes also called
+        “intermediary”, offering the space for and facilitate the interactions between Online
+        Merchant and the Consumer, often in wider digital ecosystems that span different
+        services or sectors (e.g. finance and logistics).
+
+
+
+
+1
+    ASEAN Guidelines on Consumer Protection in E-Commerce
+                                                                                   Page 3 of 25
+1.9   “Overseas Merchant” refers to an Online Merchant that operates outside of Malaysia.
+
+1.10 “Special Approval” refers to approval granted by MCMC or registered certifying agency
+      to any Communications Equipment which is used exclusively by the applicant for the
+      applicant’s sole purpose, research or demonstration purposes or within defined
+      parameters, such as location, technical specifications, time period, type or class of users
+      or conditions of usage.
+
+
+1.11 “Standards” refers to the applicable technical standards or proficiency tests including
+      processes and procedures, whether set out in the current standards, mandatory
+      standards, technical codes or Malaysian standards and established for the purpose of
+      ensuring proficiency levels of persons and the safety, non-interference levels,
+      performance levels and interoperability of any Communications Equipment.
+
+
+2.0   BACKGROUND
+
+
+2.1   In today's rapidly evolving digital marketplace, online shopping platforms have become
+      a primary channel for the sale of Communications Equipment. With the increasing
+      volume of transactions conducted online, it is essential to ensure that the
+      Communications Equipment offered through these platforms conforms to standards and
+      meets the necessary legal requirements.
+
+
+2.2   To address these needs, the Guidelines for the Online Shopping Platform, Online
+      Merchant, and Consumer in Electronic Commerce for Communications Equipment
+      (“Guidelines”) is intended to provide clear and comprehensive guidance for all
+      stakeholders involved in the online sale of the Communications Equipment.
+
+
+3.0   OBJECTIVE
+
+
+3.1   The Guidelines is intended to provide guidance to Electronic Commerce (“e-
+      commerce”) stakeholders, encompassing Online Shopping Platform, Online Merchant
+      and Consumer, with the primary goal of strengthening the Consumer protection.
+
+
+3.2   The Guidelines outlines the general responsibilities of Online Shopping Platform, Online
+      Merchant and Consumer in ensuring the Communications Equipment sold online adhere
+      to the certification and labelling requirements as stipulated in the Communications and
+
+                                                                                    Page 4 of 25
+      Multimedia Act 1998 (“CMA 1998”) and its subsidiary legislations.
+
+
+3.3   By   establishing   the   Guidelines,    Malaysian   Communications      and   Multimedia
+      Commission (“MCMC”) aims to prevent the supply of non-standard Communications
+      Equipment and promote a trustworthy online shopping environment.
+
+
+4.0   LEGISLATIVE FRAMEWORK
+
+
+4.1   MCMC is responsible for regulating compliance of Communications Equipment for use
+      and sale in the market in accordance with the Communications and Multimedia
+      (Technical Standards) Regulations 2000 (“TSR 2000”).
+
+
+4.2   Under TSR 2000, the Communications Equipment includes any network facilities,
+      customer equipment, or radiocommunications equipment. The detailed scope of the
+      Communications Equipment is outlined in Annex 1.
+
+
+4.3   TSR 2000 requires all Communications Equipment to be certified in accordance with
+      the specified standards, to ensure its safety, interoperability and the prevention of radio
+      frequency interference.
+
+
+4.4   Certified Communications Equipment shall also bear a certification label, a mandatory
+      certification mark referred to as MCMC label, as illustrated in Figure 1, to indicate that
+      the Communications Equipment complies with standards as required under the TSR
+      2000.
+
+
+
+
+                                              MCMC LOGO
+
+
+                                           SELF-LABELLING PROGRAM (“SLP”) ID
+
+                                    Figure 1: MCMC label
+
+
+4.5   The MCMC label can be in the form of physical label such as sticker, embossed or
+      engraved or in the form of digital or e-label whereby the MCMC label is stored within the
+      operating system of the Communications Equipment, provided that the Communications
+      Equipment comes with integrated display.
+
+
+                                                                                     Page 5 of 25
+4.6   MCMC may register certifying agencies for the purpose of certifying compliance with the
+      specified standards or technical codes. At present, the registered certifying agency for
+      the certification of Communications Equipment under the CMA 1998 is SIRIM QAS
+      International Sdn. Bhd. (“SIRIM”).
+
+
+4.7   Regulation 18 of the TSR 2000 allows any person to make an application to MCMC or
+      SIRIM for the certification of Communications Equipment. Certification may be issued
+      as either compliance approval or a special approval. However, under SIRIM’s
+      certification program, compliance approval is granted only to local companies registered
+      in Malaysia to ensure regulatory compliance and facilitate enforcement actions in cases
+      of non-compliance.
+
+
+4.8   Compliance approval may be granted to a specific model of Communications Equipment
+      when MCMC or SIRIM is satisfied that the Communications Equipment complies with
+      the specified technical codes or standards. The certification process for compliance
+      approval may involve document evaluation, laboratory or field tests or a combination of
+      them. The compliance approval enables the sale and use of the Communications
+      Equipment within Malaysia, with local companies typically handle the certification
+      application to distribute the Communications Equipment to the Consumer.
+
+
+4.9   Special approval is granted for any Communications Equipment intended for exclusive
+      use by the applicant. Any Communications Equipment granted with special approval is
+      not meant for sale as its use is confined within defined parameters which may include
+      but not limited to location, technical specifications, time period, type or class of users or
+      other conditions of usage as specified in the special approval, as provided under
+      subregulation 19(3) of TSR 2000. The certification process for special approval may be
+      exempted from laboratory or field tests and the certification shall be based solely on a
+      paper evaluation.
+
+
+4.10 Communications Equipment is listed under the Customs (Prohibition of Imports) Order
+      (“Prohibition of Imports Order”), which requires the importation of such
+      Communications Equipment to be accompanied by a certificate of approval issued by
+      SIRIM. The equipment must conform to the relevant technical codes, Malaysian
+      Standards or international Standards as deemed fit for importation and in accordance
+      with the CMA 1998 and TSR 2000. As such, a certificate of approval is a mandatory
+      requirement for importing Communications Equipment into Malaysia pursuant to the
+                                                                                      Page 6 of 25
+      Prohibition of Imports Order.
+
+
+4.11 The certification and labelling requirements as specified under TSR 2000 are also
+      applicable to the Communications Equipment sold through online shopping platforms:
+
+      4.11.1   The Online Shopping Platform and Local Merchant are responsible for ensuring
+               that all Communications Equipment sold through the online shopping platforms
+               complies with the certification and labelling requirements stipulated in the CMA
+               1998 and TSR 2000.
+
+
+      4.11.2   The Consumer purchasing the Communications Equipment via Online
+               Shopping Platform is responsible for ensuring the Communications Equipment
+               is certified before making any purchase. The Consumer should aware that
+               when purchasing the Communications Equipment directly from Overseas
+               Merchant, they are considered as an Importer under the TSR 2000. As such,
+               the Consumer is responsible to obtain the Special Approval and Clearance
+               Letter (“SACL”) from SIRIM to certify the Communications Equipment and
+               authorise its importation into Malaysia. The SACL serves as both the
+               certification and certificate of approval for the Communications Equipment
+               purchased from Overseas Merchant.
+
+
+4.12 The use or sale of any non-certified Communications Equipment or any
+      Communications Equipment that does not bear the MCMC label is an offence under
+      TSR 2000. A person who commits such offence shall, on conviction, be liable to a fine
+      not exceeding RM300,000.00 or to imprisonment for a term not exceeding three (3)
+      years or to both.
+
+
+5.0   LEGISLATIVE PROVISIONS
+
+
+5.1   The relevant provisions under TSR 2000 in respect of the certification and labelling of
+      the Communications Equipment are as follows:
+
+
+      5.1.1    Regulation 14: All Communications Equipment which are required to be
+               certified under these Regulations shall be so certified.
+
+
+      5.1.2    Subregulation 16 (1): No person shall use, offer for sale, sell or have in his
+
+                                                                                   Page 7 of 25
+              possession with a view to sell any Communications Equipment:
+              (a)   which is contrary to the standards;
+              (b)   which is not certified as required by these Regulations;
+              (c)   which has been certified but is subsequently altered or modified and no
+                    longer complies with the standards; or
+              (d)   which does not bear a certification mark or label.
+
+
+      5.1.3   Subregulation 22(1)(a): A supplier shall ensure that certified Communications
+              Equipment bears a certification mark or label approved by the Commission or
+              a registered certifying agency, as the case may be, so as to indicate that it
+              complies with the standards.
+
+
+5.2   In addition to the above, the other relevant legislations under CMA 1998 and TSR 2000
+      that may be relevant for these Guidelines are:
+
+
+      CMA 1998
+
+
+      5.2.1   Section 239: Unlawful use, possession or supply of non-standard equipment or
+              device.
+
+
+      5.2.2   Section 240: Offence for distributing or advertising any Communications
+              Equipment or device for interception of communication.
+
+
+      TSR 2000
+
+
+      5.2.3   Regulation 17: Improper certification marks or labels of Communications
+              Equipment
+
+
+              (1)   No person shall affix a certification mark or label to any Communications
+                    Equipment indicating that it complies with the standards -
+                    (a) unless the Communications Equipment is certified; or
+                    (b) if the person knows or reasonably knows that such an act is false or
+                    misleading.
+
+
+              (2)   A person who contravenes subregulation (1) commits an offence.
+
+
+                                                                                 Page 8 of 25
+5.2.4   Regulation 18: Application for certification of Communications Equipment
+
+
+        Any person may make an application in writing to the Commission or a
+        registered certifying agency, as the case may be, for the certification of
+        Communications Equipment as specified in the Second Schedule.
+
+
+5.2.5   Regulation 19: Certification of Communications Equipment
+
+
+        (1)   The Commission or a registered certifying agency, as the case may be,
+              may certify Communications Equipment for a compliance approval or a
+              special approval.
+
+
+        (2)   A compliance approval may be granted to a specific model of
+              Communications Equipment when the Commission or a registered
+              certifying agency, as the case may be, is satisfied that the
+              Communications Equipment complies with the standards.
+
+
+        (3)   Notwithstanding subregulation (2) , special approval may be granted to
+              any Communications Equipment which is used exclusively by the
+              applicant –
+              (a)   for the applicant's sole purpose;
+              (b)   for the applicant's sole research or demonstration purpose; or
+              (c)   within defined parameters which may include –
+                       (i)     location;
+                       (ii)    technical specifications;time period;
+                       (iii)   type or class of users; or
+                       (iv)    condition of usage.
+
+5.2.6   Regulation 20: Compliance approval
+
+
+        (1)   The certification process for a compliance approval may involve paper
+              evaluation, laboratory or field tests or a combination of them.
+
+
+        (2)   The Commission or a registered certifying agency, as the case may be,
+              shall not be liable for any damage caused during or loss arising from the
+              testing of the Communications Equipment.
+
+                                                                           Page 9 of 25
+              (3)   The applicant shall give to the Commission or a registered certifying
+                    agency, as the case may be, any assistance and clarification on technical
+                    matters pertaining to the Communications Equipment as it may require
+                    for the purposes of its evaluation.
+
+
+              (4)   If the Commission or a registered certifying agency, as the case may be,
+                    is not satisfied that the Communications Equipment complies with the
+                    standards, it shall refuse the application in writing, together with the
+                    reasons for its refusal but such refusal shall not prejudice the right of the
+                    applicant to make a fresh application for certification.
+
+
+              (5)   Where the Commission or a registered certifying agency, as the case may
+                    be, is satisfied that the Communications Equipment complies with the
+                    standards, it shall issue to the applicant a certificate of compliance.
+
+      5.2.7   Regulation 21: Special approval
+
+              (1)   The certification process for a special approval shall be specified by the
+                    Commission or a registered certifying agency, as the case may be.
+
+
+              (2)   A certification process specified by a registered certifying agency under
+                    subregulation (1) shall be subject to regulation 10.
+
+
+              (3)   Notwithstanding subregulation (1), the Commission may exempt an
+                    applicant for special approval from laboratory or field tests and the
+                    certification of any Communications Equipment shall be based solely by
+                    way of a paper evaluation.
+
+
+6.0   ONLINE SHOPPING PLATFORM
+
+
+6.1   The Online Shopping Platform is generally responsible for protecting Consumer,
+      ensuring Online Merchant sells lawful products or services to Consumer through its
+      online shops or e-commerce marketplaces or social media platforms and complies with
+      the national laws and regulations. Under regulation 16 of the TSR 2000, it is an offence
+      for any person who uses, offers for sale, sells or has in his possession with a view to
+      sell any Communications Equipment which is contrary to the standards, not certified as
+                                                                             Page 10 of 25
+       required by TSR 2000, or has been certified but subsequently altered or modified and
+       no longer complies with the standards, or does not bear a certification mark or label.
+
+
+6.2    Therefore, Online Shopping Platform must ensure that Communications Equipment
+       listed on their platforms are certified in accordance with the standards specified by
+       MCMC to avoid engaging in illegal activities, such as the sales of non-certified
+       Communications Equipment and to fulfill its role in protecting the Consumer.
+
+
+6.3    Within the e-commerce ecosystem, Online Shopping Platform is generally responsible
+       to ensure compliance for both Local Merchant and Overseas Merchant as described
+       below:
+
+
+
+                    Table 1: The Online Shopping Platform’s responsibilities
+ No.      Online Merchant             Online Shopping Platform’s Responsibilities
+ 1.      Local Merchant        •   Verify that all Communications Equipment to be listed by
+                                   Local Merchant are certified according to TSR 2000.
+
+
+                               •   Request Local Merchant to submit proof of certification for
+                                   the Communications Equipment issued by SIRIM.
+
+
+                               •   Verify the certification status with SIRIM before the request
+                                   to list any Communications Equipment can be granted.
+
+
+                               •   The   process    flows   for   granting   a   listing   of   the
+                                   Communications Equipment can be found in Annex 2.
+
+
+ 2.      Overseas              •   Be aware that the Communications Equipment(s) sold by
+         Merchant                  any Overseas Merchant is deemed as not certified since
+                                   certification of the Communications Equipment is currently
+                                   restricted to a local company pursuant to the certification
+                                   requirements of SIRIM.
+
+
+                               •   Accordingly, Online Shopping Platform should carry out the
+                                   followings:
+
+
+
+                                                                                     Page 11 of 25
+ No.      Online Merchant             Online Shopping Platform’s Responsibilities
+                                      o   Provide adequate information to the Consumer that
+                                          the Communications Equipment sold by Overseas
+                                          Merchant is not certified and the use of non-certified
+                                          Communications Equipment constitutes an offence
+                                          under TSR 2000.
+
+
+                                      o   Provide necessary information to the Consumer
+                                          that   any    Consumer      who     purchases     any
+                                          Communications Equipment directly from Overseas
+                                          Merchant is required to apply for SACL with SIRIM
+                                          as described in paragraph 4.11.2.
+
+
+                                      o   Provide guidance and relevant links to assist the
+                                          Consumer with the process of obtaining SACL,
+                                          ensuring the Consumer is fully aware and able to
+                                          comply with the legal requirements before making
+                                          any purchase.
+
+
+                                      o   Ensure all information is readily accessible and
+                                          presented in a clear and understandable manner.
+
+
+6.4    Online Shopping Platform is also responsible to undertake the following actions:
+
+
+       6.4.1   Regularly review and update internal policies to align with the latest regulations
+               governing the sale of the Communications Equipment.
+
+
+       6.4.2   Implement monitoring systems to detect and remove non-compliant listings.
+               Swift action is expected to address any issues identified, maintaining the
+               platform's adherence to regulatory requirements.
+
+
+       6.4.3   Cooperate with MCMC by:
+
+
+               (1)   Blocking the sale of Communications Equipment that is not meant for
+                     public use as outlined in Annex 3;
+
+
+                                                                                   Page 12 of 25
+               (2)   Promptly removing non-compliant Communications Equipment when
+                     notified by MCMC; and
+
+
+               (3)   Providing necessary information about the Online Merchant selling non-
+                     certified Communications Equipment on its platform for enforcement
+                     purposes.
+
+
+7.0   ONLINE MERCHANT
+
+
+7.1   Online Merchant comprising both Local Merchant and Overseas Merchant is required to
+      comply with all applicable Malaysian laws and regulations governing the sale of
+      Communications Equipment, including strict adherence to the certification and labelling
+      requirements. Local Merchant must ensure that Communications Equipment is certified
+      and properly labelled in accordance with CMA 1998 and TSR 2000. Meanwhile,
+      Overseas Merchant must transparently disclose the certification status of the
+      Communications Equipment and provide guidance to Consumer on the steps needed to
+      achieve compliance with the specified standards under CMA 1998 and TSR 2000. By
+      fulfilling these responsibilities, both Local Merchant and Overseas Merchant contribute
+      to the safety, reliability, and regulatory compliance of the Malaysian market.
+
+
+Local Merchant
+
+
+7.2   As importer of the Communications Equipment, Local Merchant is responsible to
+      undertake the following actions:
+
+
+      7.2.1    Ensure Communications Equipment offered on online shopping platform is
+               certified and bears the MCMC label as an attestation of compliance with the
+               relevant technical codes.
+
+
+      7.2.2    Provide clear evidence of the certification status in the product description
+               section on the online shopping platform. The evidence may include:
+
+
+               (1)   MCMC Label: A visible mark on the Communications Equipment or its
+                     packaging which indicates that the Communications Equipment is duly
+                     certified and safe for the Consumer.
+
+
+                                                                                  Page 13 of 25
+              (2)   Copy of Certificate of Conformity (“CoC”): Upload or display a copy of
+                    the official certificate i.e. the CoC issued by SIRIM that proves the
+                    Communications Equipment has met the required standards under TSR
+                    2000.
+
+
+      7.2.3   Ensure that all details of the Communications Equipment provided are correct
+              and accurate. This includes the model number, brand, and a clear description
+              of the Communications Equipment. Providing precise information helps
+              Consumer makes informed decision and ensures compliance with the laws and
+              regulations.
+
+
+      7.2.4   Cooperate with MCMC in providing information and documentation upon
+              request, as and when required.
+
+
+Overseas Merchant
+
+
+7.3   Communications Equipment sold by Overseas Merchant is deemed as not certified for
+      use in Malaysia. Accordingly, Overseas Merchant is responsible to:
+
+
+      7.3.1   clearly state in the product description that the Communications Equipment is
+              not certified for use in Malaysia. Consumer must be informed that uncertified
+              Communications Equipment cannot be legally imported or used without proper
+              certification and import permit.
+
+
+      7.3.2   inform Consumer that they are responsible for obtaining the SACL from SIRIM.
+              The SACL is necessary to certify, import and use of Communications
+              Equipment in Malaysia.
+
+
+      7.3.3   provide Consumer with all essential information required for the SACL
+              application. This includes accurate details such as the model number, brand, a
+              clear description, and a link to the Communications Equipment’s brochure or
+              specification sheet.
+
+
+      7.3.4   offer clear guidance to Consumer on the SACL application process. This
+              includes explaining the steps, providing required documentation, and offering
+              any necessary support to help Consumer meet compliance requirements.
+                                                                               Page 14 of 25
+8.0    CONSUMER
+
+
+8.1    Consumer should engage in secure and responsible online shopping by purchasing only
+       certified Communications Equipment. This ensures that the Communications Equipment
+       that will be used by the Consumer complies with the standards required under the TSR
+       2000, hence it is safe to use, interoperable, and does not cause radio frequency
+       interference.
+
+
+8.2    Before purchasing any Communications Equipment on an Online Shopping Platform,
+       Consumer is encouraged to follow the following rules:
+
+
+       Communications Equipment sold by Local Merchant
+
+
+       8.2.1    Ensure Communications Equipment is not illegal as outlined in Annex 3;
+
+
+       8.2.2    Look for regulatory information such as MCMC label or CoC of the
+                Communications Equipment being sold;
+
+
+       8.2.3    Verify the certification status of the Communications Equipment using the
+                ‘Check Your Label’ (“CYL”) mobile application as per Annex 4 or through the
+                SIRIM’s Online Certification for Communications and Multimedia Product
+                (“eComM”) Website as per Annex 5;
+
+
+       8.2.4    Purchase only certified Communications Equipment;
+
+
+       8.2.5    Report non-certified Communications Equipment to MCMC; and
+
+
+       8.2.6    Upon receiving the Communications Equipment, Consumer is encouraged to
+                check for the MCMC label on the device, packaging, or warranty card to ensure
+                that the equipment is certified and complies with applicable laws and
+                regulations.
+
+
+      Communications Equipment sold by Overseas Merchant
+
+       8.2.7    Ensure Communications Equipment is not illegal as outlined in Annex 3;
+
+
+                                                                                Page 15 of 25
+      8.2.8    Look for technical specifications or brochures and ensure the product can
+               comply with the local requirements (e.g. wireless devices shall operate within
+               the frequency range and transmit power permitted for local use);
+
+
+      8.2.9    Apply for the SACL through the SIRIM eComM website. The process flow for
+               the SACL application is outlined in Annex 6;
+
+
+      8.2.10   Upon receiving the SACL, the Consumer may proceed with the purchase of the
+               Communications Equipment; and
+
+
+      8.2.11   Alternatively, the Consumer can make the purchase and apply for SACL
+               concurrently. However, the importation of the Communications Equipment is
+               subject to the SACL approval.
+
+
+9.0   ENQUIRY
+
+
+9.1   For any enquiry about the Guidelines, the verification process, or to report non-certified
+      Communications Equipment on any online shopping platforms, please contact
+      Standards Management Department (“SMD”) at +603 8688 8000 or via email at
+      standards.management@mcmc.gov.my.
+
+
+9.2   For any enquiry about certification of the Communications Equipment including the
+      SACL, please contact SIRIM at +603 5544 6400 or via email at cmcstech@sirim.my.
+
+
+
+
+                                                                                  Page 16 of 25
+                   ANNEX 1 - SCOPE OF THE COMMUNICATIONS EQUIPMENT
+
+
+                                                                        Radiocommunications
+       Type          Network facilities         Customer equipment
+                                                                             equipment
+
+                  Any      element         or   Any        equipment,   Any equipment which is
+                  combination of elements       whether hardware or     designed and used for
+                  of physical infrastructure    software, or device,    the     purpose     of
+                  used principally for, or in   used on the             radiocommunications
+     Definition   connection with, the          customer side of the
+                  provision of network          network boundary
+                  services, but does not
+                  include          customer
+                  equipment
+
+                  • Base station                •   Mobile phones       • All kinds of video
+                  • Remote radio unit           •   Fax machine           game apparatus with
+                    (RRU)                       •   Telephone sets        a     communications
+                  • Active antenna unit         •   Walkie-talkie         module
+                    (AAU)                                               • Personal     computer
+                  • Antenna                                               including       laptop,
+                  • Satellite gateway                                     notebook,        tablet,
+                                                                          desktop               &
+                                                                          accessories       (e.g.:
+     Examples                                                             wireless     keyboard,
+                                                                          wireless mouse, USB
+                                                                          dongle)
+                                                                        • Radio           remote
+                                                                          controlled toys
+                                                                        • Television (Smart TV /
+                                                                          Digital TV)
+                                                                        • Wireless charger
+                                                                        • Wireless         Power
+                                                                          Transfer (WPT)
+
+
+More information can be found at:
+1.    Check Your Label microsite - https://cyl.mcmc.gov.my/; or
+2.    Infographic “Guide to MCMC Label” -
+      https://cyl.mcmc.gov.my/assets/frontend/img/cyl/CYL_Handbook_Final_(BI_Version)_-
+      4-compressed.pdf
+
+
+
+
+                                                                                     Page 17 of 25
+            ANNEX 2 - PROCESS FLOW FOR LISTING OF COMMUNICATIONS EQUIPMENT
+                              ON ONLINE SHOPPING PLATFORM
+
+
+
+
+             START                                                            END
+
+            Request to                      Apply for                        Advertise
+             advertise                     certification                      product
+
+
+
+ Local
+Merchant
+
+
+
+
+                                             Notify to
+                                            certify the
+                                             product
+
+
+                                                     No
+
+                         Review                            Yes
+  Online                                     Product             Allow to
+                         request            Certified?           advertise
+ Shopping
+ Platform
+
+
+
+
+                                                                   Page 18 of 25
+      ANNEX 3 - COMMUNICATIONS EQUIPMENT THAT IS NOT MEANT FOR PUBLIC
+                                    USE
+
+
+ No   Type of Equipment                                    Example
+ 1.   Any equipment capable of intercepting and            •   Jammer
+      jamming in any frequency band                        •   Mobile jammer
+                                                           •   Portable mobile jammer
+                                                           •   Wi-Fi cracker
+ 2.   Any equipment which is designed to receive           •   TVRO
+      satellite broadcast transmission not provided by a
+      local licensee
+ 3.   Subscriber Identity Module (SIM) card multiplexer    •   SIM blaster
+      for public cellular service                          •   SIM multiplexer
+ 4.   Any equipment used to amplify and strengthen         •   Cellular booster
+      cellular signals                                     •   Phone booster
+                                                           •   4G amplifier
+                                                           •   Mobilephone repeater
+                                                           •   Mobilephone amplifier
+                                                           •   Cellular repeater
+                                                           •   4G repeater
+                                                           •   Network amplifier
+                                                           •   Mobile booster
+
+
+The list of Communications Equipment that is not meant for public use is non-exhaustive.
+MCMC may publish the updated list from time to time.
+
+
+
+
+                                                                               Page 19 of 25
+             ANNEX 4 - VERIFICATION USING CYL MOBILE APPLICATION
+
+
+Step 1: Download CYL Mobile Application
+Search ‘Check Your Label’ at Google Play Store or Apple App Store and download.
+
+
+
+
+Step 2: Choose any of the options below
+Example: Click ‘Check using IMEI’ and key in the IMEI number at the column provided.
+
+
+
+
+                                                       Fill in the IMEI
+                                                       number
+
+
+
+
+                                                                           Page 20 of 25
+Step 3: Checking the details of the product
+Once you have keyed in the IMEI number, if your product is certified, a message saying
+“Congratulations! Your product is certified. Below is the summary of your device.”
+will appear. To obtain further details about your product, click ‘Details’.
+.
+
+
+
+
+                                                                          Page 21 of 25
+               ANNEX 5 - VERIFICATION USING SIRIM ECOMM WEBSITE
+
+
+
+
+Step 1: Access eComM at https://ecomm.sirim.my and click ‘SIRIM Enquiry’.
+
+
+
+
+Step 2: Click ‘Product Information’ and key in the product’s model.
+
+
+
+
+                                         Fill in the details
+
+
+
+
+                                                                            Page 22 of 25
+Result/Output:
+
+
+
+
+         **
+
+
+
+
+    Note: If the key in model number has never been certified, there is no result appear on the
+    screen webpage.
+
+    **Applicant Name is the registered Certificate Holder with SIRIM QAS International.
+
+
+
+
+                                                                                    Page 23 of 25
+                 ANNEX 6 - SPECIAL APPROVAL AND CLEARANCE LETTER
+
+
+Step 1: Register online
+Go to the SIRIM QAS eComM website and sign up as an 'Individual'.
+Complete your profile details and submit. SIRIM QAS will email you an activation code.
+Use the activation code to activate your account on the eComM website and complete
+registration.
+
+
+
+
+Step 2: Submit product clearance application
+Click on 'Product Clearance Letter' and select 'New Product Clearance Application'.
+Next, fill in the details of the seller/sender and the shipment.
+
+
+
+
+                                                                               Page 24 of 25
+Step 3: Prepare for clearance
+
+Once payment is made, you will receive your SACL within 24 hours through the SIRIM eComM
+website.
+
+Download the SACL from the SIRIM eComM website and provide it to Customs or your
+Forwarding Agent for customs clearance.
+
+
+
+
+                                                                           Page 25 of 25
+

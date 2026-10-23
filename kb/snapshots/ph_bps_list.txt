@@ -1,0 +1,399 @@
+
+List of Products Under Mandatory Certification - BPS S&C Portal
+Toggle Accessibility Statement
+Skip to Home
+Skip to Content
+Skip to Site Map
+The iGovPhil Project officially adopts the Web Content Accessibility Guidelines (WCAG 2.0) as the accessibility standard for all its related web development and services. WCAG 2.0 is also an international standard, ISO 40500. This certifies it as a stable and referenceable technical standard. 
+WCAG 2.0 contains 12 guidelines organized under 4 principles: Perceivable, Operable, Understandable, and Robust (POUR for short). There are testable success criteria for each guideline. Compliance to these criteria is measured in three levels: A, AA, or AAA. A guide to understanding and implementing Web Content Accessibility Guidelines 2.0 is available at: https://www.w3.org/TR/UNDERSTANDING-WCAG20/
+All iGovPhil Project services and content are currently moving towards WCAG Level A compliance. Work is being done to make the system fully compliant with this level. 
+Accessibility Features
+Shortcut Keys Combination Activation Combination keys used for each browser.
+    Chrome for Linux press (Alt+Shift+shortcut_key) 
+    Chrome for Windows press (Alt+shortcut_key) 
+    For Firefox press (Alt+Shift+shortcut_key) 
+    For Internet Explorer press (Alt+Shift+shortcut_key) then press (enter) 
+    On Mac OS press (Ctrl+Opt+shortcut_key) 
+    Accessibility Statement (Combination + 0): Statement page that will show the available accessibility keys.
+    Home Page (Combination + H): Accessibility key for redirecting to homepage. 
+    Main Content (Combination + R): Shortcut for viewing the content section of the current page. 
+    FAQ (Combination + Q): Shortcut for FAQ page. 
+    Contact (Combination + C): Shortcut for contact page or form inquiries. 
+    Feedback (Combination + K): Shortcut for feedback page. 
+    Site Map (Combination + M): Shortcut for site map (footer agency) section of the page. 
+    Search (Combination + S): Shortcut for search page. 
+Press esc, or click the close the button to close this dialog box.
+×
+Home
+Transparency Seal
+Citizen's Charter
+PhilGEPS Procurement
+BAC Resources
+Sitemap
+FAQs
+Contact
+AUXILIARY MENU
+Home
+About Us
+Bureau of Philippine Standards (DTI-BPS)
+FAQs
+Laws & Issuances
+Media
+Standards
+Standards and Standardization
+Standards Data Center (SDC)
+Standards Development
+Membership to ISO and IEC
+Standards Development Work Program
+Recently Published PNS
+Draft PNS for Comments
+Standards Development Downloadable Forms
+How to Propose New Work Item
+BPS Technical Committees
+Standards Dev't Partnership (Recognized SDOs)
+Standards Regulations/Policies
+Notice of Adoption
+Product Certification
+Product Certification Schemes
+List of Products Under Mandatory Certification
+PS and ICC Marks
+PS and ICC Application Requirements
+PS and ICC Process Flowcharts
+Schematic Diagram of Handling Complaints and Appeals
+Product Certification Information Management System (PCIMS)
+List of BPS Qualified Auditors and Recognized Auditing & Inspection Bodies
+List of BPS Recognized Testing Laboratories
+Approved Logos for Steel Products
+Downloadable Forms
+Draft Technical Regulations for Comments
+ICC Verification Mobile App
+List of Certified Products
+Schedule of Fees
+Product Test
+BPS Product Testing Laboratory (BPSTL)
+Schedule of Fees
+Contact Information
+International Relations
+STRACAP Commitments
+WTO-TBT Notifications Bulletin
+TBT NOTIFS Request Form
+Draft MRA for Comments
+GOVPH
+MENU
+GOVPH
+Home
+Transparency Seal
+Citizen's Charter
+PhilGEPS Procurement
+BAC Resources
+Sitemap
+FAQs
+Contact
+Accessibility Button
+Accessibility Statement
+Toggle High Contrast
+Skip to Content
+Skip to Footer
+Philippine Standard Time
+  PCIMS Quick Access
+List of Products Under Mandatory Certification - BPS S&C Portal
+Home
+About Us
+Bureau of Philippine Standards (DTI-BPS)
+FAQs
+Laws & Issuances
+Media
+Standards
+Standards and Standardization
+Standards Data Center (SDC)
+Standards Development
+Membership to ISO and IEC
+Standards Development Work Program
+Recently Published PNS
+Draft PNS for Comments
+Standards Development Downloadable Forms
+How to Propose New Work Item
+BPS Technical Committees
+Standards Dev't Partnership (Recognized SDOs)
+Standards Regulations/Policies
+Notice of Adoption
+Product Certification
+Product Certification Schemes
+List of Products Under Mandatory Certification
+PS and ICC Marks
+PS and ICC Application Requirements
+PS and ICC Process Flowcharts
+Schematic Diagram of Handling Complaints and Appeals
+Product Certification Information Management System (PCIMS)
+List of BPS Qualified Auditors and Recognized Auditing & Inspection Bodies
+List of BPS Recognized Testing Laboratories
+Approved Logos for Steel Products
+Downloadable Forms
+Draft Technical Regulations for Comments
+ICC Verification Mobile App
+List of Certified Products
+Schedule of Fees
+Product Test
+BPS Product Testing Laboratory (BPSTL)
+Schedule of Fees
+Contact Information
+International Relations
+STRACAP Commitments
+WTO-TBT Notifications Bulletin
+TBT NOTIFS Request Form
+Draft MRA for Comments
+Filters
+					Display #				
+5
+10
+15
+20
+25
+30
+50
+100
+All
+Filter
+List of articles in category List of Products Under Mandatory Certification
+Title
+Published Date
+						Refrigerators					
+					19 September 2022				
+						Electric fans					
+					18 September 2022				
+						Electric rice cookers					
+					09 June 2022				
+						Microwave ovens					
+					17 September 2021				
+						Electric multi-cookers					
+					30 May 2019				
+						Electric slow cookers					
+					30 May 2019				
+						Electric pressure cookers					
+					29 May 2019				
+						Electric kettles					
+					29 May 2019				
+						Electric food processors					
+					29 May 2019				
+						Electric food mixers					
+					29 May 2019				
+						Electric juicers					
+					29 May 2019				
+						Air conditioner					
+					29 May 2019				
+						Spin extractor					
+					29 May 2019				
+						Washing machines					
+					29 May 2019				
+						Induction cooker					
+					29 May 2019				
+						Turbo broilers					
+					29 May 2019				
+						Electric ovens					
+					29 May 2019				
+						Electric grills					
+					28 May 2019				
+						Electric hot plates					
+					28 May 2019				
+						Electric stoves					
+					28 May 2019				
+						Electric toasters					
+					28 May 2019				
+						Electric coffeemakers					
+					28 May 2019				
+						Electric airpots					
+					28 May 2019				
+						Electric blenders					
+					19 March 2019				
+						Electric irons					
+					19 March 2019				
+						Electric Vehicle Charging Equipment and Station for charging electric road vehicle					
+					22 September 2022				
+						Accessories of electric vehicle charging equipment or station					
+					22 September 2022				
+						Thermoplastic insulated electric wires and cables					
+					03 June 2019				
+						PVC insulated flexible cords					
+					03 June 2019				
+						Knife switches					
+					03 June 2019				
+						Snap switches					
+					03 June 2019				
+						Extension cord sets					
+					30 May 2019				
+						Socket-outlets					
+					30 May 2019				
+						Plugs					
+					30 May 2019				
+						PVC electrical tapes					
+					30 May 2019				
+						Fuseholders					
+					30 May 2019				
+						Fuses					
+					30 May 2019				
+						Circuit breakers					
+					30 May 2019				
+						Lamp starters					
+					30 May 2019				
+						Starter holders					
+					30 May 2019				
+						Lamp holders for tubular fluorescent lamps					
+					30 May 2019				
+						Edison screw lamp holders					
+					30 May 2019				
+						Incandescent lamps					
+					30 May 2019				
+						Single-capped fluorescent lamps					
+					30 May 2019				
+						Double-capped fluorescent lamps					
+					30 May 2019				
+						Christmas lights/Lighting chains					
+					30 May 2019				
+						Self-ballasted LED lamps					
+					30 May 2019				
+						Self-ballasted Lamps/Compact Fluorescent Lamps					
+					30 May 2019				
+						Electronic ballasts					
+					30 May 2019				
+						Pre-heat/Magnetic ballasts					
+					30 May 2019				
+						Sanitary wares					
+					04 June 2019				
+						PVC-U pipes for drain waste & vent					
+					04 June 2019				
+						uPVC rigid electrical conduit					
+					04 June 2019				
+						Pipes (uPVC)					
+					04 June 2019				
+						Pipes (PE) for water supply					
+					04 June 2019				
+						Pipes (PB)					
+					04 June 2019				
+						LPG/CNG retrofit systems					
+					07 June 2019				
+						LPG System Code of practice					
+					07 June 2019				
+						LPG cylinders requalification (c/o PAB)*					
+					07 June 2019				
+						Medical grade oxygen					
+					07 June 2019				
+						Fireworks					
+					07 June 2019				
+						Clean extinguishing agent - Halon substitute portable fire extinguishers					
+					06 June 2019				
+						Foam portable fire extinguishers					
+					06 June 2019				
+						Carbon dioxide portable fire extinguishers					
+					06 June 2019				
+						Dry chemical portable fire extinguishers					
+					06 June 2019				
+						Motor Vehicle brake fluid					
+					06 June 2019				
+						Black and Galvanized Longitudinally Welded Lightweight Steel Tubes					
+					11 July 2022				
+						Steel Coils and Sheets					
+					16 February 2021				
+						Steel Wire nails					
+					04 June 2019				
+						Steel wires (low carbon)					
+					04 June 2019				
+						Rerolled steel bar					
+					04 June 2019				
+						Equal-Leg steel angle bars					
+					03 June 2019				
+						Deformed steel bars					
+					03 June 2019				
+						BI/GI steel pipes					
+					03 June 2019				
+						Vapor product device/Vapor product system					
+					11 July 2022				
+						Heated tobacco product system					
+					11 July 2022				
+						CD/VCD/DVD/Blu-ray disc players					
+					17 September 2021				
+						Television sets					
+					17 September 2021				
+						Child restraint systems					
+					21 October 2020				
+						Speed Limitation Device					
+					11 March 2020				
+						Tires for automotive vehicles					
+					07 June 2019				
+						Safety glass for automotive					
+					07 June 2019				
+						Safety belts (Seat belts)					
+					07 June 2019				
+						Lead-Acid Storage Batteries					
+					07 June 2019				
+						Inner tubes for tires					
+					07 June 2019				
+						Helmets and their visors					
+					07 June 2019				
+						Loadbearing Concrete Masonry Units					
+					11 July 2022				
+						Nonloadbearing Concrete Masonry Units					
+					11 July 2022				
+						Unreinforced Autoclaved Aerated Concrete (AAC) Masonry Units					
+					11 July 2022				
+						Autoclaved Aerated Concrete (AAC) Masonry					
+					11 July 2022				
+						Autoclaved Aerated Concrete (AAC)					
+					11 July 2022				
+						Reinforced Autoclaved Aerated Concrete (AAC) Elements					
+					11 July 2022				
+						Ceramic Tiles					
+					16 February 2021				
+						Plywood					
+					16 February 2021				
+						Portland cement					
+					03 June 2019				
+						Blended hydraulic cement with Pozzolan					
+					03 June 2019				
+						Monobloc chair/stools					
+					07 June 2019				
+						Matches					
+					07 June 2019				
+						LPG cylinders for motor vehicles					
+					07 June 2019				
+						LPG cylinders repair					
+					07 June 2019				
+						LPG cylinders requalification					
+					07 June 2019				
+						LPG gas regulator for domestic use					
+					07 June 2019				
+						Refillable seamless aluminum alloy gas cylinders					
+					07 June 2019				
+						Refillable composite gas cylinders and tubes					
+					07 June 2019				
+						Refillable composite reinforced tubes					
+					07 June 2019				
+						Refillable welded stainless steel cylinders					
+					07 June 2019				
+						Non-refillable gas cartridges for liquefied petroleum gases					
+					07 June 2019				
+						Rubber hoses and hose assemblies for liquefied petroleum gas					
+					07 June 2019				
+						Refillable seamless steel gas cylinders					
+					07 June 2019				
+						LPG cylinder valves (self-closing)					
+					07 June 2019				
+						LPG cylinder valves (manual closing)					
+					07 June 2019				
+						Refillable seamless steel tubes for compressed gas transport					
+					07 June 2019				
+						LPG Retrofitting Systems					
+					07 June 2019				
+						LPG cylinders for household use					
+					07 June 2019				
+						Lighters					
+					07 June 2019				
+						Subcategories					
+					Household Appliances
+					Lighting and Wiring Devices
+					Plastic Pipes and Ceramic Products
+					Chemical Products
+					Steel Products
+					Consumer Electronics
+					Automotive Related Products
+					Cement and Other Construction Materials
+					Other Consumer Products

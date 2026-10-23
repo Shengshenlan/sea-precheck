@@ -1,0 +1,1119 @@
+                   GUIDELINE HISTORY
+
+                                      Description of
+No.            Guideline                                     Effective date
+                                       Amendment
+
+                                      Initial Publication
+1.      Guidelines for Control of                           1st January 2008
+                                        (First Edition)
+      Cosmetic Products in Malaysia
+
+
+2.                                      First Edition
+        Guidelines for Control of
+                                        1st Revision        1st February 2017
+      Cosmetic Products in Malaysia
+
+
+        Guidelines for Control of
+3.    Cosmetic Products in Malaysia   Second Edition        1st August 2022
+
+
+
+
+                                                                                ii
+            This guidance document is issued by the Director of
+       Pharmaceutical Services under Regulation 18A, Control of Drugs
+                     and Cosmetics Regulations 1984.
+
+
+          NPRA reserves the right to amend any part of the guidance
+                         document as it deems fit.
+
+
+              National Pharmaceutical Regulatory Agency,
+                       Ministry of Health Malaysia,
+       Lot 36, Jalan Profesor Diraja Ungku Aziz (Jalan Universiti),
+                          46200 Petaling Jaya,
+                                Selangor,
+                                Malaysia.
+
+                             Tel: 603-7883 5400
+
+                            Website: npra.gov.my
+
+
+
+
+All Rights Reserved
+
+No part of this guidance document may be reproduced, stored in a retrieval system,
+or transmitted, in any form or by any means, electronic, mechanical, microfilming,
+recording or otherwise, without written permission from the Senior Director of
+Pharmaceutical Services, Ministry of Health, Malaysia.
+
+
+
+
+                                                                                iii
+PREAMBLE
+
+This GUIDELINES FOR CONTROL OF COSMETIC PRODUCTS IN MALAYSIA shall
+serve as reference for notification process including quality control, inspection and
+post-market surveillance activities of cosmetics. This document will replace the
+GUIDELINES FOR CONTROL OF COSMETIC PRODUCTS IN MALAYSIA First
+Revision 1st February 2017.
+
+The content of this guideline is adapted from the ASEAN Cosmetic Directive (ACD).
+This guideline shall be read in conjunction with the current laws and regulations
+together with other relevant legislations, where applicable, governing cosmetics for
+human use in Malaysia, which include but are not limited to the following:
+
+      Sale of Drugs Act 1952
+      Control of Drugs and Cosmetics Regulations 1984
+      Dangerous Drugs Act 1952
+      Poisons Act 1952
+      Medicines (Advertisement & Sale) Act 1956
+      Patents Act 1983
+      Wildlife Conservation Act 2010 (Laws of Malaysia Act 716)
+      International Trade in Endangered Species Act 2008 (Act 686)
+      Medical Device Act 2012
+      Trade Descriptions Act 2011
+
+This guideline contains 7 main sections, 25 appendices. The main sections are:
+
+      Section 1: General Overview
+      Section 2: Cosmetic Notification
+      Section 3: Regulatory Requirements for Cosmetic Product
+      Section 4: Post Market Surveillance
+      Section 5: Regulatory Action
+      Section 6: Notification Withdrawal
+      Section 7: Notification Exemption
+
+The written laws shall take precedence over this guideline in any event of discrepancy.
+
+The scope of this guideline includes information relating to:
+
+      Submission of cosmetic notification through the NPRA Quest online system.
+      Regulatory requirements for cosmetic products
+      Post market surveillance activities
+
+Cosmetic Notification Holder (CNH) shall understand the content of this guideline and
+the governing legislations before submission of a cosmetic notification is made.
+
+
+
+
+                                                                                     iv
+The NPRA may request for information or specify conditions not described in this
+guideline that are deemed necessary to ensure the quality, safety and claimed benefit
+of the cosmetics.
+
+Regular review of regulatory policies will continue, taking into account the global
+regulatory environment to allow for timely and pertinent changes. CNH may refer to
+Directives and Circulars published on the NPRA website for the latest updates on
+regulatory policies.
+
+Changes to the guideline may be made when necessary by the NPRA and CNH is
+advised to refer to NPRA website for the latest updates of the cosmetic guideline and
+other related guidelines.
+
+The NPRA reserves the right to amend any part of the guideline whenever it deems
+fit.
+
+Any enquiry on cosmetic notification may be submitted to:
+
+Cosmetic Section,
+Centre of Product & Cosmetic Evaluation,
+National Pharmaceutical Regulatory Agency,
+Ministry of Health Malaysia,
+Lot 36, Jalan Profesor Diraja Ungku Aziz (Jalan Universiti),
+46200 Petaling Jaya,
+Selangor,
+Malaysia.
+
+
+
+
+                                                                                    v
+TABLE OF CONTENTS
+GUIDELINE HISTORY…………………………………...……….……………………...                            ii
+PREAMBLE……………………………………………………..……………...…….……..                               iv
+TABLE OF CONTENTS………………………………………………………..                                    vi
+APPENDICES…………………………………………………………………...                                      viii
+ABBREVIATIONS………………...……………………………………………….………                                ix
+GLOSSARY…………………………………………………………………………………                                     x
+SECTION 1: GENERAL OVERVIEW
+ 1.1   Introduction                                                         1
+SECTION 2: COSMETIC NOTIFICATION
+ 2.1 Who Shall Submit for Cosmetic Notification……………………………...……….           2
+ 2.2 Responsibility of the Cosmetic Notification Holder……………………………….        2
+ 2.3 Submission of Notification…………………………………………………………..                     3
+       2.3.1 Quest Membership Registration…………………………………………….                3
+       2.3.2 Notification of Cosmetic Products…………………………………………..            3
+ 2.4 Language………………………………………………………………………………                                 5
+ 2.5 Privacy Markings………………………………………………………………………                            5
+ 2.6 Fee……………………………………………………………………………………..                                  5
+ 2.7 Notification Validity Period…………………………………………………………..                   5
+ 2.8 Manufacture or Importation of Product…………………………………………….                5
+ 2.9 Changes in Notification Particulars…………………………………………………                 5
+ 2.10 Notification Number…………………………………………………………….…….                        6
+ 2.11 Certificate of Free Sale……………………………………………………………….                     6
+SECTION 3: REGULATORY REQUIREMENTS FOR COSMETIC
+PRODUCT
+ 3.1 Product Particulars……………………………………………………………………                          7
+ 3.2 Safety Requirements…………………………………………………………………                           7
+ 3.3 Cosmetic Ingredients…………………………………………………………………                          7
+ 3.4 Labelling Requirements……………………………………………………………...                       8
+ 3.5 Cosmetic Claims……………………………………………………………………...                           9
+ 3.6 Cosmetic Advertisement……………………………………………………………..                        9
+ 3.7 Good Manufacturing Practice (GMP)……………………………………………….                   9
+ 3.8 Product Information File (PIF)………………………………………………...……...               10
+SECTION 4: POST MARKET SURVEILLANCE
+ 4.1   Post Market Surveillance (PMS) Activities…… ……...……...…………………....    11
+ 4.2   Product Sampling Requirements………………………………………………...…                  11
+ 4.3   Product Complaint……………………………………………………………………                          12
+ 4.4   Reporting of Adverse Event…………………………………………………………                     12
+ 4.5   Notification of Product Quality Issue (PMAS)……………………………………...        12
+
+
+                                                                       vi
+SECTION 5: REGULATORY ACTION
+ 5.1 Rejection of Notification Submission…………………………………………….……                            13
+ 5.2 Cancellation of Notification Note………………………………………………….…..                            13
+ 5.3 Product Recall…………………………………………………………………………..                                        13
+ 5.4 Punitive Action/Penalty…………………………………………………………….…..                                  13
+SECTION 6: NOTIFICATION WITHDRAWAL……………………………………. 14
+SECTION 7: NOTIFICATION EXEMPTION………………………………………..
+ 7.1 Market Sampling……………………………………………………….……………….                                        15
+ 7.2 In–House Evaluation………………………………………………………….………..                                     15
+ 7.3 Product Manufactured for Export Only (FEO) or Imported for Re-Export………..           15
+ 7.4 In-Transit………………………………………………………………………………...                                         15
+ 7.5 Product to be Sold or Supplied in the Free-Trade Zone or International Carriage
+     Entering or Leaving Malaysia………………………………………………………….                                 16
+
+
+
+
+                                                                                   vii
+APPENDICES
+Annex I, part 1         Illustrative List of Cosmetic Products by Categories
+Annex I, part 2         Non-Permissible Product Name for Cosmetic Product
+Annex I, part 3         Charges for Quest Membership
+Annex I, part 4         Manual for Quest3+ Online Submission for Cosmetic
+                        Notification
+Annex I, part 5         List of Types of Changes For Notified Product
+Annex I, part 6         Guideline for Safety Assessment of Cosmetic Products
+Annex I, part 7         Cosmetic Labelling Requirements
+Annex I, part 8         Guideline for Cosmetic Claims
+Annex I, part 9         List of Guidelines for Products with Specific Requirements
+Annex I, part 9 (i)     Guideline for Sunscreen Product
+Annex I, part 9 (ii)    Guideline for Hand Sanitizer Product
+Annex I, part 9 (iii)   Guideline for Antibacterial Hygiene Wash Products
+Annex I, Part 10        Guideline for Cosmetic Advertisement
+Annex I, part 11        Guideline for Cosmetic Good Manufacturing Practice (GMP)
+Annex I, part 12        List of Equivalent Cosmetic GMP Guidelines
+Annex I, part 13        Guideline for Product Information File (PIF)
+Annex I, part 14        Heavy Metal and Microbiological Test Limit for Cosmetic
+                        Product
+Annex I, part 15        Guide Manual for Adverse Event Reporting
+Annex I, part 16        Guidance for Industry – Reporting and Recall of Cosmetic
+                        Product
+Annex II                List of Substances Which Must Not Form Part of the
+                        Composition of Cosmetic Products
+Annex III               List of Substances Which Cosmetic Products Must Not
+                        Contain Except Subject to Restriction and Conditions Laid
+                        Down
+Annex IV                List of Colouring Agents Allowed for Use in Cosmetic Products
+Annex V                 List of Excluded from the Scope of the Directive
+Annex VI                List of Preservatives Which Cosmetic Products May Contain
+Annex VII               List of UV Filters Which Cosmetic Products May Contain
+
+
+
+
+                                                                                    viii
+ABBREVIATIONS
+ACD     ASEAN Cosmetic Directive
+
+ASEAN   Association of Southeast Asian Nations
+
+BP      British Pharmacopeia
+
+CDCR    Control of Drugs and Cosmetics Regulations 1984
+
+CFS     Certificate of Free Sales
+
+CNH     Cosmetic Notification Holder
+
+DPS     Director of Pharmaceutical Services
+
+FEO     For Export Only
+
+GMP     Good Manufacturing Practice
+
+INCI    International Nomenclature for Cosmetic Ingredients
+
+ISO     International Organisation for Standardisation
+
+JAKIM   Malaysia Department of Islamic Development
+        (Jabatan Kemajuan Islam Malaysia)
+
+LOA     Letter of Authorisation
+
+NPRA    National Pharmaceutical Regulatory Agency
+
+PIC/S   Pharmaceutical Inspection Co-operation Scheme
+
+PIF     Product Information File
+
+PMS     Post Market Surveillance
+
+ppm     parts per million
+
+TSE     Transmissible Spongiform Encephalopathy
+
+USP     United States Pharmacopeia
+
+WHO     World Health Organisation
+
+
+
+
+                                                              ix
+GLOSSARY
+Cosmetic Notification Holder (CNH)
+
+The CNH refers to a company who is responsible for placing the cosmetic product in the
+market.
+
+The CNH must be a locally incorporated company or legal entity in the field of cosmetics,
+with a permanent address and registered with Companies Commission of Malaysia (with
+the scope of business related to the health/cosmetic product as it appears in the
+`Memorandum and Article of Association’ of the company.
+
+The CNH may or may not be the product owner.
+
+
+Cosmetic Product
+
+A cosmetic product shall mean “any substance or preparation intended to be placed in
+contact with various external parts of the human body (epidermis, hair system, nails, lips
+and external genital organs) or with teeth and the mucous membranes of the oral cavity,
+with a view exclusively or mainly to cleaning them, perfuming them, changing their
+appearance and/or correcting body odours and/or protecting them or keeping them in
+good condition”.
+
+For the illustrative list of cosmetic product by categories, please refer to Annex I, part 1:
+Illustrative List of Cosmetic Products by Categories
+
+
+Letter of Authorisation (LOA) / Letter of Declaration
+
+A Letter of Authorisation (LOA) is issued by the product owner including the list of
+products or brands authorising the CNH to notify the products with the NPRA and be
+responsible for all matters pertaining to product notification if the CNH is not the product
+owner.
+
+On the other hand, if the CNH is the product owner, a Letter of Declaration must be
+produced which state the ownership of brand name including the list of products or
+brands for the product notification with the NPRA.
+
+
+Letter of Contract Manufacturing
+
+Contract appointment and acceptance letters between product owner and contract
+manufacturer(s) describing the product name(s)/brand(s) involved and the role and
+responsibilities of both parties.
+
+
+
+
+                                                                                            x
+Manufacturer
+
+A manufacturer is a company which is engaged in any process carried out in the course
+of making the cosmetic products. The manufacturing process includes the complete set
+of activities to produce a product, comprising of production and quality control, from
+acquisition of all raw materials through processing and subsequent packaging and
+release for distribution of the finished product.
+
+
+Primary Assembler
+
+A primary assembler is a company which is engaged in a process of enclosing the
+product in a primary/intermediate container which is labelled or to be labelled before the
+product is sold or supplied in it.
+
+
+Secondary Assembler
+
+A secondary assembler is a company which is engaged only in a process of labelling the
+product container where the product is already enclosed in its primary container and/or
+packing the product which is already enclosed in its labelled primary container into a
+carton which is labelled or to be labelled, before the product is sold or supplied.
+
+
+Product Name
+
+A name given to a cosmetic product, which may be an invented name, together with a
+trade mark or the brand name.
+
+Examples of non-permissible product name for cosmetic product are listed in Annex I,
+part 2: Non-Permissible Product Name for Cosmetic Product.
+
+
+Product Owner
+
+A product owner is a company or entity who is the legal and/or registered owner of the
+product formulation and/or process with whom the CNH has a contract.
+
+
+Product Variant
+
+Product variants shall mean items in a range of cosmetic products which are produced
+by the same manufacturer, similar in composition and are intended for the same use but
+are available in different colours, fragrances or flavours. In this context:
+
+  i.   Colour shall mean, a substance used as an ingredient of a cosmetic product solely
+       to give tonality to the product;
+
+ ii.   Fragrance shall mean, a substance used as an ingredient of a cosmetic product
+       solely to impart odour to the product
+
+                                                                                        xi
+iii.   Flavour shall mean, a substance used as an ingredient of a cosmetic product
+       solely to impart taste to the product.
+
+
+
+
+                                                                                xii
+                                         Guidelines for Control of Cosmetic Products in Malaysia-Second Edition
+
+
+SECTION 1: GENERAL OVERVIEW
+
+1.1     Introduction
+
+Cosmetic products in Malaysia are regulated under the Control of Drugs and Cosmetic
+Regulations (CDCR) 1984 which were promulgated under the Sale of Drugs Act 1952.
+
+In agreement with the harmonisation of cosmetic regulation through the ASEAN
+Cosmetic Directive (ACD), cosmetic products in Malaysia are controlled through a
+notification procedure starting from 1stJanuary 2008. The CNH is required to COMPLY
+with all requirements stated in this guideline and to make a declaration upon notification
+to the Director of Pharmaceutical Services (known as DPS) through National
+Pharmaceutical Regulatory Agency (NPRA). Regulatory action will be taken in the event
+of false declaration and/or product found to be non-compliant to the stipulated regulations
+and guidelines.
+
+Under the CDCR 1984, Regulation 18A (1): No person shall manufacture, sell, supply,
+import, possesses any cosmetics unless the cosmetic is a notified cosmetic. It is an
+offence for anyone to conduct such activities without prior notification to the DPS.
+
+
+
+
+National Pharmaceutical Regulatory Agency (NPRA)
+                                                                                                             1
+                                         Guidelines for Control of Cosmetic Products in Malaysia-Second Edition
+
+
+SECTION 2: COSMETIC NOTIFICATION
+
+2.1     Who Shall Submit for Cosmetic Notification
+
+The CNH is responsible to notify the DPS prior to manufacture, sell, supply, import or
+possess any cosmetic product.
+
+
+2.2     Responsibility of the Cosmetic Notification Holder
+
+CNH is responsible to ensure that:
+
+        a) All transactions with NPRA shall be carried out by CNH’s appointed person(s).
+
+        b) Notified product meets all stipulated regulations and guidelines for cosmetic
+           product.
+
+        c) Product Information File (PIF), including updated information/documents on
+           product quality, safety and claimed benefit, is available and accessible upon
+           request.
+
+        d) If and when directed by NPRA for product recall, CNH must ensure all affected
+           cosmetic products are recalled from the market and discontinued from selling
+           or supplying the product. Product distribution record must be properly kept for
+           recall purpose.
+
+        e) Change(s) to notified product particulars is submitted accordingly.
+
+        f) Manufacturer (and assembler, where applicable) of the cosmetic product is
+           compliant to the current Good Manufacturing Practice (cGMP).
+
+        g) In the incidence of a serious adverse event, CNH shall report to NPRA
+           appropriately.
+
+        h) Particulars given for product notification are truthful where all data and
+           information of relevance to the notification has been provided.
+
+        i) Each consignment continues to meet all legal requirements and conforms to
+           standards and specifications declared for the product.
+
+        j) When a product fails to conform to any of the standards or specifications
+           declared for the product, CNH cannot place reliance on the acceptance of the
+           product notification in any legal proceedings.
+
+        k) Correspondence details such as company’s name, address, contact person,
+           telephone number, fax number and email shall be kept updated.
+
+
+National Pharmaceutical Regulatory Agency (NPRA)
+                                                                                                             2
+                                         Guidelines for Control of Cosmetic Products in Malaysia-Second Edition
+
+
+
+
+         l) Cessation of the authorisation of the CNH shall be informed to the NPRA in
+            writing.
+
+         m) Any decision to withdraw the notification of a product shall be informed to the
+            NPRA, with reasons.
+
+
+2.3      Submission of Notification
+
+All submission for notification shall be done online through NPRA Quest system via
+NPRA’s website at npra.gov.my
+
+2.3.1 Quest Membership Registration
+
+        A CNH must first register for a Quest membership. A detailed guide for Quest
+        membership registration is available on NPRA’s website. CNH may also refer to
+        Frequently Asked Questions (FAQ) section on Quest System at NPRA’s website for
+        more information.
+
+        For information on charges and validity of the membership, please refer to Annex I,
+        part 3: Charges for Quest Membership.
+
+        The CNH shall be responsible for any act of fraudulence or misuse of Quest
+        membership.
+
+        The NPRA reserves the rights to approve or reject any application for the Quest
+        membership.
+
+2.3.2     Notification of Cosmetic Products
+
+        For online submission of notification of cosmetic product, CNH must complete the
+        notification form in the Quest system for each cosmetic product and variant, if any,
+        and proceed with the payment to the NPRA.
+
+        A step by step guidance on online notification submission is described further in
+        Annex I, part 4: Manual for Quest3+ Online Submission for Cosmetic Notification
+
+        A general workflow of a notification process is shown in Figure 1.
+
+
+
+
+National Pharmaceutical Regulatory Agency (NPRA)
+                                                                                                             3
+                                         Guidelines for Control of Cosmetic Products in Malaysia-Second Edition
+
+
+
+
+                                         Quest Login by
+                                    Cosmetic Notification Holder
+                                              (CNH)
+                                       (Registered Quest User)
+
+
+
+
+                                     Complete Notification Form
+                                          with payment
+
+
+
+
+                                        Compliance screening
+
+
+
+
+                   Comply                                                      Not comply
+
+
+
+
+     Notification Note is generated
+         (to be printed by the CNH)                                    Rejection of Notification
+
+
+
+
+       Manufacture/Import/Market
+          Cosmetic Product
+
+
+
+
+Figure 1: Workflow of a notification process
+
+
+
+
+National Pharmaceutical Regulatory Agency (NPRA)
+                                                                                                             4
+                                         Guidelines for Control of Cosmetic Products in Malaysia-Second Edition
+
+
+2.4     Language
+
+Any document and material submitted to NPRA must be in Bahasa Malaysia or English.
+Translated versions from other languages must be endorsed or authorised.
+
+
+2.5     Privacy Markings
+
+All Information submitted to the NPRA is deemed confidential, even though it is not
+marked as such by the CNH.
+
+
+2.6     Fee
+
+The processing fee for notification of a cosmetic product is RM50.00 for each product
+(and variant, if any).
+
+The processing fee for renewal of notification of a cosmetic product is also RM50.00 for
+each product (and variant, if any).
+
+Any payment made shall NOT BE REFUNDABLE once the application has been
+submitted and payment is confirmed. Please refer to Annex I, part 4: Manual for Quest3+
+Online Submission for Cosmetic Notification for acceptable modes of payment.
+
+
+2.7      Notification Validity Period
+
+The notification of a cosmetic product shall be valid for 2 years. The renewal should be
+done no later than 1 month prior to notification expiry.
+
+
+2.8     Manufacture or Importation of Product
+
+CNH may manufacture or import the cosmetic product upon receipt of authorisation given
+in the Notification Note from the DPS. CNH may generate the Notification Note
+immediately from the QUEST system after confirmation of payment by NPRA subject to
+meeting all notification requirements.
+
+
+2.9     Changes in Notification Particulars
+
+Any subsequent changes to the particulars of the notified cosmetic product must be
+submitted to the NPRA. There are two types of changes:
+
+Type 1 change:
+   - Changes that only require amendments to the current notification. No charge is
+      imposed and the notification number remains the same.
+
+
+National Pharmaceutical Regulatory Agency (NPRA)
+                                                                                                             5
+                                         Guidelines for Control of Cosmetic Products in Malaysia-Second Edition
+
+
+
+
+Type 2 change:
+   - Changes that require a new notification and is subjected to RM 50.00 processing
+      fee. A new notification number will be issued to the product.
+
+Please refer to Annex I, part 5 for List of Types of Changes for Notified Product
+
+
+2.10    Notification Number
+
+Notification number is unique for each product and its variants (if any) in the format as
+below:
+
+        NOTyymmxxxxxK (y: year, m: month, x: serial number)
+
+CNH is responsible to ensure the maintenance of valid notification number for products
+in the market. The existing notification number will be retained for a product notification
+that has been renewed prior to expiry date. A new notification number will be generated
+for a product that is not renewed within the given timeline and for a product that has
+undergone changes requiring new notification.
+
+
+2.11 Certificate of Free Sale
+
+A certificate of free sale (CFS) serves as a document which states that the product can
+be freely sold in Malaysia. The certificate is not a mandatory requirement. As such, it will
+only be issued by the NPRA upon request by the CNH who wishes to export their notified
+cosmetic product to another country that requires the certificate.
+
+The application for CFS can only be made through online submission by the CNH via
+Quest system and a fee of RM50.00 will be charged for each copy of the certificate. CFS
+for a product and variant can be combined in one certificate provided that the latter is
+notified as a variant of the main product.
+
+
+
+
+National Pharmaceutical Regulatory Agency (NPRA)
+                                                                                                             6
+                                         Guidelines for Control of Cosmetic Products in Malaysia-Second Edition
+
+
+SECTION 3: REGULATORY REQUIREMENTS FOR COSMETICS
+PRODUCT
+
+CNH must ensure compliance to the following requirements prior to notification
+submission.
+
+
+3.1 Product Particulars
+
+CNH is required to submit the following information during the notification process:
+
+    3.1.1 Particulars of product including product name, product type, intended use and
+          product presentation
+
+    3.1.2 Name and address of the manufacturer(s) and assembler(s), if any
+
+    3.1.3 Name, address and valid contact number (and e-mail address) of the CNH
+
+    3.1.4 Particulars of person representing the company of CNH including valid contact
+          number
+
+    3.1.5 Name and address of the importer(s), if any
+
+    3.1.6 Full product ingredient list (the content i.e. percentage (%) of restricted
+          ingredients must be declared)
+
+    3.1.7 Letter of Authorisation/Letter of Declaration/Letter of Contract Manufacturing,
+          where applicable
+
+    3.1.8 Label(s) of the product
+
+
+3.2 Safety Requirements
+
+A cosmetic product placed on the market must not cause damage to human health when
+applied under normal or reasonably foreseeable conditions of use. The CNH shall ensure
+that safety assessment has been conducted for each product. Please refer to Annex I,
+part 6 for Guideline for Safety Assessment of Cosmetic Products
+
+
+3.3 Cosmetic Ingredients
+
+i) Marketing of cosmetic product(s) containing the following ingredients is prohibited:
+
+  3.3.1 Substances listed in Poisons List (unless exempted); Poison Act 1952.
+
+
+National Pharmaceutical Regulatory Agency (NPRA)
+                                                                                                             7
+                                         Guidelines for Control of Cosmetic Products in Malaysia-Second Edition
+
+
+
+
+  3.3.2 Substances listed in Annex II.
+
+  3.3.3 Substances listed in Annex III which are used beyond the specified limits and
+        outside the conditions laid down.
+
+  3.3.4 Colouring agents other than those listed in Annex IV with the exception of
+        cosmetic products containing colouring agents intended solely for hair colouring.
+
+  3.3.5 Colouring agents listed in Annex IV which are used outside the conditions laid
+        down, with the exception of cosmetic products containing colouring agents
+        intended solely to for hair colouring.
+
+  3.3.6 Preservatives other than those listed in Annex VI.
+
+  3.3.7 Preservatives listed in Annex VI which are used beyond the specified limits and
+        outside the stated conditions laid down therein, unless other concentrations are
+        used for specific purposes apparent from the presentation of the product.
+
+  3.3.8 UV filters other than those listed in Annex VII.
+
+  3.3.9 UV filters listed in Annex VII which are used beyond the limits and stated
+        outside the conditions laid down therein.
+
+ii) The presence of traces of substances listed in Annex II shall be allowed provided that
+    such presence is technically unavoidable in good manufacturing practice and that it
+    conforms to safety requirements.
+
+
+
+3.4 Labelling Requirements
+
+CNH shall ensure that the label of cosmetic product complies with the labelling
+requirements as defined in Annex I, part 7: Cosmetic Labelling Requirements.
+
+The information on the label shall be in Bahasa Malaysia and/or English.
+
+Halal logo may be used voluntarily on a notified cosmetic product, for both the local and
+export markets, provided that the product has been certified and approved Halal by the
+Malaysia Department of Islamic Development (Jabatan Kemajuan Islam Malaysia,
+JAKIM) or any Islamic Body recognised by JAKIM.
+
+
+
+
+National Pharmaceutical Regulatory Agency (NPRA)
+                                                                                                             8
+                                         Guidelines for Control of Cosmetic Products in Malaysia-Second Edition
+
+
+3.5 Cosmetic Claims
+
+As a general rule, claimed benefits of a cosmetic product shall be justified by substantial
+evidence and/or by the cosmetic formulation or preparation itself. The CNH shall provide
+scientifically accepted protocols or study designs in generating the technical or clinical
+data with justification.
+
+A cosmetic product should not use a name and claims that are regarded as medicinal in
+nature or beyond the cosmetic scope.
+
+A guidance document on cosmetic claim including some examples of non-permissible
+claims is available in Annex I, part 8: Guideline for Cosmetic Claims.
+
+For specific guidance regarding sunscreen products/claims, please refer to Annex 1 part
+9 (i) Guideline for Sunscreen Product.
+
+For specific guidance regarding hand sanitizers, please refer to Annex 1 part 9 (ii)
+Guideline for Hand Sanitizer Product.
+
+For specific guidance regarding antibacterial hygiene wash products/claims, please refer
+to Annex 1 part 9 (iii) Guideline for Antibacterial Hygiene Wash Products.
+
+It is prudent for CNH to seek legal or expert advice to ensure that the proposed claims
+do not breach existing Acts or Regulations.
+
+
+3.6 Cosmetic Advertisement
+
+CNH shall ensure that the advertisement of cosmetic product complies with the Guideline
+for Cosmetic Advertisement. For further details, please refer to Annex I, part 10:
+Guideline for Cosmetic Advertisement.
+
+
+3.7 Good Manufacturing Practice (GMP)
+
+All cosmetic products must be manufactured in accordance to the Guidelines for
+Cosmetic Good Manufacturing Practice or its equivalent. For details, please refer to
+Annex I, part 11: Guideline for Cosmetic Good Manufacturing Practice (GMP) and Annex
+I, part 12: List of Equivalent Cosmetic GMP Guidelines.
+
+ A new local manufacturer/ new production line shall be inspected by NPRA prior to
+cosmetics notification. The manufacturer needs to ensure that the layout of the
+manufacturing facility is designed and planned according to GMP principles. Please refer
+to the Frequently Asked Questions (FAQs) related to GMP inspection, which is available
+in NPRA website.
+
+
+
+
+National Pharmaceutical Regulatory Agency (NPRA)
+                                                                                                             9
+                                         Guidelines for Control of Cosmetic Products in Malaysia-Second Edition
+
+
+Following from that, all local manufacturers are subjected to periodical regulatory GMP
+inspection to ensure continuous compliance.
+
+For foreign manufacturers, documentation to prove GMP compliance is to be made
+available upon request by the NPRA. Document/declaration of compliance to cosmetic
+GMP (or equivalent) must be issued/endorsed by authorised body/agency at country of
+manufacturer.
+
+
+3.8 Product Information File (PIF)
+
+CNH shall be responsible for providing all information, certificates/documents and data
+requested by the NPRA. The PIF can be either in the form of a “dossier” (i.e. an extensive
+collection of paper records stored in a specific location) or in electronic format (i.e. soft
+copy). It should be readily available and accessible upon request by the NPRA.
+
+The PIF shall be in Bahasa Malaysia or English.
+
+The PIF shall be kept updated for all changes made to the notified product such as new
+ingredients, manufacturers, raw material suppliers and production process. Date of
+document revision, where appropriate shall be stated for verification.
+
+Please refer to Annex I, part 13 - Guideline for Product Information File (PIF) for
+information required in a PIF and the recommended format.
+
+
+
+
+National Pharmaceutical Regulatory Agency (NPRA)
+                                                                                                            10
+                                         Guidelines for Control of Cosmetic Products in Malaysia-Second Edition
+
+
+SECTION 4 : POST MARKET SURVEILLANCE
+
+4.1 Post Market Surveillance (PMS) Activities
+
+The NPRA shall monitor compliance of cosmetic products through the Post Market
+Surveillance (PMS) programme. The PMS activities for cosmetics consist of:
+
+    4.1.1 Screening of product formulation and information to ensure that cosmetics do
+          not contain any prohibited or harmful substances and all restricted ingredients
+          are used within the allowable limits and conditions of use. Screening criteria
+          also include the product name and its claimed benefits
+
+    4.1.2 Sample collection and testing
+
+    4.1.3 Monitoring of label compliance
+
+    4.1.4 Audit of premises for compliance to the Cosmetic GMP
+
+    4.1.5 Handling of product complaints
+
+    4.1.6 Monitoring of advertisements
+
+    4.1.7 Monitoring of adverse reactions
+
+    4.1.8 Audit of the PIF
+
+    4.1.9 Risk communication
+
+    4.1.10 Information sharing through ASEAN Post Marketing Alert System (PMAS)
+
+
+4.2 Product Sampling Requirements
+
+For the purpose of checking the quality and/or label compliance, the NPRA may obtain a
+cosmetic sample from the market or request the sample from the CNH. The CNH shall
+ensure that the requested sample for laboratory testing fulfil the following criteria:
+
+    4.2.1 All samples must be from the same production batch
+
+    4.2.2 The sample should be presented in its originally marketed container/packaging
+          and unopened
+
+    4.2.3 The sample label and package insert (if any) must not be taken out from the
+          container/packaging
+
+
+
+
+National Pharmaceutical Regulatory Agency (NPRA)
+                                                                                                            11
+                                         Guidelines for Control of Cosmetic Products in Malaysia-Second Edition
+
+
+    4.2.4 The expiry date should not be less than one year, calculated from the sample
+          delivery date to the NPRA
+
+    4.2.5 Sample of a cosmetic product should at least consist of 4 units/containers, with
+          a minimum total content of 40g/40ml (weight/volume of the product content
+          without the container/packaging material)
+
+Information on the limit used for heavy metal and microbial limit test are described in
+Annex I, part 14: Heavy Metal and Microbiological Test Limit for Cosmetic Product.
+
+
+4.3 Product Complaint
+
+The CNH shall investigate all complaints related to quality and safety problems pertaining
+to their notified cosmetics of which the CNH is aware and responsible to determine
+appropriate corrective and preventive action.
+
+Please also refer to Guidelines on Good Distribution Practice, which is available at
+NPRA’s website.
+
+
+4.4 Reporting Of Adverse Event
+
+CNH shall report any serious adverse events or high incidences of adverse events
+occurred, regardless of the source of the report (e.g. consumer and healthcare
+professional). Please refer to Annex I, part 15: Guide Manual for Adverse Event
+Reporting for more information.
+
+
+4.5 Notification of Product Quality Issue (PMAS)
+
+
+NPRA may notify other regulatory authorities or stakeholders regarding the recall and/or
+other regulatory action of a defective cosmetic product in order to protect public health.
+
+
+
+
+National Pharmaceutical Regulatory Agency (NPRA)
+                                                                                                            12
+                                         Guidelines for Control of Cosmetic Products in Malaysia-Second Edition
+
+
+SECTION 5: REGULATORY ACTION
+
+5.1 Rejection of Notification Submission
+
+All cosmetic notification submissions shall be subjected to screening by NPRA. Cosmetic
+products found to contain substances that are prohibited or used beyond the limit and
+conditions allowed, as well as, products claimed or purported to be used beyond the
+cosmetic scope will be denied for notification.
+
+
+5.2 Cancellation of Notification Note
+
+The DPS may, at any time cancel the notification note of any cosmetic product if he has
+reason to believe that the product failed to comply with the stipulated regulations and
+guidelines. The DPS may also amend any conditions to which the notification note is
+subject.
+
+The cancellation takes effect when the DPS gives a written notice (known as directive)
+of cancellation. The CNH must follow all instructions given in the directive issued by the
+DPS including but not limited to recall and disposal of the affected product. A formatted
+report must be prepared and submitted within the specified time mentioned in the
+directive.
+
+
+5.3 Product Recall
+
+
+The decision for recall of a product shall be made when there is potential risk to the user
+of the products. Recalls may be done voluntarily by the CNH or as directed by the DPS.
+The CNH is responsible for conducting recalls of defective or unsafe products. No recall
+should take place without first consulting/informing the NPRA.
+Please refer to Guidelines on Good Distribution Practice at NPRA’s website and Annex
+I, part 16: Guidance for Industry – Reporting and Recall of Cosmetic Product for more
+information.
+
+
+
+5.4 Punitive Action/Penalty
+
+Any person who contravenes any of the provisions of the guidelines and regulations
+commits an offence and shall be liable on conviction as stipulated under Section 30 (1)
+of the CDCR 1984.
+
+
+
+
+National Pharmaceutical Regulatory Agency (NPRA)
+                                                                                                            13
+                                         Guidelines for Control of Cosmetic Products in Malaysia-Second Edition
+
+
+SECTION 6: NOTIFICATION WITHDRAWAL
+
+CNH shall inform the NPRA of their decision to withdraw the notification of any cosmetic
+product before the end of its validity stating the reason for the decision. The onus is on
+the CNH to inform the manufacturer/contract manufacturer.
+
+The notification of a cosmetic product, once withdrawn, shall not be reinstated and
+notification note of the withdrawn product shall be deemed invalid. The product may be
+re-notified through a new notification submission.
+
+
+
+
+National Pharmaceutical Regulatory Agency (NPRA)
+                                                                                                            14
+                                         Guidelines for Control of Cosmetic Products in Malaysia-Second Edition
+
+
+7. NOTIFICATION EXEMPTION
+
+A locally registered company may manufacture or import cosmetic product(s), which have
+not been notified, for the following purposes subject to written approval by the DPS:
+
+
+7.1 Market Sampling
+
+A one-time entry of cosmetic product(s) solely for the purpose of test marketing or
+aesthetic studies to ascertain whether the products are well perceived by a potential
+group of consumers or manufacturers.
+
+These products SHALL NOT BE USED FOR COMMERCIAL SALE.
+
+
+7.2 In–House Evaluation
+
+In-house evaluation is a process where product samples from either the Research and
+Development (R&D) or production line are evaluated by the company for the purpose of
+product selection, in-house evaluation or demonstration. These products may also be
+actual products that are readily available in the country of origin.
+
+These products SHALL NOT BE USED FOR COMMERCIAL SALE.
+
+
+7.3 Products Manufactured for Export Only (FEO) or Imported for Re-Exporting
+
+Cosmetic products that are manufactured locally solely for export only (FEO) or imported
+to be assembled, enclosed, packed or labelled solely for re-exporting are exempted from
+cosmetic product notification requirements.
+
+The company shall maintain proper records and documents. These records shall be
+made readily available for inspection by NPRA when required.
+
+Recipient country-specific requirements for manufacturers or importers of cosmetic
+products meant solely for export or re-export must be complied with.
+
+
+7.4 In Transit
+
+Notification is not required for cosmetic products taken or sent from any country and
+brought into the Federation by land, air or water, whether or not landed or transhipped in
+the Federation, for the sole purpose of being carried to another country either by the
+same or another conveyance.
+
+
+
+
+National Pharmaceutical Regulatory Agency (NPRA)
+                                                                                                            15
+                                         Guidelines for Control of Cosmetic Products in Malaysia-Second Edition
+
+
+7.5 Products to Be Sold or Supplied in the Free-Trade Zone or International
+    Carriage Entering or Leaving Malaysia
+
+Cosmetic products that are imported for sale/supply in the free-trade zone or international
+carriage by ships, aircraft or other forms of international public transport entering or
+leaving Malaysia are exempted from cosmetic product notification requirements.
+
+The company shall maintain proper records and documents. These records shall be
+made readily available for inspection by NPRA when required.
+
+Application process
+
+    (i)     For 7.1 and 7.2: Online QUEST submission
+
+            Market sampling application
+            In-house evaluation application
+
+
+    (ii)    For 7.3, 7.4, 7.5: Manual hardcopy and e-mail submission
+
+            Required documents:
+
+                1. Official cover letter stating purpose of notification exemption
+                   application
+
+                2. Complete product list
+
+                    Required information: product code, product name, pack size (volume
+                    or weight), quantity, product category
+
+                3. Ingredients list (for FEO products only)
+
+                    Required information: ingredients (INCI name), ingredient function,
+                    CAS number, percentage
+
+
+
+
+National Pharmaceutical Regulatory Agency (NPRA)
+                                                                                                            16
+
