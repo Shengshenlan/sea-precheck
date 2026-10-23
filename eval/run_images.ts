@@ -38,7 +38,8 @@ async function main() {
       marks_gt: [...gm], marks_pred: [...pm], marks_tp: [...gm].filter((m) => pm.has(m)).length, marks_fp: [...pm].filter((m) => !gm.has(m)).length,
       brands_ok: g.brands.every((br: string) => (f.brands || []).some((p: string) => p.toLowerCase().includes(br.toLowerCase()))) && (g.brands.length > 0 || true),
       brand_hit_image: (rep?.brand?.hits || []).some((h: any) => h.source === "image"), brands_gt: g.brands, brands_pred: f.brands || [],
-      wireless_ok: f.wireless === g.wireless, wireless_pred: f.wireless, battery_ok: f.battery === g.battery, battery_pred: f.battery,
+      wireless_ok: f.wireless === g.wireless, wireless_lenient: (f.wireless === true) === g.wireless, wireless_pred: f.wireless,
+      battery_ok: f.battery === g.battery, battery_lenient: (f.battery === true) === g.battery, battery_pred: f.battery,
       langs_exact: eq(lc(g.label_langs), lc(f.label_langs)), langs_gt: g.label_langs, langs_pred: f.label_langs,
       category_ok: b.category === g.category, category_pred: b.category,
       certs_gt: [...gtCerts], certs_pred: [...pred], certs_tp: [...gtCerts].filter((c) => pred.has(c)).length, certs_fp: [...pred].filter((c) => !gtCerts.has(c)).length,
@@ -54,7 +55,8 @@ async function main() {
   const summary = {
     label, n, ok: ok.length,
     marks_recall: +(mTP / Math.max(1, mGT)).toFixed(3), marks_precision: +(mTP / Math.max(1, mTP + mFP)).toFixed(3),
-    brand_detect_ok: cnt("brands_ok"), wireless_ok: cnt("wireless_ok"), battery_ok: cnt("battery_ok"), label_langs_exact: cnt("langs_exact"),
+    brand_detect_ok: cnt("brands_ok"), wireless_ok: cnt("wireless_ok"), wireless_lenient_ok: cnt("wireless_lenient"), battery_ok: cnt("battery_ok"), battery_lenient_ok: cnt("battery_lenient"), // lenient: null ("unsure") counts as "not claimed"
+     label_langs_exact: cnt("langs_exact"),
     category_ok: cnt("category_ok"), cert_recall: +(cTP / Math.max(1, cGT)).toFixed(3), cert_precision: +(cTP / Math.max(1, cTP + cFP)).toFixed(3),
     vacuum_cordless_not_wireless: vac ? !vac.wireless_feature_pred : null,
     vision_ms_p50: ok.map((r) => r.vision_ms).sort((a, b) => a - b)[Math.floor(ok.length / 2)] ?? null,

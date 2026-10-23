@@ -1,0 +1,334 @@
+{
+ "summary": {
+  "label": "glm-4.6v",
+  "n": 6,
+  "ok": 6,
+  "marks_recall": 1,
+  "marks_precision": 1,
+  "brand_detect_ok": 6,
+  "wireless_ok": 3,
+  "battery_ok": 3,
+  "label_langs_exact": 5,
+  "category_ok": 6,
+  "cert_recall": 1,
+  "cert_precision": 0.875,
+  "vacuum_cordless_not_wireless": true,
+  "vision_ms_p50": 7456,
+  "wireless_lenient_ok": 6,
+  "battery_lenient_ok": 6
+ },
+ "rows": [
+  {
+   "id": "img-th-kettle",
+   "ok": true,
+   "failure": null,
+   "image_error": null,
+   "latency_ms": 22717,
+   "vision_ms": 7456,
+   "marks_gt": [
+    "TISI"
+   ],
+   "marks_pred": [
+    "TISI"
+   ],
+   "marks_tp": 1,
+   "marks_fp": 0,
+   "brands_ok": true,
+   "brand_hit_image": false,
+   "brands_gt": [],
+   "brands_pred": [
+    "SONIQ"
+   ],
+   "wireless_ok": true,
+   "wireless_pred": true,
+   "battery_ok": false,
+   "battery_pred": null,
+   "langs_exact": false,
+   "langs_gt": [
+    "th",
+    "en",
+    "zh"
+   ],
+   "langs_pred": [
+    "en",
+    "th"
+   ],
+   "category_ok": true,
+   "category_pred": "appliance",
+   "certs_gt": [
+    "TH-NBTC-RADIO"
+   ],
+   "certs_pred": [
+    "TH-NBTC-RADIO"
+   ],
+   "certs_tp": 1,
+   "certs_fp": 0,
+   "features_pred": [
+    "wireless"
+   ],
+   "wireless_feature_pred": true,
+   "guard_removed": [],
+   "wireless_lenient": true,
+   "battery_lenient": true
+  },
+  {
+   "id": "img-my-powerbank",
+   "ok": true,
+   "failure": null,
+   "image_error": null,
+   "latency_ms": 29966,
+   "vision_ms": 9002,
+   "marks_gt": [
+    "SIRIM"
+   ],
+   "marks_pred": [
+    "SIRIM"
+   ],
+   "marks_tp": 1,
+   "marks_fp": 0,
+   "brands_ok": true,
+   "brand_hit_image": false,
+   "brands_gt": [],
+   "brands_pred": [
+    "VOLTA"
+   ],
+   "wireless_ok": true,
+   "wireless_pred": true,
+   "battery_ok": true,
+   "battery_pred": true,
+   "langs_exact": true,
+   "langs_gt": [
+    "en",
+    "zh"
+   ],
+   "langs_pred": [
+    "en",
+    "zh"
+   ],
+   "category_ok": true,
+   "category_pred": "power",
+   "certs_gt": [
+    "MY-MCMC-COMM"
+   ],
+   "certs_pred": [
+    "MY-ST-ADAPTER",
+    "MY-MCMC-COMM"
+   ],
+   "certs_tp": 1,
+   "certs_fp": 1,
+   "features_pred": [
+    "powerbank",
+    "battery",
+    "wireless",
+    "charger"
+   ],
+   "wireless_feature_pred": true,
+   "guard_removed": [],
+   "wireless_lenient": true,
+   "battery_lenient": true
+  },
+  {
+   "id": "img-ph-rctoy",
+   "ok": true,
+   "failure": null,
+   "image_error": null,
+   "latency_ms": 26770,
+   "vision_ms": 8445,
+   "marks_gt": [
+    "ICC",
+    "CE"
+   ],
+   "marks_pred": [
+    "ICC",
+    "CE"
+   ],
+   "marks_tp": 2,
+   "marks_fp": 0,
+   "brands_ok": true,
+   "brand_hit_image": false,
+   "brands_gt": [],
+   "brands_pred": [
+    "TURBO RC Racer"
+   ],
+   "wireless_ok": true,
+   "wireless_pred": true,
+   "battery_ok": true,
+   "battery_pred": true,
+   "langs_exact": true,
+   "langs_gt": [
+    "en"
+   ],
+   "langs_pred": [
+    "en"
+   ],
+   "category_ok": true,
+   "category_pred": "toy",
+   "certs_gt": [
+    "PH-FDA-TOY",
+    "PH-NTC-WIRELESS"
+   ],
+   "certs_pred": [
+    "PH-FDA-TOY",
+    "PH-NTC-WIRELESS"
+   ],
+   "certs_tp": 2,
+   "certs_fp": 0,
+   "features_pred": [
+    "kids",
+    "wireless",
+    "battery"
+   ],
+   "wireless_feature_pred": true,
+   "guard_removed": [],
+   "wireless_lenient": true,
+   "battery_lenient": true
+  },
+  {
+   "id": "img-th-hairdryer",
+   "ok": true,
+   "failure": null,
+   "image_error": null,
+   "latency_ms": 18260,
+   "vision_ms": 5018,
+   "marks_gt": [
+    "CE"
+   ],
+   "marks_pred": [
+    "CE"
+   ],
+   "marks_tp": 1,
+   "marks_fp": 0,
+   "brands_ok": true,
+   "brand_hit_image": true,
+   "brands_gt": [
+    "Dyson"
+   ],
+   "brands_pred": [
+    "Dyson"
+   ],
+   "wireless_ok": false,
+   "wireless_pred": null,
+   "battery_ok": false,
+   "battery_pred": null,
+   "langs_exact": true,
+   "langs_gt": [
+    "en",
+    "zh"
+   ],
+   "langs_pred": [
+    "en",
+    "zh"
+   ],
+   "category_ok": true,
+   "category_pred": "appliance",
+   "certs_gt": [
+    "TH-TISI-HAIR_DRYER"
+   ],
+   "certs_pred": [
+    "TH-TISI-HAIR_DRYER"
+   ],
+   "certs_tp": 1,
+   "certs_fp": 0,
+   "features_pred": [],
+   "wireless_feature_pred": false,
+   "guard_removed": [],
+   "wireless_lenient": true,
+   "battery_lenient": true
+  },
+  {
+   "id": "img-ph-cream",
+   "ok": true,
+   "failure": null,
+   "image_error": null,
+   "latency_ms": 25158,
+   "vision_ms": 2882,
+   "marks_gt": [],
+   "marks_pred": [],
+   "marks_tp": 0,
+   "marks_fp": 0,
+   "brands_ok": true,
+   "brand_hit_image": false,
+   "brands_gt": [],
+   "brands_pred": [
+    "烟酰胺美白霜"
+   ],
+   "wireless_ok": false,
+   "wireless_pred": null,
+   "battery_ok": false,
+   "battery_pred": null,
+   "langs_exact": true,
+   "langs_gt": [
+    "zh"
+   ],
+   "langs_pred": [
+    "zh"
+   ],
+   "category_ok": true,
+   "category_pred": "cosmetic",
+   "certs_gt": [
+    "PH-FDA-COSM"
+   ],
+   "certs_pred": [
+    "PH-FDA-COSM"
+   ],
+   "certs_tp": 1,
+   "certs_fp": 0,
+   "features_pred": [],
+   "wireless_feature_pred": false,
+   "guard_removed": [],
+   "wireless_lenient": true,
+   "battery_lenient": true
+  },
+  {
+   "id": "img-my-vacuum",
+   "ok": true,
+   "failure": null,
+   "image_error": null,
+   "latency_ms": 21345,
+   "vision_ms": 5143,
+   "marks_gt": [],
+   "marks_pred": [],
+   "marks_tp": 0,
+   "marks_fp": 0,
+   "brands_ok": true,
+   "brand_hit_image": false,
+   "brands_gt": [],
+   "brands_pred": [
+    "CLEANO"
+   ],
+   "wireless_ok": false,
+   "wireless_pred": null,
+   "battery_ok": true,
+   "battery_pred": true,
+   "langs_exact": true,
+   "langs_gt": [
+    "en",
+    "zh",
+    "ms"
+   ],
+   "langs_pred": [
+    "zh",
+    "en",
+    "ms"
+   ],
+   "category_ok": true,
+   "category_pred": "appliance",
+   "certs_gt": [
+    "MY-ST-VACUUM"
+   ],
+   "certs_pred": [
+    "MY-ST-VACUUM"
+   ],
+   "certs_tp": 1,
+   "certs_fp": 0,
+   "features_pred": [
+    "battery",
+    "charger"
+   ],
+   "wireless_feature_pred": false,
+   "guard_removed": [],
+   "wireless_lenient": true,
+   "battery_lenient": true
+  }
+ ]
+}
