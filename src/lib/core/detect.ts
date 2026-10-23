@@ -38,7 +38,7 @@ const CAT_KEYWORDS: Record<Category, string[]> = {
 };
 
 export const FEATURE_KEYWORDS: Record<Feature, string[]> = {
-  wireless: ["蓝牙", "bluetooth", "wifi", "wi-fi", "wlan", "无线网", "2.4g", "5.8g", "app控制", "app 控制", "智能联网", "zigbee", "遥控车", "rc car", "无线遥控", "nfc"],
+  wireless: ["蓝牙", "bluetooth", "wifi", "wi-fi", "wlan", "无线网", "2.4g", "5.8g", "app控制", "app 控制", "智能联网", "zigbee", "遥控车", "rc car", "无线遥控", "nfc", "无线充", "磁吸充", "magsafe", "qi无线", "wireless charg"],
   battery: ["电池", "锂电", "锂离子", "充电式", "可充电", "充电版", "充电款", "usb充电", "type-c充电", "充电宝", "移动电源", "mah", "rechargeable", "battery", "lithium", "li-ion", "li-po", "18650"],
   charger: ["充电器", "充电头", "适配器", "快充头", "氮化镓", "gan", "charger", "adapter", "adaptor", "pd快充", "车充"],
   // NB: "无线充" deliberately NOT a charger keyword: a power bank with wireless output is not a mains adapter (TIS 62368 / ST adapter rules)
