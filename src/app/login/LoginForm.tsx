@@ -47,11 +47,11 @@ function useSubmit() {
   return { busy, err, go };
 }
 
-function PwInput({ id, value, onChange, auto }: { id: string; value: string; onChange: (v: string) => void; auto: string }) {
+function PwInput({ id, value, onChange, auto, placeholder = "请输入密码" }: { id: string; value: string; onChange: (v: string) => void; auto: string; placeholder?: string }) {
   const [show, setShow] = useState(false);
   return (
     <div className="relative">
-      <Input id={id} type={show ? "text" : "password"} autoComplete={auto} required value={value} onChange={(e) => onChange(e.target.value)} className="pr-10" maxLength={128} />
+      <Input id={id} type={show ? "text" : "password"} autoComplete={auto} required value={value} onChange={(e) => onChange(e.target.value)} className="pr-10" maxLength={128} placeholder={placeholder} />
       <button type="button" onClick={() => setShow(!show)} aria-label={show ? "隐藏密码" : "显示密码"} className="absolute inset-y-0 right-0 grid w-10 place-items-center text-muted-foreground hover:text-foreground">{show ? <EyeOff className="size-4" /> : <Eye className="size-4" />}</button>
     </div>
   );
@@ -64,7 +64,7 @@ function Login() {
   return (
     <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); go(() => api.login(email.trim(), pw)); }}>
       <div><h2 className="text-xl font-semibold">欢迎回来</h2><p className="mt-1 text-sm text-muted-foreground">登录以使用 AI 分析、图片识别和历史记录</p></div>
-      <div><Label htmlFor="le">邮箱</Label><Input id="le" type="email" autoComplete="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" /></div>
+      <div><Label htmlFor="le">邮箱</Label><Input id="le" type="email" autoComplete="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="请输入邮箱" /></div>
       <div><Label htmlFor="lp">密码</Label><PwInput id="lp" value={pw} onChange={setPw} auto="current-password" /></div>
       <ErrBox err={err} />
       <Button type="submit" variant="gradient" className="w-full" size="lg" disabled={busy}>{busy && <Loader2 className="animate-spin" />}登录</Button>
@@ -92,12 +92,12 @@ function Register() {
       if (!ok) loadChal();
     }}>
       <div><h2 className="text-xl font-semibold">创建账号</h2><p className="mt-1 text-sm text-muted-foreground">无需邮箱验证，注册即用</p></div>
-      <div><Label htmlFor="re">邮箱</Label><Input id="re" type="email" autoComplete="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" /></div>
+      <div><Label htmlFor="re">邮箱</Label><Input id="re" type="email" autoComplete="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="请输入邮箱" /></div>
       <div>
-        <Label htmlFor="rp">密码</Label><PwInput id="rp" value={pw} onChange={setPw} auto="new-password" />
+        <Label htmlFor="rp">密码</Label><PwInput id="rp" value={pw} onChange={setPw} auto="new-password" placeholder="至少 8 位" />
         <ul className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs">{rules.map((r) => <li key={r.t} className={cn("flex items-center gap-1 transition-colors", r.ok ? "text-emerald-600 dark:text-emerald-400" : "text-muted-foreground")}>{r.ok ? <Check className="size-3" /> : <X className="size-3" />}{r.t}</li>)}</ul>
       </div>
-      <div><Label htmlFor="rp2">确认密码</Label><PwInput id="rp2" value={pw2} onChange={setPw2} auto="new-password" />{pw2 && !match && <p className="mt-1 text-xs text-red-600">两次输入不一致</p>}</div>
+      <div><Label htmlFor="rp2">确认密码</Label><PwInput id="rp2" value={pw2} onChange={setPw2} auto="new-password" placeholder="请再次输入密码" />{pw2 && !match && <p className="mt-1 text-xs text-red-600">两次输入不一致</p>}</div>
       {/* honeypot: hidden from humans, bots fill it */}
       <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden"><label>Website<input tabIndex={-1} autoComplete="off" value={hp} onChange={(e) => setHp(e.target.value)} name="website" /></label></div>
       <div>

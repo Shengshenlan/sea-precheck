@@ -3,6 +3,7 @@ import "./globals.css";
 import { Providers } from "./providers";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
+import { Toaster } from "@/components/ui/toast";
 import { THEME_SCRIPT } from "@/components/site/ThemeToggle";
 
 export const metadata: Metadata = {
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Navbar />
           <div className="flex-1">{children}</div>
           <Footer />
+          <Toaster />
         </Providers>
       </body>
     </html>
