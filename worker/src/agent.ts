@@ -1,0 +1,83 @@
+import type { CheckInput } from "../../src/lib/core/types";
+import { makeTools } from "./tools";
+import { SYSTEM_PROMPT, userPrompt } from "./prompt";
+
+export interface LlmConfig { baseUrl: string; model: string; apiKey: string; timeoutMs: number; signal: AbortSignal }
+export interface AgentRun { text: string; toolCalls: string[]; impl: "pi" | "fetch" }
+export class UpstreamError extends Error { constructor(public code: "quota" | "busy" | "auth" | "model" | "timeout" | "error", msg: string) { super(msg); } }
+
+/** GLM-5.x cannot disable thinking (error 1210) -> enable with low effort; others: disable to save latency. */
+const needsThinking = (model: string) => /^glm-5/i.test(model);
+
+export function classifyUpstream(msg: string): UpstreamError {
+  const m = msg.toLowerCase();
+  if (/1113|insufficient|欠费|余额|quota|1308|1310/.test(m)) return new UpstreamError("quota", "upstream quota exhausted");
+  if (/1302|1303|1305|429|rate|并发|too many/.test(m)) return new UpstreamError("busy", "upstream busy");
+  if (/401|1000|1001|1002|unauthor|api key|令牌/.test(m)) return new UpstreamError("auth", "upstream auth failed");
+  if (/1211|model.*not exist|模型不存在/.test(m)) return new UpstreamError("model", "model not found");
+  if (/abort|timeout|timed out/.test(m)) return new UpstreamError("timeout", "upstream timeout");
+  return new UpstreamError("error", "upstream error");
+}
+
+// ---------------- pi-mono implementation ----------------
+export async function runPi(input: CheckInput, cfg: LlmConfig): Promise<AgentRun> {
+  const { Agent } = await import("@mariozechner/pi-agent-core");
+  const { streamSimple, Type } = await import("@mariozechner/pi-ai");
+  const model: any = {
+    id: cfg.model, name: cfg.model, api: "openai-completions", provider: "zhipu", baseUrl: cfg.baseUrl, reasoning: true,
+    input: ["text"], cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }, contextWindow: 128000, maxTokens: 4096,
+    compat: { supportsStore: false, supportsDeveloperRole: false, maxTokensField: "max_tokens", thinkingFormat: "deepseek", supportsStrictMode: false },
+  };
+  const toolCalls: string[] = [];
+  const tools = makeTools(input).map((t) => ({
+    name: t.name, label: t.name, description: t.description,
+    parameters: Type.Unsafe(t.parameters as any),
+    execute: async (_id: string, params: unknown) => ({ content: [{ type: "text" as const, text: JSON.stringify(t.run(params)) }], details: {} }),
+  }));
+  const agent = new Agent({
+    initialState: { systemPrompt: SYSTEM_PROMPT, model, tools: tools as any },
+    streamFn: (m: any, c: any, o: any) => streamSimple(m, c, {
+      ...o, apiKey: cfg.apiKey, maxTokens: 1500, timeoutMs: cfg.timeoutMs, maxRetries: 1, signal: cfg.signal,
+      ...(needsThinking(cfg.model) ? { reasoning: "low" } : {}),
+    }),
+  } as any);
+  const dbg = (globalThis as any).__PI_DEBUG;
+  agent.subscribe((e: any) => { if (dbg) console.log("pi_evt", e.type, e.assistantMessageEvent?.type || ""); if (e.type === "tool_execution_start") toolCalls.push(e.toolName); if (toolCalls.length > 6) agent.abort(); });
+  cfg.signal.addEventListener("abort", () => agent.abort());
+  await agent.prompt(userPrompt(input));
+  const last: any = agent.state.messages.at(-1);
+  if (!last || last.stopReason === "error" || last.stopReason === "aborted") throw classifyUpstream(String(last?.errorMessage || last?.stopReason || "no response"));
+  const text = (last.content || []).filter((c: any) => c.type === "text").map((c: any) => c.text).join("");
+  return { text, toolCalls, impl: "pi" };
+}
+
+// ---------------- thin fetch fallback (OpenAI-compatible tool loop) ----------------
+export async function runFetch(input: CheckInput, cfg: LlmConfig): Promise<AgentRun> {
+  const tools = makeTools(input);
+  const messages: any[] = [{ role: "system", content: SYSTEM_PROMPT }, { role: "user", content: userPrompt(input) }];
+  const toolCalls: string[] = [];
+  for (let turn = 0; turn < 5; turn++) {
+    const body: any = { model: cfg.model, messages, max_tokens: 1500, temperature: 0.2,
+      tools: tools.map((t) => ({ type: "function", function: { name: t.name, description: t.description, parameters: t.parameters } })),
+      thinking: needsThinking(cfg.model) ? { type: "enabled" } : { type: "disabled" } };
+    if (needsThinking(cfg.model)) body.reasoning_effort = "low";
+    const res = await fetch(`${cfg.baseUrl.replace(/\/$/, "")}/chat/completions`, {
+      method: "POST", headers: { "content-type": "application/json", authorization: `Bearer ${cfg.apiKey}` }, body: JSON.stringify(body), signal: cfg.signal,
+    }).catch((e) => { throw classifyUpstream(String(e?.name || e)); });
+    const j: any = await res.json().catch(() => ({}));
+    if (!res.ok) throw classifyUpstream(`${res.status} ${j?.error?.code || ""} ${j?.error?.message || ""}`);
+    const msg = j.choices?.[0]?.message;
+    if (!msg) throw new UpstreamError("error", "empty response");
+    if (msg.tool_calls?.length) {
+      messages.push({ role: "assistant", content: msg.content || "", tool_calls: msg.tool_calls });
+      for (const tc of msg.tool_calls) {
+        const t = tools.find((x) => x.name === tc.function?.name); toolCalls.push(tc.function?.name);
+        let args: unknown = {}; try { args = JSON.parse(tc.function?.arguments || "{}"); } catch {}
+        messages.push({ role: "tool", tool_call_id: tc.id, content: JSON.stringify(t ? t.run(args) : { error: "unknown tool" }) });
+      }
+      continue;
+    }
+    return { text: msg.content || "", toolCalls, impl: "fetch" };
+  }
+  throw new UpstreamError("error", "too many tool turns");
+}
