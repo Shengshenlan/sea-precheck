@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ArrowLeft, Eye, EyeOff, Loader2, Mail } from "lucide-react";
-import { api } from "@/lib/api";
+import { api, API_URL } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -84,6 +84,7 @@ export function AuthCard() {
           <p className="mt-1.5 text-sm text-muted-foreground">{sub}</p>
         </div>
         <Card className="p-6 sm:p-7">
+          {!API_URL && <p role="status" data-testid="api-disabled" className="mb-4 rounded-lg bg-amber-500/10 px-3 py-2 text-[13px] text-amber-800 dark:text-amber-300">服务暂未开放，登录与检查功能即将上线，请稍后再试。</p>}
           <form onSubmit={submit} className="space-y-4" noValidate>
             <div>
               <Label htmlFor="email">邮箱</Label>

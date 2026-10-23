@@ -25,6 +25,8 @@ export interface CheckResponse {
 
 async function call<T = any>(path: string, init: RequestInit = {}, auth = true): Promise<{ status: number; body: T & { ok?: boolean; code?: string; message?: string } }> {
   const headers: Record<string, string> = { ...(init.body ? { "content-type": "application/json" } : {}), ...(init.headers as Record<string, string> || {}) };
+  // No Worker URL baked into this build (repo variable API_URL unset): fail gracefully instead of hitting the static host.
+  if (!API_URL) return { status: 0, body: { ok: false, code: "disabled", message: "服务暂未开放，请稍后再试" } as any };
   const t = auth ? tokenStore.get() : null;
   if (t) headers.authorization = `Bearer ${t}`;
   const res = await fetch(`${API_URL}${path}`, { ...init, headers });
