@@ -3,10 +3,11 @@ import Link from "next/link";
 import { createContext, useContext, useEffect, useState } from "react";
 import {
   AlertTriangle, BadgeCheck, Bot, Camera, CheckCircle2, ChevronDown, Circle, Copyright, Globe2, ListChecks, Lock,
-  ChevronsDownUp, ChevronsUpDown, Megaphone, ShieldAlert, ShieldCheck, ShieldQuestion, ShoppingBag, Sparkles, Truck, Zap, Battery, Plug, Languages, Tag,
+  ChevronsDownUp, ChevronsUpDown, Loader2, Megaphone, ShieldAlert, ShieldCheck, ShieldQuestion, ShoppingBag, Sparkles, Truck, Zap, Battery, Plug, Languages, Tag,
 } from "lucide-react";
-import type { ImageFacts, Report } from "@/lib/core/types";
-import { CATEGORY_ZH, COUNTRY_ZH, PLATFORM_ZH, conclusion, riskLevel } from "@/lib/core/match";
+import type { CertBrief, Conclusion, ImageFacts, Report } from "@/lib/core/types";
+import { CATEGORY_ZH, COUNTRY_ZH, PLATFORM_ZH, conclusionOf, riskLevel } from "@/lib/core/match";
+import { tierOf } from "@/lib/core/plain";
 import type { LlmResult } from "@/lib/api";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -65,8 +66,11 @@ const Empty = () => <p className="rounded-lg border border-dashed p-4 text-cente
 export function ReportView({ report: r, llm, loading, hasImages }: { report: Report; llm: LlmResult | null; loading: boolean; hasImages?: boolean }) {
   const risk = RISK[r.risk.level];
   const reviewCount = r.review.length + (r.llm?.notes.filter((n) => n.status !== "verified").length || 0);
-  // reports saved before 2026.10.23-2 have no conclusion / basis — recompute from the stored hits
-  const concl = r.conclusion?.length ? r.conclusion : conclusion(r);
+  // reports saved before 2026.10.23-3 have an older conclusion shape / no basis — recompute from the stored hits
+  const concl = conclusionOf(r);
+  const looseReview = r.review.filter((x) => !x.rule_id || !r.certs.some((h) => h.rule.id === x.rule_id));
+  const certsSorted = [...r.certs].sort((a, b) => +(tierOf(a) === "maybe" || !a.rule.mandatory) - +(tierOf(b) === "maybe" || !b.rule.mandatory));
+  const cardReviews = (id: string, title: string) => r.review.filter((x) => x.rule_id === id && x.text !== title);
   const basis = r.risk.basis || riskLevel(r).basis;
   const [expand, setExpand] = useState<[boolean, number]>([false, 0]);
   return (
@@ -89,22 +93,11 @@ export function ReportView({ report: r, llm, loading, hasImages }: { report: Rep
           </div>
         </div>
         <div className="relative grid grid-cols-4 divide-x border-t text-center">
-          {[["认证/许可", r.certs.length], ["平台规则", r.platform.length], ["展示义务", r.display.length], ["待复核", reviewCount]].map(([k, v]) => (
+          {[["必须认证", concl.must.length], ["可能需要", concl.maybe.length], ["平台 / 展示", r.platform.length + r.display.length], ["待复核", reviewCount]].map(([k, v]) => (
             <div key={k as string} className="px-2 py-3"><p className="text-lg font-bold tabular-nums">{v}</p><p className="text-[11px] text-muted-foreground">{k}</p></div>
           ))}
         </div>
-        <div className="relative border-t px-5 py-4" data-testid="conclusion">
-          <p className="mb-2 text-[11px] font-semibold tracking-wider text-muted-foreground">结论</p>
-          <ol className="space-y-1.5">
-            {concl.map((x, i) => (
-              <li key={i} className={cn("flex gap-2.5 text-[14px] leading-relaxed", i === 2 && "font-medium text-foreground")}>
-                <span className={cn("mt-[3px] grid size-[18px] shrink-0 place-items-center rounded-full text-[10.5px] font-bold", i === 2 ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground")}>{i + 1}</span>
-                <span><Gloss text={x} /></span>
-              </li>
-            ))}
-          </ol>
-          {basis && <p className="mt-3 rounded-lg bg-muted/50 px-3 py-2 text-xs leading-relaxed text-muted-foreground"><b className="font-medium text-foreground/80">判定依据</b>　{basis.replace(/^判定依据[：:]\s*/, "")}</p>}
-        </div>
+        <ConclusionBlock c={concl} basis={basis} label={loading ? "ai" : r.llm ? "done" : "rules"} />
         {r.risk.reasons.length > 0 && <ul className="relative space-y-1 border-t px-5 py-3 text-[13px] text-muted-foreground">{r.risk.reasons.map((x, i) => <li key={i} className="flex gap-2"><span className="mt-2 size-1 shrink-0 rounded-full bg-muted-foreground/60" /><span><Gloss text={x} /></span></li>)}</ul>}
       </Card>
 
@@ -117,8 +110,8 @@ export function ReportView({ report: r, llm, loading, hasImages }: { report: Rep
           {expand[0] ? <><ChevronsDownUp className="size-3.5" />全部收起</> : <><ChevronsUpDown className="size-3.5" />全部展开</>}
         </Button>
       </div>
-      <Section collapsible defaultOpen={false} icon={BadgeCheck} tone="red" title="① 认证 / 许可 / 通报" hint="强制 = 未取得即上架属违规；待复核 = 知识库无法确定，需人工确认" count={r.certs.length}>
-        {r.certs.length ? r.certs.map((h) => <RuleCard key={h.rule.id} hit={h} />) : <Empty />}
+      <Section collapsible defaultOpen={false} icon={BadgeCheck} tone="red" title="① 认证 / 许可 / 通报" hint="必须 = 未取得即上架属违规；可能需要 = 是否适用尚不确定，需向主管机构核实（不计入风险等级）" count={r.certs.length}>
+        {certsSorted.length ? certsSorted.map((h) => <RuleCard key={h.rule.id} hit={h} reviews={cardReviews(h.rule.id, h.title || h.rule.title)} />) : <Empty />}
       </Section>
       <Section collapsible defaultOpen={false} icon={ShoppingBag} tone="sky" title="② 平台禁限售规则命中" count={r.platform.length}>
         {r.platform.length ? r.platform.map((h) => <RuleCard key={h.rule.id} hit={h} />) : <Empty />}
@@ -128,7 +121,7 @@ export function ReportView({ report: r, llm, loading, hasImages }: { report: Rep
       </Section>
       <BrandCard r={r} />
       {r.customs.length > 0 && <Section collapsible defaultOpen={false} icon={Truck} tone="amber" title="税费 / 清关提示" count={r.customs.length}>{r.customs.map((h) => <RuleCard key={h.rule.id} hit={h} compact />)}</Section>}
-      <NextSteps r={r} reviewCount={reviewCount} />
+      <NextSteps r={r} reviewCount={reviewCount} loose={looseReview} />
       {r.other_markets.length > 0 && (
         <details className="group rounded-2xl border bg-card">
           <summary className="flex cursor-pointer list-none items-center gap-2 px-5 py-4 text-sm font-medium [&::-webkit-details-marker]:hidden">
@@ -237,7 +230,7 @@ function BrandCard({ r }: { r: Report }) {
   );
 }
 
-function NextSteps({ r, reviewCount }: { r: Report; reviewCount: number }) {
+function NextSteps({ r, reviewCount, loose }: { r: Report; reviewCount: number; loose: Report["review"] }) {
   const [done, setDone] = useState<Set<number>>(new Set());
   const toggle = (i: number) => setDone((s) => { const n = new Set(s); if (n.has(i)) n.delete(i); else n.add(i); return n; });
   return (
@@ -248,10 +241,58 @@ function NextSteps({ r, reviewCount }: { r: Report; reviewCount: number }) {
           {done.has(i) ? <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-emerald-500" /> : <Circle className="mt-0.5 size-4 shrink-0 text-muted-foreground/60" />}
           <span className={cn("leading-relaxed", done.has(i) && "text-muted-foreground line-through")}>{s}</span></button></li>))}
       </ul>
-      {r.review.length > 0 && <div className="rounded-xl border border-amber-300/70 bg-amber-50/60 p-3.5 text-[13px] dark:bg-amber-500/5">
-        <p className="flex items-center gap-1.5 font-medium text-amber-800 dark:text-amber-300"><ShieldQuestion className="size-4" />待复核</p>
-        <ul className="mt-1.5 space-y-1">{r.review.map((x, i) => <li key={i}><Gloss text={x.text} /> <span className="text-muted-foreground">—— {x.reason}</span>{x.verify_with && <span className="mt-0.5 block text-xs text-amber-800/90 dark:text-amber-300/90">→ 建议向 <Gloss text={x.verify_with} /> 核实</span>}</li>)}</ul>
+      {r.review.length > loose.length && <p className="text-xs text-muted-foreground">{r.review.length - loose.length} 项待核实已并入 ① 中对应的认证卡片。</p>}
+      {loose.length > 0 && <div className="rounded-xl border border-amber-300/70 bg-amber-50/60 p-3.5 text-[13px] dark:bg-amber-500/5">
+        <p className="flex items-center gap-1.5 font-medium text-amber-800 dark:text-amber-300"><ShieldQuestion className="size-4" />其他待核实</p>
+        <ul className="mt-1.5 space-y-1">{loose.map((x, i) => <li key={i}><Gloss text={x.text} /> <span className="text-muted-foreground">—— {x.reason}</span>{x.verify_with && <span className="mt-0.5 block text-xs text-amber-800/90 dark:text-amber-300/90">→ 建议向 <Gloss text={x.verify_with} /> 核实</span>}</li>)}</ul>
       </div>}
     </Section>
+  );
+}
+
+const LABEL = { ai: "初步结论（AI 分析中…）", done: "结论 · 已结合 AI 分析", rules: "结论 · 规则判断" } as const;
+const VERDICT_TONE: Record<Conclusion["verdict"], string> = {
+  prohibited: "text-red-700 dark:text-red-300", blocked: "text-red-700 dark:text-red-300", certs_first: "text-foreground",
+  verify_first: "text-amber-800 dark:text-amber-300", ok: "text-emerald-700 dark:text-emerald-300", unknown: "text-muted-foreground",
+};
+
+function ConclusionBlock({ c, basis, label }: { c: Conclusion; basis: string; label: keyof typeof LABEL }) {
+  return (
+    <div className="relative border-t px-5 py-4" data-testid="conclusion">
+      <p className="mb-2 flex items-center gap-1.5 text-[11px] font-semibold tracking-wider text-muted-foreground" data-testid="conclusion-label">
+        {label === "ai" && <Loader2 className="size-3 animate-spin" />}{LABEL[label]}
+      </p>
+      <p className={cn("text-[15px] font-semibold leading-relaxed", VERDICT_TONE[c.verdict])}><Gloss text={c.headline} /></p>
+      {(c.must.length > 0 || c.maybe.length > 0) && (
+        <dl className="mt-3 space-y-1.5 text-[13px]">
+          {c.must.length > 0 && <CertRow k="必须" tone="red" xs={c.must} />}
+          {c.maybe.length > 0 && <CertRow k="可能需要" tone="amber" xs={c.maybe} />}
+        </dl>
+      )}
+      <p className="mb-2 mt-4 text-[12px] font-semibold text-foreground/80">先做 3 步</p>
+      <ol className="space-y-2.5" data-testid="steps">
+        {c.steps.map((s, i) => (
+          <li key={i} className="flex gap-2.5 text-[14px] leading-relaxed">
+            <span className={cn("mt-[3px] grid size-[18px] shrink-0 place-items-center rounded-full text-[10.5px] font-bold", i === 0 ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground")}>{i + 1}</span>
+            <div className="min-w-0">
+              <p className={cn(i === 0 && "font-medium")}><Gloss text={s.text} /></p>
+              {s.cert && s.kind === "cert" && <p className="mt-0.5 text-xs text-muted-foreground">谁办：<Gloss text={s.cert.applicant} />；发证：<Gloss text={s.cert.issuer} /></p>}
+              {s.cert && s.kind === "verify" && s.cert.verify_with && <p className="mt-0.5 text-xs text-amber-800/90 dark:text-amber-300/90">建议向 <Gloss text={s.cert.verify_with} /> 确认是否适用{s.cert.maybe_reason ? `（${s.cert.maybe_reason}）` : ""}</p>}
+              {s.cert?.lead_time && <p className="mt-0.5 text-xs text-muted-foreground">大致周期：{s.cert.lead_time.text}（<a className="text-primary hover:underline" href={s.cert.lead_time.source_url} target="_blank" rel="noopener noreferrer">来源</a>{s.cert.lead_time.verification === "paraphrase" ? "，转述" : ""}）</p>}
+            </div>
+          </li>
+        ))}
+      </ol>
+      {c.more > 0 && <p className="mt-2 pl-7 text-xs text-muted-foreground">另有 {c.more} 项认证/核实事项，见下方「① 认证 / 许可」。</p>}
+      {basis && <p className="mt-3 rounded-lg bg-muted/50 px-3 py-2 text-xs leading-relaxed text-muted-foreground"><b className="font-medium text-foreground/80">判定依据</b>　{basis.replace(/^判定依据[：:]\s*/, "")}</p>}
+    </div>
+  );
+}
+function CertRow({ k, tone, xs }: { k: string; tone: "red" | "amber"; xs: CertBrief[] }) {
+  return (
+    <div className="flex items-start gap-2">
+      <dt className={cn("mt-0.5 shrink-0 rounded-md px-1.5 py-px text-[11px] font-semibold", tone === "red" ? "bg-red-500/10 text-red-700 dark:text-red-300" : "bg-amber-500/15 text-amber-800 dark:text-amber-300")}>{k}</dt>
+      <dd className="min-w-0 leading-relaxed">{xs.map((x, i) => <span key={x.rule_id}>{i > 0 && "、"}<span className="font-medium">{x.plain}</span><span className="text-muted-foreground">（<Gloss text={x.abbr} />）</span></span>)}</dd>
+    </div>
   );
 }

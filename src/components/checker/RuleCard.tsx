@@ -1,5 +1,6 @@
-import { BadgeCheck, Building2, CalendarClock, ChevronDown, ExternalLink, FileText, Hash, Info, Quote, Target } from "lucide-react";
-import type { Excerpt, RuleHit } from "@/lib/core/types";
+import { BadgeCheck, ShieldQuestion, Building2, CalendarClock, ChevronDown, ExternalLink, FileText, Hash, Info, Quote, Target } from "lucide-react";
+import type { Excerpt, ReviewItem, RuleHit } from "@/lib/core/types";
+import { tierOf } from "@/lib/core/plain";
 import { Badge } from "@/components/ui/badge";
 import { Gloss } from "./Gloss";
 
@@ -49,26 +50,35 @@ export function ExcerptPanel({ e, texts, open }: { e: Excerpt; texts?: string[];
   );
 }
 
-export function RuleCard({ hit, compact }: { hit: RuleHit; compact?: boolean }) {
+export function RuleCard({ hit, compact, reviews = [] }: { hit: RuleHit; compact?: boolean; reviews?: ReviewItem[] }) {
   const r = hit.rule;
+  const maybe = r.kind === "cert" && r.mandatory && tierOf(hit) === "maybe";
   const official = r.excerpts.find((e) => e.source_type === "official" || e.source_type === "official_translation") || r.excerpts[0];
   const groups = groupExcerpts(r.excerpts);
   const verify = r.verify_with || r.authority;
   return (
     <article id={`rule-${r.id}`} className="group/card min-w-0 scroll-mt-24 rounded-xl border bg-card p-4 transition-all hover:border-primary/30 hover:shadow-md hover:shadow-primary/5">
       <div className="flex flex-wrap items-start gap-x-3 gap-y-2">
-        <h4 className="min-w-0 flex-1 text-[14.5px] font-semibold leading-snug"><Gloss text={r.title} /></h4>
+        <h4 className="min-w-0 flex-1 text-[14.5px] font-semibold leading-snug"><Gloss text={hit.title || r.title} /></h4>
         <div className="flex flex-wrap gap-1">
-          {r.mandatory ? <Badge tone="red">强制</Badge> : <Badge>建议</Badge>}
-          {r.needs_review && <Badge tone="amber">{r.mandatory ? "归类待核实" : "待复核"}</Badge>}
+          {maybe ? <Badge tone="amber">可能需要</Badge> : r.mandatory ? <Badge tone="red">必须</Badge> : <Badge>建议</Badge>}
+          {r.needs_review && !maybe && <Badge tone="amber">待复核</Badge>}
         </div>
       </div>
       <p className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground"><Gloss text={r.requirement} /></p>
-      {r.needs_review && (
+      {(maybe || r.needs_review) && (
         <p className="mt-2 flex items-start gap-1.5 rounded-lg bg-amber-500/[0.08] px-2.5 py-1.5 text-[12.5px] text-amber-900 dark:text-amber-200">
           <Info className="mt-0.5 size-3.5 shrink-0" />
-          <span>{r.mandatory ? <>按强制准备，建议向 <b className="font-semibold"><Gloss text={verify} /></b> 核实适用范围。</> : <>建议向 <b className="font-semibold"><Gloss text={verify} /></b> 核实。</>}</span>
+          <span>{maybe ? <>可能需要（{hit.tier_reason || "适用范围或归类尚不确定"}）：建议向 <b className="font-semibold"><Gloss text={verify} /></b> 核实是否适用；不计入风险等级。</> : <>建议向 <b className="font-semibold"><Gloss text={verify} /></b> 核实。</>}</span>
         </p>
+      )}
+      {reviews.length > 0 && (
+        <ul className="mt-2 space-y-1 rounded-lg border border-amber-300/60 bg-amber-50/50 px-2.5 py-2 text-[12.5px] dark:bg-amber-500/5" data-testid="card-review">
+          {reviews.map((x, i) => (
+            <li key={i} className="flex items-start gap-1.5"><ShieldQuestion className="mt-0.5 size-3.5 shrink-0 text-amber-600" />
+              <span><b className="font-medium">待核实：</b><Gloss text={x.text} /><span className="text-muted-foreground">（{x.reason}）</span>{x.verify_with && <span className="text-amber-800/90 dark:text-amber-300/90"> → 建议向 <Gloss text={x.verify_with} /> 核实</span>}</span></li>
+          ))}
+        </ul>
       )}
       <dl className="mt-3 grid gap-x-4 gap-y-1.5 text-xs sm:grid-cols-2">
         {r.cert && <Row icon={BadgeCheck} k="需要"><span className="font-medium text-foreground"><Gloss text={r.cert} /></span></Row>}
