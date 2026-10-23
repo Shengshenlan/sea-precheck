@@ -116,7 +116,7 @@ function AiPanel({ r, llm, loading, hasImages }: { r: Report; llm: LlmResult | n
           <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-indigo-600 to-cyan-500 text-white shadow-md"><Lock className="size-5" /></span>
           <div className="min-w-0 flex-1">
             <p className="font-semibold">以上为纯规则结果 · 登录解锁 AI 分析与图片识别</p>
-            <p className="mt-0.5 text-sm text-muted-foreground">AI 会读懂标题里的隐含信息（蓝牙、电池、儿童适用…）、识别包装上的认证标志，并逐字校验引用原文。免费，每天 20 次。</p>
+            <p className="mt-0.5 text-sm text-muted-foreground">AI 会读懂标题里的隐含信息（蓝牙、电池、儿童适用…）、识别包装上的认证标志，并逐字校验引用原文。每个账号每日 20 次。</p>
           </div>
           <Button asChild variant="gradient"><Link href="/login/?next=/check/">登录后使用</Link></Button>
         </div>
