@@ -18,7 +18,13 @@ export function sanitizeInput(i: CheckInput): CheckInput {
   };
 }
 
-export interface MatchOverrides { category?: Category; features?: Feature[]; items?: string[]; extraRuleIds?: string[] }
+export interface MatchOverrides { category?: Category; features?: Feature[]; items?: string[]; extraRuleIds?: string[]; imageText?: string }
+
+/** Flatten vision facts into evidence text for deterministic keyword matching (source = image). */
+export function imageEvidenceText(f: { product_type?: string; brands?: string[]; label_text?: string; wireless?: boolean | null; wireless_evidence?: string; battery?: boolean | null } | null | undefined): string {
+  if (!f) return "";
+  return [f.product_type, ...(f.brands || []), f.label_text, f.wireless ? f.wireless_evidence : "", f.battery ? "battery" : ""].filter(Boolean).join("\n").slice(0, 1500);
+}
 
 /** Rules applicable to a country/category regardless of item/feature (used to bound LLM extra_rule_ids). */
 export function candidateRules(country: string, category: Category | null): Rule[] {
@@ -31,17 +37,20 @@ export function buildReport(raw: CheckInput, ov: MatchOverrides = {}): Report {
   let category: Category | null = null; let category_source: Report["category_source"] = "none";
   if (ov.category) { category = ov.category; category_source = "llm"; }
   else if (input.category && input.category !== "auto") { category = input.category; category_source = "user"; }
-  else { category = detectCategory(text).category; category_source = category ? "auto" : "none"; }
+  else { category = detectCategory(text).category || (ov.imageText ? detectCategory(`${text}\n${ov.imageText}`).category : null); category_source = category ? "auto" : "none"; }
   if (input.category && input.category !== "auto") { category = input.category; category_source = "user"; }
 
-  const fd = detectFeatures(text);
+  const img = ov.imageText || "";
+  const fdText = detectFeatures(text);
+  const fd = [...fdText, ...(img ? detectFeatures(img).filter((x) => !fdText.some((y) => y.feature === x.feature)).map((x) => ({ ...x, term: `图片：${x.term}` })) : [])];
   const features = new Set<Feature>([...fd.map((f) => f.feature), ...(ov.features || [])]);
   const featTerm = (f: Feature) => fd.find((x) => x.feature === f)?.term ?? "模型识别";
-  const itemsD = detectItems(text);
+  const itemsT = detectItems(text);
+  const itemsD = [...itemsT, ...(img ? detectItems(img).filter((x) => !itemsT.some((y) => y.item === x.item)).map((x) => ({ ...x, term: `图片：${x.term}` })) : [])];
   const items = new Set<string>([...itemsD.map((x) => x.item), ...(ov.items || [])]);
   if (category === "power" && /插线板|延长线|排插|extension/i.test(text)) items.add("extension_cord");
   if (category === "power" && !features.has("charger") && !features.has("powerbank")) {
-    if (/充电宝|移动电源|power ?bank/i.test(text)) features.add("powerbank"); else features.add("charger");
+    if (/充电宝|移动电源|power ?bank/i.test(`${text}\n${img}`)) features.add("powerbank"); else features.add("charger");
   }
 
   const review: ReviewItem[] = [];
@@ -95,6 +104,7 @@ export function buildReport(raw: CheckInput, ov: MatchOverrides = {}): Report {
   for (const h of hits.values()) if (h.rule.needs_review) review.push({ text: h.rule.title, reason: "知识库中此条为转述或归类不确定 —— 待人工复核" });
 
   const brandHits = checkBrandWords(text);
+  if (img) for (const h of checkBrandWords(img)) if (!brandHits.some((b) => b.brand === h.brand && b.term === h.term)) brandHits.push({ ...h, source: "image" });
   const other_markets: RuleHit[] = kb.rules.filter((r) => (r.country === "ID" || r.country === "VN") && catOk(r)).map((r) => ({ rule: r, reason: `${COUNTRY_ZH[r.country]}提示（仅供参考）` }));
 
   const all = [...hits.values()];

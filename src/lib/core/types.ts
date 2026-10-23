@@ -25,7 +25,7 @@ export interface CheckInput {
   country: Country; platform: Platform;
 }
 export interface RuleHit { rule: Rule; reason: string }
-export interface BrandHit { term: string; brand: string; type: "brand" | "counterfeit" | "compat" | "dupe" }
+export interface BrandHit { term: string; brand: string; type: "brand" | "counterfeit" | "compat" | "dupe"; source?: "text" | "image" }
 export interface ReviewItem { text: string; reason: string }
 export interface LlmNote {
   rule_id: string; quote: string; explanation: string;
@@ -41,5 +41,14 @@ export interface Report {
   brand: { hits: BrandHit[]; links: { name: string; url: string }[] };
   risk: { level: "高" | "中" | "低" | "待复核"; reasons: string[] };
   next_steps: string[];
+  image_facts?: ImageFacts;
   llm?: { model: string; summary: string; notes: LlmNote[]; extra_rule_ids: string[]; latency_ms: number; dropped: number };
 }
+
+/** Structured facts a vision model extracted from product/packaging photos. Used only as evidence, never as a citation. */
+export interface ImageFacts {
+  product_type: string; brands: string[]; marks: string[]; plug_type: string | null;
+  battery: boolean | null; wireless: boolean | null; wireless_evidence: string;
+  label_text: string; label_langs: string[]; notes: string; model: string; images: number;
+}
+export type EvidenceSource = "text" | "image";
