@@ -21,8 +21,8 @@ const MAP: [RegExp, P][] = [
   [/^MY-MCMC-/, { plain: "马来西亚通信设备认证", abbr: "MCMC / SIRIM", issuer: "MCMC（由 SIRIM QAS 办理）" }],
   [/^MY-KPDN-TOY$/, { plain: "马来西亚玩具合格标志", abbr: "KPDN MC", issuer: "KPDN" }],
   [/^MY-NPRA-COSM$/, { plain: "马来西亚化妆品备案", abbr: "NPRA", issuer: "NPRA" }],
-  [/^ALL-LIBAT-UN383$/, { plain: "锂电池运输安全测试", abbr: "UN38.3", issuer: "无政府发证，由检测实验室出具报告",
-    applicant: "由电池或整机制造商委托实验室测试；向供应商索取测试报告和测试摘要（IATA 要求制造商及后续分销商提供）" }],
+  [/^ALL-LIBAT-UN383$/, { plain: "锂电池运输安全测试", abbr: "UN38.3", issuer: "检测实验室出具报告（无政府证书）",
+    applicant: "向电池或整机供应商索取测试报告和测试摘要（IATA 要求制造商及后续分销商提供）" }],
 ];
 
 export function certBrief(h: RuleHit): CertBrief {

@@ -167,7 +167,7 @@ export function riskLevel(r: Report): Report["risk"] {
   if (cf.length) reasons.push(`出现仿冒暗示词：${cf.map((h) => h.term).join("、")}（平台普遍直接下架/封店）`);
   if (br.length) reasons.push(`出现品牌词：${br.map((h) => h.brand).join("、")}（无授权使用他人商标风险高）`);
   if (!r.category && !reasons.length) return { level: "待复核", reasons: ["未识别品类"], basis: "判定依据：未能识别商品品类，无法匹配认证规则" };
-  if (mand.length) reasons.push(`需要 ${mand.length} 项强制认证/许可，未取得即上架属违规`);
+  if (mand.length) reasons.push(`须先办齐 ${mand.length} 项必须的认证/许可才能上架`);
   if (maybe) reasons.push(`另有 ${maybe} 项认证可能需要，需向主管机构核实`);
   if (drug) reasons.push("化妆品功效/成分宣称敏感");
   if (r.brand.hits.some((h) => h.type === "compat" || h.type === "dupe")) reasons.push("含“兼容/适用于/平替”类品牌描述，需注意措辞");
