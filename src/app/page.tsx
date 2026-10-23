@@ -2,6 +2,7 @@ import Link from "next/link";
 import {
   ArrowRight, BadgeCheck, Baby, BatteryCharging, Camera, CheckCircle2, ChevronDown, FileSearch, FileText, Lock, Microwave,
   Quote, Radar, ScanSearch, ShieldAlert, ShieldQuestion, Sparkles, SprayCan, TriangleAlert,
+  ShieldCheck,
 } from "lucide-react";
 import { buildReport, COUNTRY_ZH } from "@/lib/core/match";
 import { kb } from "@/lib/core/kb";
@@ -29,7 +30,8 @@ export default function Home() {
               <span className="size-1.5 rounded-full bg-emerald-500" />知识库 {kb.version} · {kb.rules.length} 条规则，{verified} 条附可核对原文<ArrowRight className="size-3" />
             </Link>
             <h1 className="mt-6 text-4xl font-bold leading-[1.12] tracking-tight sm:text-5xl lg:text-[3.5rem]">上架东南亚之前，<br /><span className="text-gradient">先扫一遍合规雷达</span></h1>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">输入商品标题或上传包装图，30 秒看清在泰国、菲律宾、马来西亚的 TikTok Shop / Shopee / Lazada 需要哪些认证、会踩哪些平台规则、listing 要写什么、有没有品牌词风险。</p>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">适用于<b className="font-semibold text-foreground">小家电、充电器 / 充电宝、玩具、美妆</b>。输入商品标题或上传包装图，30 秒看清在泰国、菲律宾、马来西亚的 TikTok Shop / Shopee / Lazada 需要哪些认证、会踩哪些平台规则、listing 要写什么、有没有品牌词风险。</p>
+            <p className="mt-3 inline-flex items-center gap-1.5 text-sm text-muted-foreground"><ShieldCheck className="size-4 text-emerald-500" />规则检查无需登录，直接在浏览器内完成；AI 分析与图片识别需登录。</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg" variant="gradient"><Link href="/check/"><Radar />开始预检</Link></Button>
               <Button asChild size="lg" variant="outline"><a href="#sample"><FileSearch />看示例报告</a></Button>

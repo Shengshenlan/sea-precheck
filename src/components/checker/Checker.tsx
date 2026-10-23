@@ -1,6 +1,6 @@
 "use client";
 import { useRef, useState, useMemo } from "react";
-import { Loader2, Radar, ScanSearch, ShieldCheck, Sparkles, Wand2 } from "lucide-react";
+import { Loader2, Plus, Radar, RotateCcw, ScanSearch, ShieldCheck, Sparkles, Wand2 } from "lucide-react";
 import { CATEGORY_ZH, MAX_DESC, MAX_TITLE } from "@/lib/core/match";
 import type { Category, CheckInput, Country, Platform } from "@/lib/core/types";
 import { API_URL, fetchLlm, type LlmResult } from "@/lib/api";
@@ -31,6 +31,7 @@ export default function Checker() {
   const [loading, setLoading] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
   const resultRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLDivElement>(null);
   const loggedIn = !!user;
 
   const report = useMemo(() => (submitted ? composeReport(submitted.input, llm) : null), [submitted, llm]);
@@ -52,7 +53,7 @@ export default function Checker() {
 
   return (
     <div className="grid gap-6 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
-      <Card className="p-5 lg:sticky lg:top-20">
+      <Card ref={formRef} className="scroll-mt-20 p-5 lg:sticky lg:top-20">
         <form onSubmit={(e) => { e.preventDefault(); run(input, images); }} className="space-y-4">
           <div className="flex items-center gap-2">
             <span className="grid size-8 place-items-center rounded-lg bg-accent text-primary"><ScanSearch className="size-4" /></span>
@@ -104,6 +105,12 @@ export default function Checker() {
       </Card>
 
       <div ref={resultRef} className="min-w-0 scroll-mt-20">
+        {report && !loading && (
+          <div className="mb-3 flex flex-wrap items-center justify-end gap-2">
+            <Button type="button" variant="outline" size="sm" onClick={() => run(input, images)} disabled={!canRun}><RotateCcw />重新检查</Button>
+            <Button type="button" variant="ghost" size="sm" onClick={() => { abortRef.current?.abort(); setSubmitted(null); setLlm(null); setImages([]); setInput((p) => ({ ...p, title: "", description: "", category: "auto" })); formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }); setTimeout(() => document.getElementById("title")?.focus(), 300); }}><Plus />检查新商品</Button>
+          </div>
+        )}
         {report ? <ReportView report={report} llm={llm} loading={loading} hasImages={(submitted?.images || 0) > 0} /> : <EmptyState />}
       </div>
     </div>
