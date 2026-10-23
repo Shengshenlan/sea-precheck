@@ -3,6 +3,7 @@ import { detectCategory, detectFeatures, detectItems, findTerms, COSMETIC_RISK_T
 import { checkBrandWords, ipLinks } from "./brands";
 import type { Category, CheckInput, Conclusion, ConclusionStep, Feature, Report, ReviewItem, Rule, RuleHit } from "./types";
 import { certBrief, maybeCerts, mustCerts, wirelessKinds } from "./plain";
+import { LITHIUM_RULES, dryCellOnly } from "./guard";
 
 export const COUNTRY_ZH = { TH: "泰国", PH: "菲律宾", MY: "马来西亚", ID: "印尼", VN: "越南", ALL: "通用" } as const;
 export const CATEGORY_ZH: Record<Category, string> = { appliance: "小家电", power: "充电器/电源适配器/移动电源", toy: "玩具", cosmetic: "化妆品" };
@@ -15,7 +16,7 @@ export function sanitizeInput(i: CheckInput): CheckInput {
     description: String(i.description || "").slice(0, MAX_DESC).trim(),
     category: (["appliance", "power", "toy", "cosmetic", "auto"] as const).includes(i.category as never) ? i.category : "auto",
     country: (["TH", "PH", "MY"] as const).includes(i.country) ? i.country : "TH",
-    platform: (["tiktok", "shopee", "lazada"] as const).includes(i.platform) ? i.platform : "shopee",
+    ...((["tiktok", "shopee", "lazada"] as const).includes(i.platform as never) ? { platform: i.platform } : {}),
   };
 }
 
@@ -55,12 +56,15 @@ export function buildReport(raw: CheckInput, ov: MatchOverrides = {}): Report {
   const itemsT = detectItems(text);
   const itemsD = [...itemsT, ...(img ? detectItems(img).filter((x) => !itemsT.some((y) => y.item === x.item)).map((x) => ({ ...x, term: `图片：${x.term}` })) : [])];
   const items = new Set<string>([...itemsD.map((x) => x.item), ...(ov.items || [])]);
-  if (category === "power" && /插线板|延长线|排插|extension/i.test(text)) items.add("extension_cord");
+  if ((category === "power" && /插线板|延长线|排插|extension/i.test(text)) || (category === "appliance" && /插线板|延长线|排插|extension cord|extension lead|power strip/i.test(text))) items.add("extension_cord");
   if (category === "power" && !features.has("charger") && !features.has("powerbank")) {
     if (/充电宝|移动电源|power ?bank/i.test(`${text}\n${img}`)) features.add("powerbank"); else features.add("charger");
   }
 
   if (features.has("powerbank")) features.add("battery"); // a power bank is a lithium battery
+  // AA/AAA/alkaline-powered goods: lithium transport/cell rules do not apply unless lithium is mentioned
+  const dryCell = features.has("battery") && !features.has("powerbank") && dryCellOnly(`${text}\n${img}`);
+  const lithiumOff = (r: Rule) => dryCell && LITHIUM_RULES.includes(r.id);
 
   const review: ReviewItem[] = [];
   const hits = new Map<string, RuleHit>();
@@ -70,7 +74,8 @@ export function buildReport(raw: CheckInput, ov: MatchOverrides = {}): Report {
   for (const r of kb.rules) {
     if (r.country !== input.country && r.country !== "ALL") continue;
     if (!catOk(r) || r.requires_cert_prefix) continue;
-    if (r.platforms.length && !r.platforms.includes(input.platform)) continue;
+    if (r.platforms.length && input.platform && !r.platforms.includes(input.platform)) continue;
+    if (lithiumOff(r)) continue;
     if (r.items.length) {
       const it = r.items.find((i) => items.has(i)); if (!it) continue;
       add(r, `识别到品类“${ITEM_ZH[it] || it}”（${why(itemsD.find((x) => x.item === it)?.term)}）`); continue;
@@ -79,12 +84,12 @@ export function buildReport(raw: CheckInput, ov: MatchOverrides = {}): Report {
       const f = r.features.find((x) => features.has(x)); if (!f) continue;
       add(r, `${FEATURE_REASON[f]}（${why(featTerm(f))}）`); continue;
     }
-    if (r.kind === "platform") { add(r, `所选平台：${PLATFORM_ZH[input.platform]}`); continue; }
+    if (r.kind === "platform") { add(r, input.platform ? `所选平台：${PLATFORM_ZH[input.platform]}` : `适用平台：${r.platforms.map((p) => PLATFORM_ZH[p]).join(" / ") || "全部"}`); continue; }
     add(r, category ? `${COUNTRY_ZH[input.country]} · ${CATEGORY_ZH[category]}` : COUNTRY_ZH[input.country]);
   }
   for (const id of ov.extraRuleIds || []) {
     const r = kb.rules.find((x) => x.id === id);
-    if (r && (r.country === input.country || r.country === "ALL") && catOk(r) && !r.requires_cert_prefix && !hits.has(r.id))
+    if (r && (r.country === input.country || r.country === "ALL") && catOk(r) && !r.requires_cert_prefix && !hits.has(r.id) && !lithiumOff(r))
       hits.set(r.id, { rule: r, reason: `${AI_JUDGED}（规则本身来自知识库）`, tier: "maybe", tier_reason: "仅 AI 判断适用，标题和图片中没有直接证据" });
   }
   // classification-uncertain mandatory certs are 可能需要 (not counted in risk); wireless cards say which radio tech was evidenced
@@ -113,7 +118,8 @@ export function buildReport(raw: CheckInput, ov: MatchOverrides = {}): Report {
   const att = (...ids: string[]) => ids.find((id) => hits.has(id));
   const TOY = { TH: "TH-TISI-TOY", PH: "PH-FDA-TOY", MY: "MY-KPDN-TOY" }, RADIO = { TH: "TH-NBTC-RADIO", PH: "PH-NTC-WIRELESS", MY: "MY-MCMC-COMM" }, COSM = { TH: "TH-FDA-COSM", PH: "PH-FDA-COSM", MY: "MY-NPRA-COSM" };
   if (category === "toy" && features.has("battery")) review.push({ text: "电动玩具可能还涉及玩具标准中的电气安全条款", reason: "知识库未收录电动玩具专项条款", verify_with: input.country === "PH" ? "FDA Philippines（CDRRHR）" : input.country === "MY" ? "KPDN" : "TISI（สมอ.）", rule_id: att(TOY[input.country]) });
-  if (features.has("battery") && input.country !== "TH" && category !== "cosmetic") review.push({ text: `知识库未收录${COUNTRY_ZH[input.country]}针对锂电池本身的单独强制认证`, reason: "电池是否另需本国认证尚未核实", verify_with: VERIFY_WITH[input.country], rule_id: att("ALL-LIBAT-UN383") });
+  if (dryCell && category !== "cosmetic") review.push({ text: "识别为碱性/干电池（AA、AAA 等）供电，未套用锂电池运输与电芯认证规则", reason: "如商品实际内置或配套锂电池，请在商品信息中注明后重新检查" });
+  if (features.has("battery") && !dryCell && input.country !== "TH" && category !== "cosmetic") review.push({ text: `知识库未收录${COUNTRY_ZH[input.country]}针对锂电池本身的单独强制认证`, reason: "电池是否另需本国认证尚未核实", verify_with: VERIFY_WITH[input.country], rule_id: att("ALL-LIBAT-UN383") });
   if (category === "power" && /无线充/.test(text)) review.push({ text: "无线充电功能是否同时需要无线电认证", reason: "知识库未收录无线充电专项条款", verify_with: input.country === "TH" ? "NBTC" : input.country === "PH" ? "NTC" : "MCMC 或 SIRIM QAS", rule_id: att(RADIO[input.country], "TH-TISI-POWERBANK", "TH-TISI-ADAPTER", "MY-ST-ADAPTER") });
   if (category === "power" && /数据线|cable/i.test(text) && !features.has("charger")) review.push({ text: "单独销售数据线一般不在充电器认证范围内", reason: "知识库未收录数据线专项条款", verify_with: VERIFY_WITH[input.country] });
   if (category === "cosmetic") {
@@ -183,7 +189,7 @@ export function riskLevel(r: Report): Report["risk"] {
 
 /** Deterministic plain-language conclusion: verdict → 必须 vs 可能需要 → 先做 3 步. */
 export function conclusion(r: Report): Conclusion {
-  const where = `${COUNTRY_ZH[r.input.country]} ${PLATFORM_ZH[r.input.platform]} `;
+  const where = r.input.platform ? `${COUNTRY_ZH[r.input.country]} ${PLATFORM_ZH[r.input.platform]} ` : `${COUNTRY_ZH[r.input.country]}`;
   const must = mandatoryCerts(r).map(certBrief), maybe = maybeCerts(r).map(certBrief);
   const cf = r.brand.hits.filter((h) => h.type === "counterfeit"); const br = r.brand.hits.filter((h) => h.type === "brand");
   const prohibited = PROHIBITED.test(r.input.title + (r.input.description || ""));

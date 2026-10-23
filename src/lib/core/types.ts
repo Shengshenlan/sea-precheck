@@ -26,7 +26,8 @@ export interface KB { version: string; generated: string; rules: Rule[] }
 
 export interface CheckInput {
   title: string; description?: string; category?: Category | "auto";
-  country: Country; platform: Platform;
+  /** optional: when absent, platform rules of all supported platforms are included */
+  country: Country; platform?: Platform;
 }
 export interface RuleHit {
   rule: Rule; reason: string;

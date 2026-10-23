@@ -14,6 +14,16 @@ export const GATED_EVIDENCE: Partial<Record<Feature, string[]>> = {
   charger: FEATURE_KEYWORDS.charger,
 };
 
+/**
+ * Dry-cell vs lithium. Toys/appliances powered by AA/AAA/alkaline/carbon-zinc cells must not get the lithium
+ * transport (UN38.3 / UN3480) or TIS 2217 cell rules. Any lithium signal wins: 锂/lithium/Li-ion/LiPo/18650/mAh,
+ * or a rechargeable built-in battery (USB/Type-C 充电, 可充电, rechargeable) — those are almost always lithium.
+ */
+const DRY_CELL = /碱性|干电池|碳性电池|碳锌|alkaline|carbon[- ]zinc|zinc[- ]carbon|[57]\s*号\s*电池|\b(?:aa|aaa)\b\s*(?:电池|batter)|(?:\d|两|二|三|四|六)\s*[节颗个粒]\s*(?:aa|aaa)\b|\b(?:aa|aaa)\s*[x×*]\s*\d|\b\d\s*[x×*]\s*(?:aa|aaa)\b|\b(?:aa|aaa)\s*size\b/i;
+const LITHIUM = /锂|lithium|li-?ion|li-?po|lipo|li-?polymer|18650|21700|\d\s*mah|充电式|可充电|充电款|充电版|(?:usb|type-?c)\s*充电|rechargeable|充电宝|移动电源|power ?bank/i;
+export const LITHIUM_RULES = ["ALL-LIBAT-UN383", "ALL-LIBAT-POWERBANK-UN3480", "ALL-LIBAT-CARRIER", "TH-TISI-BATTERY"];
+export function dryCellOnly(text: string): boolean { return DRY_CELL.test(text) && !LITHIUM.test(text); }
+
 export interface GuardResult {
   features: Feature[]; extraRuleIds: string[]; removed: { what: string; reason: string }[];
   /** where the evidence for each kept gated feature came from */
@@ -37,7 +47,9 @@ export function guardLlmSuggestions(text: string, features: Feature[], extraRule
     return !!e;
   };
   const keptF = features.filter((f) => { const k = ok(f); if (!k) removed.push({ what: `feature:${f}`, reason: "标题/描述/图片中没有明确证据" }); return k; });
+  const dry = dryCellOnly(`${text}\n${imageText}`);
   const keptR = extraRuleIds.filter((id) => {
+    if (dry && LITHIUM_RULES.includes(id)) { removed.push({ what: `rule:${id}`, reason: "商品使用碱性/干电池（AA/AAA），未提及锂电池" }); return false; }
     const bad = (ruleById[id]?.features || []).find((f) => !ok(f as Feature));
     if (bad) removed.push({ what: `rule:${id}`, reason: `规则需要 ${bad} 特征，但标题/描述/图片中没有明确证据` });
     return !bad;

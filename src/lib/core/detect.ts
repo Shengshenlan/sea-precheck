@@ -32,7 +32,7 @@ export const ITEM_ZH: Record<string, string> = {
 
 const CAT_KEYWORDS: Record<Category, string[]> = {
   appliance: ["小家电", "家电", "电器", "家用电器", "appliance", "220v", "110v", "插电"],
-  power: ["充电器", "充电头", "适配器", "电源适配器", "快充", "氮化镓", "gan", "charger", "adapter", "adaptor", "充电宝", "移动电源", "power bank", "powerbank", "插线板", "延长线", "排插"],
+  power: ["充电器", "充电头", "适配器", "电源适配器", "快充", "氮化镓", "gan", "charger", "adapter", "adaptor", "充电宝", "移动电源", "power bank", "powerbank", "插线板", "延长线", "排插", "extension cord", "extension lead", "power strip"],
   toy: ["玩具", "积木", "拼图", "玩偶", "毛绒", "公仔", "手办", "遥控车", "盲盒", "娃娃", "益智", "早教", "toy", "toys", "puzzle", "plush", "doll", "building blocks", "fidget", "史莱姆", "泡泡机"],
   cosmetic: ["化妆品", "彩妆", "护肤", "口红", "唇膏", "唇釉", "唇彩", "粉底", "气垫", "面霜", "精华", "乳液", "爽肤水", "面膜", "眼影", "眼线", "睫毛膏", "腮红", "洗面奶", "防晒", "香水", "身体乳", "洗发水", "沐浴露", "护发", "指甲油", "lipstick", "foundation", "serum", "moisturizer", "sunscreen", "mascara", "toner", "cosmetic", "skincare", "perfume", "lip gloss", "cushion"],
 };

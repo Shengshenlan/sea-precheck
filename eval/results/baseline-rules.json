@@ -2,17 +2,17 @@
  "metrics": {
   "label": "baseline-rules",
   "n": 39,
-  "when": "2026-10-23T10:56:06.069Z",
-  "cert_recall": 0.811,
+  "when": "2026-10-23T14:20:45.285Z",
+  "cert_recall": 0.83,
   "cert_precision": 1,
-  "exact_cert_match": 31,
+  "exact_cert_match": 32,
   "unguarded": {
-   "cert_recall": 0.811,
+   "cert_recall": 0.83,
    "cert_precision": 1,
-   "exact_cert_match": 31
+   "exact_cert_match": 32
   },
   "guard_removed_total": 0,
-  "category_acc": 0.897,
+  "category_acc": 0.923,
   "notes_total": 0,
   "notes_unverified": 0,
   "notes_dropped_bad_rule_id": 0,
@@ -613,14 +613,18 @@
    "id": "ph-pow-1",
    "country": "PH",
    "cat_gt": "power",
-   "cat_pred": null,
+   "cat_pred": "power",
    "gt": [
     "PH-BPS-EXTENSION_CORD"
    ],
-   "pred": [],
-   "tp": 0,
-   "pred_unguarded": [],
-   "tp_unguarded": 0,
+   "pred": [
+    "PH-BPS-EXTENSION_CORD"
+   ],
+   "tp": 1,
+   "pred_unguarded": [
+    "PH-BPS-EXTENSION_CORD"
+   ],
+   "tp_unguarded": 1,
    "guard_removed": [],
    "notes": 0,
    "bad_notes": 0,
@@ -629,7 +633,7 @@
    "needs_review_any": true,
    "brand_gt": false,
    "brand_pred": false,
-   "risk": "待复核",
+   "risk": "中",
    "latency_ms": 0,
    "busy_retries": 0,
    "failure": null
