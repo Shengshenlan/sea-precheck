@@ -24,15 +24,15 @@ export function ExcerptPanel({ e, texts, open }: { e: Excerpt; texts?: string[];
   const [label, tone] = para ? ["转述（非原文）", "rose" as const] : SRC[e.source_type];
   const qs = texts || [e.text];
   return (
-    <details className="group rounded-xl border bg-muted/40 transition-colors open:bg-muted/60" open={open}>
+    <details className="group min-w-0 rounded-xl border bg-muted/40 transition-colors open:bg-muted/60" open={open}>
       <summary className="flex cursor-pointer list-none items-center gap-2 px-3 py-2.5 text-xs [&::-webkit-details-marker]:hidden">
         <Quote className="size-3.5 shrink-0 text-muted-foreground" />
         <Badge tone={tone}>{label}</Badge>
         {para && <Badge tone="amber">待复核</Badge>}
         {e.verification === "verified_ocr" && <Badge>扫描件 OCR</Badge>}
         {qs.length > 1 && <span className="shrink-0 text-muted-foreground">{qs.length} 段</span>}
-        <span className="truncate text-muted-foreground">{e.source_title}</span>
-        <span className="ml-auto flex shrink-0 items-center gap-1 text-muted-foreground"><CalendarClock className="size-3" /><span className="hidden sm:inline">{e.retrieved_date}</span><ChevronDown className="size-3.5 transition-transform group-open:rotate-180" /></span>
+        <span className="min-w-0 flex-1 truncate text-muted-foreground">{e.source_title}</span>
+        <span className="flex shrink-0 items-center gap-1 text-muted-foreground"><CalendarClock className="size-3" /><span className="hidden sm:inline">{e.retrieved_date}</span><ChevronDown className="size-3.5 transition-transform group-open:rotate-180" /></span>
       </summary>
       <div className="space-y-2.5 border-t px-3.5 py-3">
         {qs.map((t, i) => (
@@ -55,7 +55,7 @@ export function RuleCard({ hit, compact }: { hit: RuleHit; compact?: boolean }) 
   const groups = groupExcerpts(r.excerpts);
   const verify = r.verify_with || r.authority;
   return (
-    <article id={`rule-${r.id}`} className="group/card scroll-mt-24 rounded-xl border bg-card p-4 transition-all hover:border-primary/30 hover:shadow-md hover:shadow-primary/5">
+    <article id={`rule-${r.id}`} className="group/card min-w-0 scroll-mt-24 rounded-xl border bg-card p-4 transition-all hover:border-primary/30 hover:shadow-md hover:shadow-primary/5">
       <div className="flex flex-wrap items-start gap-x-3 gap-y-2">
         <h4 className="min-w-0 flex-1 text-[14.5px] font-semibold leading-snug"><Gloss text={r.title} /></h4>
         <div className="flex flex-wrap gap-1">

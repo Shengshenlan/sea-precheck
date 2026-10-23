@@ -114,7 +114,7 @@ export default function Home() {
 
       {/* Sample report */}
       <section id="sample" className="scroll-mt-20 border-y bg-card/50">
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1fr_1.3fr] lg:items-start">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1fr_1.3fr] lg:items-start [&>*]:min-w-0">
           <div className="lg:sticky lg:top-24">
             <SectionHead align="left" eyebrow="示例报告" title="每条结论都能追溯到原文" desc="下面是“泰国 · TikTok Shop · 蓝牙空气炸锅”的真实规则匹配结果（纯规则，未用 AI）。展开即可看到官方原文摘录、来源链接和抓取日期。" />
             <ul className="mt-6 space-y-2.5 text-sm">

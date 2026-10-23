@@ -23,7 +23,7 @@ export default function Sources() {
         return (
           <section key={g} id={g} className="mt-10 scroll-mt-20">
             <h2 className="flex items-center gap-2 text-lg font-semibold">{g !== "ALL" && <Flag c={g} />}{COUNTRY_ZH[g]}<span className="text-sm font-normal text-muted-foreground">{rules.length} 条</span></h2>
-            <div className="mt-4 grid gap-3 lg:grid-cols-2">{rules.map((r) => <RuleCard key={r.id} hit={{ rule: r, reason: "—" }} />)}</div>
+            <div className="mt-4 grid grid-cols-1 gap-3 lg:grid-cols-2">{rules.map((r) => <RuleCard key={r.id} hit={{ rule: r, reason: "—" }} />)}</div>
           </section>
         );
       })}

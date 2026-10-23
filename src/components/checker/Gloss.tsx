@@ -11,7 +11,7 @@ export function Gloss({ text }: { text: string }) {
     parts.push(
       <span key={i} tabIndex={0} className="group/gl relative cursor-help underline decoration-muted-foreground/50 decoration-dotted underline-offset-[3px] outline-none focus-visible:rounded focus-visible:ring-2 focus-visible:ring-ring/40" aria-label={`${term}：${GLOSSARY[term]}`}>
         {term}
-        <span role="tooltip" className="pointer-events-none invisible absolute bottom-full left-1/2 z-30 mb-1.5 w-max max-w-[16rem] -translate-x-1/2 rounded-lg bg-foreground px-2.5 py-1.5 text-left text-[11.5px] font-normal leading-snug text-background opacity-0 shadow-lg transition-opacity group-hover/gl:visible group-hover/gl:opacity-100 group-focus/gl:visible group-focus/gl:opacity-100">
+        <span role="tooltip" className="pointer-events-none absolute bottom-full left-1/2 z-30 mb-1.5 hidden w-max max-w-[min(16rem,78vw)] -translate-x-1/2 animate-fade-up rounded-lg bg-foreground px-2.5 py-1.5 text-left text-[11.5px] font-normal leading-snug text-background shadow-lg group-hover/gl:block group-focus/gl:block">
           <b className="font-semibold">{term}</b>：{GLOSSARY[term]}
         </span>
       </span>,

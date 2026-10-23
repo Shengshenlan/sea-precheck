@@ -89,7 +89,7 @@ export function HistoryView() {
   }
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_300px]">
+    <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_300px] [&>*]:min-w-0">
       <div>
         <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
           <div><h1 className="flex items-center gap-2 text-2xl font-bold tracking-tight"><History className="size-6 text-primary" />历史记录</h1><p className="mt-1 text-sm text-muted-foreground">最近 100 条 AI 预检 · 每个账号最多保留 200 条</p></div>
