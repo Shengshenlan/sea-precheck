@@ -64,4 +64,5 @@ export const api = {
 export interface HistoryItem {
   id: number; created_at: number; title: string; description: string; country: CheckInput["country"]; platform: CheckInput["platform"];
   category: CheckInput["category"]; image_count: number; risk: string | null; cat_pred: Category | null;
+  /** mandatory certificates/licences (absent on records saved before 2026-10-23) */ cert_count?: number;
 }

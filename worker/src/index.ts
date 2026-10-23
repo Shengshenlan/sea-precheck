@@ -1,4 +1,4 @@
-import { sanitizeInput, buildReport, imageEvidenceText } from "../../src/lib/core/match";
+import { sanitizeInput, buildReport, imageEvidenceText, mandatoryCerts } from "../../src/lib/core/match";
 import type { CheckInput, ImageFacts } from "../../src/lib/core/types";
 import { runFetch, runPi, UpstreamError, resolveThinking, type LlmConfig } from "./agent";
 import { extractJson, postProcess } from "./parse";
@@ -215,7 +215,7 @@ async function checkRoute(req: Request, env: Env, ch: H, ip: string, localBypass
     let check_id: number | null = null;
     try {
       const rep = buildReport(input, { category: out.category ?? undefined, features: out.features, items: out.items, extraRuleIds: out.extra_rule_ids, imageText });
-      const summary = { title: input.title.slice(0, 200), description: (input.description || "").slice(0, 300), country: input.country, platform: input.platform, category: input.category || "auto", image_count: images.length, risk: rep.risk.level, cat_pred: rep.category };
+      const summary = { title: input.title.slice(0, 200), description: (input.description || "").slice(0, 300), country: input.country, platform: input.platform, category: input.category || "auto", image_count: images.length, risk: rep.risk.level, cat_pred: rep.category, cert_count: mandatoryCerts(rep).length };
       const ins = await env.DB.prepare("INSERT INTO checks (user_id, created_at, summary, result) VALUES (?, ?, ?, ?)").bind(user.id, Date.now(), JSON.stringify(summary), JSON.stringify(result)).run();
       check_id = Number(ins.meta.last_row_id);
       await env.DB.prepare("DELETE FROM checks WHERE user_id = ? AND id NOT IN (SELECT id FROM checks WHERE user_id = ? ORDER BY created_at DESC LIMIT ?)").bind(user.id, user.id, MAX_HISTORY).run();
