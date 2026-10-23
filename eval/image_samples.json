@@ -1,0 +1,14 @@
+[
+ {"id":"img-th-kettle","file":"img-th-kettle.jpg","title":"智能电热水壶 1.7L","country":"TH","platform":"shopee",
+  "gt":{"category":"appliance","items":["kettle"],"features":["wireless"],"marks":["TISI"],"brands":[],"wireless":true,"battery":false,"label_langs":["th","en","zh"]}},
+ {"id":"img-my-powerbank","file":"img-my-powerbank.jpg","title":"10000mAh 充电宝","country":"MY","platform":"shopee",
+  "gt":{"category":"power","items":[],"features":["powerbank","battery","wireless"],"marks":["SIRIM"],"brands":[],"wireless":true,"battery":true,"label_langs":["en","zh"]}},
+ {"id":"img-ph-rctoy","file":"img-ph-rctoy.jpg","title":"儿童玩具车","country":"PH","platform":"lazada",
+  "gt":{"category":"toy","items":[],"features":["wireless","battery","kids"],"marks":["ICC","CE"],"brands":[],"wireless":true,"battery":true,"label_langs":["en"]}},
+ {"id":"img-th-hairdryer","file":"img-th-hairdryer.jpg","title":"家用吹风机","country":"TH","platform":"tiktok",
+  "gt":{"category":"appliance","items":["hair_dryer"],"features":[],"marks":["CE"],"brands":["Dyson"],"wireless":false,"battery":false,"label_langs":["en","zh"]}},
+ {"id":"img-ph-cream","file":"img-ph-cream.jpg","title":"面霜 50g","country":"PH","platform":"shopee",
+  "gt":{"category":"cosmetic","items":[],"features":[],"marks":[],"brands":[],"wireless":false,"battery":false,"label_langs":["zh"]}},
+ {"id":"img-my-vacuum","file":"img-my-vacuum.jpg","title":"家用吸尘器","country":"MY","platform":"lazada",
+  "gt":{"category":"appliance","items":["vacuum"],"features":["battery","charger"],"marks":[],"brands":[],"wireless":false,"battery":true,"label_langs":["en","zh","ms"]}}
+]
