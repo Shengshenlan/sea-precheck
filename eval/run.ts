@@ -1,5 +1,5 @@
 /**
- * Eval: npx tsx eval/run.ts --api http://127.0.0.1:8788 --label glm-4.5-flash [--concurrency 2]
+ * Eval: npx tsx eval/run.ts --api http://127.0.0.1:8788 --label glm-4.5-flash [--concurrency 1]  (one account allows only 1 check in flight)
  *       npx tsx eval/run.ts --baseline   (deterministic rules only, no LLM)
  * AI checks need login: uses EVAL_EMAIL/EVAL_PASSWORD (default eval@example.com, local D1 only; registers if missing).
  * Ground truth is KB-derived: buildReport() with the hand-labelled category/items/features of each sample.
@@ -14,7 +14,7 @@ let TOKEN = "";
 
 const arg = (k: string) => { const i = process.argv.indexOf(k); return i > 0 ? process.argv[i + 1] : undefined; };
 const API = arg("--api"); const baseline = process.argv.includes("--baseline");
-const label = arg("--label") || (baseline ? "baseline-rules" : "llm"); const conc = parseInt(arg("--concurrency") || "2", 10);
+const label = arg("--label") || (baseline ? "baseline-rules" : "llm"); const conc = parseInt(arg("--concurrency") || "1", 10);
 const certIds = (r: any) => new Set<string>(r.certs.filter((h: any) => h.rule.mandatory && h.rule.kind === "cert").map((h: any) => h.rule.id));
 
 async function one(x: any) {

@@ -13,22 +13,29 @@ LLM_MODEL = "glm-5.3-flash"
 LLM_THINKING = "off"        # off | low | high (on = slower, needs more max_tokens)
 # Comma-separated list of allowed browser origins (GitHub Pages origin, no path). Localhost is for local testing.
 ALLOWED_ORIGINS = "http://localhost:3000,http://127.0.0.1:3000"
-RATE_LIMIT_PER_HOUR = "10"
 AGENT_IMPL = "fetch"         # "pi" (pi-agent-core) or "fetch" (thin built-in loop)
 REQUEST_TIMEOUT_MS = "55000"
 # Vision (image facts). glm-5.3-flash (image_url data URI, thinking off) is the default; glm-4.6v also works on the Coding Plan endpoint (see eval/results/images-*.json). Mark→country mapping comes from the KB (src/lib/core/marks.ts), not the model.
 VISION_BASE_URL = "https://open.bigmodel.cn/api/coding/paas/v4"
 VISION_MODEL = "glm-5.3-flash"
-DAILY_AI_QUOTA = "20"        # AI checks per user per UTC day
-REG_PER_IP_PER_DAY = "5"     # registrations per IP per day
+# ---- Usage limits (protect the Zhipu Coding Plan). All daily counters live in D1 and reset at 00:00 UTC. See DEPLOY.md "限额". ----
+CHECKS_PER_USER_PER_DAY = "10"   # checks per account per day (a multi-country check counts once). Old name DAILY_AI_QUOTA still works.
+CHECKS_PER_IP_PER_DAY = "20"     # checks per IP per day
+CHECKS_GLOBAL_PER_DAY = "300"    # checks site-wide per day -> "今日检查名额已用完，请明天再来"
+MAX_COUNTRIES = "3"              # countries per check (max 3)
+MAX_IMAGE_BYTES = "2097152"      # per image after client compression (max 3 images)
+INFO_MAX_CHARS = "2000"          # 商品信息 length
+REG_PER_IP_PER_DAY = "3"         # registrations per IP per day
 PBKDF2_ITERATIONS = "100000" # workerd max is 100000
 # Verification-code email (Brevo). The API key is a secret: wrangler secret put BREVO_API_KEY
 MAIL_FROM = "zhu05361@gmail.com"   # must be a verified sender in Brevo
 MAIL_FROM_NAME = "出海合规雷达"
-MAIL_PER_EMAIL_PER_DAY = "8"  # codes per address per UTC day
-MAIL_PER_IP_PER_DAY = "20"    # codes per IP per UTC day
+MAIL_GLOBAL_PER_DAY = "250"   # verification emails site-wide per UTC day (Brevo free plan: 300/day)
+MAIL_PER_EMAIL_PER_DAY = "5"  # codes per address per UTC day
+MAIL_PER_IP_PER_DAY = "10"    # codes per IP per UTC day
 
-# Free-tier Workers Rate Limiting API. period must be 10 or 60 seconds.
+# Free-tier Workers Rate Limiting API (per-minute bursts; approximate, counted per Cloudflare location). period must be 10 or 60 seconds.
+# RL_IP = checks per IP per minute, RL_GLOBAL = checks site-wide per minute, RL_AUTH = login/register/send-code per IP per minute.
 [[ratelimits]]
 name = "RL_IP"
 namespace_id = "1001"

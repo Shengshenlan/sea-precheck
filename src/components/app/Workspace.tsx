@@ -34,9 +34,9 @@ export function Workspace() {
         <>
           <div className="mb-5 px-1">
             <h1 className="text-xl font-semibold tracking-tight sm:text-2xl">商品上架合规检查</h1>
-            <p className="mt-1 text-sm text-muted-foreground">上传商品图片或填写商品信息，查看在泰国、菲律宾、马来西亚上架前需要办理的证书。{quota ? ` 今日已用 ${quota.used}/${quota.limit} 次。` : ""}</p>
+            <p className="mt-1 text-sm text-muted-foreground">上传商品图片或填写商品信息，查看在泰国、菲律宾、马来西亚上架前需要办理的证书。</p>
           </div>
-          <CheckForm value={form} onChange={setForm} onSubmit={submit} error={phase.error} />
+          <CheckForm value={form} onChange={setForm} onSubmit={submit} error={phase.error} remaining={quota ? Math.max(0, quota.limit - quota.used) : null} />
         </>
       )}
       {phase.k === "loading" && <CheckProgress countries={form.countries} images={form.images.length} />}

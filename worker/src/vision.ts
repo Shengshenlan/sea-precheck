@@ -5,22 +5,22 @@ import { markWithCountry } from "../../src/lib/core/marks";
 export interface VisionConfig { baseUrl: string; model: string; apiKey: string; signal: AbortSignal }
 
 export const MAX_IMAGES = 3;
-export const MAX_IMAGE_B64 = 900 * 1024;      // per image (base64 chars) ~ 675 KB binary
-export const MAX_IMAGES_B64_TOTAL = 2_000_000; // ~1.5 MB binary in total
+export const MAX_IMAGE_BYTES = 2 * 1024 * 1024; // per image, decoded bytes (clients compress to ~1600px JPEG first)
 const DATA_URL = /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/;
+/** Decoded size of a base64 data URL without decoding it. */
+export const dataUrlBytes = (u: string) => { const b = u.slice(u.indexOf(",") + 1); return Math.floor((b.length * 3) / 4) - (b.endsWith("==") ? 2 : b.endsWith("=") ? 1 : 0); };
 
 /** Returns an error message (Chinese) or null if the images are acceptable. */
-export function checkImages(images: unknown): string | null {
+export function checkImages(images: unknown, maxBytes = MAX_IMAGE_BYTES, maxCount = MAX_IMAGES): string | null {
   if (images == null) return null;
   if (!Array.isArray(images)) return "图片格式错误";
-  if (images.length > MAX_IMAGES) return `最多上传 ${MAX_IMAGES} 张图片`;
-  let total = 0;
+  if (images.length > maxCount) return `最多上传 ${maxCount} 张图片`;
   for (const im of images) {
-    if (typeof im !== "string" || !DATA_URL.test(im)) return "只支持 jpg / png / webp 图片";
-    if (im.length > MAX_IMAGE_B64) return "单张图片过大，请压缩后再上传";
-    total += im.length;
+    if (typeof im !== "string" || im.length > Math.ceil(maxBytes / 3) * 4 + 64) return typeof im === "string" ? `单张图片不能超过 ${(maxBytes / 1048576).toFixed(0)}MB，请压缩后再上传` : "图片格式错误";
+    if (!DATA_URL.test(im)) return "只支持 jpg / png / webp 图片";
+    if (dataUrlBytes(im) > maxBytes) return `单张图片不能超过 ${(maxBytes / 1048576).toFixed(0)}MB，请压缩后再上传`;
   }
-  return total > MAX_IMAGES_B64_TOTAL ? "图片总大小超过 1.5MB" : null;
+  return null;
 }
 
 export const KNOWN_MARKS = ["TISI", "SIRIM", "ST", "ICC", "PS", "NTC", "NBTC", "MCMC", "FDA", "Halal", "CE", "FCC", "UKCA", "RoHS", "CCC", "PSE", "KC", "UL", "SNI", "WEEE", "Recycle"];

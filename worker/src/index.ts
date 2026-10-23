@@ -3,7 +3,7 @@ import { splitInfo, summarize } from "../../src/lib/core/verdict";
 import type { CheckInput, Country, ImageFacts } from "../../src/lib/core/types";
 import { runFetch, runPi, UpstreamError, resolveThinking, type LlmConfig } from "./agent";
 import { extractJson, postProcess } from "./parse";
-import { checkImages, runVision, factsForPrompt } from "./vision";
+import { checkImages, runVision, factsForPrompt, MAX_IMAGES } from "./vision";
 import { hashPassword, verifyPassword, DUMMY_HASH, signJwt, verifyJwt, hmacHex, EMAIL_RE, passwordProblem, sixDigitCode, codeHash, hexEqual } from "./auth";
 import { mailMode, sendCodeMail, type Purpose } from "./mail";
 
@@ -13,25 +13,16 @@ interface D1 { prepare(q: string): D1Stmt; batch(s: D1Stmt[]): Promise<unknown> 
 export interface Env {
   ZHIPUAI_API_KEY?: string; LLM_THINKING?: string; LLM_BASE_URL: string; LLM_MODEL: string; ALLOWED_ORIGINS: string;
   VISION_BASE_URL?: string; VISION_MODEL?: string;
-  RATE_LIMIT_PER_HOUR?: string; AGENT_IMPL?: string; REQUEST_TIMEOUT_MS?: string; PI_DEBUG?: string; RATE_LIMIT_DISABLED_LOCAL?: string;
+  AGENT_IMPL?: string; REQUEST_TIMEOUT_MS?: string; PI_DEBUG?: string; RATE_LIMIT_DISABLED_LOCAL?: string;
   JWT_SECRET?: string; DAILY_AI_QUOTA?: string; REG_PER_IP_PER_DAY?: string; PBKDF2_ITERATIONS?: string;
   BREVO_API_KEY?: string; MAIL_FROM?: string; MAIL_FROM_NAME?: string; DEV_MAIL_LOG?: string; MAIL_PER_EMAIL_PER_DAY?: string; MAIL_PER_IP_PER_DAY?: string;
+  CHECKS_PER_USER_PER_DAY?: string; CHECKS_PER_IP_PER_DAY?: string; CHECKS_GLOBAL_PER_DAY?: string; MAIL_GLOBAL_PER_DAY?: string;
+  MAX_IMAGE_BYTES?: string; INFO_MAX_CHARS?: string; MAX_COUNTRIES?: string; CHECK_DRY_RUN_LOCAL?: string;
   RL_IP?: RateLimit; RL_GLOBAL?: RateLimit; RL_AUTH?: RateLimit; DB?: D1;
 }
 
 const MAX_BODY_TEXT = 8 * 1024;
-const MAX_BODY_IMAGES = 2_100_000;
 const MAX_HISTORY = 200; // per user; oldest are pruned
-// Best-effort hourly window per isolate (no KV / Durable Objects on purpose). The RL_IP binding is the edge-wide per-minute limit.
-const hourly = new Map<string, number[]>();
-function hourlyOk(ip: string, limit: number): boolean {
-  const now = Date.now(); const arr = (hourly.get(ip) || []).filter((t) => now - t < 3600_000);
-  if (arr.length >= limit) { hourly.set(ip, arr); return false; }
-  arr.push(now); hourly.set(ip, arr);
-  if (hourly.size > 5000) for (const [k, v] of hourly) if (!v.length || now - v[v.length - 1] > 3600_000) hourly.delete(k);
-  return true;
-}
-
 function cors(origin: string | null, env: Env): Record<string, string> {
   const allowed = (env.ALLOWED_ORIGINS || "").split(",").map((s) => s.trim()).filter(Boolean);
   const h: Record<string, string> = { "Vary": "Origin" };
@@ -45,7 +36,28 @@ type H = Record<string, string>;
 const json = (body: unknown, status: number, headers: H) =>
   new Response(JSON.stringify(body), { status, headers: { ...headers, "content-type": "application/json; charset=utf-8", "cache-control": "no-store" } });
 const today = () => new Date().toISOString().slice(0, 10);
-const quotaOf = (env: Env) => Math.max(1, parseInt(env.DAILY_AI_QUOTA || "20", 10));
+/** Integer var with default (all limits are configurable in wrangler.toml [vars] or `wrangler dev --var K:V`). */
+const num = (v: string | undefined, d: number, min = 1) => { const n = parseInt(v ?? "", 10); return Number.isFinite(n) ? Math.max(min, n) : d; };
+// DAILY_AI_QUOTA is the old name of CHECKS_PER_USER_PER_DAY and is still honoured.
+const quotaOf = (env: Env) => num(env.CHECKS_PER_USER_PER_DAY ?? env.DAILY_AI_QUOTA, 10);
+const limitsOf = (env: Env) => ({
+  perUser: quotaOf(env), perIp: num(env.CHECKS_PER_IP_PER_DAY, 20), global: num(env.CHECKS_GLOBAL_PER_DAY, 300),
+  imageBytes: num(env.MAX_IMAGE_BYTES, 2 * 1024 * 1024), infoChars: num(env.INFO_MAX_CHARS, 2000), countries: Math.min(3, num(env.MAX_COUNTRIES, 3)),
+  mailGlobal: num(env.MAIL_GLOBAL_PER_DAY, 250), mailEmail: num(env.MAIL_PER_EMAIL_PER_DAY, 5), mailIp: num(env.MAIL_PER_IP_PER_DAY, 10), regIp: num(env.REG_PER_IP_PER_DAY, 3),
+});
+
+/**
+ * Atomically takes one unit of a daily D1 counter if it is still below `limit`.
+ * Single statement (conditional upsert + RETURNING), so concurrent requests cannot overshoot. Returns false when the cap is reached.
+ */
+async function take(DB: D1, table: "daily_counters" | "usage", key: string | number, limit: number): Promise<boolean> {
+  const col = table === "usage" ? "user_id" : "k";
+  const row = await DB.prepare(`INSERT INTO ${table} (${col}, day, n) VALUES (?, ?, 1) ON CONFLICT(${col}, day) DO UPDATE SET n = n + 1 WHERE ${table}.n < ? RETURNING n`)
+    .bind(key, today(), limit).first<{ n: number }>();
+  return !!row && row.n <= limit;
+}
+const giveBack = (DB: D1, table: "daily_counters" | "usage", key: string | number) =>
+  DB.prepare(`UPDATE ${table} SET n = n - 1 WHERE ${table === "usage" ? "user_id" : "k"} = ? AND day = ? AND n > 0`).bind(key, today()).run();
 
 async function readJson(req: Request, max: number): Promise<any | Response> {
   const len = parseInt(req.headers.get("content-length") || "0", 10);
@@ -79,7 +91,7 @@ async function authRoutes(req: Request, env: Env, url: URL, ch: H, ip: string, l
   if (p === "/api/auth/me" && req.method === "GET") {
     const u = await currentUser(req, env);
     if (!u) return json({ ok: false, code: "unauthorized", message: "请先登录" }, 401, ch);
-    return json({ ok: true, user: { id: u.id, email: u.email }, quota: { used: await usageToday(env, u.id), limit: quotaOf(env) } }, 200, ch);
+    return json({ ok: true, user: { id: u.id, email: u.email }, quota: { used: Math.min(await usageToday(env, u.id), quotaOf(env)), limit: quotaOf(env) } }, 200, ch);
   }
   if (p === "/api/auth/account" && req.method === "DELETE") {
     const u = await currentUser(req, env);
@@ -116,15 +128,21 @@ async function authRoutes(req: Request, env: Env, url: URL, ch: H, ip: string, l
       return json({ ok: false, code: "cooldown", retry_after: wait, message: `请 ${wait} 秒后再重新发送` }, 429, ch);
     }
     const ipKey = `i:${(await hmacHex(secret, `ip|${ip}`)).slice(0, 32)}`, emKey = `e:${(await hmacHex(secret, `email|${email}`)).slice(0, 32)}`;
-    const ipMax = Math.max(1, parseInt(env.MAIL_PER_IP_PER_DAY || "20", 10)), emMax = Math.max(1, parseInt(env.MAIL_PER_EMAIL_PER_DAY || "8", 10));
+    const { mailIp: ipMax, mailEmail: emMax, mailGlobal } = limitsOf(env);
     const cnt = async (k: string) => (await DB.prepare("SELECT n FROM mail_counters WHERE k = ? AND day = ?").bind(k, today()).first<{ n: number }>())?.n || 0;
     if (!localBypass && (await cnt(ipKey)) >= ipMax) return json({ ok: false, code: "rate_limited", message: "当前网络今日发送验证码次数已达上限，请明天再试" }, 429, ch);
     if (!localBypass && (await cnt(emKey)) >= emMax) return json({ ok: false, code: "rate_limited", message: "该邮箱今日接收验证码次数已达上限，请明天再试" }, 429, ch);
+    // site-wide daily cap (Brevo free plan: 300/day). Reserved atomically; only real sends count (honeypot / unknown-email resets do not).
+    const reserveGlobal = async () => localBypass || (await take(DB, "daily_counters", "g:mail", mailGlobal));
     const bump = (k: string) => DB.prepare("INSERT INTO mail_counters (k, day, n) VALUES (?, ?, 1) ON CONFLICT(k, day) DO UPDATE SET n = n + 1").bind(k, today());
     // reset for an unknown email: same response, nothing sent (does not reveal whether the address is registered)
     if (purpose === "reset" && !exists) {
       await DB.batch([bump(ipKey), DB.prepare("INSERT INTO email_codes (email, purpose, code_hash, expires_at, attempts, last_sent_at) VALUES (?, 'reset', 'x', ?, 0, ?) ON CONFLICT(email, purpose) DO UPDATE SET code_hash = 'x', expires_at = excluded.expires_at, attempts = 0, last_sent_at = excluded.last_sent_at").bind(email, now + CODE_TTL_MS, now)]);
       return json({ ok: true, cooldown: CODE_COOLDOWN_S, ...(mode === "dev" ? { dev: true } : {}) }, 200, ch);
+    }
+    if (!(await reserveGlobal())) {
+      console.log(JSON.stringify({ evt: "mail_global_cap" }));
+      return json({ ok: false, code: "mail_global_quota", message: "今日验证码发送名额已用完，请明天再试" }, 429, ch);
     }
     const code = sixDigitCode();
     await DB.batch([
@@ -138,6 +156,7 @@ async function authRoutes(req: Request, env: Env, url: URL, ch: H, ip: string, l
     if (!sent.ok) {
       console.log(JSON.stringify({ evt: "mail_error", detail: sent.detail }));
       await DB.prepare("DELETE FROM email_codes WHERE email = ? AND purpose = ?").bind(email, purpose).run();
+      if (!localBypass) await giveBack(DB, "daily_counters", "g:mail");
       return json({ ok: false, code: "mail_failed", message: "验证码邮件发送失败，请稍后重试" }, 502, ch);
     }
     console.log(JSON.stringify({ evt: "code_sent", purpose }));
@@ -169,7 +188,7 @@ async function authRoutes(req: Request, env: Env, url: URL, ch: H, ip: string, l
     if (pp) return json({ ok: false, code: "weak_password", message: pp }, 400, ch);
     if (await DB.prepare("SELECT id FROM users WHERE email = ?").bind(email).first()) return json({ ok: false, code: "exists", message: "该邮箱已注册，请直接登录" }, 409, ch);
     const ipHash = (await hmacHex(secret, `ip|${ip}`)).slice(0, 32);
-    const perDay = Math.max(1, parseInt(env.REG_PER_IP_PER_DAY || "5", 10));
+    const perDay = limitsOf(env).regIp;
     const r = await DB.prepare("SELECT n FROM reg_ip WHERE ip_hash = ? AND day = ?").bind(ipHash, today()).first<{ n: number }>();
     if (!localBypass && (r?.n || 0) >= perDay) return json({ ok: false, code: "rate_limited", message: "当前网络今日注册次数已达上限" }, 429, ch);
     const bad = await consume("register");
@@ -226,41 +245,79 @@ async function historyRoutes(req: Request, env: Env, url: URL, ch: H): Promise<R
 }
 
 // ---------------- AI check ----------------
-async function checkRoute(req: Request, env: Env, ch: H, ip: string, localBypass: boolean): Promise<Response> {
+async function checkRoute(req: Request, env: Env, ch: H, ip: string, localBypass: boolean, localHostOnly: boolean): Promise<Response> {
   if (!env.DB || !env.JWT_SECRET) return json({ ok: false, code: "auth_disabled", message: "登录功能未配置，AI 分析不可用" }, 503, ch);
   const user = await currentUser(req, env);
   if (!user) return json({ ok: false, code: "login_required", message: "请先登录后再检查" }, 401, ch);
 
-  const perHour = Math.max(1, parseInt(env.RATE_LIMIT_PER_HOUR || "10", 10));
+  const L = limitsOf(env);
+  // per-minute burst limits (Workers Rate Limiting bindings; approximate, per Cloudflare location)
   if (!localBypass && env.RL_GLOBAL && !(await env.RL_GLOBAL.limit({ key: "global" })).success)
-    return json({ ok: false, code: "rate_limited", message: "当前使用人数较多，AI 分析暂时排队中，请一分钟后再试" }, 429, ch);
-  if (!localBypass && ((env.RL_IP && !(await env.RL_IP.limit({ key: `ip:${ip}` })).success) || !hourlyOk(ip, perHour)))
-    return json({ ok: false, code: "rate_limited", message: `AI 分析次数已达上限（每个 IP 每小时约 ${perHour} 次），请稍后再试` }, 429, ch);
+    return json({ ok: false, code: "rate_limited", message: "当前使用人数较多，请一分钟后再试" }, 429, ch);
+  if (!localBypass && env.RL_IP && !(await env.RL_IP.limit({ key: `ip:${ip}` })).success)
+    return json({ ok: false, code: "rate_limited", message: "操作过于频繁（每分钟最多 3 次），请稍后再试" }, 429, ch);
 
-  const body = await readJson(req, MAX_BODY_IMAGES);
-  if (body === null) return json({ ok: false, message: "输入过大（图片总计需小于 1.5MB）" }, 413, ch);
+  const body = await readJson(req, MAX_IMAGES * (Math.ceil(L.imageBytes / 3) * 4 + 64) + MAX_BODY_TEXT);
+  if (body === null) return json({ ok: false, message: `输入过大（最多 ${MAX_IMAGES} 张图片，每张不超过 ${(L.imageBytes / 1048576).toFixed(0)}MB）` }, 413, ch);
   if (!body || typeof body !== "object") return json({ ok: false, message: "请求格式错误" }, 400, ch);
   const images: string[] = Array.isArray(body.images) ? body.images : [];
-  const imgErr = checkImages(body.images);
+  const imgErr = checkImages(body.images, L.imageBytes);
   if (imgErr) return json({ ok: false, code: "bad_image", message: imgErr }, 400, ch);
   const { images: _drop, ...textPart } = body;
+  if (typeof body.info === "string" && body.info.length > L.infoChars) return json({ ok: false, code: "too_long", message: `商品信息最多 ${L.infoChars} 字，请精简后再试` }, 413, ch);
   if (JSON.stringify(textPart).length > MAX_BODY_TEXT) return json({ ok: false, message: "输入过长" }, 413, ch);
   // new clients send `info` (one free-text box) + `countries`; the eval / old clients send title + description + country
   const legacy = !Array.isArray(body.countries);
-  const countries: Country[] = legacy ? [] : [...new Set((body.countries as unknown[]).filter((c): c is Country => COUNTRIES.includes(c as Country)))];
+  if (!legacy && (body.countries as unknown[]).length > L.countries) return json({ ok: false, code: "bad_country", message: `一次最多选择 ${L.countries} 个国家` }, 400, ch);
+  const countries: Country[] = legacy ? [] : [...new Set((body.countries as unknown[]).filter((c): c is Country => COUNTRIES.includes(c as Country)))].slice(0, L.countries);
   if (!legacy && !countries.length) return json({ ok: false, code: "bad_country", message: "请至少选择一个国家" }, 400, ch);
   const text = typeof body.info === "string" ? splitInfo(body.info) : { title: textPart.title, description: textPart.description };
   const input = sanitizeInput({ ...(textPart as CheckInput), ...text, country: legacy ? textPart.country : countries[0] });
   if (legacy) countries.push(input.country);
   if (input.title.length < 2 && !images.length) return json({ ok: false, message: "请填写商品信息或上传图片" }, 400, ch);
   if (input.title.length < 2) input.title = "（见图片）";
-  if (!env.ZHIPUAI_API_KEY) return json({ ok: false, code: "disabled", message: "AI 服务未配置" }, 503, ch);
+  // Local-only dry run (loopback host + CHECK_DRY_RUN_LOCAL=1): exercises every limit without calling the LLM. Inert in production.
+  const dryRun = localHostOnly && env.CHECK_DRY_RUN_LOCAL === "1";
+  if (!env.ZHIPUAI_API_KEY && !dryRun) return json({ ok: false, code: "disabled", message: "AI 服务未配置" }, 503, ch);
 
-  const limit = quotaOf(env);
-  const used = await usageToday(env, user.id);
-  if (!localBypass && used >= limit) return json({ ok: false, code: "user_quota", message: `今日检查次数已用完（每天 ${limit} 次），请明天再来` }, 429, ch);
-  await env.DB.prepare("INSERT INTO usage (user_id, day, n) VALUES (?, ?, 1) ON CONFLICT(user_id, day) DO UPDATE SET n = n + 1").bind(user.id, today()).run();
+  // one check in flight per account (stale locks from a crashed isolate expire after the request timeout)
+  const DB = env.DB;
+  const baseTimeout = parseInt(env.REQUEST_TIMEOUT_MS || "45000", 10);
+  const lockedAt = Date.now();
+  const lock = await DB.prepare("INSERT INTO inflight (user_id, started_at) VALUES (?, ?) ON CONFLICT(user_id) DO UPDATE SET started_at = excluded.started_at WHERE inflight.started_at < ? RETURNING user_id")
+    .bind(user.id, lockedAt, lockedAt - (baseTimeout + 45_000)).first();
+  if (!lock) return json({ ok: false, code: "in_flight", message: "上一次检查还在进行中，请等待完成后再试" }, 409, ch);
+  const unlock = () => DB.prepare("DELETE FROM inflight WHERE user_id = ? AND started_at = ?").bind(user.id, lockedAt).run().catch(() => {});
 
+  // daily quotas (D1, atomic): account → IP → site-wide. A multi-country check counts once. Earlier reservations are returned if a later one fails.
+  const ipKey = `ci:${(await hmacHex(env.JWT_SECRET, `ip|${ip}`)).slice(0, 32)}`;
+  if (!(await take(DB, "usage", user.id, L.perUser))) {
+    await unlock();
+    return json({ ok: false, code: "user_quota", message: `今日检查次数已用完（每天 ${L.perUser} 次），请明天再来` }, 429, ch);
+  }
+  if (!(await take(DB, "daily_counters", ipKey, L.perIp))) {
+    await giveBack(DB, "usage", user.id); await unlock();
+    return json({ ok: false, code: "ip_quota", message: "当前网络今日检查次数已达上限，请明天再来" }, 429, ch);
+  }
+  if (!(await take(DB, "daily_counters", "g:check", L.global))) {
+    await giveBack(DB, "usage", user.id); await giveBack(DB, "daily_counters", ipKey); await unlock();
+    console.log(JSON.stringify({ evt: "global_check_cap" }));
+    return json({ ok: false, code: "global_quota", message: "今日检查名额已用完，请明天再来" }, 429, ch);
+  }
+  const limit = L.perUser;
+  const used = (await usageToday(env, user.id)) - 1;
+  if (Math.random() < 0.02) await DB.prepare("DELETE FROM daily_counters WHERE day < ?").bind(new Date(Date.now() - 2 * 86400_000).toISOString().slice(0, 10)).run().catch(() => {});
+  try {
+    if (dryRun) {
+      const ms = Math.min(10_000, num(textPart.dry_run_ms, 0, 0));
+      if (ms) await new Promise((r) => setTimeout(r, ms));
+      return json({ ok: true, dry_run: true, countries, quota: { used: used + 1, limit } }, 200, ch);
+    }
+    return await runChecks(env, ch, user, input, countries, images, legacy, used, limit);
+  } finally { await unlock(); }
+}
+
+async function runChecks(env: Env, ch: H, user: { id: number }, input: CheckInput, countries: Country[], images: string[], legacy: boolean, used: number, limit: number): Promise<Response> {
   const timeoutMs = parseInt(env.REQUEST_TIMEOUT_MS || "45000", 10) + (images.length ? 15000 : 0);
   const ctl = new AbortController(); const timer = setTimeout(() => ctl.abort(), timeoutMs);
   const deadline = new Promise<never>((_, rej) => ctl.signal.addEventListener("abort", () => rej(new UpstreamError("timeout", "deadline"))));
@@ -273,7 +330,7 @@ async function checkRoute(req: Request, env: Env, ch: H, ip: string, localBypass
     if (images.length) {
       const tv = Date.now();
       try {
-        facts = await Promise.race([runVision(images, { baseUrl: env.VISION_BASE_URL || env.LLM_BASE_URL, model: env.VISION_MODEL || "glm-5.3-flash", apiKey: env.ZHIPUAI_API_KEY, signal: ctl.signal }, extractJson), deadline]);
+        facts = await Promise.race([runVision(images, { baseUrl: env.VISION_BASE_URL || env.LLM_BASE_URL, model: env.VISION_MODEL || "glm-5.3-flash", apiKey: env.ZHIPUAI_API_KEY!, signal: ctl.signal }, extractJson), deadline]);
       } catch (e) {
         image_error = e instanceof UpstreamError ? e.code : "error";
         console.log(JSON.stringify({ evt: "vision_error", code: image_error, detail: e instanceof UpstreamError ? e.detail : "", ms: Date.now() - tv }));
@@ -284,7 +341,7 @@ async function checkRoute(req: Request, env: Env, ch: H, ip: string, localBypass
     const imageText = imageEvidenceText(facts);
 
     // 2) text agent per country, in parallel. KB tools, deterministic matching, quote validation and the guard are all per country.
-    const cfg: LlmConfig = { baseUrl: env.LLM_BASE_URL, model: env.LLM_MODEL, apiKey: env.ZHIPUAI_API_KEY, timeoutMs: Math.max(5000, timeoutMs - 3000), signal: ctl.signal,
+    const cfg: LlmConfig = { baseUrl: env.LLM_BASE_URL, model: env.LLM_MODEL, apiKey: env.ZHIPUAI_API_KEY!, timeoutMs: Math.max(5000, timeoutMs - 3000), signal: ctl.signal,
       thinking: resolveThinking(env.LLM_THINKING), imageText, imagePrompt: facts ? factsForPrompt(facts) : undefined };
     const impl = env.AGENT_IMPL === "fetch" ? runFetch : runPi;
     const one = async (country: Country, i: number) => {
@@ -329,9 +386,9 @@ async function checkRoute(req: Request, env: Env, ch: H, ip: string, localBypass
         verdicts[c] = summarize(rep).verdict; cat_pred ||= rep.category;
       }
       const summary = { title: input.title.slice(0, 200), description: (input.description || "").slice(0, 300), countries, category: input.category || "auto", image_count: images.length, verdicts, cat_pred };
-      const ins = await env.DB.prepare("INSERT INTO checks (user_id, created_at, summary, result) VALUES (?, ?, ?, ?)").bind(user.id, Date.now(), JSON.stringify(summary), JSON.stringify(result)).run();
+      const ins = await env.DB!.prepare("INSERT INTO checks (user_id, created_at, summary, result) VALUES (?, ?, ?, ?)").bind(user.id, Date.now(), JSON.stringify(summary), JSON.stringify(result)).run();
       check_id = Number(ins.meta.last_row_id);
-      await env.DB.prepare("DELETE FROM checks WHERE user_id = ? AND id NOT IN (SELECT id FROM checks WHERE user_id = ? ORDER BY created_at DESC LIMIT ?)").bind(user.id, user.id, MAX_HISTORY).run();
+      await env.DB!.prepare("DELETE FROM checks WHERE user_id = ? AND id NOT IN (SELECT id FROM checks WHERE user_id = ? ORDER BY created_at DESC LIMIT ?)").bind(user.id, user.id, MAX_HISTORY).run();
     } catch { console.log(JSON.stringify({ evt: "history_error" })); }
     const quota = { used: used + 1, limit };
     // legacy single-country callers (eval) get the flat shape they always had
@@ -365,7 +422,7 @@ export default {
       if (url.pathname === "/api/history" || url.pathname.startsWith("/api/history/")) return await historyRoutes(req, env, url, ch);
       if (url.pathname === "/api/check") {
         if (req.method !== "POST") return json({ ok: false, message: "method not allowed" }, 405, ch);
-        return await checkRoute(req, env, ch, ip, localBypass);
+        return await checkRoute(req, env, ch, ip, localBypass, isLoopback);
       }
     } catch (e) {
       console.log(JSON.stringify({ evt: "unhandled", name: String((e as any)?.name || "") }));

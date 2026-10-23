@@ -1,6 +1,7 @@
-/** Client-side image prep: decode, downscale to ≤1024px long edge, re-encode JPEG until all images fit the budget. */
+/** Client-side image prep: decode, downscale to ≤1600px long edge, re-encode JPEG until each image is under the per-image budget. */
 export const MAX_IMAGES = 3;
-export const TOTAL_BUDGET = 1_500_000; // bytes of base64 across all images (worker hard cap is ~2MB)
+export const MAX_IMAGE_BYTES = 2 * 1024 * 1024; // worker cap per image (decoded bytes, MAX_IMAGE_BYTES in wrangler.toml)
+export const PER_IMAGE_B64 = Math.floor((MAX_IMAGE_BYTES * 4) / 3) - 64_000; // data-URL chars, small safety margin
 const ACCEPT = ["image/jpeg", "image/png", "image/webp"];
 export interface PreparedImage { id: string; name: string; dataUrl: string; bytes: number; w: number; h: number }
 
@@ -13,7 +14,7 @@ async function decode(file: File): Promise<HTMLImageElement> {
   } finally { setTimeout(() => URL.revokeObjectURL(url), 1000); }
 }
 
-export async function prepareImage(file: File, perImageBudget: number, maxEdge = 1024): Promise<PreparedImage> {
+export async function prepareImage(file: File, perImageBudget = PER_IMAGE_B64, maxEdge = 1600): Promise<PreparedImage> {
   const img = await decode(file);
   let edge = maxEdge; let q = 0.85;
   for (let attempt = 0; attempt < 8; attempt++) {

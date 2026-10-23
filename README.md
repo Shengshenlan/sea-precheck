@@ -39,18 +39,18 @@ GitHub Pages（静态 Next.js export）                 Cloudflare Worker（work
 - guard（`src/lib/core/guard.ts`）：LLM 建议的“无线”“充电器”特征要在商品信息/图片里找到明确依据才采纳；**商品只写碱性/干电池（AA/AAA 等）且未提锂电时，不触发 UN38.3 / UN3480 / 承运限制 / 泰国 TISI 电池等锂电规则**（确定性匹配 `match.ts` 与 guard 两处都做了限制）。
 - 结论映射（`src/lib/core/verdict.ts`）：命中禁售 → 不能销售；有强制认证 → 办证后可上架；否则 → 可以上架；品类无法识别时显示“暂无法判断”，并提示补充信息。
 - 平台（TikTok Shop / Shopee / Lazada）不再需要选择，相关平台规则只在“查看详细依据”中列出。
-- 图片：最多 3 张 jpg/png/webp，浏览器端缩到 ~1024px、总计 ≤1.5MB；**图片不保存**。历史只存文字摘要 + 结果 JSON，可删除。Worker 日志只记 `{evt, code, ms}`，不记录输入、验证码或密钥。
+- 图片：最多 3 张 jpg/png/webp，浏览器端自动压缩为最长边 ~1600px 的 JPEG，单张 ≤2MB；**图片不保存**。历史只存文字摘要 + 结果 JSON，可删除。Worker 日志只记 `{evt, code, ms}`，不记录输入、验证码或密钥。
 
 ## 账号与鉴权（worker/src/auth.ts、worker/src/mail.ts）
 
-- **邮箱验证码**：6 位数字，D1 中只存 HMAC-SHA256 哈希（以 `JWT_SECRET` 为密钥，绑定邮箱与用途），10 分钟有效，最多错 5 次（原子计数，第 5 次后需重新获取），同一邮箱同一用途 60 秒内不能重发；每邮箱每天 `MAIL_PER_EMAIL_PER_DAY`（默认 8）封、每 IP 每天 `MAIL_PER_IP_PER_DAY`（默认 20）封（计数只存哈希）。注册与重置分别使用独立的验证码。
-- **注册**：保留 honeypot 字段；密码 ≥8 位且含字母与数字；每 IP 每天注册数上限 `REG_PER_IP_PER_DAY`；`RL_AUTH` 每 IP 每分钟 6 次。已注册邮箱会直接提示“已注册，请直接登录”。
+- **邮箱验证码**：6 位数字，D1 中只存 HMAC-SHA256 哈希（以 `JWT_SECRET` 为密钥，绑定邮箱与用途），10 分钟有效，最多错 5 次（原子计数，第 5 次后需重新获取），同一邮箱同一用途 60 秒内不能重发；每邮箱每天 `MAIL_PER_EMAIL_PER_DAY`（默认 5）封、每 IP 每天 `MAIL_PER_IP_PER_DAY`（默认 10）封、全站每天 `MAIL_GLOBAL_PER_DAY`（默认 250）封（计数只存哈希）。注册与重置分别使用独立的验证码。
+- **注册**：保留 honeypot 字段；密码 ≥8 位且含字母与数字；每 IP 每天注册数上限 `REG_PER_IP_PER_DAY`（默认 3）；`RL_AUTH` 每 IP 每分钟 6 次。已注册邮箱会直接提示“已注册，请直接登录”。
 - **忘记密码**：对未注册邮箱同样返回成功（不发送邮件，不暴露邮箱是否注册）；重置成功后旧的登录凭证全部失效（JWT 中的 `v` 与 `users.token_ver` 比对）。
 - **密码**：PBKDF2-SHA256（默认 100k 次迭代）+ 16 字节随机盐；JWT HS256，有效期 7 天，存 localStorage，以 `Authorization: Bearer` 发送。
 - **邮件**：Brevo 事务邮件 API（`POST https://api.brevo.com/v3/smtp/email`，请求头 `api-key`），中文 HTML + 纯文本两个版本。
   - 线上：必须设置 secret `BREVO_API_KEY`，否则发送验证码返回 503 `mail_disabled`（“邮件服务暂未配置”），**验证码永远不会出现在线上响应里**。
   - 本地：未设置 `BREVO_API_KEY` 且 `DEV_MAIL_LOG=1` 时，验证码打印在 wrangler 控制台，并且仅当请求发往 localhost/127.0.0.1 时才在响应里返回 `dev_code`（页面显示“本地开发模式：验证码 …”）。
-- 每用户每日检查次数 `DAILY_AI_QUOTA`（默认 20）+ 每 IP / 全局限流。一次检查（无论选几个国家）计 1 次。
+- 用量上限：每账号每日 `CHECKS_PER_USER_PER_DAY`（默认 10）、每 IP 每日 `CHECKS_PER_IP_PER_DAY`（默认 20）、全站每日 `CHECKS_GLOBAL_PER_DAY`（默认 300）、每 IP 每分钟 3 次；每账号同时只能有 1 个检查；一次最多 3 个国家（计 1 次）、3 张图、商品信息 2000 字。完整表格见 [DEPLOY.md](DEPLOY.md#用量上限保护智谱-coding-plan-额度)。
 
 ## 截图
 
@@ -103,17 +103,20 @@ NEXT_PUBLIC_API_URL=http://127.0.0.1:8787 npx next build && npm run serve   # ht
 ```bash
 cd worker && npx wrangler dev --port 8787 --var RATE_LIMIT_DISABLED_LOCAL:1 &   # 脚本 1 分钟内调用十几次认证接口，需关闭本地限流
 npm run test:e2e -- --api http://127.0.0.1:8787 --image /path/to/pack.jpg
+npm run test:e2e:limits   # 自启临时 wrangler dev（低上限 + 不调用 AI），验证账号/IP/全站上限与输入校验
 ```
 
 不带 `RATE_LIMIT_DISABLED_LOCAL` 运行时，第 7 次认证请求会按设计返回 429。
 
-`wrangler.toml` 变量：`LLM_BASE_URL`、`LLM_MODEL`（默认 `glm-5.3-flash`）、`LLM_THINKING`、`AGENT_IMPL`（`fetch` 默认 | `pi`）、`REQUEST_TIMEOUT_MS`、`ALLOWED_ORIGINS`、`RATE_LIMIT_PER_HOUR`、`VISION_BASE_URL` / `VISION_MODEL`、`DAILY_AI_QUOTA`、`REG_PER_IP_PER_DAY`、`PBKDF2_ITERATIONS`、`MAIL_FROM`（默认 `zhu05361@gmail.com`）、`MAIL_FROM_NAME`（默认 `出海合规雷达`）、`MAIL_PER_EMAIL_PER_DAY`、`MAIL_PER_IP_PER_DAY`。绑定：`DB`（D1）、`RL_IP` / `RL_GLOBAL` / `RL_AUTH`。密钥只用 `wrangler secret put`：`ZHIPUAI_API_KEY`、`JWT_SECRET`、`BREVO_API_KEY`。
+`wrangler.toml` 变量：`LLM_BASE_URL`、`LLM_MODEL`（默认 `glm-5.3-flash`）、`LLM_THINKING`、`AGENT_IMPL`（`fetch` 默认 | `pi`）、`REQUEST_TIMEOUT_MS`、`ALLOWED_ORIGINS`、`VISION_BASE_URL` / `VISION_MODEL`、`CHECKS_PER_USER_PER_DAY`、`CHECKS_PER_IP_PER_DAY`、`CHECKS_GLOBAL_PER_DAY`、`MAX_COUNTRIES`、`MAX_IMAGE_BYTES`、`INFO_MAX_CHARS`、`REG_PER_IP_PER_DAY`、`PBKDF2_ITERATIONS`、`MAIL_FROM`（默认 `zhu05361@gmail.com`）、`MAIL_FROM_NAME`（默认 `出海合规雷达`）、`MAIL_GLOBAL_PER_DAY`、`MAIL_PER_EMAIL_PER_DAY`、`MAIL_PER_IP_PER_DAY`。绑定：`DB`（D1）、`RL_IP` / `RL_GLOBAL` / `RL_AUTH`。密钥只用 `wrangler secret put`：`ZHIPUAI_API_KEY`、`JWT_SECRET`、`BREVO_API_KEY`。
 
 ## 评测
 
 ```bash
 npm run eval:baseline                                    # 纯规则
-npx tsx eval/run.ts --api http://127.0.0.1:8788 --label glm-5.3-flash-fetch --concurrency 2   # 自动用本地验证码注册/登录评测账号（Worker 需 DEV_MAIL_LOG=1 且无 BREVO_API_KEY）
+# AI 评测需先调高每日上限（默认每账号 10 / 每 IP 20 / 全站 300 次，39 条样本会超出）：
+cd worker && npx wrangler dev --port 8788 --var RATE_LIMIT_DISABLED_LOCAL:1 --var CHECKS_PER_USER_PER_DAY:1000 --var CHECKS_PER_IP_PER_DAY:1000 --var CHECKS_GLOBAL_PER_DAY:1000 & cd ..
+npx tsx eval/run.ts --api http://127.0.0.1:8788 --label glm-5.3-flash-fetch --concurrency 1   # 自动用本地验证码注册/登录评测账号（Worker 需 DEV_MAIL_LOG=1 且无 BREVO_API_KEY）
 npx tsx eval/run_images.ts --api http://127.0.0.1:8788 --label glm-5.3-flash                # 6 张图片样本
 ```
 

@@ -11,6 +11,7 @@
     "kb:verify": "tsx scripts/verify-kb.ts",
     "test:core": "tsx scripts/test-core.ts",
     "test:e2e": "tsx scripts/e2e-local.ts",
+    "test:e2e:limits": "tsx scripts/e2e-limits.ts",
     "eval:baseline": "tsx eval/run.ts --baseline",
     "eval": "tsx eval/run.ts --api http://127.0.0.1:8788 --label local",
     "serve": "python3 -m http.server 3000 --bind 127.0.0.1 --directory out"

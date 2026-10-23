@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ImagePlus, Loader2, X } from "lucide-react";
-import { acceptable, fmtKB, MAX_IMAGES, prepareImage, TOTAL_BUDGET, type PreparedImage } from "@/lib/image";
+import { acceptable, fmtKB, MAX_IMAGES, prepareImage, type PreparedImage } from "@/lib/image";
 import { cn } from "@/lib/utils";
 
 export function ImageDrop({ images, onChange, disabled }: { images: PreparedImage[]; onChange: (v: PreparedImage[]) => void; disabled?: boolean }) {
@@ -22,7 +22,7 @@ export function ImageDrop({ images, onChange, disabled }: { images: PreparedImag
     setBusy(true);
     try {
       const next = [...imagesRef.current];
-      for (const f of ok.slice(0, room)) next.push(await prepareImage(f, Math.floor(TOTAL_BUDGET / MAX_IMAGES)));
+      for (const f of ok.slice(0, room)) next.push(await prepareImage(f));
       onChange(next);
     } catch { setErr("图片无法读取，请换一张试试"); }
     setBusy(false);
@@ -47,7 +47,7 @@ export function ImageDrop({ images, onChange, disabled }: { images: PreparedImag
           drag ? "scale-[1.01] border-primary bg-accent" : "border-border hover:border-primary/50 hover:bg-muted/50", (images.length >= MAX_IMAGES || disabled) && "pointer-events-none opacity-50")}>
         {busy ? <Loader2 className="size-6 animate-spin text-primary" /> : <ImagePlus className="size-6 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:text-primary" />}
         <p className="mt-2 text-sm font-medium">{busy ? "正在压缩…" : "拖拽或点击上传商品 / 包装图片"}</p>
-        <p className="mt-0.5 text-xs text-muted-foreground">最多 {MAX_IMAGES} 张 · JPG / PNG / WebP · 图片仅用于本次识别，不会保存</p>
+        <p className="mt-0.5 text-xs text-muted-foreground">最多 {MAX_IMAGES} 张 · JPG / PNG / WebP · 自动压缩 · 图片仅用于本次识别，不会保存</p>
         <input ref={inputRef} type="file" accept="image/jpeg,image/png,image/webp" multiple hidden onChange={(e) => { add(Array.from(e.target.files || [])); e.target.value = ""; }} />
       </div>
       {images.length > 0 && (
