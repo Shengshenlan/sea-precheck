@@ -105,8 +105,8 @@ rule(id="TH-FDA-COSM-LABEL", country="TH", categories=["cosmetic"], kind="displa
      excerpts=[ex("th_cosm", "Cosmetics imported for sale in the Kingdom are not required to have a Thai- language label on the packaging or wrapping at the time of customs inspection but a Thai-language label must be affixed prior to sale;")],
      next_steps=["listing 中上传带泰文标签和通报号的产品图"])
 rule(id="TH-NBTC-RADIO", country="TH", categories=["*"], features=["wireless"], kind="cert",
-     title="泰国 NBTC 无线电设备合规（蓝牙/WiFi）", cert="NBTC 认证/SDoC + 进口/销售商通报", authority="NBTC (กสทช.)",
-     requirement="带蓝牙/WiFi 等无线功能的产品，属于无线电通信设备，进口/销售需符合 NBTC 规定（免执照设备一般走 SDoC）。",
+     title="泰国 NBTC 无线电设备合规", cert="NBTC 认证/SDoC + 进口/销售商通报", authority="NBTC (กสทช.)",
+     requirement="带无线电发射功能（如蓝牙、WiFi、2.4G 遥控）的产品属于无线电通信设备，进口/销售需符合 NBTC 规定（免执照设备一般走 SDoC）。",
      excerpts=[ex("th_nbtc", "This applies to both license equipment (e.g. UHF/base station/license channels etc) and license exempted equipment (e.g. WWAN, WLAN, NFC, WLAN, Bluetooth).")],
      next_steps=["在 NBTC 设备查询 https://anyregis.nbtc.go.th/rces/ 核对型号", "此条来自第三方（CSA Group）解读，请以 NBTC 原文为准"])
 rule(id="TH-ETDA-LISTING", country="TH", categories=["appliance","power","toy","cosmetic"], kind="display", requires_cert_prefix="TH-", effective_date="2025-12-31",
@@ -169,8 +169,8 @@ rule(id="PH-FDA-TOY-LABEL", country="PH", categories=["toy"], kind="display",
      excerpts=[ex("ph_fda_toy", "License to Operate (LTO) Number issued by FDA"), ex("ph_fda_toy", "The label shall be generally written in English, otherwise, a parallel translation in English or Filipino or both shall appear thereon.")],
      next_steps=["listing 图片展示完整标签"])
 rule(id="PH-NTC-WIRELESS", country="PH", categories=["*"], features=["wireless"], kind="cert",
-     title="菲律宾 NTC 型式认可（WiFi/蓝牙）", cert="NTC Type Approval / Type Acceptance", authority="National Telecommunications Commission (NTC)",
-     requirement="2.4/5 GHz 无线数据设备须经 NTC 型式认可/接受后方可销售，且须由 NTC 认可经销商销售。蓝牙短距设备的具体程序需复核。",
+     title="菲律宾 NTC 无线电设备型式认可", cert="NTC Type Approval / Type Acceptance", authority="National Telecommunications Commission (NTC)",
+     requirement="所引 NTC 通告规定：2.4/5 GHz 无线数据设备须经 NTC 型式认可/接受后方可销售，且须由 NTC 认可经销商销售。其他无线电设备的现行程序需向 NTC 核实。",
      excerpts=[ex("ph_ntc", "Indoor Wireless Data Network (WDN) equipment and devices can only be sold and used after these are duly registered type approved/type accepted by the Commission under this circular."),
                ex("ph_ntc", "Only radio dealers and suppliers accredited by the Commission can sell WDN equipment and devices.")],
      needs_review=True, next_steps=["该通告为 2003 年发布，请向 NTC 确认现行型式认可程序"])
@@ -203,7 +203,7 @@ rule(id="MY-POWERBANK-REVIEW", country="MY", categories=["power"], features=["po
      needs_review=True, next_steps=["向 ST 或 SIRIM QAS 确认移动电源归类"])
 rule(id="MY-MCMC-COMM", country="MY", categories=["*"], features=["wireless"], kind="cert",
      title="马来西亚 MCMC 通信设备认证（SIRIM）与 MCMC 标签", cert="MCMC/SIRIM 通信设备认证 + MCMC 标签", authority="MCMC（通过 SIRIM QAS 认证）",
-     requirement="蓝牙/WiFi 等通信设备须经认证并带 MCMC 标签方可销售；海外商家须如实披露认证状态。",
+     requirement="带无线电功能（如蓝牙、WiFi、2.4G 遥控）的通信设备须经认证并带 MCMC 标签方可销售；海外商家须如实披露认证状态。",
      excerpts=[ex("my_mcmc", "Subregulation 16 (1): No person shall use, offer for sale, sell or have in his"),
                ex("my_mcmc", "which does not bear a certification mark or label."),
                ex("my_mcmc", "Overseas Merchant must transparently disclose the certification status of the Communications Equipment"),
@@ -307,6 +307,6 @@ for r in rules:
     r.setdefault("needs_review", False)
     if r["needs_review"] and "verify_with" not in r:
         r["verify_with"] = VERIFY.get(r["id"]) or r["authority"]
-out = {"version": "2026.10.23-2", "generated": R, "rules": rules}
+out = {"version": "2026.10.23-3", "generated": R, "rules": rules}
 json.dump(out, open(__file__.replace("build_rules.py", "rules.json"), "w"), ensure_ascii=False, indent=1)
 print(len(rules), "rules")
