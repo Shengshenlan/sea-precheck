@@ -184,7 +184,7 @@ async function checkRoute(req: Request, env: Env, ch: H, ip: string, localBypass
     if (images.length) {
       const tv = Date.now();
       try {
-        facts = await Promise.race([runVision(images, { baseUrl: env.VISION_BASE_URL || env.LLM_BASE_URL, model: env.VISION_MODEL || "glm-4.6v", apiKey: env.ZHIPUAI_API_KEY, signal: ctl.signal }, extractJson), deadline]);
+        facts = await Promise.race([runVision(images, { baseUrl: env.VISION_BASE_URL || env.LLM_BASE_URL, model: env.VISION_MODEL || "glm-5.3-flash", apiKey: env.ZHIPUAI_API_KEY, signal: ctl.signal }, extractJson), deadline]);
       } catch (e) {
         image_error = e instanceof UpstreamError ? e.code : "error";
         console.log(JSON.stringify({ evt: "vision_error", code: image_error, detail: e instanceof UpstreamError ? e.detail : "", ms: Date.now() - tv }));
@@ -236,7 +236,7 @@ export default {
   async fetch(req: Request, env: Env): Promise<Response> {
     const url = new URL(req.url); const origin = req.headers.get("origin"); const ch = cors(origin, env);
     if (req.method === "OPTIONS") return new Response(null, { status: ch["Access-Control-Allow-Origin"] ? 204 : 403, headers: ch });
-    if (url.pathname === "/api/health") return json({ ok: true, model: env.LLM_MODEL, vision_model: env.VISION_MODEL || "glm-4.6v", impl: env.AGENT_IMPL || "pi", thinking: resolveThinking(env.LLM_THINKING), key_configured: !!env.ZHIPUAI_API_KEY, auth: !!(env.DB && env.JWT_SECRET), daily_quota: quotaOf(env) }, 200, ch);
+    if (url.pathname === "/api/health") return json({ ok: true, model: env.LLM_MODEL, vision_model: env.VISION_MODEL || "glm-5.3-flash", impl: env.AGENT_IMPL || "pi", thinking: resolveThinking(env.LLM_THINKING), key_configured: !!env.ZHIPUAI_API_KEY, auth: !!(env.DB && env.JWT_SECRET), daily_quota: quotaOf(env) }, 200, ch);
     // Browser requests from non-allowed origins are refused. Requests without Origin (curl, eval) are allowed but still rate limited.
     if (origin && !ch["Access-Control-Allow-Origin"]) return json({ ok: false, message: "origin not allowed" }, 403, ch);
     const ip = req.headers.get("cf-connecting-ip") || "local";

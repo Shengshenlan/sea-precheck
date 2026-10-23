@@ -25,7 +25,7 @@ npx wrangler d1 migrations apply sea-precheck --remote
 #   LLM_THINKING    = "off"                             # off|low|high；开启后更慢，max_tokens 自动加到 6000
 #   AGENT_IMPL      = "fetch"（默认，Free 计划推荐）或 "pi"   # 见下文 CPU 说明
 #   VISION_BASE_URL = "https://open.bigmodel.cn/api/coding/paas/v4"  # 图片识别端点
-#   VISION_MODEL    = "glm-4.6v"                        # 两个端点探测结果见 eval/results/vision-probe.md
+#   VISION_MODEL    = "glm-5.3-flash"                     # 两个端点探测结果见 eval/results/vision-probe.md
 #   DAILY_AI_QUOTA  = "20"                              # 每用户每日 AI 次数
 #   REG_PER_IP_PER_DAY = "5"                            # 每 IP 每日注册数
 #   PBKDF2_ITERATIONS  = "100000"                       # workerd 上限 100000；Free 计划 CPU 紧张时可调低（旧哈希自带迭代数，仍可校验）

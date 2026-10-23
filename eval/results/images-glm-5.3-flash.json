@@ -1,0 +1,337 @@
+{
+ "summary": {
+  "label": "images-glm-5.3-flash",
+  "n": 6,
+  "ok": 6,
+  "marks_recall": 1,
+  "marks_precision": 1,
+  "brand_detect_ok": 6,
+  "wireless_ok": 4,
+  "wireless_lenient_ok": 6,
+  "battery_ok": 4,
+  "battery_lenient_ok": 6,
+  "label_langs_exact": 6,
+  "category_ok": 6,
+  "cert_recall": 1,
+  "cert_precision": 1,
+  "vacuum_cordless_not_wireless": true,
+  "vision_ms_p50": 4341
+ },
+ "rows": [
+  {
+   "id": "img-th-kettle",
+   "ok": true,
+   "failure": null,
+   "image_error": null,
+   "latency_ms": 20602,
+   "vision_ms": 4494,
+   "marks_gt": [
+    "TISI"
+   ],
+   "marks_pred": [
+    "TISI"
+   ],
+   "marks_tp": 1,
+   "marks_fp": 0,
+   "brands_ok": true,
+   "brand_hit_image": false,
+   "brands_gt": [],
+   "brands_pred": [
+    "SONIQ"
+   ],
+   "wireless_ok": true,
+   "wireless_lenient": true,
+   "wireless_pred": true,
+   "battery_ok": true,
+   "battery_lenient": true,
+   "battery_pred": false,
+   "langs_exact": true,
+   "langs_gt": [
+    "th",
+    "en",
+    "zh"
+   ],
+   "langs_pred": [
+    "en",
+    "zh",
+    "th"
+   ],
+   "category_ok": true,
+   "category_pred": "appliance",
+   "certs_gt": [
+    "TH-NBTC-RADIO"
+   ],
+   "certs_pred": [
+    "TH-NBTC-RADIO"
+   ],
+   "certs_tp": 1,
+   "certs_fp": 0,
+   "features_pred": [
+    "wireless"
+   ],
+   "wireless_feature_pred": true,
+   "guard_removed": []
+  },
+  {
+   "id": "img-my-powerbank",
+   "ok": true,
+   "failure": null,
+   "image_error": null,
+   "latency_ms": 15710,
+   "vision_ms": 3640,
+   "marks_gt": [
+    "SIRIM"
+   ],
+   "marks_pred": [
+    "SIRIM"
+   ],
+   "marks_tp": 1,
+   "marks_fp": 0,
+   "brands_ok": true,
+   "brand_hit_image": false,
+   "brands_gt": [],
+   "brands_pred": [
+    "VOLTA"
+   ],
+   "wireless_ok": true,
+   "wireless_lenient": true,
+   "wireless_pred": true,
+   "battery_ok": true,
+   "battery_lenient": true,
+   "battery_pred": true,
+   "langs_exact": true,
+   "langs_gt": [
+    "en",
+    "zh"
+   ],
+   "langs_pred": [
+    "en",
+    "zh"
+   ],
+   "category_ok": true,
+   "category_pred": "power",
+   "certs_gt": [
+    "MY-MCMC-COMM",
+    "ALL-LIBAT-UN383"
+   ],
+   "certs_pred": [
+    "MY-MCMC-COMM",
+    "ALL-LIBAT-UN383"
+   ],
+   "certs_tp": 2,
+   "certs_fp": 0,
+   "features_pred": [
+    "battery",
+    "powerbank",
+    "wireless"
+   ],
+   "wireless_feature_pred": true,
+   "guard_removed": []
+  },
+  {
+   "id": "img-ph-rctoy",
+   "ok": true,
+   "failure": null,
+   "image_error": null,
+   "latency_ms": 21005,
+   "vision_ms": 4341,
+   "marks_gt": [
+    "ICC",
+    "CE"
+   ],
+   "marks_pred": [
+    "ICC",
+    "CE"
+   ],
+   "marks_tp": 2,
+   "marks_fp": 0,
+   "brands_ok": true,
+   "brand_hit_image": false,
+   "brands_gt": [],
+   "brands_pred": [
+    "TURBO RC Racer"
+   ],
+   "wireless_ok": true,
+   "wireless_lenient": true,
+   "wireless_pred": true,
+   "battery_ok": true,
+   "battery_lenient": true,
+   "battery_pred": true,
+   "langs_exact": true,
+   "langs_gt": [
+    "en"
+   ],
+   "langs_pred": [
+    "en"
+   ],
+   "category_ok": true,
+   "category_pred": "toy",
+   "certs_gt": [
+    "PH-FDA-TOY",
+    "PH-NTC-WIRELESS",
+    "ALL-LIBAT-UN383"
+   ],
+   "certs_pred": [
+    "PH-FDA-TOY",
+    "PH-NTC-WIRELESS",
+    "ALL-LIBAT-UN383"
+   ],
+   "certs_tp": 3,
+   "certs_fp": 0,
+   "features_pred": [
+    "battery",
+    "wireless",
+    "kids"
+   ],
+   "wireless_feature_pred": true,
+   "guard_removed": []
+  },
+  {
+   "id": "img-th-hairdryer",
+   "ok": true,
+   "failure": null,
+   "image_error": null,
+   "latency_ms": 14736,
+   "vision_ms": 3423,
+   "marks_gt": [
+    "CE"
+   ],
+   "marks_pred": [
+    "CE"
+   ],
+   "marks_tp": 1,
+   "marks_fp": 0,
+   "brands_ok": true,
+   "brand_hit_image": true,
+   "brands_gt": [
+    "Dyson"
+   ],
+   "brands_pred": [
+    "Dyson Style"
+   ],
+   "wireless_ok": false,
+   "wireless_lenient": true,
+   "wireless_pred": null,
+   "battery_ok": false,
+   "battery_lenient": true,
+   "battery_pred": null,
+   "langs_exact": true,
+   "langs_gt": [
+    "en",
+    "zh"
+   ],
+   "langs_pred": [
+    "en",
+    "zh"
+   ],
+   "category_ok": true,
+   "category_pred": "appliance",
+   "certs_gt": [
+    "TH-TISI-HAIR_DRYER"
+   ],
+   "certs_pred": [
+    "TH-TISI-HAIR_DRYER"
+   ],
+   "certs_tp": 1,
+   "certs_fp": 0,
+   "features_pred": [],
+   "wireless_feature_pred": false,
+   "guard_removed": []
+  },
+  {
+   "id": "img-ph-cream",
+   "ok": true,
+   "failure": null,
+   "image_error": null,
+   "latency_ms": 17839,
+   "vision_ms": 2707,
+   "marks_gt": [],
+   "marks_pred": [],
+   "marks_tp": 0,
+   "marks_fp": 0,
+   "brands_ok": true,
+   "brand_hit_image": false,
+   "brands_gt": [],
+   "brands_pred": [],
+   "wireless_ok": false,
+   "wireless_lenient": true,
+   "wireless_pred": null,
+   "battery_ok": false,
+   "battery_lenient": true,
+   "battery_pred": null,
+   "langs_exact": true,
+   "langs_gt": [
+    "zh"
+   ],
+   "langs_pred": [
+    "zh"
+   ],
+   "category_ok": true,
+   "category_pred": "cosmetic",
+   "certs_gt": [
+    "PH-FDA-COSM"
+   ],
+   "certs_pred": [
+    "PH-FDA-COSM"
+   ],
+   "certs_tp": 1,
+   "certs_fp": 0,
+   "features_pred": [],
+   "wireless_feature_pred": false,
+   "guard_removed": []
+  },
+  {
+   "id": "img-my-vacuum",
+   "ok": true,
+   "failure": null,
+   "image_error": null,
+   "latency_ms": 25862,
+   "vision_ms": 7179,
+   "marks_gt": [],
+   "marks_pred": [],
+   "marks_tp": 0,
+   "marks_fp": 0,
+   "brands_ok": true,
+   "brand_hit_image": false,
+   "brands_gt": [],
+   "brands_pred": [
+    "CLEANO"
+   ],
+   "wireless_ok": true,
+   "wireless_lenient": true,
+   "wireless_pred": false,
+   "battery_ok": true,
+   "battery_lenient": true,
+   "battery_pred": true,
+   "langs_exact": true,
+   "langs_gt": [
+    "en",
+    "zh",
+    "ms"
+   ],
+   "langs_pred": [
+    "zh",
+    "en",
+    "ms"
+   ],
+   "category_ok": true,
+   "category_pred": "appliance",
+   "certs_gt": [
+    "MY-ST-VACUUM",
+    "ALL-LIBAT-UN383"
+   ],
+   "certs_pred": [
+    "MY-ST-VACUUM",
+    "ALL-LIBAT-UN383"
+   ],
+   "certs_tp": 2,
+   "certs_fp": 0,
+   "features_pred": [
+    "battery",
+    "charger"
+   ],
+   "wireless_feature_pred": false,
+   "guard_removed": []
+  }
+ ]
+}

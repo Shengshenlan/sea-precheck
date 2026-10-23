@@ -30,7 +30,7 @@ GitHub Pages（静态 Next.js export）               Cloudflare Worker（worker
 - LLM 给的引用在服务端和前端各校验一次，不是原文子串的引用会显示为"待人工复核"或直接丢弃。
 - LLM 建议的"无线"/"充电器"特征要在标题/描述里找到明确关键词才采纳（`src/lib/core/guard.ts`），避免把射频认证套到普通电器上、把适配器认证套到充电宝上。
 - 规则预检完全在浏览器本地；AI 分析与图片识别需要登录。图片不保存；登录用户的历史只存文字摘要 + 结果 JSON，可删除。Worker 日志只记 `{evt, code, ms}`。
-- 图片：最多 3 张 jpg/png/webp（拖拽/粘贴/选择），浏览器端缩到 ~1024px、总计 ≤1.5MB，base64 发送；Worker 先调视觉模型（`VISION_MODEL`，默认 `glm-4.6v`）提取结构化事实（认证标志、品牌、无线/电池、标签语言、品类），作为 `source:'image'` 证据进入同一套 guard 与引用校验。
+- 图片：最多 3 张 jpg/png/webp（拖拽/粘贴/选择），浏览器端缩到 ~1024px、总计 ≤1.5MB，base64 发送；Worker 先调视觉模型（`VISION_MODEL`，默认 `glm-5.3-flash`，可切换 `glm-4.6v`；认证标志对应的国家由知识库映射，不采信模型判断）提取结构化事实（认证标志、品牌、无线/电池、标签语言、品类），作为 `source:'image'` 证据进入同一套 guard 与引用校验。
 
 ## 账号与鉴权（worker/src/auth.ts）
 
@@ -74,14 +74,14 @@ curl http://127.0.0.1:8787/api/health
 
 本地 D1：`npx wrangler d1 migrations apply sea-precheck --local`；`.dev.vars` 另需 `JWT_SECRET=<随机 32 字节>`。
 
-`wrangler.toml` 变量：`LLM_BASE_URL`（默认 Coding Plan `https://open.bigmodel.cn/api/coding/paas/v4`）、`LLM_MODEL`（默认 `glm-5.3-flash`）、`LLM_THINKING`（`off` | `low` | `high`，默认 off）、`AGENT_IMPL`（`fetch` 默认 | `pi`）、`REQUEST_TIMEOUT_MS`、`ALLOWED_ORIGINS`、`RATE_LIMIT_PER_HOUR`、`VISION_BASE_URL` / `VISION_MODEL`（默认 Coding 端点 + `glm-4.6v`）、`DAILY_AI_QUOTA`、`REG_PER_IP_PER_DAY`、`PBKDF2_ITERATIONS`。绑定：`DB`（D1）、`RL_IP` / `RL_GLOBAL` / `RL_AUTH`。密钥只用 `wrangler secret put ZHIPUAI_API_KEY` 与 `wrangler secret put JWT_SECRET`。
+`wrangler.toml` 变量：`LLM_BASE_URL`（默认 Coding Plan `https://open.bigmodel.cn/api/coding/paas/v4`）、`LLM_MODEL`（默认 `glm-5.3-flash`）、`LLM_THINKING`（`off` | `low` | `high`，默认 off）、`AGENT_IMPL`（`fetch` 默认 | `pi`）、`REQUEST_TIMEOUT_MS`、`ALLOWED_ORIGINS`、`RATE_LIMIT_PER_HOUR`、`VISION_BASE_URL` / `VISION_MODEL`（默认 Coding 端点 + `glm-5.3-flash`）、`DAILY_AI_QUOTA`、`REG_PER_IP_PER_DAY`、`PBKDF2_ITERATIONS`。绑定：`DB`（D1）、`RL_IP` / `RL_GLOBAL` / `RL_AUTH`。密钥只用 `wrangler secret put ZHIPUAI_API_KEY` 与 `wrangler secret put JWT_SECRET`。
 
 ## 评测
 
 ```bash
 npm run eval:baseline                                    # 纯规则
 npx tsx eval/run.ts --api http://127.0.0.1:8788 --label glm-5.3-flash-fetch --concurrency 2   # 自动注册/登录评测账号
-npx tsx eval/run_images.ts --api http://127.0.0.1:8788 --label glm-4.6v                     # 6 张图片样本
+npx tsx eval/run_images.ts --api http://127.0.0.1:8788 --label glm-5.3-flash                # 6 张图片样本
 ```
 
 `eval/samples.json` 共 39 条（3 国 × 4 品类），结果写入 `eval/results/<label>.json`。指标：认证召回/精确率、完全匹配、品类准确率、幻觉引用率（未通过校验 + 因 rule_id 不存在被丢弃的 notes 占比）、待复核率、品牌命中、延迟、失败码。
@@ -90,10 +90,25 @@ npx tsx eval/run_images.ts --api http://127.0.0.1:8788 --label glm-4.6v         
 
 | 文本 39 条 | 认证召回 | 精确率 | 完全匹配 | 品类 | 幻觉引用率 | 失败 | p50 / p90 |
 |---|---|---|---|---|---|---|---|
-| 纯规则 | 0.829 | 1.0 | 33/39 | — | — | — | — |
-| glm-5.3-flash（fetch，v3） | 1.0 | 1.0 | 39/39 | 1.0 | 0.095 | 0 | 15.4 / 22.8 s |
+| 纯规则 | 0.811 | 1.0 | 31/39 | — | — | — | — |
+| glm-5.3-flash（fetch，v7） | 1.0 | 1.0 | 39/39 | 1.0 | 0.100 | 0 | 14.3 / 21.1 s |
 
-图片 6 条（合成包装图，`eval/images/`，glm-4.6v）：认证标志识别召回/精确 1.0/1.0，品牌 6/6，品类 6/6，标签语言完全一致 5/6，认证召回 1.0 / 精确 0.875（1 个误报：无线充电宝多出 MY 适配器规则），吸尘器 "Cordless" 未被误判为无线；无线/电池严格一致各 3/6——其余 3 条模型均回答"不确定"(null) 而非错误断言，按"未断言"计为 6/6。视觉 p50 7.5 s，端到端 18–30 s。**样本仅 6 张、且为合成图，结论不可外推。**
+说明：v7 起金标准包含锂电池规则（UN38.3 / UN 3480 / 承运限制 / 泰国 TISI 电池），纯规则基线因此从 0.829 降为 0.811（标题未写“电池”但实际含电池的样本只能由 AI 判断）；AI 结果与 v3 持平。
+
+图片 6 条（合成包装图，`eval/images/`，两种视觉模型同一套流程对比）：
+
+| 指标 | glm-5.3-flash（默认） | glm-4.6v |
+|---|---|---|
+| 认证标志召回/精确 | 1.0 / 1.0 | 1.0 / 1.0 |
+| 品牌 / 品类 | 6/6 / 6/6 | 6/6 / 6/6 |
+| 标签语言完全一致 | 6/6 | 5/6 |
+| 无线 / 电池严格一致（未断言计入后） | 4/6 / 4/6（6/6） | 3/6 / 3/6（6/6） |
+| 认证召回/精确 | 1.0 / 1.0 | 1.0 / 1.0 |
+| 吸尘器 Cordless 未误判为无线 | 是 | 是 |
+| 视觉 p50 | 4.3 s | 3.9 s |
+| 端到端 | 15–26 s | 16–26 s |
+
+此前的适配器规则误报（无线充电宝）已通过“无线充”不再视为充电器关键词修复。**样本仅 6 张、且为合成图，结论不可外推。**
 
 ## 部署
 

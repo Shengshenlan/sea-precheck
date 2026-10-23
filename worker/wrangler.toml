@@ -16,9 +16,9 @@ ALLOWED_ORIGINS = "http://localhost:3000,http://127.0.0.1:3000"
 RATE_LIMIT_PER_HOUR = "10"
 AGENT_IMPL = "fetch"         # "pi" (pi-agent-core) or "fetch" (thin built-in loop)
 REQUEST_TIMEOUT_MS = "55000"
-# Vision (image facts). glm-4.6v works on the Coding Plan endpoint; glm-5v-turbo only on the pay-as-you-go endpoint.
+# Vision (image facts). glm-5.3-flash (image_url data URI, thinking off) is the default; glm-4.6v also works on the Coding Plan endpoint (see eval/results/images-*.json). Mark→country mapping comes from the KB (src/lib/core/marks.ts), not the model.
 VISION_BASE_URL = "https://open.bigmodel.cn/api/coding/paas/v4"
-VISION_MODEL = "glm-4.6v"
+VISION_MODEL = "glm-5.3-flash"
 DAILY_AI_QUOTA = "20"        # AI checks per user per UTC day
 REG_PER_IP_PER_DAY = "5"     # registrations per IP per day
 PBKDF2_ITERATIONS = "100000" # workerd max is 100000
