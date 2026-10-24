@@ -1,4 +1,5 @@
 name = "sea-precheck-api"
+account_id = "addfe3ccfd60594cc0e3f3aea07513b8"
 main = "src/index.ts"
 compatibility_date = "2026-10-01"
 compatibility_flags = ["nodejs_compat"]
@@ -11,8 +12,8 @@ workers_dev = true
 LLM_BASE_URL = "https://open.bigmodel.cn/api/coding/paas/v4"   # Coding Plan endpoint; pay-as-you-go: https://open.bigmodel.cn/api/paas/v4
 LLM_MODEL = "glm-5.3-flash"
 LLM_THINKING = "off"        # off | low | high (on = slower, needs more max_tokens)
-# Comma-separated list of allowed browser origins (GitHub Pages origin, no path). Localhost is for local testing.
-ALLOWED_ORIGINS = "http://localhost:3000,http://127.0.0.1:3000"
+# Comma-separated list of allowed browser origins (GitHub Pages origin, no path). For local dev add http://localhost:3000 via --var.
+ALLOWED_ORIGINS = "https://shengshenlan.github.io"
 AGENT_IMPL = "fetch"         # "pi" (pi-agent-core) or "fetch" (thin built-in loop)
 REQUEST_TIMEOUT_MS = "55000"
 # Vision (image facts). glm-5.3-flash (image_url data URI, thinking off) is the default; glm-4.6v also works on the Coding Plan endpoint (see eval/results/images-*.json). Mark→country mapping comes from the KB (src/lib/core/marks.ts), not the model.
@@ -58,8 +59,8 @@ simple = { limit = 6, period = 60 }
 # Migrate: npx wrangler d1 migrations apply sea-precheck --remote   (local: --local)
 [[d1_databases]]
 binding = "DB"
-database_name = "sea-precheck"
-database_id = "00000000-0000-0000-0000-000000000000"  # placeholder; local dev works without a real id
+database_name = "sea-precheck-db"
+database_id = "00f899b5-2828-4217-be30-7b1a5cfdb001"
 migrations_dir = "migrations"
 
 # Secrets (never in this file):  wrangler secret put JWT_SECRET   (random 32+ bytes)
