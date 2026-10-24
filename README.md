@@ -75,7 +75,7 @@ GitHub Pages（静态 Next.js export）                 Cloudflare Worker（work
 
 - `kb/build_rules.py` → `kb/rules.json`（版本 `2026.10.23-3`，66 条规则）
 - `kb/snapshots/`：抓取的来源原文快照 + `kb/snapshots.sha256`
-- `npm run kb:verify`：逐条校验摘录是否是快照的逐字子串。当前 129 条摘录：123 条 verified、6 条 verified_ocr（扫描件 OCR）、6 条 paraphrase（明确标注为转述）。
+- `npm run kb:verify`：逐条校验摘录是否是快照的逐字子串。当前共 135 条摘录（脚本实际逐字校验其中 129 条 verified / verified_ocr，转述条目不校验）：123 条 verified、6 条 verified_ocr（扫描件 OCR）、6 条 paraphrase（明确标注为转述）。
 - 详见 `kb/README.md`。
 
 ## 本地运行
