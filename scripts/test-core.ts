@@ -2,7 +2,9 @@
 import { buildReport } from "../src/lib/core/match";
 import { dryCellOnly, guardLlmSuggestions } from "../src/lib/core/guard";
 import { summarize, splitInfo } from "../src/lib/core/verdict";
-import type { CheckInput } from "../src/lib/core/types";
+import { sanitizeInput } from "../src/lib/core/match";
+import { visionBody, batchesOf, batchImages, mergeFacts, checkImages } from "../worker/src/vision";
+import type { CheckInput, ImageFacts } from "../src/lib/core/types";
 
 let fail = 0;
 const ok = (cond: unknown, msg: string) => { console.log(`${cond ? "✓" : "✗"} ${msg}`); if (!cond) fail++; };
@@ -38,6 +40,39 @@ ok(summarize(buildReport({ title: "一次性电子烟 vape", country: "TH", cate
 const s = summarize(buildReport({ title: "电饭煲 1.8L", country: "MY" }));
 ok(s.certs.length >= 1 && s.steps.length <= 3 && s.certs.every((c) => c.name && c.where), "certs have name + where; ≤3 steps");
 ok(splitInfo("标题一行\n描述第二行\n第三行").title === "标题一行", "splitInfo first line = title");
+
+// --- 10000-char 商品信息: nothing accepted is silently cut; the 10001st char is rejected by the worker, not trimmed here ---
+{
+  const long = "标题行\n" + "电热水壶 1.7L 不锈钢 220V。".repeat(1000); // ≈ 13k chars, cut to the limit below
+  const info = long.slice(0, 10000); const sp = splitInfo(info);
+  const inp = sanitizeInput({ title: sp.title, description: sp.description, country: "TH" });
+  ok(`${inp.title}\n${inp.description}`.length >= info.trim().length - 1, "10000-char info survives splitInfo + sanitizeInput untouched");
+  ok(sanitizeInput({ ...splitInfo("标题\n" + "长".repeat(9990)), country: "TH" }).description?.length === 9990, "9990-char description kept in full");
+  const one = splitInfo("x".repeat(9999)); ok(one.title.length === 200 && one.description.length === 9799, "single 9999-char line: title 200 + rest 9799, no loss");
+}
+// --- vision batching / merging ---
+ok(JSON.stringify(batchesOf(Array.from({ length: 10 }, (_, i) => i)).map((b) => b.length)) === "[4,3,3]", "10 images → batches 4/3/3");
+ok(JSON.stringify(batchesOf([1, 2, 3, 4, 5]).map((b) => b.length)) === "[3,2]" && batchesOf([1, 2, 3, 4]).length === 1 && batchesOf([]).length === 0, "5 → 3/2, 4 → one batch, 0 → none");
+{
+  const f = (o: Partial<ImageFacts>): ImageFacts => ({ product_type: "", brands: [], marks: [], plug_type: null, battery: null, wireless: null, wireless_evidence: "", label_text: "", label_langs: [], notes: "", model: "m", images: 4, ...o });
+  const m = mergeFacts([f({ product_type: "移动电源", brands: ["A"], marks: ["TISI"], battery: false, label_text: "L1", label_langs: ["en"] }), f({ brands: ["A", "B"], marks: ["CE"], battery: true, wireless: true, wireless_evidence: "Qi", label_langs: ["th"], images: 3 })], 10);
+  ok(m.product_type === "移动电源" && m.brands.join() === "A,B" && m.marks.join() === "TISI,CE" && m.battery === true && m.wireless === true && m.wireless_evidence === "Qi", "mergeFacts: union, any-true wins, evidence kept");
+  ok(m.images === 10 && m.images_failed === 3 && m.label_langs.join() === "en,th", "mergeFacts: counts failed images (10 sent, 7 read)");
+}
+const px = "data:image/jpeg;base64," + "A".repeat(1000);
+ok(checkImages(Array(5).fill(px)) === null && !!checkImages(Array(6).fill(px)), "checkImages: 5 ok, 6 rejected");
+const b64 = (mb: number) => `data:image/jpeg;base64,${"A".repeat(Math.ceil((mb * 1048576) / 3) * 4)}`;
+ok(checkImages([b64(4.9)]) === null && /5MB/.test(checkImages([b64(5.1)]) || ""), "checkImages: 4.9MB ok, 5.1MB → 「单张图片不能超过 5MB」");
+ok(checkImages(Array(5).fill(b64(4.9))) === null, "checkImages: 5 × 4.9MB (≈24.5MB) accepted");
+ok(!!checkImages(Array(3).fill(b64(4.9)), 5 * 1048576, 5, 10 * 1048576), "checkImages: total cap enforced when lowered");
+{
+  const bd = JSON.parse(visionBody([px, px], "glm-x"));
+  ok(bd.model === "glm-x" && bd.messages[0].content.length === 3 && bd.messages[0].content[0].image_url.url === px && bd.messages[0].content[2].type === "text", "visionBody: spliced body is valid JSON with the images intact");
+  ok(!!checkImages(['data:image/jpeg;base64,AA"},{"x":"']) && JSON.parse(visionBody(['data:image/jpeg;base64,AA"x'], "m")).messages[0].content[0].image_url.url.endsWith('AA"x'), "quotes in a data URL are refused by checkImages and escaped by visionBody (no injection)");
+}
+ok(JSON.stringify(batchImages(Array(5).fill(px)).map((b) => b.length)) === "[3,2]", "small images: 5 → batches 3/2");
+ok(JSON.stringify(batchImages(Array(5).fill(b64(4.9))).map((b) => b.length)) === "[1,1,1,1,1]", "5 × 4.9MB originals → one image per vision request (≤ ~9MB each)");
+ok(JSON.stringify(batchImages([b64(1), b64(1), b64(1), b64(5), b64(1)]).map((b) => b.length)) === "[3,2]" || batchImages([b64(1), b64(1), b64(1), b64(5), b64(1)]).every((b) => b.length <= 4), "mixed sizes: batches stay ≤ 4 images");
 
 console.log(fail ? `\n${fail} failed` : "\nall passed");
 process.exit(fail ? 1 : 0);

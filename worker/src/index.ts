@@ -1,9 +1,9 @@
-import { sanitizeInput, buildReport, imageEvidenceText } from "../../src/lib/core/match";
+import { sanitizeInput, buildReport, imageEvidenceText, MAX_DESC } from "../../src/lib/core/match";
 import { splitInfo, summarize } from "../../src/lib/core/verdict";
 import type { CheckInput, Country, ImageFacts } from "../../src/lib/core/types";
 import { runFetch, runPi, UpstreamError, resolveThinking, type LlmConfig } from "./agent";
 import { extractJson, postProcess } from "./parse";
-import { checkImages, runVision, factsForPrompt, MAX_IMAGES } from "./vision";
+import { checkImages, runVisionAll, factsForPrompt, MAX_IMAGES, MAX_IMAGE_BYTES, MAX_TOTAL_IMAGE_BYTES, VISION_TIMEOUT_MS } from "./vision";
 import { hashPassword, verifyPassword, DUMMY_HASH, signJwt, verifyJwt, hmacHex, EMAIL_RE, passwordProblem, sixDigitCode, codeHash, hexEqual } from "./auth";
 import { mailMode, sendCodeMail, type Purpose } from "./mail";
 
@@ -17,11 +17,11 @@ export interface Env {
   JWT_SECRET?: string; DAILY_AI_QUOTA?: string; REG_PER_IP_PER_DAY?: string; PBKDF2_ITERATIONS?: string;
   BREVO_API_KEY?: string; MAIL_FROM?: string; MAIL_FROM_NAME?: string; DEV_MAIL_LOG?: string; MAIL_PER_EMAIL_PER_DAY?: string; MAIL_PER_IP_PER_DAY?: string;
   CHECKS_PER_USER_PER_DAY?: string; CHECKS_PER_IP_PER_DAY?: string; CHECKS_GLOBAL_PER_DAY?: string; MAIL_GLOBAL_PER_DAY?: string;
-  MAX_IMAGE_BYTES?: string; INFO_MAX_CHARS?: string; MAX_COUNTRIES?: string; CHECK_DRY_RUN_LOCAL?: string;
+  MAX_IMAGE_BYTES?: string; MAX_TOTAL_IMAGE_BYTES?: string; MAX_IMAGES?: string; VISION_TIMEOUT_MS?: string; INFO_MAX_CHARS?: string; MAX_COUNTRIES?: string; CHECK_DRY_RUN_LOCAL?: string;
   RL_IP?: RateLimit; RL_GLOBAL?: RateLimit; RL_AUTH?: RateLimit; DB?: D1;
 }
 
-const MAX_BODY_TEXT = 8 * 1024;
+const MAX_BODY_TEXT = 80 * 1024; // non-image part of /api/check: 10000 CJK chars ≈ 30KB UTF-8 (≤ 60KB if \u-escaped)
 const MAX_HISTORY = 200; // per user; oldest are pruned
 function cors(origin: string | null, env: Env): Record<string, string> {
   const allowed = (env.ALLOWED_ORIGINS || "").split(",").map((s) => s.trim()).filter(Boolean);
@@ -42,7 +42,9 @@ const num = (v: string | undefined, d: number, min = 1) => { const n = parseInt(
 const quotaOf = (env: Env) => num(env.CHECKS_PER_USER_PER_DAY ?? env.DAILY_AI_QUOTA, 10);
 const limitsOf = (env: Env) => ({
   perUser: quotaOf(env), perIp: num(env.CHECKS_PER_IP_PER_DAY, 20), global: num(env.CHECKS_GLOBAL_PER_DAY, 300),
-  imageBytes: num(env.MAX_IMAGE_BYTES, 2 * 1024 * 1024), infoChars: num(env.INFO_MAX_CHARS, 2000), countries: Math.min(3, num(env.MAX_COUNTRIES, 3)),
+  imageBytes: num(env.MAX_IMAGE_BYTES, MAX_IMAGE_BYTES), images: Math.min(MAX_IMAGES, num(env.MAX_IMAGES, MAX_IMAGES)), imageTotal: num(env.MAX_TOTAL_IMAGE_BYTES, MAX_TOTAL_IMAGE_BYTES),
+  infoChars: Math.min(MAX_DESC, num(env.INFO_MAX_CHARS, 10000)), // never above MAX_DESC, so accepted text is never silently cut by sanitizeInput
+  countries: Math.min(3, num(env.MAX_COUNTRIES, 3)),
   mailGlobal: num(env.MAIL_GLOBAL_PER_DAY, 250), mailEmail: num(env.MAIL_PER_EMAIL_PER_DAY, 5), mailIp: num(env.MAIL_PER_IP_PER_DAY, 10), regIp: num(env.REG_PER_IP_PER_DAY, 3),
 });
 
@@ -251,17 +253,22 @@ async function checkRoute(req: Request, env: Env, ch: H, ip: string, localBypass
   if (!user) return json({ ok: false, code: "login_required", message: "请先登录后再检查" }, 401, ch);
 
   const L = limitsOf(env);
+  // Oversized bodies are refused from Content-Length alone, before any parsing (a big base64 JSON body is the one CPU-heavy thing on the Free plan).
+  const maxBody = Math.ceil(L.imageTotal / 3) * 4 + L.images * 64 + MAX_BODY_TEXT;
+  const clen = parseInt(req.headers.get("content-length") || "", 10);
+  if (!Number.isFinite(clen)) return json({ ok: false, code: "length_required", message: "请求缺少长度信息，请刷新页面后重试" }, 411, ch);
+  if (clen > maxBody) return json({ ok: false, code: "too_large", message: `提交内容过大：最多 ${L.images} 张图片，单张不超过 ${Math.round(L.imageBytes / 1048576)}MB，请减少图片或压缩后再试` }, 413, ch);
   // per-minute burst limits (Workers Rate Limiting bindings; approximate, per Cloudflare location)
   if (!localBypass && env.RL_GLOBAL && !(await env.RL_GLOBAL.limit({ key: "global" })).success)
     return json({ ok: false, code: "rate_limited", message: "当前使用人数较多，请一分钟后再试" }, 429, ch);
   if (!localBypass && env.RL_IP && !(await env.RL_IP.limit({ key: `ip:${ip}` })).success)
     return json({ ok: false, code: "rate_limited", message: "操作过于频繁（每分钟最多 3 次），请稍后再试" }, 429, ch);
 
-  const body = await readJson(req, MAX_IMAGES * (Math.ceil(L.imageBytes / 3) * 4 + 64) + MAX_BODY_TEXT);
-  if (body === null) return json({ ok: false, message: `输入过大（最多 ${MAX_IMAGES} 张图片，每张不超过 ${(L.imageBytes / 1048576).toFixed(0)}MB）` }, 413, ch);
+  const body = await readJson(req, maxBody);
+  if (body === null) return json({ ok: false, code: "too_large", message: `提交内容过大：最多 ${L.images} 张图片，单张不超过 ${Math.round(L.imageBytes / 1048576)}MB` }, 413, ch);
   if (!body || typeof body !== "object") return json({ ok: false, message: "请求格式错误" }, 400, ch);
   const images: string[] = Array.isArray(body.images) ? body.images : [];
-  const imgErr = checkImages(body.images, L.imageBytes);
+  const imgErr = checkImages(body.images, L.imageBytes, L.images, L.imageTotal);
   if (imgErr) return json({ ok: false, code: "bad_image", message: imgErr }, 400, ch);
   const { images: _drop, ...textPart } = body;
   if (typeof body.info === "string" && body.info.length > L.infoChars) return json({ ok: false, code: "too_long", message: `商品信息最多 ${L.infoChars} 字，请精简后再试` }, 413, ch);
@@ -326,17 +333,15 @@ async function runChecks(env: Env, ch: H, user: { id: number }, input: CheckInpu
   (globalThis as any).__PI_DEBUG = env.PI_DEBUG === "1";
   try {
     // 1) vision once for all countries: structured facts from images (evidence only; failures degrade to text-only)
-    let facts: ImageFacts | null = null; let image_error: string | null = null; let vision_ms = 0;
+    // Images go to the vision model in parallel batches of ≤4 under their own time budget; failed/slow batches are dropped (text + remaining image facts still get checked).
+    let facts: ImageFacts | null = null; let image_error: string | null = null; let vision_ms = 0; let images_failed = 0;
     if (images.length) {
       const tv = Date.now();
-      try {
-        facts = await Promise.race([runVision(images, { baseUrl: env.VISION_BASE_URL || env.LLM_BASE_URL, model: env.VISION_MODEL || "glm-5.3-flash", apiKey: env.ZHIPUAI_API_KEY!, signal: ctl.signal }, extractJson), deadline]);
-      } catch (e) {
-        image_error = e instanceof UpstreamError ? e.code : "error";
-        console.log(JSON.stringify({ evt: "vision_error", code: image_error, detail: e instanceof UpstreamError ? e.detail : "", ms: Date.now() - tv }));
-        if (ctl.signal.aborted) throw e;
-      }
+      const vo = await runVisionAll(images, { baseUrl: env.VISION_BASE_URL || env.LLM_BASE_URL, model: env.VISION_MODEL || "glm-5.3-flash", apiKey: env.ZHIPUAI_API_KEY!, signal: ctl.signal }, extractJson,
+        num(env.VISION_TIMEOUT_MS, VISION_TIMEOUT_MS), (code, detail) => console.log(JSON.stringify({ evt: "vision_error", code, detail, ms: Date.now() - tv })));
+      facts = vo.facts; image_error = vo.error; images_failed = vo.failed;
       vision_ms = Date.now() - tv;
+      if (ctl.signal.aborted) throw new UpstreamError("timeout", "deadline");
     }
     const imageText = imageEvidenceText(facts);
 
@@ -373,7 +378,7 @@ async function runChecks(env: Env, ch: H, user: { id: number }, input: CheckInpu
       const code = results[countries[0]].code;
       return json({ ok: false, code, message: ERR_MSG[code] || ERR_MSG.error, image_facts: facts }, code === "quota" ? 503 : code === "timeout" ? 504 : 502, ch);
     }
-    const shared = { ok: true, model: env.LLM_MODEL, vision_model: facts ? facts.model : null, latency_ms: Date.now() - t0, vision_ms, image_facts: facts, image_error };
+    const shared = { ok: true, model: env.LLM_MODEL, vision_model: facts ? facts.model : null, latency_ms: Date.now() - t0, vision_ms, image_facts: facts, image_error, images_failed };
     const result = { ...shared, input: { title: input.title, description: input.description || "" }, countries, results };
 
     // 3) history: one row per check — input summary (never images) + per-country verdicts + result JSON

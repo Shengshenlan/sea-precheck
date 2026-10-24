@@ -28,7 +28,7 @@ npx wrangler d1 migrations apply sea-precheck --remote   # 应用 0001_init + 00
 #   AGENT_IMPL      = "fetch"（默认，Free 计划推荐）或 "pi"   # 见下文 CPU 说明
 #   VISION_BASE_URL = "https://open.bigmodel.cn/api/coding/paas/v4"  # 图片识别端点
 #   VISION_MODEL    = "glm-5.3-flash"                     # 两个端点探测结果见 eval/results/vision-probe.md
-#   用量上限（CHECKS_* / MAIL_* / REG_* / MAX_* / INFO_MAX_CHARS）见下方“用量上限”表
+#   用量上限（CHECKS_* / MAIL_* / REG_* / MAX_* / INFO_MAX_CHARS / VISION_TIMEOUT_MS）见下方“用量上限”表
 #   PBKDF2_ITERATIONS  = "100000"                       # workerd 上限 100000；Free 计划 CPU 紧张时可调低（旧哈希自带迭代数，仍可校验）
 #   MAIL_FROM       = "zhu05361@gmail.com"              # 必须是 Brevo 中已验证的发件人
 #   MAIL_FROM_NAME  = "出海合规雷达"
@@ -63,15 +63,18 @@ curl https://sea-precheck-api.<sub>.workers.dev/api/health
 | 全站每分钟检查 | 30 次 | `[[ratelimits]]` `RL_GLOBAL` | Rate Limiting binding | 429 |
 | 每账号同时进行中的检查 | 1 个 | 固定（超时 `REQUEST_TIMEOUT_MS`+45s 后视为失效锁） | D1 `inflight` | 409 `in_flight`「上一次检查还在进行中，请等待完成后再试」 |
 | 每次检查国家数 | ≤3（多国检查只计 1 次） | `MAX_COUNTRIES` | 请求校验 | 400「一次最多选择 3 个国家」 |
-| 图片 | ≤3 张，单张 ≤2MB（前端自动压到最长边 ~1600px JPEG） | `MAX_IMAGE_BYTES`（张数固定 3） | 请求校验 | 400「单张图片不能超过 2MB，请压缩后再上传」 |
-| 商品信息长度 | ≤2000 字 | `INFO_MAX_CHARS` | 请求校验（前端 textarea 同步限制） | 413 `too_long` |
+| 图片张数 | ≤5 张 | `MAX_IMAGES`（上限 10） | 请求校验；Content-Length 先行拦截 | 400「最多上传 5 张图片」 |
+| 单张图片大小 | ≤5MB（解码后字节）。前端**发送原图**，不缩放、不重新编码；只有超过 5MB 的图片才会被自动压缩到 5MB 以内并提示 | `MAX_IMAGE_BYTES` | 前端 + 请求校验 | 400「单张图片不能超过 5MB，请压缩后再上传」 |
+| 图片总大小 / 请求体 | 5×5MB=25MB 图片，base64 JSON 约 33MB | `MAX_TOTAL_IMAGE_BYTES`（默认 26214400） | **读取请求体之前**按 `Content-Length` 拒绝；缺少该头返回 411 | 413 `too_large`「提交内容过大：最多 5 张图片，单张不超过 5MB…」 |
+| 视觉识别 | 每批 ≤4 张且 ≤~9MB base64，批间并行，合并事实；整体预算 25s | `VISION_TIMEOUT_MS` | `runVisionAll` | 部分批次失败只丢这几张（`images_failed`），前端提示「部分图片未能识别」，检查照常完成 |
+| 商品信息长度 | ≤10000 字（不会被静默截断：超出时前端提示「超出 N 字，请精简」，Worker 返回 413） | `INFO_MAX_CHARS`（不会超过 `src/lib/core/match.ts` 的 `MAX_DESC`=10000） | 请求校验；前端字数计数 | 413 `too_long`「商品信息最多 10000 字，请精简后再试」 |
 | 全站每日验证码邮件 | 250 封 | `MAIL_GLOBAL_PER_DAY` | D1 `daily_counters` key `g:mail`（发送前预占，发送失败退回） | 429 `mail_global_quota`「今日验证码发送名额已用完，请明天再试」 |
 | 每邮箱每日验证码 | 5 封 | `MAIL_PER_EMAIL_PER_DAY` | D1 `mail_counters` | 429 |
 | 每 IP 每日验证码 | 10 封 | `MAIL_PER_IP_PER_DAY` | D1 `mail_counters` | 429 |
 | 验证码重发冷却 | 60 秒 | 固定 | D1 `email_codes` | 429（带剩余秒数） |
 | 每 IP 每日注册 | 3 个 | `REG_PER_IP_PER_DAY` | D1 `reg_ip` | 429 |
 | 登录/注册/验证码请求频率 | 每 IP 每分钟 6 次 | `[[ratelimits]]` `RL_AUTH` | Rate Limiting binding | 429 |
-| 超时 | 55s | `REQUEST_TIMEOUT_MS` | 前端 70s（带图片 90s） | 所有国家失败时返回错误；部分失败时该国显示规则结果 |
+| 超时 | 55s | `REQUEST_TIMEOUT_MS` | 前端 70s（带图片 150s，含上传时间） | 所有国家失败时返回错误；部分失败时该国显示规则结果 |
 | 上游额度耗尽 | — | — | 智谱 1113/1308/1310/余额类错误 | 503 `quota`，前端提示稍后再试 |
 
 “每日”按 UTC 日期计（北京时间 08:00 重置）。检查顺序：每分钟限流 → 输入校验 → 进行中锁 → 账号 → IP → 全站；后一步失败会退回前面已占用的名额，因此被拒绝的请求不消耗额度。前端在“开始检查”按钮下方显示「今日剩余 N 次」（来自 `/api/auth/me`）。
@@ -95,6 +98,17 @@ CORS 只放行 `ALLOWED_ORIGINS` 里的 origin；带其他 Origin 的浏览器�
 - `AGENT_IMPL=fetch`（非流式的精简工具循环）：约 20–55ms。
 
 workerd 的实际值会低一些，但 pi 模式在免费层**有可能触发 1102（CPU 超限）**。如果在 `wrangler tail` 里看到 1102，把 `AGENT_IMPL` 改成 `"fetch"`，或者升级到 Workers Paid（$5/月，30s CPU）。两种模式输出相同的结构，前端无需改动。Bundle 约 768 KiB gzip，低于免费层 3 MiB 上限。
+
+#### 大图片请求体的 CPU / 内存风险（重要）
+
+一次检查最多 5 张、单张 ≤5MB 的原图，请求体（base64 JSON）最坏约 **33MB**；Cloudflare 各计划的请求体上限是 100MB（Free/Pro），所以不会被平台直接拒绝，但：
+
+- **Workers Free 每请求仅 10ms CPU**。`req.text()` + `JSON.parse` 一个 ~31MB 的字符串，在 Node 里粗测约 **30ms**（workerd 会有差异）。我们已把能省的省掉：先按 `Content-Length` 拒绝超限请求、base64 只校验前缀与 `"`/`\`（不用全串正则）、发给视觉模型的请求体用字符串拼接而不是 `JSON.stringify`（后者在 Node 里约 90ms）。**大图（接近 25MB）在 Free 计划上仍可能触发 1102**；几百 KB 的普通商品图（总计 <1MB）没有问题。上游等待时间不计 CPU。
+- 内存上限 128MB：最坏情况下请求文本 + 解析后的字符串 + 并行的视觉请求体合计约 80–90MB，余量有限；这也是视觉批次按 ≤~9MB base64 拆分的原因之一。
+- **建议**：预期用户会上传大量原图时使用 **Workers Paid（$5/月，30s CPU）**；或者把 `MAX_IMAGE_BYTES` / `MAX_TOTAL_IMAGE_BYTES` 调小（例如 1MB / 5MB，前端同步改 `src/lib/image.ts` 里的 `MAX_IMAGE_BYTES`）。看到 1102 时可先用 `wrangler tail` 确认。
+- 为什么没改成 multipart/二进制上传：视觉模型的接口要求 JSON 里带 base64 data URL，Worker 收到二进制后还得自己做 base64 编码，CPU 不会比解析 base64 JSON 少；除非把图片先放到 R2 再给模型 URL（需要额外存储与公开链接，与“图片不保存”的承诺冲突）。因此保持 JSON。
+
+本地实测（wrangler dev，真实智谱接口）：3 国 + 5 张 ~4.95MB 原图（31.5MB 请求体）+ 10000 字：约 27–30s，其中视觉 5–9s。
 
 ## 2. GitHub Pages
 

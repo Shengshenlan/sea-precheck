@@ -39,7 +39,7 @@ export type CheckOutcome = CheckResponse | { ok: false; status: number; code: st
 export async function runCheck(info: string, countries: Country[], images: string[]): Promise<CheckOutcome> {
   if (!API_URL) return { ok: false, status: 0, code: "disabled", message: "服务暂未配置，请稍后再试" };
   const ctl = new AbortController();
-  const t = setTimeout(() => ctl.abort(), images.length ? 90000 : 70000);
+  const t = setTimeout(() => ctl.abort(), images.length ? 150000 : 70000);
   try {
     const { status, body } = await call<CheckResponse>("/api/check", { method: "POST", body: JSON.stringify({ info, countries, images }), signal: ctl.signal });
     if (status === 200 && body.ok) return body as CheckResponse;

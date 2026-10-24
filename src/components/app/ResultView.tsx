@@ -21,7 +21,7 @@ const TONE: Record<Verdict, { pill: string; icon: React.ComponentType<{ classNam
   unknown: { pill: "bg-muted text-muted-foreground ring-border", icon: CircleHelp, bar: "bg-slate-400" },
 };
 
-export function ResultView({ title, views, onAgain }: { title: string; views: CountryView[]; onAgain?: () => void }) {
+export function ResultView({ title, views, notice, onAgain }: { title: string; views: CountryView[]; notice?: string; onAgain?: () => void }) {
   return (
     <div className="space-y-4" data-testid="result">
       <div className="flex items-end justify-between gap-3 px-1">
@@ -31,6 +31,7 @@ export function ResultView({ title, views, onAgain }: { title: string; views: Co
         </div>
         {onAgain && <Button variant="outline" onClick={onAgain} className="shrink-0"><RotateCcw />再查一个</Button>}
       </div>
+      {notice && <p role="status" data-testid="image-notice" className="flex items-start gap-1.5 rounded-xl border border-amber-300/60 bg-amber-50/60 px-3 py-2 text-[13px] text-amber-900 dark:bg-amber-500/5 dark:text-amber-200"><Info className="mt-0.5 size-3.5 shrink-0" />{notice}</p>}
       {views.map((v) => <CountryCard key={v.country} v={v} />)}
       {onAgain && <Button variant="gradient" size="lg" className="w-full sm:hidden" onClick={onAgain}><RotateCcw />再查一个</Button>}
       <p className="px-1 text-center text-xs text-muted-foreground">结果依据公开法规整理，仅供上架前自查，不构成法律意见；以主管机构官方原文为准。</p>

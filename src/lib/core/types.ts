@@ -74,5 +74,7 @@ export interface ImageFacts {
   product_type: string; brands: string[]; marks: string[]; plug_type: string | null;
   battery: boolean | null; wireless: boolean | null; wireless_evidence: string;
   label_text: string; label_langs: string[]; notes: string; model: string; images: number;
+  /** images whose vision batch failed or timed out (facts come from the others) */
+  images_failed?: number;
 }
 export type EvidenceSource = "text" | "image";

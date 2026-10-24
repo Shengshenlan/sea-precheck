@@ -1,5 +1,5 @@
 import type { Country, Report } from "./types";
-import { COUNTRY_ZH, conclusionOf } from "./match";
+import { COUNTRY_ZH, conclusionOf, MAX_DESC } from "./match";
 
 /**
  * Plain three-way verdict shown on the result card. Everything else (risk level, evidence, citations,
@@ -54,5 +54,5 @@ export function splitInfo(info: string): { title: string; description: string } 
   const nl = t.indexOf("\n");
   let title = nl < 0 ? t : t.slice(0, nl).trim(); let rest = nl < 0 ? "" : t.slice(nl + 1).trim();
   if (title.length > 200) { rest = `${title.slice(200)}\n${rest}`.trim(); title = title.slice(0, 200); }
-  return { title, description: rest.slice(0, 2000) };
+  return { title, description: rest.slice(0, MAX_DESC) };
 }

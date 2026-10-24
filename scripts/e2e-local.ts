@@ -1,6 +1,6 @@
 /**
  * Local end-to-end check of the full user flow against a `wrangler dev` worker with DEV_MAIL_LOG=1.
- *   npx tsx scripts/e2e-local.ts [--api http://127.0.0.1:8787] [--image /path/pack.jpg]
+ *   npx tsx scripts/e2e-local.ts [--api http://127.0.0.1:8787] [--image /path/a.jpg[,/path/b.jpg,…up to 5]] [--info-chars 10000]
  * Steps: send-code → register → login → reset (old token revoked) → 3-country check → history → delete → logout.
  * Never prints tokens or keys; dev codes only exist in local dev-mail mode.
  */
@@ -8,7 +8,8 @@ import { readFileSync } from "node:fs";
 
 const arg = (k: string, d: string) => { const i = process.argv.indexOf(k); return i > 0 ? process.argv[i + 1] : d; };
 const API = arg("--api", "http://127.0.0.1:8787").replace(/\/$/, "");
-const IMAGE = arg("--image", "/workspace/pack.jpg");
+const IMAGES = arg("--image", "/workspace/pack.jpg").split(",").filter(Boolean);
+const INFO_CHARS = parseInt(arg("--info-chars", "0"), 10);
 const email = `e2e+${Date.now()}@example.com`;
 let pass = 0, fail = 0;
 const ok = (cond: unknown, label: string, extra = "") => { if (cond) pass++; else fail++; console.log(`${cond ? "PASS" : "FAIL"}  ${label}${extra ? "  " + extra : ""}`); };
@@ -69,11 +70,15 @@ async function main() {
   ok((await call("/api/auth/login", { body: { email, password: "Passw0rd123" } })).status === 401, "old password rejected");
   ok((await call("/api/auth/login", { body: { email, password: "NewPassw0rd9" } })).status === 200, "new password works");
   // --- check: 3 countries + image ---
-  const img = `data:image/jpeg;base64,${readFileSync(IMAGE).toString("base64")}`;
+  const imgs = IMAGES.map((f) => `data:image/${/\.png$/i.test(f) ? "png" : /\.webp$/i.test(f) ? "webp" : "jpeg"};base64,${readFileSync(f).toString("base64")}`);
+  let info = "儿童电动玩具车 遥控 3岁以上\n使用 4 节 AA 碱性干电池，塑料材质";
+  if (INFO_CHARS) { const more = "。产品详情：塑料车身，遥控距离10米，附带说明书与保修卡，适合室内外玩耍，请在成人监护下使用，小零件注意防止误吞。"; while (info.length < INFO_CHARS) info += more; info = info.slice(0, INFO_CHARS); }
+  console.log(`      sending ${imgs.length} image(s), ${(imgs.reduce((a, s) => a + s.length, 0) / 1048576).toFixed(1)}MB base64, ${info.length} chars of text`);
   const t0 = Date.now();
-  r = await call("/api/check", { token: tok2, body: { info: "儿童电动玩具车 遥控 3岁以上\n使用 4 节 AA 碱性干电池，塑料材质", countries: ["TH", "PH", "MY"], images: [img] } });
+  r = await call("/api/check", { token: tok2, body: { info, countries: ["TH", "PH", "MY"], images: imgs } });
   const secs = ((Date.now() - t0) / 1000).toFixed(1);
-  ok(r.status === 200 && r.j.ok && ["TH", "PH", "MY"].every((c) => r.j.results?.[c]), `check TH+PH+MY with image (${secs}s)`, `image_facts=${r.j.image_facts ? "yes" : "no"} ${r.j.image_error || ""}`);
+  ok(r.status === 200 && r.j.ok && ["TH", "PH", "MY"].every((c) => r.j.results?.[c]), `check TH+PH+MY with ${imgs.length} image(s) (${secs}s)`, `image_facts=${r.j.image_facts ? "yes" : "no"} failed=${r.j.shared?.images_failed ?? 0} ${r.j.image_error || ""}`);
+  console.log(`      timings: total=${secs}s worker latency_ms=${r.j.shared?.latency_ms ?? r.j.latency_ms ?? "?"} vision_ms=${r.j.shared?.vision_ms ?? r.j.vision_ms ?? "?"}`);
   for (const c of ["TH", "PH", "MY"]) {
     const x = r.j.results?.[c] || {};
     const rules: string[] = [...(x.items || []), ...(x.extra_rule_ids || [])];

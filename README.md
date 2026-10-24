@@ -9,8 +9,8 @@
 **使用流程**
 
 1. **登录 / 注册**：邮箱 → 发送验证码 → 输入 6 位验证码并设置密码 → 自动登录。忘记密码走同一套验证码流程。
-2. **填写商品**：最多 3 张商品/包装图片（拖拽或点击，可移除）+ 一段“商品信息”，勾选要销售的国家（可多选），点“开始检查”。
-3. **等待**：通常 15–20 秒（带图片、多国时稍长）。
+2. **填写商品**：最多 5 张商品/包装图片（拖拽、点击或粘贴，可移除；单张 ≤5MB，原图直接发送，只有超过 5MB 的才会自动压缩）+ 一段“商品信息”（最多 10000 字，页面有字数计数），勾选要销售的国家（可多选），点“开始检查”。
+3. **等待**：通常 15–30 秒（带图片、多国、长文本时稍长）。
 4. **结果**：每个国家一张卡片，默认只显示
    - 结论：**可以上架** / **办证后可上架** / **不能销售**，加一句说明；
    - 需要的证书（名称 + 签发机构/办理渠道）；
@@ -39,7 +39,7 @@ GitHub Pages（静态 Next.js export）                 Cloudflare Worker（work
 - guard（`src/lib/core/guard.ts`）：LLM 建议的“无线”“充电器”特征要在商品信息/图片里找到明确依据才采纳；**商品只写碱性/干电池（AA/AAA 等）且未提锂电时，不触发 UN38.3 / UN3480 / 承运限制 / 泰国 TISI 电池等锂电规则**（确定性匹配 `match.ts` 与 guard 两处都做了限制）。
 - 结论映射（`src/lib/core/verdict.ts`）：命中禁售 → 不能销售；有强制认证 → 办证后可上架；否则 → 可以上架；品类无法识别时显示“暂无法判断”，并提示补充信息。
 - 平台（TikTok Shop / Shopee / Lazada）不再需要选择，相关平台规则只在“查看详细依据”中列出。
-- 图片：最多 3 张 jpg/png/webp，浏览器端自动压缩为最长边 ~1600px 的 JPEG，单张 ≤2MB；**图片不保存**。历史只存文字摘要 + 结果 JSON，可删除。Worker 日志只记 `{evt, code, ms}`，不记录输入、验证码或密钥。
+- 图片：最多 5 张 jpg/png/webp，单张 ≤5MB；浏览器端**发送原图**（不缩放、不重新编码），只有超过 5MB 的图片才会被自动压缩；多张图片由 Worker 分批（每批 ≤4 张）并行识别后合并，某一批失败只会丢这几张并在结果页提示；**图片不保存**。请求体最坏约 33MB，Workers Free 计划的 10ms CPU 可能不够，见 [DEPLOY.md](DEPLOY.md#大图片请求体的-cpu--内存风险重要)。历史只存文字摘要 + 结果 JSON，可删除。Worker 日志只记 `{evt, code, ms}`，不记录输入、验证码或密钥。
 
 ## 账号与鉴权（worker/src/auth.ts、worker/src/mail.ts）
 
@@ -50,7 +50,7 @@ GitHub Pages（静态 Next.js export）                 Cloudflare Worker（work
 - **邮件**：Brevo 事务邮件 API（`POST https://api.brevo.com/v3/smtp/email`，请求头 `api-key`），中文 HTML + 纯文本两个版本。
   - 线上：必须设置 secret `BREVO_API_KEY`，否则发送验证码返回 503 `mail_disabled`（“邮件服务暂未配置”），**验证码永远不会出现在线上响应里**。
   - 本地：未设置 `BREVO_API_KEY` 且 `DEV_MAIL_LOG=1` 时，验证码打印在 wrangler 控制台，并且仅当请求发往 localhost/127.0.0.1 时才在响应里返回 `dev_code`（页面显示“本地开发模式：验证码 …”）。
-- 用量上限：每账号每日 `CHECKS_PER_USER_PER_DAY`（默认 10）、每 IP 每日 `CHECKS_PER_IP_PER_DAY`（默认 20）、全站每日 `CHECKS_GLOBAL_PER_DAY`（默认 300）、每 IP 每分钟 3 次；每账号同时只能有 1 个检查；一次最多 3 个国家（计 1 次）、3 张图、商品信息 2000 字。完整表格见 [DEPLOY.md](DEPLOY.md#用量上限保护智谱-coding-plan-额度)。
+- 用量上限：每账号每日 `CHECKS_PER_USER_PER_DAY`（默认 10）、每 IP 每日 `CHECKS_PER_IP_PER_DAY`（默认 20）、全站每日 `CHECKS_GLOBAL_PER_DAY`（默认 300）、每 IP 每分钟 3 次；每账号同时只能有 1 个检查；一次最多 3 个国家（计 1 次）、5 张图（单张 ≤5MB）、商品信息 10000 字。完整表格见 [DEPLOY.md](DEPLOY.md#用量上限保护智谱-coding-plan-额度)。
 
 ## 截图
 
@@ -102,7 +102,7 @@ NEXT_PUBLIC_API_URL=http://127.0.0.1:8787 npx next build && npm run serve   # ht
 
 ```bash
 cd worker && npx wrangler dev --port 8787 --var RATE_LIMIT_DISABLED_LOCAL:1 &   # 脚本 1 分钟内调用十几次认证接口，需关闭本地限流
-npm run test:e2e -- --api http://127.0.0.1:8787 --image /path/to/pack.jpg
+npm run test:e2e -- --api http://127.0.0.1:8787 --image /path/a.jpg,/path/b.jpg [--info-chars 10000]   # 逗号分隔，最多 5 张
 npm run test:e2e:limits   # 自启临时 wrangler dev（低上限 + 不调用 AI），验证账号/IP/全站上限与输入校验
 ```
 

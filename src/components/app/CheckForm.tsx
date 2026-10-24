@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 
 export const ALL_COUNTRIES: Country[] = ["TH", "PH", "MY"];
 export interface FormState { info: string; countries: Country[]; images: PreparedImage[] }
-export const INFO_MAX = 2000; // worker INFO_MAX_CHARS
+export const INFO_MAX = 10000; // worker INFO_MAX_CHARS
 export const EMPTY_FORM: FormState = { info: "", countries: ["TH"], images: [] };
 
 export function CheckForm({ value, onChange, onSubmit, error, remaining }: { value: FormState; onChange: (v: FormState) => void; onSubmit: () => void; error?: string; remaining?: number | null }) {
@@ -29,9 +29,10 @@ export function CheckForm({ value, onChange, onSubmit, error, remaining }: { val
         </div>
         <div>
           <Label htmlFor="info">商品信息</Label>
-          <Textarea id="info" rows={5} maxLength={INFO_MAX} value={info} onChange={(e) => onChange({ ...value, info: e.target.value })}
-            placeholder={"商品标题、材质、供电方式、适用人群等\n例如：儿童遥控汽车 3岁以上 使用4节AA电池 塑料材质"} />
-          {info.length > INFO_MAX * 0.8 && <p className="mt-1 text-right text-xs tabular-nums text-muted-foreground">{info.length}/{INFO_MAX}</p>}
+          <Textarea id="info" rows={6} value={info} onChange={(e) => onChange({ ...value, info: e.target.value })}
+            placeholder={"商品标题、材质、供电方式、适用人群等，可直接粘贴完整商品详情（最多 10000 字）\n例如：儿童遥控汽车 3岁以上 使用4节AA电池 塑料材质"} />
+          <p className={cn("mt-1 text-right text-xs tabular-nums", info.length > INFO_MAX ? "text-red-600" : "text-muted-foreground")} data-testid="info-count">
+            {info.length > INFO_MAX ? `超出 ${info.length - INFO_MAX} 字，请精简后再检查 · ` : ""}{info.length} / {INFO_MAX} 字</p>
         </div>
         <div>
           <Label>销售国家 <span className="font-normal text-muted-foreground">（可多选）</span></Label>
@@ -61,7 +62,7 @@ export function CheckForm({ value, onChange, onSubmit, error, remaining }: { val
 }
 
 export function CheckProgress({ countries, images }: { countries: Country[]; images: number }) {
-  const total = images ? 20 : 16;
+  const total = images ? 24 : 16;
   const [t, setT] = useState(0);
   useEffect(() => { const id = setInterval(() => setT((x) => x + 0.25), 250); return () => clearInterval(id); }, []);
   const pct = Math.min(95, (1 - Math.exp(-t / (total * 0.55))) * 100);
@@ -70,7 +71,7 @@ export function CheckProgress({ countries, images }: { countries: Country[]; ima
       <Loader2 className="mx-auto size-8 animate-spin text-primary" />
       <p className="mt-4 text-[17px] font-semibold">正在检查…</p>
       <p className="mt-1.5 text-sm text-muted-foreground">
-        核对 {countries.map((c) => COUNTRY_ZH[c]).join("、")} 的认证与上架要求{images ? "，并识别图片" : ""}，通常需要 15–20 秒
+        核对 {countries.map((c) => COUNTRY_ZH[c]).join("、")} 的认证与上架要求{images ? "，并识别图片" : ""}，通常需要 15–30 秒（图片较大时上传更久）
       </p>
       <div className="mx-auto mt-6 h-1.5 max-w-sm overflow-hidden rounded-full bg-muted">
         <div className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-cyan-500 transition-[width] duration-300 ease-out" style={{ width: `${pct}%` }} />

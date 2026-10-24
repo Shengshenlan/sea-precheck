@@ -43,7 +43,7 @@ export function makeTools(input: CheckInput, imageText = ""): ToolSpec[] {
       name: "check_brand_words",
       description: "检查文本中的品牌词、仿冒暗示词（同款/高仿/1:1 等）、兼容性描述。",
       parameters: { type: "object", properties: { text: { type: "string" } }, required: ["text"] },
-      run: (a) => checkBrandWords(`${String(a?.text || "").slice(0, 2400)}\n${imageText}`),
+      run: (a) => checkBrandWords(`${String(a?.text || "").slice(0, 10500)}\n${imageText}`),
     },
   ];
 }

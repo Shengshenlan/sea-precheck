@@ -8,7 +8,14 @@ import { CheckForm, CheckProgress, EMPTY_FORM, type FormState } from "./CheckFor
 import { ResultView } from "./ResultView";
 import { toast } from "@/components/ui/toast";
 
-type Phase = { k: "form"; error?: string } | { k: "loading" } | { k: "result"; title: string; views: CountryView[] };
+type Phase = { k: "form"; error?: string } | { k: "loading" } | { k: "result"; title: string; views: CountryView[]; notice?: string };
+
+/** Tell the user when some / all images could not be read (the check itself still ran on text + the images that worked). */
+function imageNotice(f: { images: number; images_failed?: number } | null, err: string | null, sent: number): string | undefined {
+  if (!sent) return undefined;
+  if (!f) return err ? "图片识别失败或超时，本次结果仅依据文字信息；可稍后重新检查。" : undefined;
+  return f.images_failed ? `有 ${f.images_failed} 张图片识别失败或超时，已使用其余 ${f.images - f.images_failed} 张图片和文字信息检查；结果可能不完整，可稍后重试。` : undefined;
+}
 
 export function Workspace() {
   const { quota, refresh } = useAuth();
@@ -17,13 +24,14 @@ export function Workspace() {
 
   const submit = async () => {
     setPhase({ k: "loading" }); window.scrollTo({ top: 0, behavior: "smooth" });
-    const res = await runCheck(form.info, form.countries, form.images.map((i) => i.dataUrl));
+    const imgs = form.images;
+    const res = await runCheck(form.info, form.countries, imgs.map((i) => i.dataUrl));
     refresh();
     if (!res.ok) {
       if (res.status === 401) { toast("登录已失效，请重新登录", { tone: "info" }); return; }
       setPhase({ k: "form", error: res.message }); return;
     }
-    setPhase({ k: "result", title: res.input.title === "（见图片）" ? splitInfo(form.info).title : res.input.title, views: composeCountries(res) });
+    setPhase({ k: "result", title: res.input.title === "（见图片）" ? splitInfo(form.info).title : res.input.title, views: composeCountries(res), notice: imageNotice(res.image_facts, res.image_error, imgs.length) });
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
   const again = () => { setForm(EMPTY_FORM); setPhase({ k: "form" }); window.scrollTo({ top: 0, behavior: "smooth" }); };
@@ -40,7 +48,7 @@ export function Workspace() {
         </>
       )}
       {phase.k === "loading" && <CheckProgress countries={form.countries} images={form.images.length} />}
-      {phase.k === "result" && <ResultView title={phase.title} views={phase.views} onAgain={again} />}
+      {phase.k === "result" && <ResultView title={phase.title} views={phase.views} notice={phase.notice} onAgain={again} />}
     </main>
   );
 }

@@ -56,16 +56,20 @@ async function phaseA() {
     // input caps (rejected before any quota is spent)
     r = await check(a, { countries: ["TH", "PH", "MY", "TH"] });
     ok(r.status === 400 && r.j.code === "bad_country", "more than 3 countries → 400", r.j.message);
-    r = await check(a, { info: "长".repeat(2001) });
-    ok(r.status === 413 && r.j.code === "too_long", "商品信息 > 2000 字 → 413", r.j.message);
+    r = await check(a, { info: "长".repeat(10001) });
+    ok(r.status === 413 && r.j.code === "too_long", "商品信息 > 10000 字 → 413", r.j.message);
     const px = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==";
-    r = await check(a, { images: [px, px, px, px] });
-    ok(r.status === 400 && r.j.code === "bad_image", "4 images → 400", r.j.message);
-    r = await check(a, { images: [`data:image/jpeg;base64,${Buffer.alloc(2 * 1024 * 1024 + 10).toString("base64")}`] });
-    ok(r.status === 400 && r.j.code === "bad_image", "image > 2MB → 400", r.j.message);
-    // one in flight per account
-    const [x, y] = await Promise.all([check(a, { dry_run_ms: 1500 }), (async () => { await sleep(300); return check(a); })()]);
-    ok(x.status === 200 && y.status === 409 && y.j.code === "in_flight", "second concurrent check on the same account → 409 in_flight", `${x.status}/${y.status}`);
+    r = await check(a, { images: Array(6).fill(px) });
+    ok(r.status === 400 && r.j.code === "bad_image", "6 images → 400", r.j.message);
+    r = await check(a, { images: [`data:image/jpeg;base64,${Buffer.alloc(5 * 1024 * 1024 + 10).toString("base64")}`] });
+    ok(r.status === 400 && r.j.code === "bad_image" && /5MB/.test(r.j.message), "image > 5MB → 400 「单张图片不能超过 5MB」", r.j.message);
+    const six = `data:image/jpeg;base64,${Buffer.alloc(4_800_000).toString("base64")}`;
+    r = await check(a, { images: [six, six, six, six, six, six] });
+    ok(r.status === 413 && r.j.code === "too_large" && /5 张/.test(r.j.message), "6 × 4.8MB (≈38MB body) → 413 from Content-Length, before parsing", r.j.message);
+    const five = `data:image/jpeg;base64,${Buffer.alloc(4_800_000).toString("base64")}`; // 5 × 4.8MB ≈ 32MB body
+    // one in flight per account; the first (accepted) check also carries the maximum input: 10000 chars + 5 images + 3 countries
+    const [x, y] = await Promise.all([check(a, { dry_run_ms: 1500, info: "长".repeat(10000), images: Array(5).fill(five) }), (async () => { await sleep(300); return check(a); })()]);
+    ok(x.status === 200 && y.status === 409 && y.j.code === "in_flight", "max input (10000 chars + 5 × 4.8MB images + 3 countries) accepted; second concurrent check on the same account → 409 in_flight", `${x.status}/${y.status}`);
     // per-account cap: one used above; one more ok (3-country check counts once), then 429
     r = await check(a);
     ok(r.status === 200 && r.j.quota?.used === 2 && r.j.countries?.length === 3, "3-country check counts as 1 (used 2/2)", JSON.stringify(r.j.quota));

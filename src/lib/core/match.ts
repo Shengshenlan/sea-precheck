@@ -8,7 +8,7 @@ import { LITHIUM_RULES, dryCellOnly } from "./guard";
 export const COUNTRY_ZH = { TH: "泰国", PH: "菲律宾", MY: "马来西亚", ID: "印尼", VN: "越南", ALL: "通用" } as const;
 export const CATEGORY_ZH: Record<Category, string> = { appliance: "小家电", power: "充电器/电源适配器/移动电源", toy: "玩具", cosmetic: "化妆品" };
 export const PLATFORM_ZH = { tiktok: "TikTok Shop", shopee: "Shopee", lazada: "Lazada" } as const;
-export const MAX_TITLE = 200, MAX_DESC = 2000;
+export const MAX_TITLE = 200, MAX_DESC = 10000; // MAX_DESC = 商品信息 limit (INFO_MAX_CHARS): accepted text is never cut here
 
 export function sanitizeInput(i: CheckInput): CheckInput {
   return {

@@ -23,8 +23,11 @@ CHECKS_PER_USER_PER_DAY = "10"   # checks per account per day (a multi-country c
 CHECKS_PER_IP_PER_DAY = "20"     # checks per IP per day
 CHECKS_GLOBAL_PER_DAY = "300"    # checks site-wide per day -> "今日检查名额已用完，请明天再来"
 MAX_COUNTRIES = "3"              # countries per check (max 3)
-MAX_IMAGE_BYTES = "2097152"      # per image after client compression (max 3 images)
-INFO_MAX_CHARS = "2000"          # 商品信息 length
+MAX_IMAGES = "5"                 # images per check (hard ceiling 10)
+MAX_IMAGE_BYTES = "5242880"      # per image, decoded bytes (the client sends originals as they are; only an image over this is auto-compressed)
+MAX_TOTAL_IMAGE_BYTES = "26214400" # all images of one check (5 × 5MB = 25MB decoded ≈ 33MB base64 JSON; see DEPLOY.md CPU / memory note)
+VISION_TIMEOUT_MS = "25000"      # budget of the whole vision stage (images go in parallel batches of ≤4 images / ≤9MB; slow/failed batches are dropped)
+INFO_MAX_CHARS = "10000"         # 商品信息 length (hard ceiling 10000)
 REG_PER_IP_PER_DAY = "3"         # registrations per IP per day
 PBKDF2_ITERATIONS = "100000" # workerd max is 100000
 # Verification-code email (Brevo). The API key is a secret: wrangler secret put BREVO_API_KEY

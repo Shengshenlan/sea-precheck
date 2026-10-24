@@ -5,7 +5,7 @@
  */
 const { chromium } = require("playwright-core");
 const WEB = process.env.WEB || "http://127.0.0.1:3000";
-const IMG = process.env.IMG || "/workspace/pack.jpg";
+const IMGS = (process.env.IMG || "/workspace/pack.jpg,eval/images/img-th-kettle.jpg,eval/images/img-ph-cream.jpg,eval/images/img-my-vacuum.jpg,eval/images/img-th-hairdryer.jpg").split(","); // up to 5 per check
 const OUT = "docs/screenshots";
 const CHROME = process.env.CHROME || "/usr/bin/google-chrome";
 
@@ -30,7 +30,7 @@ const CHROME = process.env.CHROME || "/usr/bin/google-chrome";
   await p.getByRole("button", { name: "注册并登录" }).click();
   await p.getByRole("button", { name: "开始检查" }).waitFor();
   await p.locator("textarea").fill("儿童电动遥控玩具车 3岁以上\n使用 4 节 AA 碱性干电池，ABS 塑料材质，带灯光音效");
-  await p.locator('input[type="file"]').setInputFiles(IMG);
+  await p.locator('input[type="file"]').setInputFiles(IMGS);
   for (const n of ["菲律宾", "马来西亚"]) await p.getByRole("button", { name: n }).click();
   await settle(p);
   await shot(p, "desktop-submit");
@@ -58,7 +58,7 @@ const CHROME = process.env.CHROME || "/usr/bin/google-chrome";
   await mp.evaluate((kv) => { for (const [k, v] of Object.entries(kv)) localStorage.setItem(k, v); }, token);
   await mp.reload(); await mp.getByRole("button", { name: "开始检查" }).waitFor();
   await mp.locator("textarea").fill("儿童电动遥控玩具车 3岁以上\n使用 4 节 AA 碱性干电池");
-  await mp.locator('input[type="file"]').setInputFiles(IMG);
+  await mp.locator('input[type="file"]').setInputFiles(IMGS);
   await mp.getByRole("button", { name: "菲律宾" }).click(); await settle(mp);
   await shot(mp, "mobile-submit", true);
   await mp.goto(WEB + "/history/"); await mp.getByTestId("history-list").waitFor(); await settle(mp);
