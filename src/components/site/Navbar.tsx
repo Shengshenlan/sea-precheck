@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { History, LogOut, ScanSearch } from "lucide-react";
+import { FileText, History, LogOut, ScanSearch } from "lucide-react";
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
 import { useAuth } from "@/lib/auth";
@@ -29,6 +29,7 @@ export function Navbar() {
       <div className="mx-auto flex h-15 max-w-5xl items-center gap-4 px-4 sm:px-6">
         <Link href="/" aria-label="首页"><Logo /></Link>
         <div className="ml-auto flex items-center gap-1.5">
+          <Link href="/demo/" data-testid="nav-demo" className="inline-flex h-9 items-center gap-1.5 rounded-lg px-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"><FileText className="size-4" /><span className="hidden min-[360px]:inline">示例报告</span></Link>
           <ThemeToggle />
           {user && (
             <div className="relative" ref={ref}>

@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { ArrowLeft, Eye, EyeOff, Loader2, Mail } from "lucide-react";
+import { ArrowLeft, ArrowRight, Eye, EyeOff, FileText, Loader2, Mail } from "lucide-react";
 import { api, API_URL } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
 import { Button } from "@/components/ui/button";
@@ -143,6 +143,11 @@ export function AuthCard() {
               : <button type="button" className="inline-flex items-center gap-1 font-medium text-primary hover:underline" onClick={() => go("login")}><ArrowLeft className="size-3.5" />返回登录</button>}
           </div>
         </Card>
+        <Link href="/demo/" data-testid="demo-entry" className="group mt-4 flex items-center gap-3 rounded-2xl border border-primary/25 bg-gradient-to-r from-accent/80 to-card px-4 py-3.5 shadow-[0_1px_2px_rgba(16,24,40,0.04)] transition hover:border-primary/45 hover:shadow-md">
+          <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary"><FileText className="size-[18px]" /></span>
+          <span className="min-w-0 flex-1"><span className="block text-sm font-semibold tracking-tight">查看示例报告</span><span className="mt-0.5 block text-xs text-muted-foreground">无需登录，看一份真实检查结果</span></span>
+          <ArrowRight className="size-4 shrink-0 text-primary transition-transform group-hover:translate-x-0.5" />
+        </Link>
         <p className="mt-5 text-center text-xs leading-relaxed text-muted-foreground">
           继续即表示同意<Link href="/terms/" className="underline-offset-2 hover:underline">服务条款</Link>与<Link href="/privacy/" className="underline-offset-2 hover:underline">隐私政策</Link>
         </p>

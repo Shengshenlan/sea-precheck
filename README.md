@@ -4,6 +4,8 @@
 |---|---|---|
 | ![](docs/screenshots/desktop-login.png) | ![](docs/screenshots/desktop-submit.png) | ![](docs/screenshots/desktop-result.png) |
 
+> **无需登录的示例报告**：<https://shengshenlan.github.io/sea-precheck/demo/>（`/demo/`，纯静态页面）。内容是一份真实检查结果的快照（65W 氮化镓充电器 · 泰国 + 马来西亚，本地 Worker + 真实模型运行，原始输出在 `eval/results/demo-charger-th-my.json`，由 `scripts/capture-demo.ts` 生成），与登录后的结果页使用同一套组件，不依赖后端；登录页和顶栏都有“查看示例报告”入口。比赛封面图见 `docs/cover-16x9.png`（1600×900，源文件 `docs/cover/cover.html`）。
+
 帮助中国跨境卖家在 **泰国、菲律宾、马来西亚** 上架之前，确认小家电、充电器/适配器/充电宝、玩具、化妆品四类商品能否销售、需要办哪些证。
 
 **使用流程**
@@ -66,6 +68,8 @@ GitHub Pages（静态 Next.js export）                 Cloudflare Worker（work
 | 手机 | | | |
 |---|---|---|---|
 | ![](docs/screenshots/mobile-login.png) | ![](docs/screenshots/mobile-submit.png) | ![](docs/screenshots/mobile-result.png) | ![](docs/screenshots/mobile-history.png) |
+
+示例报告页：`desktop-demo.png` / `mobile-demo.png`（`docs/screenshots/`）。
 
 ## 知识库
 

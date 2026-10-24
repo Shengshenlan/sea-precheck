@@ -5,6 +5,8 @@ import { summarize, splitInfo } from "../src/lib/core/verdict";
 import { sanitizeInput } from "../src/lib/core/match";
 import { visionBody, batchesOf, batchImages, mergeFacts, checkImages } from "../worker/src/vision";
 import type { CheckInput, ImageFacts } from "../src/lib/core/types";
+import { readFileSync } from "node:fs";
+import { composeCountries } from "../src/lib/report";
 
 let fail = 0;
 const ok = (cond: unknown, msg: string) => { console.log(`${cond ? "✓" : "✗"} ${msg}`); if (!cond) fail++; };
@@ -73,6 +75,15 @@ ok(!!checkImages(Array(3).fill(b64(4.9)), 5 * 1048576, 5, 10 * 1048576), "checkI
 ok(JSON.stringify(batchImages(Array(5).fill(px)).map((b) => b.length)) === "[3,2]", "small images: 5 → batches 3/2");
 ok(JSON.stringify(batchImages(Array(5).fill(b64(4.9))).map((b) => b.length)) === "[1,1,1,1,1]", "5 × 4.9MB originals → one image per vision request (≤ ~9MB each)");
 ok(JSON.stringify(batchImages([b64(1), b64(1), b64(1), b64(5), b64(1)]).map((b) => b.length)) === "[3,2]" || batchImages([b64(1), b64(1), b64(1), b64(5), b64(1)]).every((b) => b.length <= 4), "mixed sizes: batches stay ≤ 4 images");
+
+// ---- /demo/ snapshot: a frozen REAL check result must still render through the same composition path as the signed-in page ----
+{
+  const snap = JSON.parse(readFileSync("src/data/demo-check.json", "utf8"));
+  const views = composeCountries(snap.response);
+  ok(views.length === 2 && views.map((v) => v.country).join() === "TH,MY" && views.every((v) => v.aiOk), "demo snapshot: TH + MY composed, AI part ok");
+  ok(views.every((v) => v.summary.verdict === "certs" && v.summary.certs.length >= 1 && v.summary.steps.length >= 1 && v.summary.steps.length <= 3), "demo snapshot: verdict 办证后可上架, certs and ≤3 steps present");
+  ok(!/sk-|api[_-]?key|bearer|token/i.test(JSON.stringify(snap)), "demo snapshot: no secrets / tokens inside");
+}
 
 console.log(fail ? `\n${fail} failed` : "\nall passed");
 process.exit(fail ? 1 : 0);

@@ -1,0 +1,182 @@
+{
+ "captured_at": "2026-10-24T03:41:07.632Z",
+ "seconds": 21.7,
+ "info": "65W 氮化镓（GaN）快充充电器 双 Type-C + 1 USB-A 三口输出\n输入 100-240V ~ 50/60Hz，最大输出 65W，支持 PD3.0 / QC4.0 / PPS 快充协议\n标准欧规/美规两脚插头，ABS 阻燃外壳，附 1 米 Type-C 数据线\n适用于手机、平板、笔记本电脑",
+ "countries": [
+  "TH",
+  "MY"
+ ],
+ "response": {
+  "ok": true,
+  "model": "glm-5.3-flash",
+  "vision_model": null,
+  "latency_ms": 21659,
+  "vision_ms": 0,
+  "image_facts": null,
+  "image_error": null,
+  "images_failed": 0,
+  "input": {
+   "title": "65W 氮化镓（GaN）快充充电器 双 Type-C + 1 USB-A 三口输出",
+   "description": "输入 100-240V ~ 50/60Hz，最大输出 65W，支持 PD3.0 / QC4.0 / PPS 快充协议\n标准欧规/美规两脚插头，ABS 阻燃外壳，附 1 米 Type-C 数据线\n适用于手机、平板、笔记本电脑"
+  },
+  "countries": [
+   "TH",
+   "MY"
+  ],
+  "results": {
+   "TH": {
+    "ok": true,
+    "impl": "fetch",
+    "tool_calls": [
+     "lookup_rules",
+     "search_kb"
+    ],
+    "latency_ms": 21238,
+    "category": "power",
+    "features": [
+     "charger"
+    ],
+    "items": [],
+    "extra_rule_ids": [],
+    "notes": [
+     {
+      "rule_id": "TH-TISI-ADAPTER",
+      "quote": "- Supply equipment (adaptor) for smart phone and tablet",
+      "explanation": "手机/平板充电器在泰国属 TIS 62368 Part 1-2563 强制标准，本商品须先取得 TISI 认证方可进口销售。",
+      "status": "verified"
+     },
+     {
+      "rule_id": "TH-TISI-ADAPTER",
+      "quote": "REVISED MATRIX ON MANDATORY STANDARDS FOR THAILAND (AS OF April, 2025)",
+      "explanation": "该标准来源于泰国 2025 年 4 月修订的强制性标准矩阵，属现行有效要求。",
+      "status": "verified"
+     },
+     {
+      "rule_id": "TH-ETDA-LISTING",
+      "quote": "Listings must include detailed product information, such as product name, image (with Thai label), standard or FDA marks, registration or license numbers, and contact channels for the seller or manufacturer.",
+      "explanation": "ETDA 新规要求 listing 展示泰文标签图、TISI 标志和注册号，2025-12-31 起违规商品会被下架。",
+      "status": "verified"
+     },
+     {
+      "rule_id": "TH-ETDA-LISTING",
+      "quote": "Displaying the TISI mark, QR code, and TISI number on the product image, or",
+      "explanation": "主图上需展示 TISI 标志、二维码和证书编号，上架前须准备好这些素材。",
+      "status": "verified"
+     },
+     {
+      "rule_id": "PLAT-TIKTOK-IP",
+      "quote": "Products that violate the intellectual property rights of brands or other rights owners",
+      "explanation": "TikTok Shop 禁止侵权商品，标题描述中不得使用他人品牌名或同款暗示。",
+      "status": "verified"
+     },
+     {
+      "rule_id": "TH-TISI-BATTERY",
+      "quote": "Secondary cells and TIS 2217-2548",
+      "explanation": "随附数据线不含电池；若后续加配充电宝/内置电池产品，电池需另符合 TIS 2217-2548，本款暂不涉及。",
+      "status": "待人工复核",
+      "problem": "该规则不适用于当前国家/品类"
+     }
+    ],
+    "next_steps": [
+     "向 TISI 指定实验室申请 TIS 62368 Part 1-2563 认证，取得 มอก. 证书后再上架",
+     "准备泰文标签图片、TISI 标志、二维码及证书编号，按 ETDA 新规要求上传到 listing 主图和详情",
+     "确认插头类型：泰国常用美规两脚（A/C 型）插头，欧规需评估适配性，待人工复核",
+     "不含 PD3.0/QC 专利词问题，但避免在标题/描述中使用其他品牌名或'同款/高仿'字样",
+     "Shopee/Lazada 平台禁售条款为转述信息，待人工复核各站卖家中心政策"
+    ],
+    "summary": "65W 氮化镓充电器属泰国 TIS 62368 Part 1-2563 强制认证范围，须取得 TISI 证书并按 ETDA 新规在 listing 展示泰文标签、TISI 标志与注册号，未获证不得上架。",
+    "dropped": 1,
+    "guard_removed": [],
+    "evidence": [
+     {
+      "feature": "charger",
+      "source": "text",
+      "term": "充电器"
+     }
+    ],
+    "features_suggested": [
+     "charger"
+    ],
+    "extra_rule_ids_suggested": []
+   },
+   "MY": {
+    "ok": true,
+    "impl": "fetch",
+    "tool_calls": [
+     "lookup_rules",
+     "search_kb"
+    ],
+    "latency_ms": 21257,
+    "category": "power",
+    "features": [
+     "charger"
+    ],
+    "items": [],
+    "extra_rule_ids": [
+     "MY-ST-ADAPTER",
+     "MY-ST-LABEL",
+     "MY-LVG-TAX",
+     "PLAT-TIKTOK-IP"
+    ],
+    "notes": [
+     {
+      "rule_id": "MY-ST-ADAPTER",
+      "quote": "Reg 97 (1) - Certificate of Approval (CoA) is required to manufacture, import, display, sell or",
+      "explanation": "该充电器属 ST 管制电器，在马来西亚制造、进口、展示、销售或广告前必须先取得 CoA，属强制认证。",
+      "status": "verified"
+     },
+     {
+      "rule_id": "MY-ST-ADAPTER",
+      "quote": "If the adapter/charger is imported or manufactured separately, a separate Certificate of Approval (CoA) is required.",
+      "explanation": "本商品是单独销售的充电器，须以适配器/充电器名义单独申请 CoA，不能借用配套电器的认证。",
+      "status": "verified"
+     },
+     {
+      "rule_id": "MY-ST-LABEL",
+      "quote": "electrical equipment itself in a legible manner. The ST-SIRIM label shall not be affixed on",
+      "explanation": "ST-SIRIM 标签必须清晰贴在充电器本体上，不能只贴在包装或说明书上，listing 图需体现。",
+      "status": "verified"
+     },
+     {
+      "rule_id": "MY-LVG-TAX",
+      "quote": "The sales tax rate on LVG is 10%.",
+      "explanation": "单价不超过 500 林吉特经电商售往马来西亚的商品适用 10% 低价值商品销售税，由平台/卖家代收，需计入定价。",
+      "status": "verified"
+     },
+     {
+      "rule_id": "PLAT-TIKTOK-IP",
+      "quote": "Products that violate the intellectual property rights of brands or other rights owners",
+      "explanation": "TikTok Shop 禁止侵权及假冒商品；标题描述中如出现第三方品牌名或同款暗示将面临下架风险。",
+      "status": "verified"
+     }
+    ],
+    "next_steps": [
+     "申请或核实 ST（Suruhanjaya Tenaga）CoA 证书，并在充电器本体加贴 ST-SIRIM 标签（待人工复核证书状态）",
+     "listing 图片与详情页补充 CoA 编号及本体 SIRIM 标签实拍",
+     "确认插头规格：马来西亚使用英规 BS 1363 三脚插头，欧规/美规两脚插头需配转换头或改英规",
+     "登记 LVG 销售税（10%）并核对平台代收设置",
+     "CPETTR 2024 电商信息披露要求执法时间未定，待人工复核 KPDN 及平台公告"
+    ],
+    "summary": "该 65W GaN 充电器属马来西亚 ST 强制认证的充电器/适配器，须取得单独 CoA 并在本体贴 ST-SIRIM 标签，另注意 10% LVG 销售税、英规插头及平台知识产权政策。",
+    "dropped": 0,
+    "guard_removed": [],
+    "evidence": [
+     {
+      "feature": "charger",
+      "source": "text",
+      "term": "充电器"
+     }
+    ],
+    "features_suggested": [
+     "charger"
+    ],
+    "extra_rule_ids_suggested": [
+     "MY-ST-ADAPTER",
+     "MY-ST-LABEL",
+     "MY-LVG-TAX",
+     "PLAT-TIKTOK-IP"
+    ]
+   }
+  }
+ }
+}
