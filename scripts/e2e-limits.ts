@@ -20,7 +20,7 @@ const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 async function startWorker(port: number, vars: Record<string, string>): Promise<{ api: string; stop: () => void }> {
   const dir = mkdtempSync(join(tmpdir(), "sea-limits-"));
-  execFileSync("npx", ["wrangler", "d1", "migrations", "apply", "sea-precheck", "--local", "--persist-to", dir], { cwd: WORKER, stdio: "ignore", env: { ...process.env, CI: "1" } });
+  execFileSync("npx", ["wrangler", "d1", "migrations", "apply", "DB", "--local", "--persist-to", dir], { cwd: WORKER, stdio: "ignore", env: { ...process.env, CI: "1" } });
   const all = { JWT_SECRET: randomBytes(32).toString("base64"), DEV_MAIL_LOG: "1", CHECK_DRY_RUN_LOCAL: "1", ...vars };
   const args = ["wrangler", "dev", "--port", String(port), "--ip", "127.0.0.1", "--persist-to", dir, ...Object.entries(all).flatMap(([k, v]) => ["--var", `${k}:${v}`])];
   const p: ChildProcess = spawn("npx", args, { cwd: WORKER, stdio: ["ignore", openSync(join(dir, "wrangler.log"), "w"), "inherit"], env: { ...process.env, CI: "1" }, detached: true });

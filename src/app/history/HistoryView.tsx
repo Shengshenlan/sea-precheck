@@ -6,13 +6,12 @@ import { ArrowLeft, Camera, ChevronRight, Inbox, Loader2, Trash2 } from "lucide-
 import { api, normalizeStored, type HistoryItem } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
 import { composeCountries, type CountryView } from "@/lib/report";
-import { COUNTRY_ZH } from "@/lib/core/match";
 import { VERDICT_LABEL, type Verdict } from "@/lib/core/verdict";
 import type { Country } from "@/lib/core/types";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Flag } from "@/components/site/Flag";
+import { CountryTag } from "@/components/site/CountryTag";
 import { ResultView } from "@/components/app/ResultView";
 import { cn, fmtTime, relTime } from "@/lib/utils";
 import { toast } from "@/components/ui/toast";
@@ -26,10 +25,10 @@ type Detail = { item: HistoryItem; title: string; views: CountryView[] };
 function Verdicts({ it }: { it: HistoryItem }) {
   const cs: Country[] = it.countries?.length ? it.countries : it.country ? [it.country] : [];
   return (
-    <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
+    <span className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5">
       {cs.map((c) => {
         const v = it.verdicts?.[c] as Verdict | undefined;
-        return <span key={c} className="inline-flex items-center gap-1.5 text-xs"><Flag c={c} className="h-2.5 w-3.5" /><span className="text-muted-foreground">{COUNTRY_ZH[c]}</span>
+        return <span key={c} className="inline-flex items-center gap-1.5 text-xs"><CountryTag c={c} />
           {v ? <span className={cn("font-medium", V_TONE[v])}>{VERDICT_LABEL[v]}</span> : it.risk ? <span className="text-muted-foreground">{it.risk}风险</span> : null}</span>;
       })}
     </span>

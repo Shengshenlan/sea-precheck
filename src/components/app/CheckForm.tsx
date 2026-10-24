@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Label, Textarea } from "@/components/ui/input";
 import { Flag } from "@/components/site/Flag";
+import { COUNTRY_TONE } from "@/components/site/CountryTag";
 import { cn } from "@/lib/utils";
 
 export const ALL_COUNTRIES: Country[] = ["TH", "PH", "MY"];
@@ -42,9 +43,9 @@ export function CheckForm({ value, onChange, onSubmit, error, remaining }: { val
               return (
                 <button key={c} type="button" aria-pressed={on} onClick={() => toggle(c)}
                   className={cn("relative flex h-12 items-center justify-center gap-2 rounded-xl border text-sm font-medium transition-all",
-                    on ? "border-primary bg-accent text-foreground shadow-sm ring-1 ring-primary/30" : "bg-card text-muted-foreground hover:border-primary/40 hover:text-foreground")}>
+                    on ? cn("text-foreground shadow-sm ring-1", COUNTRY_TONE[c].on) : "bg-card text-muted-foreground hover:border-primary/40 hover:text-foreground")}>
                   <Flag c={c} className="h-3.5 w-5" />{COUNTRY_ZH[c]}
-                  {on && <Check className="absolute right-1.5 top-1.5 size-3 text-primary" />}
+                  {on && <Check className="absolute right-1.5 top-1.5 size-3 text-foreground/60" />}
                 </button>
               );
             })}
@@ -61,21 +62,39 @@ export function CheckForm({ value, onChange, onSubmit, error, remaining }: { val
   );
 }
 
+/** Stage labels switch on elapsed time (the server does not stream progress, so the boundaries are estimates, not measurements). */
+const STAGES_IMG = [{ label: "识别图片", until: 8 }, { label: "匹配法规", until: 18 }, { label: "生成建议", until: Infinity }];
+const STAGES_TXT = [{ label: "匹配法规", until: 7 }, { label: "生成建议", until: Infinity }];
+
 export function CheckProgress({ countries, images }: { countries: Country[]; images: number }) {
   const total = images ? 24 : 16;
+  const stages = images ? STAGES_IMG : STAGES_TXT;
   const [t, setT] = useState(0);
   useEffect(() => { const id = setInterval(() => setT((x) => x + 0.25), 250); return () => clearInterval(id); }, []);
-  const pct = Math.min(95, (1 - Math.exp(-t / (total * 0.55))) * 100);
+  const pct = Math.min(92, (1 - Math.exp(-t / (total * 0.55))) * 100);
+  const cur = stages.findIndex((s) => t < s.until);
   return (
-    <Card className="animate-fade-up p-8 text-center sm:p-10" aria-busy="true" data-testid="progress">
+    <Card className="animate-fade-up p-7 text-center sm:p-10" aria-busy="true" data-testid="progress">
       <Loader2 className="mx-auto size-8 animate-spin text-primary" />
       <p className="mt-4 text-[17px] font-semibold">正在检查…</p>
       <p className="mt-1.5 text-sm text-muted-foreground">
-        核对 {countries.map((c) => COUNTRY_ZH[c]).join("、")} 的认证与上架要求{images ? "，并识别图片" : ""}，通常需要 15–30 秒（图片较大时上传更久）
+        核对 {countries.map((c) => COUNTRY_ZH[c]).join("、")} 的认证与上架要求，通常需要 15–30 秒
       </p>
-      <div className="mx-auto mt-6 h-1.5 max-w-sm overflow-hidden rounded-full bg-muted">
+      <ol className="mx-auto mt-6 flex max-w-sm items-center justify-center gap-1.5 text-[13px] sm:gap-2" aria-label="检查阶段" data-testid="progress-stages">
+        {stages.map((s, i) => (
+          <li key={s.label} className="flex items-center gap-1.5 sm:gap-2" aria-current={i === cur ? "step" : undefined} data-state={i < cur ? "done" : i === cur ? "active" : "todo"}>
+            {i > 0 && <span className="text-muted-foreground/40" aria-hidden>→</span>}
+            <span className={cn("inline-flex items-center gap-1 rounded-full px-2.5 py-1 transition-colors",
+              i === cur ? "bg-accent font-medium text-primary" : i < cur ? "text-muted-foreground" : "text-muted-foreground/50")}>
+              {i < cur ? <Check className="size-3" /> : i === cur ? <span className="size-1.5 animate-pulse rounded-full bg-primary" /> : null}{s.label}
+            </span>
+          </li>
+        ))}
+      </ol>
+      <div className="mx-auto mt-4 h-1 max-w-sm overflow-hidden rounded-full bg-muted">
         <div className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-cyan-500 transition-[width] duration-300 ease-out" style={{ width: `${pct}%` }} />
       </div>
+      <p className="mt-3 text-xs tabular-nums text-muted-foreground/80" role="status">已用 {Math.floor(t)} 秒{images ? " · 图片较大时上传更久" : ""}</p>
     </Card>
   );
 }

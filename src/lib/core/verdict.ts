@@ -1,5 +1,6 @@
 import type { Country, Report } from "./types";
 import { COUNTRY_ZH, conclusionOf, MAX_DESC } from "./match";
+import { stripThai } from "../text";
 
 /**
  * Plain three-way verdict shown on the result card. Everything else (risk level, evidence, citations,
@@ -20,10 +21,14 @@ export function summarize(r: Report): CountrySummary {
   const zh = COUNTRY_ZH[r.input.country];
   const cf = r.brand.hits.filter((h) => h.type === "counterfeit");
   const br = r.brand.hits.filter((h) => h.type === "brand");
-  const certs: CertLine[] = c.must.map((b) => ({
-    name: b.abbr && b.abbr !== b.plain ? `${b.plain}（${b.abbr}）` : b.plain,
-    where: `${b.issuer} · ${b.applicant}`,
-  }));
+  // Thai script is dropped from the headline name (“TISI มอก. 685-1” → “TISI 685-1”); it only appears, small and grey, in details
+  const certs: CertLine[] = c.must.map((b) => {
+    const abbr = stripThai(b.abbr || "");
+    return {
+      name: abbr && abbr !== b.plain ? `${b.plain}（${abbr}）` : b.plain,
+      where: `${b.issuer} · ${b.applicant}`,
+    };
+  });
   let verdict: Verdict; let sentence: string;
   if (c.verdict === "prohibited") { verdict = "no"; sentence = `此类商品在${zh}禁止销售或进口，请勿上架。`; }
   else if (c.verdict === "unknown") { verdict = "unknown"; sentence = "没有识别出商品品类，请在商品信息中写明具体是什么商品后再查。"; }
