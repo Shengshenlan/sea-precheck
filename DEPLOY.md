@@ -7,7 +7,7 @@
 - **邮件**：Brevo 事务邮件 API 发送验证码。
 - **密钥**：`ZHIPUAI_API_KEY`、`JWT_SECRET`、`BREVO_API_KEY` 只作为 Worker secret 存在。不进 git、不进日志、不进前端 bundle。
 
-> 当前状态：GitHub 仓库与 Pages 已上线（未配置 `API_URL` 时页面显示“服务暂未开放”）；Cloudflare Worker 尚未部署。
+> 当前状态：Worker 已部署到 https://sea-precheck-api.sea-precheck.workers.dev（D1 迁移 0001–0003 已应用，secrets 已设置），GitHub Actions 变量 `API_URL` 已指向它，Pages 前端已连接（未配置 `API_URL` 时页面才显示“服务暂未开放”）。
 
 ## 1. Cloudflare Worker
 
