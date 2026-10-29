@@ -78,6 +78,31 @@ GitHub Pages（静态 Next.js export）                 Cloudflare Worker（work
 - `npm run kb:verify`：逐条校验摘录是否是快照的逐字子串。当前共 135 条摘录（脚本实际逐字校验其中 129 条 verified / verified_ocr，转述条目不校验）：123 条 verified、6 条 verified_ocr（扫描件 OCR）、6 条 paraphrase（明确标注为转述）。
 - 详见 `kb/README.md`。
 
+## 模型提供方（智谱 GLM / 通义千问 Qwen）
+
+Worker 支持两种模型提供方，均走 OpenAI 兼容的 `/chat/completions` 接口，文字检查（agent）与图片识别（vision）共用同一套调用代码（`worker/src/provider.ts`），由 `LLM_PROVIDER` 切换：
+
+| `LLM_PROVIDER` | 提供方 | 密钥（Worker secret） | 端点 / 模型变量（括号内为默认值） |
+|---|---|---|---|
+| `zhipu`（默认） | 智谱 GLM | `ZHIPUAI_API_KEY` | `LLM_BASE_URL`、`LLM_MODEL`（`glm-5.3-flash`）、`VISION_BASE_URL`、`VISION_MODEL`（`glm-5.3-flash`） |
+| `qwen` | 阿里云百炼 通义千问 Qwen（DashScope OpenAI 兼容模式） | `QWEN_API_KEY` | `QWEN_BASE_URL`（`https://dashscope.aliyuncs.com/compatible-mode/v1`）、`QWEN_MODEL`（`qwen-plus`）、`QWEN_VISION_MODEL`（`qwen3-vl-plus`） |
+
+- 当前线上部署使用智谱 GLM（`wrangler.toml` 中 `LLM_PROVIDER = "zhipu"`）；本仓库的评测数据也都是 GLM 的结果。Qwen 适配已实现并有单元测试，切换前建议先在本地用真实 key 跑一遍评测。
+- 思考模式统一由 `LLM_THINKING` 控制：智谱发送 `thinking: {type}`，Qwen 发送 `enable_thinking`（新版 Qwen 默认开启思考，这里默认显式关闭以保证速度）；图片识别始终关闭思考。
+- 模型名以[百炼模型列表](https://help.aliyun.com/zh/model-studio/models)为准，例如也可设 `QWEN_MODEL = "qwen3.7-plus"`、`QWEN_VISION_MODEL = "qwen3.7-plus"`（多模态）。国际站（新加坡）把 `QWEN_BASE_URL` 改为 `https://dashscope-intl.aliyuncs.com/compatible-mode/v1`，并使用对应地域的 key。
+- `GET /api/health` 返回当前的 `provider`、`model`、`vision_model` 和 `key_configured`（不返回密钥）。
+
+切换到 Qwen：
+
+```bash
+cd worker
+npx wrangler secret put QWEN_API_KEY      # 交互式粘贴百炼 API Key，不会写入文件
+# 然后把 wrangler.toml [vars] 的 LLM_PROVIDER 改为 "qwen"（可选：取消注释 QWEN_MODEL / QWEN_VISION_MODEL 覆盖默认模型），再 npx wrangler deploy
+# 本地试用：在 worker/.dev.vars 中加 LLM_PROVIDER=qwen 和 QWEN_API_KEY=...（.dev.vars 已 gitignore）
+```
+
+切回智谱：把 `LLM_PROVIDER` 改回 `"zhipu"` 并重新部署即可，两套 secret 可以同时存在。
+
 ## 本地运行
 
 需要 Node 22（wrangler 4）。
@@ -112,7 +137,7 @@ npm run test:e2e:limits   # 自启临时 wrangler dev（低上限 + 不调用 AI
 
 不带 `RATE_LIMIT_DISABLED_LOCAL` 运行时，第 7 次认证请求会按设计返回 429。
 
-`wrangler.toml` 变量：`LLM_BASE_URL`、`LLM_MODEL`（默认 `glm-5.3-flash`）、`LLM_THINKING`、`AGENT_IMPL`（`fetch` 默认 | `pi`）、`REQUEST_TIMEOUT_MS`、`ALLOWED_ORIGINS`、`VISION_BASE_URL` / `VISION_MODEL`、`CHECKS_PER_USER_PER_DAY`、`CHECKS_PER_IP_PER_DAY`、`CHECKS_GLOBAL_PER_DAY`、`MAX_COUNTRIES`、`MAX_IMAGE_BYTES`、`INFO_MAX_CHARS`、`REG_PER_IP_PER_DAY`、`PBKDF2_ITERATIONS`、`MAIL_FROM`（默认 `zhu05361@gmail.com`）、`MAIL_FROM_NAME`（默认 `出海合规雷达`）、`MAIL_GLOBAL_PER_DAY`、`MAIL_PER_EMAIL_PER_DAY`、`MAIL_PER_IP_PER_DAY`。绑定：`DB`（D1）、`RL_IP` / `RL_GLOBAL` / `RL_AUTH`。密钥只用 `wrangler secret put`：`ZHIPUAI_API_KEY`、`JWT_SECRET`、`BREVO_API_KEY`。
+`wrangler.toml` 变量：`LLM_PROVIDER`（`zhipu` 默认 | `qwen`，见上文“模型提供方”）、`QWEN_BASE_URL` / `QWEN_MODEL` / `QWEN_VISION_MODEL`（仅 `qwen` 时生效）、`LLM_BASE_URL`、`LLM_MODEL`（默认 `glm-5.3-flash`）、`LLM_THINKING`、`AGENT_IMPL`（`fetch` 默认 | `pi`）、`REQUEST_TIMEOUT_MS`、`ALLOWED_ORIGINS`、`VISION_BASE_URL` / `VISION_MODEL`、`CHECKS_PER_USER_PER_DAY`、`CHECKS_PER_IP_PER_DAY`、`CHECKS_GLOBAL_PER_DAY`、`MAX_COUNTRIES`、`MAX_IMAGE_BYTES`、`INFO_MAX_CHARS`、`REG_PER_IP_PER_DAY`、`PBKDF2_ITERATIONS`、`MAIL_FROM`（默认 `zhu05361@gmail.com`）、`MAIL_FROM_NAME`（默认 `出海合规雷达`）、`MAIL_GLOBAL_PER_DAY`、`MAIL_PER_EMAIL_PER_DAY`、`MAIL_PER_IP_PER_DAY`。绑定：`DB`（D1）、`RL_IP` / `RL_GLOBAL` / `RL_AUTH`。密钥只用 `wrangler secret put`：`ZHIPUAI_API_KEY`（或 `QWEN_API_KEY`，取决于 `LLM_PROVIDER`）、`JWT_SECRET`、`BREVO_API_KEY`。
 
 ## 评测
 

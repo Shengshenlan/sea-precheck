@@ -5,7 +5,7 @@
 - **后端**：`worker/` 目录，Cloudflare Worker：邮箱验证码注册/登录/重置密码、`POST /api/check`（多国家）、历史记录、`GET /api/health`。
 - **账号与历史**：Cloudflare D1（binding `DB`），表 users / checks / usage / reg_ip / email_codes / mail_counters / daily_counters / inflight，见 `worker/migrations/`（0001、0002、0003 三个迁移）。
 - **邮件**：Brevo 事务邮件 API 发送验证码。
-- **密钥**：`ZHIPUAI_API_KEY`、`JWT_SECRET`、`BREVO_API_KEY` 只作为 Worker secret 存在。不进 git、不进日志、不进前端 bundle。
+- **密钥**：`ZHIPUAI_API_KEY`（或使用通义千问时的 `QWEN_API_KEY`）、`JWT_SECRET`、`BREVO_API_KEY` 只作为 Worker secret 存在。不进 git、不进日志、不进前端 bundle。
 
 > 当前状态：Worker 已部署到 https://sea-precheck-api.sea-precheck.workers.dev（D1 迁移 0001–0003 已应用，secrets 已设置），GitHub Actions 变量 `API_URL` 已指向它，Pages 前端已连接（未配置 `API_URL` 时页面才显示“服务暂未开放”）。
 
@@ -16,12 +16,14 @@ cd worker
 npm ci                                   # wrangler 4.x 需要 Node >= 22
 npx wrangler login                       # 浏览器登录 Cloudflare 账号
 npx wrangler secret put ZHIPUAI_API_KEY  # 交互式粘贴，不会写入文件
+# npx wrangler secret put QWEN_API_KEY   # 仅在 LLM_PROVIDER = "qwen"（阿里云百炼 通义千问）时需要，见 README“模型提供方”
 npx wrangler secret put JWT_SECRET       # 随机 ≥32 字节，例如 openssl rand -base64 48 的输出；轮换会使所有登录失效、未用的验证码作废
 npx wrangler secret put BREVO_API_KEY    # 见下方“邮件（Brevo）”；不设置则无法注册/重置密码
 npx wrangler d1 create sea-precheck      # 把输出的 database_id 填进 wrangler.toml 的 [[d1_databases]]（当前是占位 0000…）
 npx wrangler d1 migrations apply sea-precheck --remote   # 应用 0001_init + 0002_email_codes + 0003_limits；已部署过旧版本的只会补缺的迁移
 # 编辑 wrangler.toml 的 [vars]：
 #   ALLOWED_ORIGINS = "https://<user>.github.io"        # 只写 origin，不带路径；多个用逗号分隔
+#   LLM_PROVIDER    = "zhipu"                           # zhipu（默认，智谱 GLM）| qwen（通义千问，读 QWEN_* 变量与 QWEN_API_KEY）
 #   LLM_BASE_URL    = "https://open.bigmodel.cn/api/coding/paas/v4"  # Coding Plan；按量付费用 /api/paas/v4
 #   LLM_MODEL       = "glm-5.3-flash"                   # 已验证可用（备选 glm-4.5-flash，走 /api/paas/v4）
 #   LLM_THINKING    = "off"                             # off|low|high；开启后更慢，max_tokens 自动加到 6000

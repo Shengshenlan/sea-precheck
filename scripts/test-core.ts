@@ -4,6 +4,8 @@ import { dryCellOnly, guardLlmSuggestions } from "../src/lib/core/guard";
 import { summarize, splitInfo } from "../src/lib/core/verdict";
 import { sanitizeInput } from "../src/lib/core/match";
 import { visionBody, batchesOf, batchImages, mergeFacts, checkImages } from "../worker/src/vision";
+import { resolveProvider, QWEN_DEFAULT_BASE_URL } from "../worker/src/provider";
+import { flattenForZhipu, classifyUpstream } from "../worker/src/agent";
 import type { CheckInput, ImageFacts } from "../src/lib/core/types";
 import { readFileSync } from "node:fs";
 import { composeCountries } from "../src/lib/report";
@@ -75,6 +77,32 @@ ok(!!checkImages(Array(3).fill(b64(4.9)), 5 * 1048576, 5, 10 * 1048576), "checkI
 ok(JSON.stringify(batchImages(Array(5).fill(px)).map((b) => b.length)) === "[3,2]", "small images: 5 → batches 3/2");
 ok(JSON.stringify(batchImages(Array(5).fill(b64(4.9))).map((b) => b.length)) === "[1,1,1,1,1]", "5 × 4.9MB originals → one image per vision request (≤ ~9MB each)");
 ok(JSON.stringify(batchImages([b64(1), b64(1), b64(1), b64(5), b64(1)]).map((b) => b.length)) === "[3,2]" || batchImages([b64(1), b64(1), b64(1), b64(5), b64(1)]).every((b) => b.length <= 4), "mixed sizes: batches stay ≤ 4 images");
+
+// ---- LLM provider switch (LLM_PROVIDER=zhipu default | qwen) ----
+{
+  const base = { LLM_BASE_URL: "https://zp/v4", LLM_MODEL: "glm-x", ZHIPUAI_API_KEY: "zk", QWEN_API_KEY: "qk" };
+  const z = resolveProvider(base);
+  ok(z.provider === "zhipu" && z.baseUrl === "https://zp/v4" && z.model === "glm-x" && z.apiKey === "zk" && z.visionBaseUrl === "https://zp/v4" && z.visionModel === "glm-5.3-flash", "provider: unset → zhipu with the existing vars (unchanged)");
+  ok(resolveProvider({ ...base, LLM_PROVIDER: "zhipu", VISION_BASE_URL: "https://v", VISION_MODEL: "glm-v" }).visionModel === "glm-v", "provider: zhipu honours VISION_* vars");
+  ok(resolveProvider({ ...base, LLM_PROVIDER: "bogus" }).provider === "zhipu", "provider: unknown value falls back to zhipu");
+  const q = resolveProvider({ ...base, LLM_PROVIDER: " Qwen " });
+  ok(q.provider === "qwen" && q.baseUrl === QWEN_DEFAULT_BASE_URL && q.visionBaseUrl === QWEN_DEFAULT_BASE_URL && q.model === "qwen-plus" && q.visionModel === "qwen3-vl-plus" && q.apiKey === "qk", "provider: qwen → DashScope compatible-mode defaults + QWEN_API_KEY");
+  ok(resolveProvider({ ...base, LLM_PROVIDER: "qwen", QWEN_MODEL: "qwen3.7-plus", QWEN_VISION_MODEL: "qwen3.7-plus" }).visionModel === "qwen3.7-plus", "provider: qwen honours QWEN_MODEL / QWEN_VISION_MODEL");
+  ok(resolveProvider({ ...base, LLM_PROVIDER: "qwen", QWEN_API_KEY: undefined }).apiKey === undefined, "provider: qwen without QWEN_API_KEY → no key (does not fall back to the Zhipu key)");
+  const zb = JSON.parse(visionBody([px], "glm-x")), qb = JSON.parse(visionBody([px], "qwen3-vl-plus", "qwen"));
+  ok(zb.thinking?.type === "disabled" && !("enable_thinking" in zb), "visionBody(zhipu): thinking disabled (unchanged)");
+  ok(qb.enable_thinking === false && !("thinking" in qb) && qb.messages[0].content[0].image_url.url === px, "visionBody(qwen): enable_thinking=false, valid JSON");
+  ok(JSON.parse(visionBody(['data:image/jpeg;base64,AA"x'], "m", "qwen")).enable_thinking === false, "visionBody(qwen): escaped fallback path too");
+  const pz = flattenForZhipu({ messages: [{ role: "user", content: [{ type: "text", text: "a" }] }] }, "off");
+  ok(pz.thinking.type === "disabled" && pz.messages[0].content === "a", "payload(zhipu): thinking disabled + text parts flattened (unchanged)");
+  const pq = flattenForZhipu({ thinking: { type: "enabled" }, reasoning_effort: "low", messages: [] }, "off", "qwen");
+  ok(pq.enable_thinking === false && !("thinking" in pq) && !("reasoning_effort" in pq), "payload(qwen): enable_thinking=false, no Zhipu thinking field");
+  ok(flattenForZhipu({ messages: [] }, "high", "qwen").enable_thinking === true, "payload(qwen): LLM_THINKING=high → enable_thinking=true");
+  ok(classifyUpstream("401 invalid_api_key Incorrect API key provided.").code === "auth", "classify: DashScope invalid_api_key → auth");
+  ok(classifyUpstream("400 Arrearage Access denied, please make sure your account is in good standing.").code === "quota", "classify: DashScope Arrearage → quota");
+  ok(classifyUpstream("404 model_not_found The model `qwen-x` does not exist").code === "model", "classify: DashScope model_not_found → model");
+  ok(classifyUpstream("429 Throttling Requests rate limit exceeded").code === "busy", "classify: DashScope 429 → busy");
+}
 
 // ---- /demo/ snapshot: a frozen REAL check result must still render through the same composition path as the signed-in page ----
 {

@@ -9,6 +9,13 @@ workers_dev = true
 "@opentelemetry/api" = "./src/stubs/otel.ts"
 
 [vars]
+# Model provider: "zhipu" (智谱 GLM, default, uses LLM_* / VISION_* below + secret ZHIPUAI_API_KEY)
+#                 "qwen"  (阿里云百炼 通义千问, OpenAI-compatible mode, secret QWEN_API_KEY; see README "模型提供方")
+LLM_PROVIDER = "zhipu"
+# Qwen settings, only read when LLM_PROVIDER = "qwen" (defaults shown):
+# QWEN_BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
+# QWEN_MODEL = "qwen-plus"
+# QWEN_VISION_MODEL = "qwen3-vl-plus"
 LLM_BASE_URL = "https://open.bigmodel.cn/api/coding/paas/v4"   # Coding Plan endpoint; pay-as-you-go: https://open.bigmodel.cn/api/paas/v4
 LLM_MODEL = "glm-5.3-flash"
 LLM_THINKING = "off"        # off | low | high (on = slower, needs more max_tokens)
@@ -65,6 +72,7 @@ migrations_dir = "migrations"
 
 # Secrets (never in this file):  wrangler secret put JWT_SECRET   (random 32+ bytes)
 # Secret (never in this file):  wrangler secret put ZHIPUAI_API_KEY
+# Secret (only for LLM_PROVIDER = "qwen"):  wrangler secret put QWEN_API_KEY
 # Secret (never in this file):  wrangler secret put BREVO_API_KEY
 # Local dev: put ZHIPUAI_API_KEY=... in worker/.dev.vars (gitignored). Without BREVO_API_KEY, set DEV_MAIL_LOG=1 there
 # to print verification codes to the wrangler console instead of sending mail (never set DEV_MAIL_LOG in production).

@@ -3,6 +3,7 @@ import { splitInfo, summarize } from "../../src/lib/core/verdict";
 import type { CheckInput, Country, ImageFacts } from "../../src/lib/core/types";
 import { runFetch, runPi, UpstreamError, resolveThinking, type LlmConfig } from "./agent";
 import { extractJson, postProcess } from "./parse";
+import { resolveProvider } from "./provider";
 import { checkImages, runVisionAll, factsForPrompt, MAX_IMAGES, MAX_IMAGE_BYTES, MAX_TOTAL_IMAGE_BYTES, VISION_TIMEOUT_MS } from "./vision";
 import { hashPassword, verifyPassword, DUMMY_HASH, signJwt, verifyJwt, hmacHex, EMAIL_RE, passwordProblem, sixDigitCode, codeHash, hexEqual } from "./auth";
 import { mailMode, sendCodeMail, type Purpose } from "./mail";
@@ -13,6 +14,7 @@ interface D1 { prepare(q: string): D1Stmt; batch(s: D1Stmt[]): Promise<unknown> 
 export interface Env {
   ZHIPUAI_API_KEY?: string; LLM_THINKING?: string; LLM_BASE_URL: string; LLM_MODEL: string; ALLOWED_ORIGINS: string;
   VISION_BASE_URL?: string; VISION_MODEL?: string;
+  LLM_PROVIDER?: string; QWEN_API_KEY?: string; QWEN_BASE_URL?: string; QWEN_MODEL?: string; QWEN_VISION_MODEL?: string;
   AGENT_IMPL?: string; REQUEST_TIMEOUT_MS?: string; PI_DEBUG?: string; RATE_LIMIT_DISABLED_LOCAL?: string;
   JWT_SECRET?: string; DAILY_AI_QUOTA?: string; REG_PER_IP_PER_DAY?: string; PBKDF2_ITERATIONS?: string;
   BREVO_API_KEY?: string; MAIL_FROM?: string; MAIL_FROM_NAME?: string; DEV_MAIL_LOG?: string; MAIL_PER_EMAIL_PER_DAY?: string; MAIL_PER_IP_PER_DAY?: string;
@@ -285,7 +287,7 @@ async function checkRoute(req: Request, env: Env, ch: H, ip: string, localBypass
   if (input.title.length < 2) input.title = "（见图片）";
   // Local-only dry run (loopback host + CHECK_DRY_RUN_LOCAL=1): exercises every limit without calling the LLM. Inert in production.
   const dryRun = localHostOnly && env.CHECK_DRY_RUN_LOCAL === "1";
-  if (!env.ZHIPUAI_API_KEY && !dryRun) return json({ ok: false, code: "disabled", message: "AI 服务未配置" }, 503, ch);
+  if (!resolveProvider(env).apiKey && !dryRun) return json({ ok: false, code: "disabled", message: "AI 服务未配置" }, 503, ch);
 
   // one check in flight per account (stale locks from a crashed isolate expire after the request timeout)
   const DB = env.DB;
@@ -331,13 +333,14 @@ async function runChecks(env: Env, ch: H, user: { id: number }, input: CheckInpu
   deadline.catch(() => {});
   const t0 = Date.now();
   (globalThis as any).__PI_DEBUG = env.PI_DEBUG === "1";
+  const P = resolveProvider(env); // LLM_PROVIDER=zhipu (default) | qwen
   try {
     // 1) vision once for all countries: structured facts from images (evidence only; failures degrade to text-only)
     // Images go to the vision model in parallel batches of ≤4 under their own time budget; failed/slow batches are dropped (text + remaining image facts still get checked).
     let facts: ImageFacts | null = null; let image_error: string | null = null; let vision_ms = 0; let images_failed = 0;
     if (images.length) {
       const tv = Date.now();
-      const vo = await runVisionAll(images, { baseUrl: env.VISION_BASE_URL || env.LLM_BASE_URL, model: env.VISION_MODEL || "glm-5.3-flash", apiKey: env.ZHIPUAI_API_KEY!, signal: ctl.signal }, extractJson,
+      const vo = await runVisionAll(images, { baseUrl: P.visionBaseUrl, model: P.visionModel, apiKey: P.apiKey!, provider: P.provider, signal: ctl.signal }, extractJson,
         num(env.VISION_TIMEOUT_MS, VISION_TIMEOUT_MS), (code, detail) => console.log(JSON.stringify({ evt: "vision_error", code, detail, ms: Date.now() - tv })));
       facts = vo.facts; image_error = vo.error; images_failed = vo.failed;
       vision_ms = Date.now() - tv;
@@ -346,7 +349,7 @@ async function runChecks(env: Env, ch: H, user: { id: number }, input: CheckInpu
     const imageText = imageEvidenceText(facts);
 
     // 2) text agent per country, in parallel. KB tools, deterministic matching, quote validation and the guard are all per country.
-    const cfg: LlmConfig = { baseUrl: env.LLM_BASE_URL, model: env.LLM_MODEL, apiKey: env.ZHIPUAI_API_KEY!, timeoutMs: Math.max(5000, timeoutMs - 3000), signal: ctl.signal,
+    const cfg: LlmConfig = { baseUrl: P.baseUrl, model: P.model, apiKey: P.apiKey!, provider: P.provider, timeoutMs: Math.max(5000, timeoutMs - 3000), signal: ctl.signal,
       thinking: resolveThinking(env.LLM_THINKING), imageText, imagePrompt: facts ? factsForPrompt(facts) : undefined };
     const impl = env.AGENT_IMPL === "fetch" ? runFetch : runPi;
     const one = async (country: Country, i: number) => {
@@ -378,7 +381,7 @@ async function runChecks(env: Env, ch: H, user: { id: number }, input: CheckInpu
       const code = results[countries[0]].code;
       return json({ ok: false, code, message: ERR_MSG[code] || ERR_MSG.error, image_facts: facts }, code === "quota" ? 503 : code === "timeout" ? 504 : 502, ch);
     }
-    const shared = { ok: true, model: env.LLM_MODEL, vision_model: facts ? facts.model : null, latency_ms: Date.now() - t0, vision_ms, image_facts: facts, image_error, images_failed };
+    const shared = { ok: true, model: P.model, vision_model: facts ? facts.model : null, latency_ms: Date.now() - t0, vision_ms, image_facts: facts, image_error, images_failed };
     const result = { ...shared, input: { title: input.title, description: input.description || "" }, countries, results };
 
     // 3) history: one row per check — input summary (never images) + per-country verdicts + result JSON
@@ -415,7 +418,7 @@ export default {
   async fetch(req: Request, env: Env): Promise<Response> {
     const url = new URL(req.url); const origin = req.headers.get("origin"); const ch = cors(origin, env);
     if (req.method === "OPTIONS") return new Response(null, { status: ch["Access-Control-Allow-Origin"] ? 204 : 403, headers: ch });
-    if (url.pathname === "/api/health") return json({ ok: true, model: env.LLM_MODEL, vision_model: env.VISION_MODEL || "glm-5.3-flash", impl: env.AGENT_IMPL || "pi", thinking: resolveThinking(env.LLM_THINKING), key_configured: !!env.ZHIPUAI_API_KEY, auth: !!(env.DB && env.JWT_SECRET), daily_quota: quotaOf(env) }, 200, ch);
+    if (url.pathname === "/api/health") { const P = resolveProvider(env); return json({ ok: true, provider: P.provider, model: P.model, vision_model: P.visionModel, impl: env.AGENT_IMPL || "pi", thinking: resolveThinking(env.LLM_THINKING), key_configured: !!P.apiKey, auth: !!(env.DB && env.JWT_SECRET), daily_quota: quotaOf(env) }, 200, ch); }
     // Browser requests from non-allowed origins are refused. Requests without Origin (curl, eval) are allowed but still rate limited.
     if (origin && !ch["Access-Control-Allow-Origin"]) return json({ ok: false, message: "origin not allowed" }, 403, ch);
     const ip = req.headers.get("cf-connecting-ip") || "local";

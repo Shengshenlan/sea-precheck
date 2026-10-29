@@ -1,8 +1,9 @@
 import type { CheckInput } from "../../src/lib/core/types";
 import { makeTools } from "./tools";
 import { SYSTEM_PROMPT, userPrompt } from "./prompt";
+import type { Provider } from "./provider";
 
-export interface LlmConfig { imageText?: string; imagePrompt?: string; baseUrl: string; model: string; apiKey: string; timeoutMs: number; signal: AbortSignal; thinking?: Thinking }
+export interface LlmConfig { imageText?: string; imagePrompt?: string; baseUrl: string; model: string; apiKey: string; timeoutMs: number; signal: AbortSignal; thinking?: Thinking; provider?: Provider }
 export type Thinking = "off" | "low" | "high";
 /** thinking on => reasoning tokens count against max_tokens, so give more room or content comes back empty. */
 const maxTok = (t: Thinking) => (t === "off" ? 1500 : 6000);
@@ -18,11 +19,11 @@ export function classifyUpstream(msg: string): UpstreamError {
 }
 function classify(msg: string): UpstreamError {
   const m = msg.toLowerCase();
-  // explicit Zhipu codes first (https://docs.bigmodel.cn/cn/faq/api-code)
+  // explicit Zhipu codes first (https://docs.bigmodel.cn/cn/faq/api-code); DashScope (Qwen) errors: invalid_api_key / Arrearage / model_not_found / 429
   if (/\b(1302|1303|1305)\b/.test(m) || /速率限制|并发|too many requests/.test(m)) return new UpstreamError("busy", "upstream rate limited");
-  if (/\b(1113|1308|1310)\b/.test(m) || /insufficient|欠费|余额|资源包|使用上限|quota/.test(m)) return new UpstreamError("quota", "upstream quota exhausted");
-  if (/\b(1000|1001|1002|1003|1004)\b/.test(m) || /\b401\b|unauthor|api key|令牌/.test(m)) return new UpstreamError("auth", "upstream auth failed");
-  if (/\b1211\b|model.*not exist|模型不存在/.test(m)) return new UpstreamError("model", "model not found");
+  if (/\b(1113|1308|1310)\b/.test(m) || /insufficient|arrearage|欠费|余额|资源包|使用上限|quota/.test(m)) return new UpstreamError("quota", "upstream quota exhausted");
+  if (/\b(1000|1001|1002|1003|1004)\b/.test(m) || /\b401\b|unauthor|api key|invalid.?api.?key|令牌/.test(m)) return new UpstreamError("auth", "upstream auth failed");
+  if (/\b1211\b|model.*not exist|model_not_found|模型不存在/.test(m)) return new UpstreamError("model", "model not found");
   if (/\b429\b|rate/.test(m)) return new UpstreamError("busy", "upstream busy");
   if (/abort|timeout|timed out/.test(m)) return new UpstreamError("timeout", "upstream timeout");
   return new UpstreamError("error", "upstream error");
@@ -32,9 +33,13 @@ function classify(msg: string): UpstreamError {
  * Zhipu text models (e.g. glm-4-flash-250414) ignore OpenAI-style content-part arrays
  * ([{type:"text",text}]) and answer as if the message were empty. Flatten text-only parts to strings.
  */
-export function flattenForZhipu(params: any, thinking: Thinking = "off") {
-  // Zhipu thinking switch: GLM-4.5+/5.x think by default (slow). LLM_THINKING=off|low|high.
-  if (params) {
+export function flattenForZhipu(params: any, thinking: Thinking = "off", provider: Provider = "zhipu") {
+  if (params && provider === "qwen") {
+    // DashScope (OpenAI-compatible mode) switch: enable_thinking. Newer Qwen models think by default, so always send it.
+    delete params.thinking; delete params.reasoning_effort;
+    params.enable_thinking = thinking !== "off";
+  } else if (params) {
+    // Zhipu thinking switch: GLM-4.5+/5.x think by default (slow). LLM_THINKING=off|low|high.
     params.thinking = { type: thinking === "off" ? "disabled" : "enabled" };
     if (thinking === "off") delete params.reasoning_effort; else params.reasoning_effort = thinking;
   }
@@ -49,7 +54,7 @@ export async function runPi(input: CheckInput, cfg: LlmConfig): Promise<AgentRun
   const { Agent } = await import("@mariozechner/pi-agent-core");
   const { streamSimple, Type } = await import("@mariozechner/pi-ai");
   const model: any = {
-    id: cfg.model, name: cfg.model, api: "openai-completions", provider: "zhipu", baseUrl: cfg.baseUrl, reasoning: true,
+    id: cfg.model, name: cfg.model, api: "openai-completions", provider: cfg.provider || "zhipu", baseUrl: cfg.baseUrl, reasoning: true,
     input: ["text"], cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }, contextWindow: 128000, maxTokens: 4096,
     compat: { supportsStore: false, supportsDeveloperRole: false, maxTokensField: "max_tokens", thinkingFormat: "deepseek", supportsStrictMode: false },
   };
@@ -64,7 +69,7 @@ export async function runPi(input: CheckInput, cfg: LlmConfig): Promise<AgentRun
     streamFn: (m: any, c: any, o: any) => streamSimple(m, c, {
       ...o, apiKey: cfg.apiKey, maxTokens: maxTok(cfg.thinking || "off"), timeoutMs: cfg.timeoutMs, maxRetries: 1, signal: cfg.signal,
       ...(cfg.thinking && cfg.thinking !== "off" ? { reasoning: cfg.thinking } : {}),
-      onPayload: (p: any) => flattenForZhipu(p, cfg.thinking),
+      onPayload: (p: any) => flattenForZhipu(p, cfg.thinking, cfg.provider),
     }),
   } as any);
   const dbg = (globalThis as any).__PI_DEBUG;
@@ -86,7 +91,7 @@ export async function runFetch(input: CheckInput, cfg: LlmConfig): Promise<Agent
     const body: any = { model: cfg.model, messages, max_tokens: maxTok(cfg.thinking || "off"), temperature: 0.2,
       tools: tools.map((t) => ({ type: "function", function: { name: t.name, description: t.description, parameters: t.parameters } })),
     };
-    flattenForZhipu(body, cfg.thinking);
+    flattenForZhipu(body, cfg.thinking, cfg.provider);
     const res = await fetch(`${cfg.baseUrl.replace(/\/$/, "")}/chat/completions`, {
       method: "POST", headers: { "content-type": "application/json", authorization: `Bearer ${cfg.apiKey}` }, body: JSON.stringify(body), signal: cfg.signal,
     }).catch((e) => { throw classifyUpstream(String(e?.name || e)); });

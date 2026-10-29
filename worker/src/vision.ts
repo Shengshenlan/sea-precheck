@@ -1,8 +1,9 @@
 import type { ImageFacts } from "../../src/lib/core/types";
 import { classifyUpstream, UpstreamError } from "./agent";
 import { markWithCountry } from "../../src/lib/core/marks";
+import type { Provider } from "./provider";
 
-export interface VisionConfig { baseUrl: string; model: string; apiKey: string; signal: AbortSignal }
+export interface VisionConfig { baseUrl: string; model: string; apiKey: string; signal: AbortSignal; provider?: Provider }
 
 export const MAX_IMAGES = 5;
 export const MAX_IMAGE_BYTES = 5 * 1024 * 1024; // per image, decoded bytes (clients send the original unless it is over this cap)
@@ -69,18 +70,21 @@ const jsonSafe = (s: string) => s.indexOf('"') < 0 && s.indexOf("\\") < 0;
  * Request body as a string. The base64 data URLs are spliced in as they are (checkImages guarantees they contain no quote or backslash)
  * instead of going through JSON.stringify, which would re-scan up to ~25MB of base64 and cost real CPU on the Workers Free plan.
  */
-export function visionBody(images: string[], model: string): string {
+export function visionBody(images: string[], model: string, provider: Provider = "zhipu"): string {
   const text = JSON.stringify({ type: "text", text: PROMPT });
+  // thinking off: Zhipu `thinking: {type: "disabled"}`, DashScope (Qwen) `enable_thinking: false`
+  const think = provider === "qwen" ? { enable_thinking: false } : { thinking: { type: "disabled" } };
   if (!images.every(jsonSafe)) {
-    return JSON.stringify({ model, max_tokens: 1200, temperature: 0.1, thinking: { type: "disabled" }, messages: [{ role: "user", content: [...images.map((url) => ({ type: "image_url", image_url: { url } })), JSON.parse(text)] }] });
+    return JSON.stringify({ model, max_tokens: 1200, temperature: 0.1, ...think, messages: [{ role: "user", content: [...images.map((url) => ({ type: "image_url", image_url: { url } })), JSON.parse(text)] }] });
   }
   const parts = images.map((im) => `{"type":"image_url","image_url":{"url":"${im}"}}`);
-  return `{"model":${JSON.stringify(model)},"max_tokens":1200,"temperature":0.1,"thinking":{"type":"disabled"},"messages":[{"role":"user","content":[${parts.join(",")},${text}]}]}`;
+  const thinkJson = JSON.stringify(think).slice(1, -1);
+  return `{"model":${JSON.stringify(model)},"max_tokens":1200,"temperature":0.1,${thinkJson},"messages":[{"role":"user","content":[${parts.join(",")},${text}]}]}`;
 }
 
 export async function runVision(images: string[], cfg: VisionConfig, parse: (t: string) => any): Promise<ImageFacts> {
   const res = await fetch(`${cfg.baseUrl.replace(/\/$/, "")}/chat/completions`, {
-    method: "POST", headers: { "content-type": "application/json", authorization: `Bearer ${cfg.apiKey}` }, body: visionBody(images, cfg.model), signal: cfg.signal,
+    method: "POST", headers: { "content-type": "application/json", authorization: `Bearer ${cfg.apiKey}` }, body: visionBody(images, cfg.model, cfg.provider), signal: cfg.signal,
   }).catch((e) => { throw classifyUpstream(String(e?.name || e)); });
   const j: any = await res.json().catch(() => ({}));
   if (!res.ok) throw classifyUpstream(`${res.status} ${j?.error?.code || ""} ${j?.error?.message || ""}`);

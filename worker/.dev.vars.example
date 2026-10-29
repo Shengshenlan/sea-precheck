@@ -1,4 +1,7 @@
 ZHIPUAI_API_KEY=your-zhipu-key-here
+# To try Qwen (阿里云百炼) locally instead of Zhipu:
+# LLM_PROVIDER=qwen
+# QWEN_API_KEY=your-dashscope-key-here
 JWT_SECRET=any-long-random-string
 # Either a real Brevo key, or DEV_MAIL_LOG=1 to print codes to the console (local only)
 # BREVO_API_KEY=xkeysib-...
